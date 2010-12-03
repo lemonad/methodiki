@@ -1,0 +1,17 @@
+django==1.2.3
+django-autoslug
+django-debug-toolbar
+django-forms-builder
+# django-haystack -- installed directly from trunk below
+django-markitup
+django-taggit
+django-taggit-templatetags
+docutils
+easy_thumbnails
+markdown
+PIL
+south
+whoosh
+
+-e git+http://github.com/toastdriven/django-haystack.git#egg=haystack
+
