@@ -1,0 +1,140 @@
+{% extends "base-without-sidebar.html" %}
+{% load comments i18n markup methods thumbnail %}
+{% block main %}
+  <div id="preview-comment" class="span-18 prepend-3 append-3 last">
+    <form action="{% comment_form_target %}" method="post">
+      {% csrf_token %}
+      {% if next %}
+      <input type="hidden" name="next" value="{{ next }}" />
+      {% endif %}
+
+      {% if form.errors %}
+      <h2>
+        {% blocktrans count form.errors|length as counter %}
+        Please correct the error below
+        {% plural %}
+        Please correct the errors below
+        {% endblocktrans %}
+      </h2>
+      {% else %}
+      <h2>{% trans "Preview your comment" %}</h2>
+      <ul class="span-18 last" style="padding:0;list-style-type:none;">
+        <li class="span-18 last" style="margin-bottom:1em;">
+          <div class="span-1">
+            {% if user.is_authenticated and user.get_profile.avatar %}
+            <img class="rounded-3" 
+                 src="{% thumbnail user.get_profile.avatar 25x25 crop %}"
+                 style="border: 2px solid #bbb;float:left;margin-right:0.5em;margin-bottom:0.5em;margin-top:0.5em" />
+            {% else %}
+            <div style="border:2px solid #bbb;float:left;margin-right:0.5em;margin-bottom:0.5em;margin-top:0.5em;background-color:#ddd;width:25px;height:25px;">&nbsp;</div>
+            {% endif %}
+          </div>
+          <div class="span-4">
+            <div style="padding-top:0.5em;">
+              <h3 style="margin-bottom:0.5em;">
+                <a href="#">{{ form.cleaned_data.name }}</a>
+              </h3>
+              <a class="alt" href="#" style="font-style:italic;">
+                {% now "Y-m-d H:i" %}
+              </a>
+            </div>
+          </div>
+          <div class="span-13 last">
+            <div class="comment-counter">
+              1
+            </div>
+            <div class="rounded-6 comment-body">
+              {{ comment|markdown:"autolink" }}
+            </div>
+          </div>
+        </li>
+      </ul>
+      <p>
+        {% trans "and" %}
+        <input type="submit" name="submit" class="submit-post"
+               value="{% trans "post your comment" %}" id="submit" />
+        {% trans "or make changes" %}:
+      </p>
+      {% endif %}
+
+      <div class="span-10 append-8 last">
+        {{ form.non_field_errors }}
+      </div>
+
+      {% if not user.is_authenticated %}
+      <div class="span-10 append-8 last">
+        {% if form.name.errors %}
+        {% for error in form.name.errors %}
+        <p class="error">
+          <strong>{{ error|escape }}</strong>
+        </p>
+        {% endfor %}
+        {% endif %}
+        <div class="span-3">
+          {{ form.name.label_tag }}
+        </div>
+        <div class="span-7 last">
+          {{ form.name }}
+        </div>
+      </div>
+
+      {% if form.email.errors %}
+      <div class="span-10 append-8 last">
+        <div class="error">
+          {{ form.email.errors }}
+        </div>
+      </div>
+      {% endif %}
+      <div class="span-3">
+        {{ form.email.label_tag }}
+      </div>
+      <div class="span-7 append-8 last">
+        {{ form.email }}
+      </div>
+
+      {% if form.url.errors %}
+      <div class="span-10 append-8 last">
+        <div class="error">
+          {{ form.url.errors }}
+        </div>
+      </div>
+      {% endif %}
+      <div class="span-3">
+        {{ form.url.label_tag }}
+      </div>
+      <div class="span-7 append-8 last">
+        {{ form.url }}
+      </div>
+      {% endif %}
+
+      <div class="span-10 append-8 last">
+        <div class="span-10 last">
+          {{ form.comment.label_tag }}
+        </div>
+        <div class="span-10 last">
+          {% if form.comment.errors %}
+          {% for error in form.comment.errors %}
+          <p class="error">
+            {{ error|escape }}
+          </p>
+          {% endfor %}
+          {% endif %}
+        </div>
+        <div class="span-10 last">
+          {{ form.comment }}
+        </div>
+      </div>
+
+      {{ form.content_type }}
+      {{ form.object_pk }}
+      {{ form.timestamp }}
+      {{ form.security_hash }}
+      <div class="span-18 last">
+        <input type="submit" name="submit" class="submit-post"
+               value="{% trans "Submit" %}">
+        <input type="submit" name="preview" class="submit-post"
+               value="{% trans "Preview" %}">
+      </div>
+    </form>
+  </div>
+{% endblock %}

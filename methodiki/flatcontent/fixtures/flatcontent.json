@@ -1,0 +1,11 @@
+[
+    {
+        "pk": 1,
+        "model": "flatcontent.flatcontent",
+        "fields": {
+            "name": "method-template",
+            "language_code": "en",
+            "content": "Hello world"
+        }
+    }
+]

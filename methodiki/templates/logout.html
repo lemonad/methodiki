@@ -1,0 +1,7 @@
+{% extends "base-with-sidebar.html" %}
+{% load i18n %}
+{% block main %}
+  <a href="{% url login %}">
+    {% trans "Log in as another user?" %}
+  </a>
+{% endblock %}

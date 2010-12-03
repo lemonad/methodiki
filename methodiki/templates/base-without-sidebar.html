@@ -1,0 +1,18 @@
+{% extends "base-html5.html" %}
+{% load i18n %}
+{% block body %}
+  <div class="container">
+    {% include "base-header.html" %}
+
+    <nav>
+      {% block navigation %}{% endblock %}
+    </nav>
+
+    <article class="span-24 last">
+      {% block main %}Main content{% endblock %}
+    </article>
+
+    <footer class="span-24 last">
+    </footer>
+  </div>
+{% endblock %}

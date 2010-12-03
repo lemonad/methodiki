@@ -1,0 +1,63 @@
+{% load i18n %}<!DOCTYPE html>
+<html lang="sv-SE" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <title>Metodiki</title>
+
+  <meta name="title" content="{{ site_name }}" />
+  <meta name="author" content="Jonas Nockert" />
+  <meta name="language" content="sv-SE" />
+
+  <link rel="shortcut icon" href="/media/favicon.ico" />
+
+  {% block feeds %}{% endblock %}
+
+  <link rel="stylesheet" type="text/css"
+        href="/media/css/blueprint/blueprint/screen.css"
+        media="screen, projection" />
+  <link rel="stylesheet" type="text/css"
+        href="/media/css/blueprint/blueprint/src/forms.css"
+        media="screen, projection" />
+  <link rel="stylesheet" type="text/css"
+        href="/media/css/blueprint/blueprint/print.css"
+        media="print" />
+  <link rel="stylesheet" type="text/css"
+        href="/media/css/blueprint/blueprint/plugins/buttons/screen.css"
+        media="screen, projection" />
+  <link rel="stylesheet" type="text/css"
+        href="/media/css/screen.css"
+        media="screen, projection" />
+  <link rel="stylesheet" type="text/css"
+        href="/media/css/print.css"
+        media="print" />
+  <!--[if lt IE 8]>
+    <link rel="stylesheet" type="text/css"
+          href="/media/css/blueprint/blueprint/ie.css"
+          media="print" />
+  <![endif]-->
+  {% block css %}{% endblock %}
+
+  <script src="/media/javascript/modernizr-1.6.min.js"></script>
+  <script type="text/javascript"
+          src="/media/javascript/jquery-1.4.4.min.js"></script>
+  <script type="text/javascript"
+          src="/media/javascript/jquery.corner.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    if (!Modernizr.borderradius) {
+        $(".rounded-3").corner("3px");
+        $(".rounded-6").corner("6px");
+        $(".rounded-9").corner("9px");
+        $(".rounded-10").corner("10px");
+        $(".rounded-19").corner("19px");
+    }
+    $("#messages").delay(800).slideDown("slow").delay(4000).slideUp("slow");
+  });
+  </script>
+  {% block javascript %}{% endblock %}
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  {% block body %}{% endblock %}
+</body>
+</html>

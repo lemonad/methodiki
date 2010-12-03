@@ -1,0 +1,14 @@
+{% load comments i18n %}
+<div class="rounded-9 box sidebar-box">
+  <h4>{% trans "Recent methods" %}</h4>
+  <ul>
+    {% for method in sidebar_methods.recent|slice:"5" %}
+    <li>
+      <a href="{% url methods-show-method method.published_at.year method.published_at.month method.published_at.day method.slug %}">
+        {{ method.title }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  <a href="{% url methods-index %}">{% trans "See more..." %}</a>
+</div>

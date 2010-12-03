@@ -1,0 +1,39 @@
+{% load i18n %}
+<h4 style="border-bottom: 1px solid #ddd; margin-bottom: 0.25em;">
+  {% trans "Quick help" %}
+  <br/>
+  <span class="description" style="font-size:80%;">
+    <a href="#">{% trans "Want detailed help?" %}</a>
+  </span>
+</h4>
+<ul>
+  <li>
+    <strong>{% trans "Text format" %}</strong>
+    &gt; {% trans "Subset of markdown. No inline html." %}
+  </li>
+  <li>
+    <strong>{% trans "Images" %}</strong> &gt;
+    <ul>
+      <li>
+        {% blocktrans %}
+        Upload images using button below edit area, click on
+        thumbnails to insert in text.
+        {% endblocktrans %}
+      </li>
+      <li>
+        {% blocktrans %}
+        Use images already uploaded somewhere else, copy url and
+        then use editor button to insert in text.
+        {% endblocktrans %}
+      </li>
+    </ul>
+  </li>
+  <li>
+    <strong>{% trans "Videos" %}</strong>
+    &gt; {% trans "Not yet. Just add a link to it for now." %}
+  </li>
+  <li>
+    <strong>{% trans "Design" %}</strong>
+    &gt; {% trans "Simple. Set font and color schemes below edit area" %}
+  </li>
+</ul>

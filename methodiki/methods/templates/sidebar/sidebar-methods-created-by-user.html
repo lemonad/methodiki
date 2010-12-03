@@ -1,0 +1,35 @@
+{% load i18n %}
+{% if user.is_authenticated and sidebar_methods.created_by_user %}
+<div class="rounded-9 box sidebar-box">
+  <h4>{% trans "Your methods" %}</h4>
+  {% if sidebar_methods.draft_methods_flag %}
+  <p class="notice">
+    {% blocktrans %}
+    You have methods to publish!
+    {% endblocktrans %}
+  </p>
+  {% endif %}
+  <ul>
+    {% for method in sidebar_methods.created_by_user %}
+    <li>
+      {% ifequal method.status "DRAFT" %}
+      <a href="{% url methods-edit-method method.slug %}">
+        {{ method.title }}
+      </a>
+      <em>
+        ({% trans "draft" %},
+        <a href="{% url methods-edit-method method.slug %}">{% trans "edit..." %}</a>)
+      </em>
+      {% else %}
+      <a href="{% url methods-show-method method.published_at.year method.published_at.month method.published_at.day method.slug %}">
+        {{ method.title }}
+      </a>
+      <em>
+        (<a href="{% url methods-edit-method method.slug %}">{% trans "edit..." %}</a>)
+      </em>
+      {% endifequal %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}

@@ -1,0 +1,38 @@
+[
+    {
+        "pk": 1,
+        "model": "methods.Method",
+        "fields": {
+            "slug": "hello-world",
+            "user": 3,
+            "title": "Hello world",
+            "description": "Hello and Goodbye!",
+            "status": "PUBLISHED",
+            "published_at": "2010-12-04 16:50"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "methods.Method",
+        "fields": {
+            "slug": "hello-again",
+            "user": 1,
+            "title": "Hello again",
+            "description": "Hello hello!",
+            "status": "PUBLISHED",
+            "published_at": "2010-12-04 16:51"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "methods.Method",
+        "fields": {
+            "slug": "i-ll-say-hello-later",
+            "user": 3,
+            "title": "I'll say hello later",
+            "description": "I'll just wait here for now.",
+            "status": "DRAFT",
+            "published_at": null
+        }
+    }
+]

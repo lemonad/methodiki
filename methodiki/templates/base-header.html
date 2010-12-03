@@ -1,0 +1,52 @@
+{% load i18n %}
+  {% if messages %}
+  <ul id="messages">
+    {% for message in messages %}
+    <li {% if message.tags %}class="{{ message.tags }}"{% endif %}>
+      {{ message }}
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  <header class="span-24 last">
+    <h1 class="span-7">
+      <a href="/">Methodiki</a>
+    </h1>
+
+    <div class="span-17 last">
+      <ul>
+        {% if request.user.is_authenticated %}
+        <li class="nav-first nav-border">
+          {% trans "Welcome" %} {{ request.user.get_profile.name }}
+        </li>
+        <li class="nav-border">
+          <a href="{% url user request.user.username %}">{% trans "My profile" %}</a>
+        </li>
+        <li class="nav-border">
+          <a href="{% url logout %}">{% trans "Log out" %}</a>
+        </li>
+        {% if request.user.is_staff or request.user.is_superuser %}
+        <li>
+          <a href="/admin/">{% trans "Administration" %}</a>
+        </li>
+        {% endif %}
+        {% else %}
+        <li class="nav-first nav-border">
+          <a href="{% url login %}?next={{ request.path }}{% if request.META.QUERY_STRING %}?{{ request.META.QUERY_STRING }}{% endif %}">
+            {% trans "Log in" %}
+          </a>
+        </li>
+        <li>
+          <a href="{% url register %}">{% trans "Sign up" %}</a>
+        </li>
+        {% endif %}
+        <li class="nav-first" style="display:block;">
+          <form action="/search">
+            <input type="text" name="q" />
+            <input type="submit" value="{% trans "Search" %}" />
+          </form>
+        </li>
+      </ul>
+    </div>
+  </header>

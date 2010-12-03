@@ -1,0 +1,13 @@
+{% load i18n %}
+{% if sidebar_methods.recent_comments %}
+<div class="rounded-9 box sidebar-box">
+  <h4>{% trans "Recent comments" %}</h4>
+  <ul>
+    {% for comment in sidebar_methods.recent_comments|slice:"5" %}
+    <li>
+        {{ comment.user.get_profile.name }}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}

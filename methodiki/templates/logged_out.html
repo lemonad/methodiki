@@ -1,0 +1,10 @@
+{% extends "base-with-sidebar.html" %}
+{% load i18n %}
+{% block main %}
+  <h2>{% trans "Logged out" %}</h2>
+  <p>
+    <a href="{% url login %}">
+      {% trans "Sign in as another user?" %}
+    </a>
+  </p>
+{% endblock %}

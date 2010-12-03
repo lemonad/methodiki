@@ -1,0 +1,86 @@
+# -*- coding: utf-8 -*-
+import datetime
+try:
+    import json
+except ImportError:
+    import simplejson as json
+
+from django import forms
+from django.conf import settings
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.core.cache import cache
+from django.core.exceptions import ObjectDoesNotExist
+from django.core.urlresolvers import reverse
+from django.db.models import Count, Q
+from django.forms import ModelForm
+from django.http import (HttpResponse, HttpResponseNotFound, Http404,
+                         HttpResponseRedirect)
+from django.shortcuts import (get_object_or_404, get_list_or_404,
+                              render_to_response)
+from django.template import Context, RequestContext, loader
+from django.utils.encoding import StrAndUnicode, force_unicode
+from django.utils.safestring import mark_safe
+from django.utils.translation import ugettext_lazy as _
+
+from forms import UserCreationForm
+from models import UserProfile
+
+
+def index(request):
+    """ Users index page """
+
+    users = User.objects.filter(is_active=True)
+
+    t = loader.get_template('users-index.html')
+    c = RequestContext(request, {'users': users})
+    return HttpResponse(t.render(c))
+
+
+def show_user(request, username):
+    """ User page """
+
+    user = get_object_or_404(User, username=username)
+
+    t = loader.get_template('users-show-user.html')
+    c = RequestContext(request, {'profile': user})
+    return HttpResponse(t.render(c))
+
+
+def register(request):
+    # Only allow not logged users to register new accounts
+    if request.user.is_authenticated():
+        return Http404()
+
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            user = authenticate(username=form.cleaned_data['username'],
+                                password=form.cleaned_data['password1'])
+            login(request, user)
+            return HttpResponseRedirect(reverse('settings-profile'))
+    else:
+        form = UserCreationForm()
+
+    t = loader.get_template('register.html')
+    c = RequestContext(request,
+                       {'form': form})
+    return HttpResponse(t.render(c))
+
+
+def username_exists_ajax(request):
+    if request.method == 'GET' and 'username' in request.GET:
+        username = request.GET['username']
+        exists = True
+        try:
+            User.objects.get(username=username)
+            exists = False
+        except User.DoesNotExist:
+            pass
+
+        ret_json = {'exists': exists}
+        return HttpResponse(json.dumps(ret_json))
+    else:
+        return Http404()

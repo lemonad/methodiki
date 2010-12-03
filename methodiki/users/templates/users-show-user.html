@@ -1,0 +1,16 @@
+{% extends "base-with-sidebar.html" %}
+{% load i18n thumbnail %}
+{% block javascript %}
+  <script type="text/javascript">
+    $(document).ready(function() {
+    });
+  </script>
+{% endblock %}
+{% block main %}
+  <h2>{{ profile.get_profile.name }} (<em>{{ profile.username }}</em>)</h2>
+
+  {% if user.get_profile.avatar %}
+  <img src="{% thumbnail profile.get_profile.avatar 100x100 %}"
+       style="border: 1px solid #999;" />
+  {% endif %}
+{% endblock %}

@@ -1,7 +1,6 @@
 django==1.2.3
 django-autoslug
 django-debug-toolbar
-django-forms-builder
 # django-haystack -- installed directly from trunk below
 django-markitup
 django-taggit
@@ -9,7 +8,9 @@ django-taggit-templatetags
 docutils
 easy_thumbnails
 markdown
+pep8
 PIL
+simplejson
 south
 whoosh
 
