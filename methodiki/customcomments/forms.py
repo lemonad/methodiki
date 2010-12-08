@@ -3,9 +3,13 @@ import re
 
 from django.contrib.comments.forms import CommentForm
 from django.core.validators import URLValidator
+from django.forms import BooleanField
 
+from models import CustomComment
 
 class CustomCommentForm(CommentForm):
+    lift_method = BooleanField(required=False, initial=True)
+
     def __init__(self, target_object, data=None, initial=None):
         super(CustomCommentForm, self).__init__(target_object, data, initial)
         class_str = "span-7 append-8 last input"
@@ -18,6 +22,15 @@ class CustomCommentForm(CommentForm):
         # e.g. without TLDs.
         self.fields['url'].validators = [IntranetURLValidator()]
 
+    def get_comment_model(self):
+        # Use our custom comment model instead of the built-in one.
+        return CustomComment
+
+    def get_comment_create_data(self):
+        # Use the data of the superclass, and add in the title field
+        data = super(CustomCommentForm, self).get_comment_create_data()
+        data['lift_method'] = self.cleaned_data['lift_method']
+        return data
 
 class IntranetURLValidator(URLValidator):
     """ URL validation that support local URLs, e.g. without TLDs. """
