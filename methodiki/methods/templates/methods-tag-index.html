@@ -5,16 +5,20 @@
         title="{% trans "Latest methods" %}"
         href="{% url methods-feed latest %}" />
 {% endblock %}
-{% block javascript %}
-<script type="text/javascript">
-  $(document).ready(function() {
-  });
-</script>
-{% endblock %}
-{% block main %}
-  <h2>{{ methods.count }} {% trans "Methods and best practices" %}</h2>
 
-  {% if methods %}
+{% block javascript %}
+  <script type="text/javascript">
+    $(document).ready(function() {
+    });
+  </script>
+{% endblock %}
+
+{% block main %}
+  <h2>
+    {{ methods.count }} {% trans "methods tagged with" %}
+    <em>{{ tag.name }}</em>
+  </h2>
+
   <ul style="list-style-type: none;">
     {% for method in methods %}
     <li>
@@ -54,9 +58,4 @@
     </li>
     {% endfor %}
   </ul>
-  {% else %}
-  <p>
-    <a href="{% url methods-create-method %}">{% trans "Go ahead, create the first method!" %}</a>
-  </p>
-  {% endif %}
 {% endblock %}

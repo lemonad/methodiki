@@ -192,9 +192,13 @@ blockquote em {
     padding: 0;
 }
 #uploaded-media ul li {
-    display: inline;
+    display: inline-block;
+    position: relative;
+    left: 0;
+    top: 0;
     background-color: #fff;
     padding: 5px;
+    margin-top: 3px;
     border: 3px solid #ccc;
     width: 50px;
     height: 50px;
@@ -234,6 +238,29 @@ span.taggit-tag-used {
     color: #fff;
 }
 
+a.image-add, a.image-preview, a.image-delete {
+    display: none;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+}
+
+.image-add {
+    background: url(/media/images/icons/001_01.png);
+    bottom: 24px;
+    left: 17px;
+}
+.image-preview {
+    background: url(/media/images/icons/001_37.png);
+    bottom: 0px;
+    left: 0px;
+}
+.image-delete {
+    background: url(/media/images/icons/001_05.png);
+    bottom: 0px;
+    right: 0px;
+}
+
 #comments textarea, #preview-comment textarea {
     height: 80px;
 }
@@ -243,7 +270,7 @@ span.taggit-tag-used {
 }
 #comments li.comment-method-owner div.comment-body {
     background-color: #009dff;
-    color:#fff;
+    color: #fff;
 }
 #comments li div.comment-counter, #preview-comment li div.comment-counter {
     float: right;
@@ -254,6 +281,13 @@ span.taggit-tag-used {
 }
 #comments li.comment-method-owner div.comment-counter {
     color: #45b8ff; /* 69c5ff */
+}
+#comments li.comment-thumbsup div.comment-body, #preview-comment li.comment-thumbsup div.comment-body {
+    background-color: #f8df17;
+    color: #000;
+}
+#comments li.comment-thumbsup div.comment-counter {
+    color: #ff0;
 }
 
 /* Rounded corners */

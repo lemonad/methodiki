@@ -8,6 +8,7 @@
             "title": "Hello world",
             "description": "Hello and Goodbye!",
             "status": "PUBLISHED",
+            "last_pushed_at": "2010-12-04 16:50",
             "published_at": "2010-12-04 16:50"
         }
     },
@@ -20,6 +21,7 @@
             "title": "Hello again",
             "description": "Hello hello!",
             "status": "PUBLISHED",
+            "last_pushed_at": "2010-12-04 16:50",
             "published_at": "2010-12-04 16:51"
         }
     },
@@ -32,6 +34,7 @@
             "title": "I'll say hello later",
             "description": "I'll just wait here for now.",
             "status": "DRAFT",
+            "last_pushed_at": null,
             "published_at": null
         }
     }

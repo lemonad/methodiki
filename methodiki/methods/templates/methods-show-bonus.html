@@ -1,0 +1,42 @@
+{% extends "base-with-sidebar.html" %}
+{% load comments i18n markup thumbnail %}
+{% block css %}
+  <link rel="stylesheet" type="text/css"
+        href="/media/javascript/jquery.fancybox-1.3.4/jquery.fancybox-1.3.4.css" />
+{% endblock %}
+
+{% block javascript %}
+  <script type="text/javascript"
+          src="/media/javascript/jquery.fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#bonus img").each(function() {
+          $(this).fancybox({"hideOnContentClick": true,
+                            "type": "image",
+                            "href": this.src,
+                            "margin": 14});
+      });
+    });
+  </script>
+{% endblock %}
+
+{% block main %}
+  <a href="#">
+    <img style="float:right;margin-top:-2em;"
+         src="/media/images/pedagogic-bonus.png" />
+  </a>
+  <h2>
+    {% trans "Good method" %}:
+    <em>
+      <a href="{% url methods-show-method method.published_at.year method.published_at.month method.published_at.day method.slug %}">
+        {{ method.title }}
+      </a>
+    </em>
+  </h2>
+  <div id="bonus">
+    {% for bonus in bonuses %}
+    {{ bonus.description|markdown:"autolink" }}
+    {% include "methods-bonus-meta.html" %}
+    {% endfor %}
+  </div>
+{% endblock %}

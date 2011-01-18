@@ -108,9 +108,11 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'haystack',
     'markitup',
+    'south',
     'taggit',
     'taggit_templatetags',
     # methodiki apps
+    'about',
     'customcomments',
     'flatcontent',
     'methods',
@@ -122,9 +124,12 @@ AUTH_PROFILE_MODULE = 'users.UserProfile'
 
 # Reverse does not work in settings.py so have to use hardcoded
 # internationalized URLs here
-LOGIN_REDIRECT_URL = ugettext(r'/settings/profile/')
-LOGIN_URL = ugettext(r'/login/')
-LOGOUT_URL = ugettext(r'/logout/')
+# LOGIN_REDIRECT_URL = ugettext(r'/settings/profile/')
+# LOGIN_URL = ugettext(r'/login/')
+# LOGOUT_URL = ugettext(r'/logout/')
+LOGIN_REDIRECT_URL = ugettext(r'/installningar/profil/')
+LOGIN_URL = ugettext(r'/logga-in/')
+LOGOUT_URL = ugettext(r'/logga-ut/')
 
 #
 # Comments
@@ -141,7 +146,7 @@ COMMENT_MAX_LENGTH = 100000
 MARKITUP_FILTER = ('markdown.markdown', {'safe_mode': True,
                                          'extensions': ['autolink']})
 MARKITUP_SET = "markitup/sets/markdown"
-MARKITUP_SKIN = "markitup/skins/markitup"
+MARKITUP_SKIN = "markitup/skins/simple"
 MARKITUP_AUTO_PREVIEW = False
 MARKITUP_MEDIA_URL = os.path.join(MEDIA_URL, 'javascript')
 

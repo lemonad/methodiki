@@ -27,6 +27,7 @@ class MethodModelTests(TestCase):
                                   title="I can has cheezburger?",
                                   description="**kthxbye!**",
                                   status='PUBLISHED',
+                                  last_pushed_at=now,
                                   published_at=now)
 
     def test_method_deletion(self):

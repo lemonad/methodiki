@@ -7,6 +7,7 @@ from django.forms import BooleanField
 
 from models import CustomComment
 
+
 class CustomCommentForm(CommentForm):
     lift_method = BooleanField(required=False, initial=True)
 

@@ -4,9 +4,16 @@
   <h4>{% trans "Recent comments" %}</h4>
   <ul>
     {% for comment in sidebar_methods.recent_comments|slice:"5" %}
+    {% with comment.content_object as method %}
+    {% if method %}
     <li>
-        {{ comment.user.get_profile.name }}
+      {{ comment.user_name|capfirst }} {% trans "on" %}
+      <a href="{% url methods-show-method method.published_at.year method.published_at.month method.published_at.day method.slug %}#c{{ comment.id }}">
+        {{ method.title }}</a>:
+      <em>{{ comment.comment|truncatewords:6 }}</em>
     </li>
+    {% endif %}
+    {% endwith %}
     {% endfor %}
   </ul>
 </div>

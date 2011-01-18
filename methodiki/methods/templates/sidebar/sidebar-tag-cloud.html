@@ -1,0 +1,14 @@
+{% load comments i18n taggit_extras %}
+<div class="rounded-9 box sidebar-box">
+  <h4>{% trans "Popular tags" %}</h4>
+  <div>
+  {% get_tagcloud as tags for 'methods.method' %}
+  {% for tag in tags %}
+  {% if tag.weight > 1 %}
+  <a href="{% url methods-tag-index tag.slug %}">
+    <font size="{{ tag.weight|floatformat:0 }}">{{ tag }}</font>
+  </a>
+  {% endif %}
+  {% endfor %}
+  </div>
+</div>

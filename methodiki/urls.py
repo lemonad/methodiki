@@ -9,6 +9,9 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'methodiki.methods.views.index'),
+
+    (_(r'^about/'), include('methodiki.about.urls')),
+
     (r'^metoder/', include('methodiki.methods.urls')),
 
     (r'^markitup/', include('markitup.urls')),
@@ -64,6 +67,11 @@ urlpatterns += patterns('',
     url(_(r'^signup/$'),
         'users.views.register',
         name="register"),
+)
+
+# Language
+urlpatterns += patterns('',
+    (r'^i18n/', include('django.conf.urls.i18n')),
 )
 
 if settings.DEBUG:

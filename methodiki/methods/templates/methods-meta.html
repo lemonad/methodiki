@@ -1,5 +1,5 @@
 {% load i18n thumbnail %}
-<p class="method-meta" style="clear:left;">
+<p class="method-meta" style="clear:left;margin-top:0.5em;">
   {% url user method.user.username as link_to_person %}
   {% comment %}
   {% if method.user.get_profile.avatar %}
@@ -24,7 +24,10 @@
 
     <br/>
     <span>
-      {% trans "Tags" %}: {{ method.tags.all|join:", " }}
+      {% trans "Tags" %}:
+      {% for method_tag in method.tags.all %}
+      <a href="{% url methods-tag-index method_tag.slug %}">{{ method_tag.name }}</a>
+      {% endfor %}
     </span>
   </em>
 </p>

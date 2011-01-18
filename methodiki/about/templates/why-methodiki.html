@@ -1,0 +1,5 @@
+{% extends "base-with-sidebar.html" %}
+{% load i18n markup %}
+{% block main %}
+  {{ why_methodiki|markdown:"autolink" }}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% comment %}
+
+  Just filler text for now.
+  #TODO: Replace with flat content.
+
+{% endcomment %}
+{% load comments i18n %}
+<div class="rounded-9 box sidebar-box">
+  <h4>{% trans "Background" %}</h4>
+  {% with "01"|make_list|random as rnd %}
+  {% ifequal rnd "0" %}
+  <p>
+    <strong>Reflektion.</strong>
+    Erfarenhet är ett mångfacetterat begrepp men likafullt något som är centralt i
+    relation till vuxnas lärande. John Dewey menar att lärande startar i deltagares
+    förutsättningar. Vad betyder det? En tolkning är att pedagogen i en given
+    lärsituation ska utgå från deltagarens livsvärld, men för att de ska ske en
+    förändring i tolkning och handling så måste pedagogen utmana den lärandes
+    föreställning. Idealt kan detta uppnås om lärsituationen kopplas samman med
+    ”det levda livet” utanför lärmiljön. Utbildning handlar inte om att förbereda
+    inför kommande liv eller framtid, utbildning är just en del av livet.
+  </p>
+  {% else %}
+  <p>
+    <strong>Reflektion.</strong>
+    Erfarenhet är ett mångfacetterat begrepp men likafullt något som är centralt i
+    relation till vuxnas lärande. John Dewey menar att lärande startar i deltagares
+    förutsättningar. Vad betyder det? En tolkning är att pedagogen i en given
+    lärsituation ska utgå från deltagarens livsvärld, men för att de ska ske en
+    förändring i tolkning och handling så måste pedagogen utmana den lärandes
+    föreställning. Idealt kan detta uppnås om lärsituationen kopplas samman med
+    ”det levda livet” utanför lärmiljön. Utbildning handlar inte om att förbereda
+    inför kommande liv eller framtid, utbildning är just en del av livet.
+  </p>
+  {% endifequal %}
+  {% endwith %}
+  <a href="{% url methods-index %}">{% trans "Read more..." %}</a>
+</div>

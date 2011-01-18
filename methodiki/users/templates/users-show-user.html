@@ -1,11 +1,12 @@
 {% extends "base-with-sidebar.html" %}
-{% load i18n thumbnail %}
+{% load comments i18n markup methods thumbnail %}
 {% block javascript %}
   <script type="text/javascript">
     $(document).ready(function() {
     });
   </script>
 {% endblock %}
+
 {% block main %}
   <h2>{{ profile.get_profile.name }} (<em>{{ profile.username }}</em>)</h2>
 
@@ -13,4 +14,47 @@
   <img src="{% thumbnail profile.get_profile.avatar 100x100 %}"
        style="border: 1px solid #999;" />
   {% endif %}
+
+  {% if user_methods %}
+  <hr />
+  <h2>{% trans "Recent methods" %}</h2>
+  <ul style="list-style-type: none;">
+    {% for method in user_methods %}
+    <li>
+      <a href="#">
+        <img style="float:right;"
+             src="/media/images/pedagogic-bonus-badge.png" />
+      </a>
+      <h3>
+        <a href="{% url methods-show-method method.published_at.year method.published_at.month method.published_at.day method.slug %}">
+          {{ method.title }}
+        </a>
+      </h3>
+      {% if method.methodfile_set.all.0.image %}
+      <img class="rounded-3"
+           src="{% thumbnail method.methodfile_set.all.0.image 25x25 crop %}"
+           title=""
+           style="border:2px solid #bbb; float:left; margin-right:0.5em;" />
+      {% endif %}
+      {{ method.description|markdown:"autolink"|abstract }}
+
+      {% get_comment_count for method as comment_count %}
+      {% if comment_count %}
+      <span><em>
+        <a href="{% url methods-show-method method.published_at.year method.published_at.month method.published_at.day method.slug %}#comments">
+        {% blocktrans count comment_count as cc %}
+          1 comment.
+          {% plural %}
+          {{ cc }} comments.
+        {% endblocktrans %}
+        </a>
+      </em></span>
+      {% endif %}
+      {% include "methods-meta.html" %}
+      <hr />
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
 {% endblock %}

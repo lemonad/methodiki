@@ -26,6 +26,7 @@ from django.template import Context, RequestContext, loader
 from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext_lazy as _
 from easy_thumbnails.files import get_thumbnailer
+from taggit.models import Tag
 
 from flatcontent.models import get_flatcontent
 from forms import MethodForm
@@ -45,7 +46,8 @@ def get_sidebar_methods(user):
         created_by_user = None
         draft_methods_flag = False
 
-    recent_comments = Comment.objects.filter(content_type__model="Method")
+    recent_comments = Comment.objects.filter(content_type__model="method") \
+                                     .order_by('-submit_date')
 
     sidebar_methods = {'created_by_user': created_by_user,
                        'recent': Method.objects.recent(),
@@ -76,15 +78,29 @@ def index(request):
     # TODO: Order methods on popularity (see method manager)
 
     sidebar_methods = get_sidebar_methods(request.user)
+    methods = Method.objects.popular()
 
     t = loader.get_template('methods-index.html')
     c = RequestContext(request,
-                       {'sidebar_methods': sidebar_methods})
+                       {'methods': methods,
+                        'sidebar_methods': sidebar_methods})
     return HttpResponse(t.render(c))
 
+def tag_index(request, tag_slug):
+    """ Index page for a specific tag """
+
+    sidebar_methods = get_sidebar_methods(request.user)
+    tag = get_object_or_404(Tag, slug=tag_slug)
+    methods = Method.objects.filter(tags__slug=tag_slug)
+
+    t = loader.get_template('methods-tag-index.html')
+    c = RequestContext(request,
+                       {'tag': tag,
+                        'methods': methods,
+                        'sidebar_methods': sidebar_methods})
+    return HttpResponse(t.render(c))
 
 def show_method(request, year, month, day, slug):
-    form = None
     method = get_object_or_404(Method, slug=slug)
 
     sidebar_methods = get_sidebar_methods(request.user)
@@ -92,6 +108,19 @@ def show_method(request, year, month, day, slug):
     t = loader.get_template('methods-show-method.html')
     c = RequestContext(request,
                        {'method': method,
+                        'sidebar_methods': sidebar_methods})
+    return HttpResponse(t.render(c))
+
+def show_bonus(request, year, month, day, slug):
+    method = get_object_or_404(Method, slug=slug)
+    bonuses = method.methodbonus_set.all()
+
+    sidebar_methods = get_sidebar_methods(request.user)
+
+    t = loader.get_template('methods-show-bonus.html')
+    c = RequestContext(request,
+                       {'method': method,
+                        'bonuses': bonuses,
                         'sidebar_methods': sidebar_methods})
     return HttpResponse(t.render(c))
 
@@ -129,11 +158,19 @@ def create_method(request):
 
     sidebar_methods = get_sidebar_methods(request.user)
 
+    # FIXME: Replace example hard coded suggestions with tag category
+    # and suggestion model which is editable by admins.
+    suggested_tags = [("Lärmiljö", ["simulator", "klassrum", "självstudie",
+                       "distans"]),
+                      ("Form", ["reflektion", "diskussion", "laboration",
+                       "redovisning", "examination"])]
+
     t = loader.get_template('methods-create-method.html')
     c = RequestContext(request,
                        {'form': form,
                         'tag_cloud': tag_cloud,
                         'preview': preview,
+                        'suggested_tags': suggested_tags,
                         'sidebar_methods': sidebar_methods})
     return HttpResponse(t.render(c))
 
@@ -183,6 +220,7 @@ def edit_method(request, slug):
         elif 'publish' in request.POST:
             method.status = 'PUBLISHED'
             method.published_at = datetime.datetime.now()
+            method.last_pushed_at = datetime.datetime.now()
             method.save()
             messages.success(request, _("Method is now published and visible "
                                         "to everyone"))
@@ -245,7 +283,8 @@ def upload_file(request, slug):
                     'width': uf.width,
                     'height': uf.height,
                     'url': resized_image.url,
-                    'thumbnail_url': thumbnail.url}
+                    'thumbnail_url': thumbnail.url,
+                    'image_id': uf.id}
         return HttpResponse(json.dumps(ret_json))
     else:
         return Http404()

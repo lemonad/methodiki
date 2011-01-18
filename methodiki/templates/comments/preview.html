@@ -18,8 +18,10 @@
       </h2>
       {% else %}
       <h2>{% trans "Preview your comment" %}</h2>
-      <ul class="span-18 last" style="padding:0;list-style-type:none;">
-        <li class="span-18 last" style="margin-bottom:1em;">
+      <ul id="comments" class="span-18 last"
+          style="padding:0;list-style-type:none;">
+        <li class="span-18 last{% if form.cleaned_data.lift_method %} comment-thumbsup{% endif %}"
+            style="margin-bottom:1em;">
           <div class="span-1">
             {% if user.is_authenticated and user.get_profile.avatar %}
             <img class="rounded-3" 
@@ -44,6 +46,11 @@
               1
             </div>
             <div class="rounded-6 comment-body">
+              {% if form.cleaned_data.lift_method %}
+              <img style="float:left;margin-right:0.5em;"
+                   src="/media/images/icons/001_18.png"
+                   width="24" height="24" />
+              {% endif %}
               {{ comment|markdown:"autolink" }}
             </div>
           </div>
@@ -123,6 +130,14 @@
         <div class="span-10 last">
           {{ form.comment }}
         </div>
+      </div>
+
+      <div class="span-10 append-8 last">
+        {% blocktrans %}
+        With this comment, do you also want to lift this method
+        to the top of the methods list?
+        {% endblocktrans %}
+        {{ form.lift_method }}
       </div>
 
       {{ form.content_type }}

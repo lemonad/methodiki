@@ -18,11 +18,19 @@
     });
   </script>
 {% endblock %}
+
+{% block sidebar %}
+  {% include "sidebar/sidebar-theory.html" %}
+  {% include "sidebar/sidebar-create-method.html" %}
+{% endblock %}
+
 {% block main %}
-  <a href="#">
+  {% if method.methodbonus_set.all %}
+  <a href="{% url methods-show-bonus method.published_at.year method.published_at.month method.published_at.day method.slug %}">
     <img style="float:right;margin-top:-2em;"
          src="/media/images/pedagogic-bonus.png" />
   </a>
+  {% endif %}
   <h2>{{ method.title }}</h2>
   <div id="method">
     {{ method.description|markdown:"autolink" }}
@@ -46,7 +54,7 @@
     <ul class="span-18 last" style="padding:0;list-style-type:none;">
       {% for comment in comment_list %}
       <li id="c{{ comment.id }}"
-          class="span-18 last{% if comment.last %} comment-last{% endif %}{% ifequal method.user comment.user %} comment-method-owner{% endifequal %}"
+          class="span-18 last{% if comment.last %} comment-last{% endif %}{% ifequal method.user comment.user %} comment-method-owner{% endifequal %}{% if comment.lift_method %} comment-thumbsup{% endif %}"
           style="margin-bottom:1em;">
         <div class="span-1">
               {% if comment.user.get_profile.avatar %}
@@ -58,7 +66,7 @@
         <div class="span-4">
           <div style="padding-top:0.5em;">
             <h3 style="margin-bottom:0.5em;">
-              <a href="#">{{ comment.user_name }}</a>
+              <a href="{% url user comment.user.username %}">{{ comment.user_name }}</a>
             </h3>
             <a class="alt" href="{% get_comment_permalink comment "#c%(id)s" %}" style="font-style:italic;">
               {{ comment.submit_date }}
@@ -70,6 +78,11 @@
             {{ forloop.counter }}
           </div>
           <div class="rounded-6 comment-body">
+            {% if comment.lift_method %}
+            <img style="float:left;margin-right:0.5em;"
+                 src="/media/images/icons/001_18.png"
+                 width="24" height="24" />
+            {% endif %}
             {{ comment.comment|markdown:"autolink" }}
           </div>
         </div>
@@ -119,6 +132,14 @@
         <div class="span-10 last">
           {{ form.comment }}
         </div>
+      </div>
+
+      <div class="span-10 append-8 last">
+        {% blocktrans %}
+        With this comment, do you also want to lift this method
+        to the top of the methods list?
+        {% endblocktrans %}
+        {{ form.lift_method }}
       </div>
 
       {{ form.content_type }}

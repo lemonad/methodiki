@@ -16,15 +16,21 @@ class MethodManager(Manager):
         return self.exclude(status='DRAFT') \
                    .order_by('-published_at')
 
+    def pushed(self):
+        return self.exclude(status='DRAFT') \
+                   .order_by('-last_pushed_at', '-published_at')
+
     def created_by_user(self, userid):
         return self.filter(user=userid) \
                    .order_by('-published_at')
 
-    def popular():
-        """ Based on number of comments and time published. """
-        return self.annotate(comment_count=Count('comments')) \
-                   .exclude(status='DRAFT') \
-                   .order_by('-comment_count', '-published_at')
+    def popular(self):
+        """ Popularity is currently as simple as when methods were
+            last pushed.
+
+        """
+        return self.exclude(status='DRAFT') \
+                   .order_by('-last_pushed_at')
 
 
 class Method(Model):
@@ -51,6 +57,10 @@ class Method(Model):
                        choices=STATUS_CHOICES,
                        default='DRAFT',
                        db_index=True)
+    last_pushed_at = DateTimeField(_("Date and time pushed"),
+                                   null=True,
+                                   blank=True,
+                                   db_index=True)
     published_at = DateTimeField(_("Date and time published"),
                                  null=True,
                                  blank=True,
@@ -82,7 +92,7 @@ class Method(Model):
                     'slug': self.slug})
 
     class Meta:
-        ordering = ['-published_at', '-date_created']
+        ordering = ['-last_pushed_at', '-published_at', '-date_created']
         verbose_name = _("method")
         verbose_name_plural = _("methods")
 
@@ -140,6 +150,13 @@ class MethodBonus(Model):
     method = ForeignKey(Method,
                         verbose_name=_('Method'),
                         db_index=True)
+    description = TextField(_("Description"),
+                            blank=True)
+    status = CharField(_("Status"),
+                       max_length=32,
+                       choices=STATUS_CHOICES,
+                       default='DRAFT',
+                       db_index=True)
     published_at = DateTimeField(_("Date and time published"),
                                  null=True,
                                  blank=True,
@@ -153,7 +170,7 @@ class MethodBonus(Model):
     objects = MethodBonusManager()
 
     def __unicode__(self):
-        return self.title
+        return self.description
 
     def is_draft(self):
         return (self.status == 'DRAFT')

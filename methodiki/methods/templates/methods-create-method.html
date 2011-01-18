@@ -17,9 +17,13 @@
   <script type="text/javascript">
     $(document).ready(function() {
       var suggested_tags = [
-          {% for tag in suggested_tags %}
+        {% comment %}
+          {% for title, tags in suggested_tags %}
+          {% for tag in tags %}
           "{{ tag }}",
           {% endfor %}
+          {% endfor %}
+          {% endcomment %}
         ];
       taggit = $("#id_method-tags").taggit({suggested_tags: suggested_tags,
                                             suggested_tags_id: "suggested-tags"});
@@ -65,9 +69,11 @@
         {{ form.title }}
       </div>
       {% if form.title.errors %}
-      <p>
-        {{ form.title.errors }}
+      {% for error in form.title.errors %}
+      <p class="error">
+        <strong>{{ error|escape }}</strong>
       </p>
+      {% endfor %}
       {% endif %}
 
       <div class="span-18 last">
@@ -77,7 +83,7 @@
         {{ form.description }}
       </div>
       {% if form.description.errors %}
-      <p>
+      <p class="error">
         {{ form.description.errors }}
       </p>
       {% endif %}
@@ -91,14 +97,21 @@
           {{ form.tags }}
         </div>
         {% if form.tags.errors %}
-        <p>
+        <p class="error">
           {{ form.tags.errors }}
         </p>
         {% endif %}
 
         <div class="span-18 last tagInputSuggestedTags">
           <span class="label">{% trans "Suggested tags:" %}</span>
-          <span id="suggested-tags" class="tagInputSuggestedTagList"></span>
+          <span id="suggested-tags" class="tagInputSuggestedTagList">
+              {% for title, tags in suggested_tags %}
+              <br /><strong>{{ title }}:</strong>
+              {% for tag in tags %}
+              <span class="taggit-tag">{{ tag }}</span>
+              {% endfor %}
+              {% endfor %}
+          </span>
         </div>
       </div>
 

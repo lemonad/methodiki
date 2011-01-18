@@ -38,7 +38,25 @@
                     '<ul class="qq-upload-list"></ul>' + 
                     '</div>',
           onComplete: function(id, fileName, responseJSON) {
-            var link_and_image = "<li><a class=\"method-image\" href=\"";
+            var listitem =
+                "<li id=\"image-" + responseJSON.image_id + "\" " +
+                     "class=\"rounded-6\">" +
+                    "<a href=\"" + responseJSON.original_url + "\">" +
+                         "<img class=\"rounded-3\" src=\"" +
+                               responseJSON.thumbnail_url + "\" /></a>" +
+                    "<a class=\"image-add\" href=\"" +
+                        responseJSON.original_url + "\"></a>" +
+                    "<a class=\"image-preview\" href=\"" +
+                        responseJSON.original_url + "\"></a>" +
+                    "<a id=\"delete-image-" + responseJSON.image_id + "\" " +
+                        "class=\"image-delete\" href=\"#\"></a>" + 
+                "</li>";
+
+                $("li#image-" + responseJSON.image_id + " a.image-preview").
+                    fancybox({"hideOnContentClick": true,
+                              "margin": 14});
+
+            /*
             if (responseJSON.width > 600 || responseJSON.height > 500) {
                 link_and_image += "http://{{ request.META.HTTP_HOST }}" +
                                   responseJSON.url;
@@ -46,23 +64,24 @@
                 link_and_image += "http://{{ request.META.HTTP_HOST }}" +
                                   responseJSON.original_url;
             }
-            link_and_image += "\"><img src=\"" + responseJSON.thumbnail_url +
-                              "\" /></a></li>";
-            $("#uploaded-media-list").append(link_and_image);
+            */
+            $("#uploaded-media-list").append(listitem);
+            /*
             $(".method-image").click(function() {
                 $.markItUp({ replaceWith: '![{% trans "Alternative text" %}](' +
                                           this.href +
                                           ' "{% trans "Title" %}")' });
                 return false;
             });
+            */
             $("#uploaded-media").show("slow");
           }
       });
-      $(".method-image, a.image-add").click(function() {
+      $("a.image-add").live("click", function() {
           $.markItUp({replaceWith: this.href});
           return false;
       });
-      $("a.image-delete").click(function() {
+      $("a.image-delete").live("click", function() {
           if (!confirm("{% trans "Delete image?" %}")) {
               return false;
           }
@@ -89,10 +108,12 @@
           }
           return false;
       });
-      $("#uploaded-media li").hover(function() {
-          $(this).children(".image-preview,.image-delete,.image-add").show();
-      }, function() {
-          $(this).children(".image-preview,.image-delete,.image-add").hide();
+      $("#uploaded-media li").live("mouseover mouseout", function() {
+          if (event.type === "mouseover") {
+              $(this).children(".image-preview,.image-delete,.image-add").show();
+          } else {
+              $(this).children(".image-preview,.image-delete,.image-add").hide();
+          }
       });
       $("a.image-preview").fancybox({"hideOnContentClick": true,
                                      "margin": 14});
@@ -130,9 +151,11 @@
         {{ form.title }}
       </div>
       {% if form.title.errors %}
-      <p>
-        {{ form.title.errors }}
+      {% for error in form.title.errors %}
+      <p class="error">
+        <strong>{{ error|escape }}</strong>
       </p>
+      {% endfor %}
       {% endif %}
 
       <div class="span-18 last">
@@ -142,7 +165,7 @@
         {{ form.description }}
       </div>
       {% if form.description.errors %}
-      <p>
+      <p class="error">
         {{ form.description.errors }}
       </p>
       {% endif %}
@@ -150,33 +173,15 @@
       <div id="uploaded-media" class="span-18 last" style="margin-top:0.5em;">
         <ul id="uploaded-media-list">
         {% for image in images %}
-        <li id="image-{{ image.id }}" class="rounded-6"
-            style="position:relative;left:0;top:0;display:inline-block;">
-          <a class="method-image" href="{{ image.image.url }}">
+        <li id="image-{{ image.id }}" class="rounded-6">
+          <a href="{{ image.image.url }}">
             <img class="rounded-3" src="{% thumbnail image.image 50x50 %}"
                  title="{{ image.image.size }}"/>
           </a>
-          <a class="image-add" href="{{ image.image.url }}"
-             style="display:none;">
-            <img class="image-add"
-                 src="/media/images/icons/001_01.png"
-                 title="{% trans "Add image to text" %}"
-                 style="display:block;position:absolute;bottom:24px;left:17px;" />
-          </a>
-          <a class="image-preview" href="{{ image.image.url }}"
-             style="display:none;">
-            <img class="image-preview"
-                 src="/media/images/icons/001_37.png"
-                 title="{% trans "Preview" %}"
-                 style="display:block;position:absolute;bottom:0px;left:0px;"/>
-          </a>
+          <a class="image-add" href="{{ image.image.url }}"></a>
+          <a class="image-preview" href="{{ image.image.url }}"></a>
           <a id="delete-image-{{ image.id }}" class="image-delete"
-             href="#" style="display:none;">
-            <img class="image-delete"
-                 src="/media/images/icons/001_05.png"
-                 title="{% trans "Delete image" %}"
-                 style="display:block;position:absolute;bottom:0px;right:0px;" />
-          </a>
+             href="#"></a>
         </li>
         {% endfor %}
         </ul>
@@ -204,7 +209,7 @@
           {{ form.tags }}
         </div>
         {% if form.tags.errors %}
-        <p>
+        <p class="error">
           {{ form.tags.errors }}
         </p>
         {% endif %}
