@@ -134,7 +134,7 @@ blockquote em {
     font-style: normal;
 }
 
-#method-form input {
+#method-form input, #bonus-form input {
     font-size: 100%;
     font-family: Lucida Console, Monaco, DejaVu Sans Mono, monospace;
 }
@@ -144,10 +144,61 @@ blockquote em {
     font-family: Lucida Console, Monaco, DejaVu Sans Mono, monospace;
 }
 
-.method {
+#tag-column li.tag-1 { background-color:  #f4970a; }
+#tag-column li.tag-2 { background-color:  #da900a; }
+#tag-column li.tag-3 { background-color:  #c18a0a; }
+#tag-column li.tag-4 { background-color:  #a8840b; }
+#tag-column li.tag-5 { background-color:  #8f7e0b; }
+#tag-column li.tag-6 { background-color:  #76780b; }
+#tag-column li.tag-7 { background-color:  #5d720c; }
+#tag-column li.tag-8 { background-color:  #4d6a20; }
+#tag-column li.tag-9 { background-color:  #3e6334; }
+#tag-column li.tag-10 { background-color: #2e5b49; }
+#tag-column li.tag-11 { background-color: #1e545e; }
+#tag-column li.tag-12 { background-color: #0f4c72; }
+
+#method-index img.method-thumb {
+    border: 2px solid #bbb;
+    float: left;
+    margin-right: 0.5em;
+    -webkit-transform: rotate(-2deg);
+    -moz-transform: rotate(-2deg);
+    -o-transform: rotate(-2deg);
+    transform: rotate(-2deg);
+    -webkit-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.1);
+    -o-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.1);
+}
+#method-index img.bonus-star {
+    float: right;
 }
 
-#method img {
+#method p { width: 75%; }
+#method img { width: 100% !important; }
+#method ul {
+    border-top: 1px solid #eee;
+    border-bottom:1px solid #eee;
+    padding-left: 1em;
+    width: 60%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+#method h1, #method h2, #method h3, #method h4, #method h5, #method h6 {
+    color: #222;
+}
+#method + hr {
+    background-color: #007fce;
+}
+
+dkddkdk {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    -moz-column-gap: 40px;
+    -webkit-coulmn-gap: 40px;
+}
+
+#method img, #bonus img {
     display: block;
     width: 90%;
     text-align: center;
@@ -261,6 +312,17 @@ a.image-add, a.image-preview, a.image-delete {
     right: 0px;
 }
 
+#bonuses {
+    margin-bottom: 2em;
+}
+#bonuses ul {
+    margin-left: 1em;
+    list-style-type: circle;
+}
+
+#comments {
+    margin-bottom: 2em;
+}
 #comments textarea, #preview-comment textarea {
     height: 80px;
 }
