@@ -1,13 +1,15 @@
 {% load i18n %}
-<div class="rounded-9 box create-method-box sidebar-box">
-  {% trans "Have a good example of your own?" %}
-  {% if user.is_authenticated %}
-  <a href="{% url methods-create-method %}">
-    <strong>{% trans "Add a method!" %}</strong>
-  </a>
-  {% else %}
-  <a href="{% url login %}?next={% url methods-create-method %}">
-    {% trans "Login and add a method!" %}
-  </a>
-  {% endif %}
+<div>
+  <h4>{% trans "Have a good example of your own?" %}</h4>
+  <p>
+    {% if user.is_authenticated %}
+    <a href="{% url methods-create-method %}">
+      <strong>{% trans "Add a method!" %}</strong>
+    </a>
+    {% else %}
+    <a href="{% url login %}?next={% url methods-create-method %}">
+      {% trans "Login and add a method!" %}
+    </a>
+    {% endif %}
+  </p>
 </div>

@@ -1,0 +1,11 @@
+{% extends "base-html5.html" %}
+{% load i18n %}
+{% block body %}
+  {% include "base-header.html" %}
+
+  <article>
+      {% block main %}Main content{% endblock %}
+  </article>
+
+  {% include "base-footer.html" %}
+{% endblock %}

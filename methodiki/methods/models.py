@@ -12,26 +12,33 @@ from taggit.managers import TaggableManager
 
 
 class MethodManager(Manager):
-    def recent(self):
-        return self.exclude(status='DRAFT') \
-                   .order_by('-published_at')
-
-    def pushed(self):
-        return self.exclude(status='DRAFT') \
-                   .order_by('-last_pushed_at', '-published_at')
-
     def created_by_user(self, userid):
         return self.filter(user=userid) \
                    .order_by('-published_at')
 
     def popular(self):
-        """ Popularity is currently as simple as when methods were
-            last pushed.
+        """
+        Popularity is currently as simple as when methods were
+        last pushed.
 
         """
         return self.exclude(status='DRAFT') \
                    .order_by('-last_pushed_at')
 
+    def pushed(self):
+       return self.exclude(status='DRAFT') \
+                  .order_by('-last_pushed_at', '-published_at')
+
+    def recent(self):
+        return self.exclude(status='DRAFT') \
+                   .order_by('-published_at')
+
+    def with_pictures(self):
+        methods = MethodFile.objects.values_list('method', flat=True) \
+                                    .order_by('method') \
+                                    .distinct()
+        return self.filter(id__in=list(methods)) \
+                   .exclude(status='DRAFT') \
 
 class Method(Model):
     STATUS_CHOICES = (('DRAFT', _("Draft")),
@@ -122,7 +129,7 @@ class MethodFile(Model):
                                   auto_now=True)
 
     def __unicode__(self):
-        return self.image
+        return self.image.url
 
     class Meta:
         ordering = ['-date_created']

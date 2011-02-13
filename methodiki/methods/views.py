@@ -29,31 +29,23 @@ from easy_thumbnails.files import get_thumbnailer
 from taggit.models import Tag
 
 from flatcontent.models import get_flatcontent
-from forms import MethodForm
-from models import Method, MethodFile
+from forms import MethodForm, MethodBonusForm
+from models import Method, MethodBonus, MethodFile
 
 
 def get_sidebar_methods(user):
     if user.is_authenticated():
         created_by_user = Method.objects.created_by_user(user.id)
-
-        draft_methods_flag = False
-        for method in created_by_user:
-            if method.status == 'DRAFT':
-                draft_methods_flag = True
-                break
     else:
         created_by_user = None
-        draft_methods_flag = False
 
+    recent_methods = Method.objects.recent()
     recent_comments = Comment.objects.filter(content_type__model="method") \
                                      .order_by('-submit_date')
 
-    sidebar_methods = {'created_by_user': created_by_user,
-                       'recent': Method.objects.recent(),
-                       'recent_comments': recent_comments,
-                       'draft_methods_flag': draft_methods_flag}
-    return sidebar_methods
+    return {'created_by_user': created_by_user,
+            'recent': recent_methods,
+            'recent_comments': recent_comments}
 
 
 def get_token(request):
@@ -72,17 +64,28 @@ def get_token(request):
     return request.META.get("CSRF_COOKIE", None)
 
 
+def frontpage(request):
+    """ The frontpage """
+
+    method = Method.objects.with_pictures() \
+                           .order_by('?')[0]
+
+    t = loader.get_template('methods-frontpage.html')
+    c = RequestContext(request,
+                       {'method': method})
+    return HttpResponse(t.render(c))
+
 def index(request):
     """ Index page """
 
     # TODO: Order methods on popularity (see method manager)
 
     sidebar_methods = get_sidebar_methods(request.user)
-    methods = Method.objects.popular()
+    popular_methods = Method.objects.popular()
 
     t = loader.get_template('methods-index.html')
     c = RequestContext(request,
-                       {'methods': methods,
+                       {'methods': popular_methods,
                         'sidebar_methods': sidebar_methods})
     return HttpResponse(t.render(c))
 
@@ -122,6 +125,14 @@ def show_bonus(request, year, month, day, slug):
                        {'method': method,
                         'bonuses': bonuses,
                         'sidebar_methods': sidebar_methods})
+    return HttpResponse(t.render(c))
+
+def about_bonus(request):
+    about_text = get_flatcontent('about-bonus-template')
+
+    t = loader.get_template('methods-about-bonus.html')
+    c = RequestContext(request,
+                       {'about': about_text})
     return HttpResponse(t.render(c))
 
 
@@ -247,6 +258,123 @@ def edit_method(request, slug):
                         'form': form,
                         'images': images,
                         'sidebar_methods': sidebar_methods})
+    return HttpResponse(t.render(c))
+
+
+@login_required
+def create_bonus(request):
+    preview = {}
+
+    if request.method == 'POST':
+        if 'preview' in request.POST:
+            form = MethodBonusForm(request, request.POST, prefix='bonus')
+            if form.is_valid():
+                preview['description'] = form.cleaned_data['description']
+
+        elif 'method' in request.POST:
+            form = MethodBonusForm(request, request.POST, prefix='bonus')
+            if form.is_valid():
+                m = form.save()
+                messages.success(request,
+                                 _("Thanks for adding a new method bonus! "
+                                   "Don't forget to publish it so it becomes "
+                                   "visible to others."))
+                return HttpResponseRedirect(reverse('methods-edit-bonus',
+                                                    kwargs={'bonus_id': m.id}))
+        else:
+            raise Http404
+    else:
+        # Initialize form
+        bonus_template = get_flatcontent('bonus-template')
+        form_defaults = {'description': bonus_template}
+        form = MethodBonusForm(request,
+                               initial=form_defaults,
+                               prefix='bonus')
+
+    t = loader.get_template('methods-create-bonus.html')
+    c = RequestContext(request,
+                       {'form': form,
+                        'preview': preview})
+    return HttpResponse(t.render(c))
+
+
+@login_required
+def edit_bonus(request, bonus_id):
+    bonus = get_object_or_404(MethodBonus, id=bonus_id)
+    preview = {}
+
+    if not request.user.is_superuser and request.user != bonus.user:
+        raise PermissionDenied("You must own a method bonus in "
+                               "order to edit it.")
+
+    form = MethodBonusForm(request, instance=bonus, prefix='bonus')
+
+    if request.method == 'POST':
+        if 'preview' in request.POST:
+            form = MethodBonusForm(request,
+                                   request.POST,
+                                   instance=bonus,
+                                   prefix='bonus')
+            if form.is_valid():
+                preview['description'] = form.cleaned_data['description']
+
+        elif 'bonus' in request.POST:
+            form = MethodBonusForm(request,
+                                   request.POST,
+                                   instance=bonus,
+                                   prefix='bonus')
+            if form.is_valid():
+                b = form.save()
+                if bonus.is_published():
+                    messages.success(request, _("Bonus saved!"))
+                    return HttpResponseRedirect(reverse('methods-show-bonus',
+                        kwargs={'year': bonus.method.published_at.year,
+                                'month': bonus.method.published_at.month,
+                                'day': bonus.method.published_at.day,
+                                'slug': bonus.method.slug}))
+                else:
+                    messages.success(request, _("Bonus saved! Don't forget "
+                                                "to publish it so it becomes "
+                                                "visible to others."))
+                    return HttpResponseRedirect(
+                        reverse('methods-edit-bonus',
+                                kwargs={'bonus_id': b.id}))
+
+        elif 'delete' in request.POST:
+            bonus.delete()
+            messages.success(request, _("Bonus deleted!"))
+            return HttpResponseRedirect(reverse('methods-show-bonus',
+                kwargs={'year': bonus.method.published_at.year,
+                        'month': bonus.method.published_at.month,
+                        'day': bonus.method.published_at.day,
+                        'slug': bonus.method.slug}))
+
+        elif 'publish' in request.POST:
+            bonus.status = 'PUBLISHED'
+            bonus.published_at = datetime.datetime.now()
+            bonus.save()
+            messages.success(request, _("Bonus is now published and visible "
+                                        "to everyone"))
+            return HttpResponseRedirect(reverse('methods-show-bonus',
+                kwargs={'year': bonus.method.published_at.year,
+                        'month': bonus.method.published_at.month,
+                        'day': bonus.method.published_at.day,
+                        'slug': bonus.method.slug}))
+
+        elif 'unpublish' in request.POST:
+            method.status = 'DRAFT'
+            method.save()
+            messages.success(request, _("Method is now draft"))
+            return HttpResponseRedirect(reverse('methods-edit-bonus',
+                                                kwargs={'slug': bonus.id}))
+        else:
+            raise Http404
+
+    t = loader.get_template('methods-edit-bonus.html')
+    c = RequestContext(request,
+                       {'bonus': bonus,
+                        'preview': preview,
+                        'form': form})
     return HttpResponse(t.render(c))
 
 

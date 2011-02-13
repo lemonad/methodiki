@@ -1,0 +1,56 @@
+{% extends "base-without-sidebar.html" %}
+{% load i18n markup markitup_tags media thumbnail %}
+
+{% block css %}
+  {% include_media "edit-methods.css" media="screen, projection" %}
+{% endblock %}
+
+{% block javascript %}
+  {% include_media "edit-methods.js" %}
+{% endblock %}
+
+{% block main %}
+  {% include "methods-bonus-preview.html" %}
+
+  <div class="bonus span-18 prepend-3 append-3 last">
+    <img style="float:right;margin-top:-2em;"
+         src="{% media_url "images/pedagogic-bonus.png" %}" />
+    <h2>{% trans "Give a bonus!" %}</h2>
+
+    {% include "methods-about-bonus.html" %}
+
+    <h2>{% trans "Start writing!" %}</h2>
+    {% include "methods-markdown-quick-help.html" %}
+  </div>
+
+  <div class="bonus span-18 prepend-3 append-3 last">
+  <div class="column box rounded-9">
+    <form id="bonus-form"
+          action="{% url methods-create-bonus %}"
+          method="post">
+
+      {% csrf_token %}
+
+      <div class="span-18 last">
+        {{ form.description.label_tag }}
+      </div>
+      <div class="span-18 last">
+        {{ form.description }}
+      </div>
+      {% if form.description.errors %}
+      <p class="error">
+        {{ form.description.errors }}
+      </p>
+      {% endif %}
+
+      <div class="span-18 prepend-top last" style="text-align:right; margin-bottom:1em;">
+        <input class="submit" type="submit" name="preview"
+               value="{% trans "Preview" %}" />
+        <input class="submit" type="submit" name="bonus"
+               value="{% trans "Create" %}" />
+      </div>
+    </form>
+
+  </div>
+  </div>
+{% endblock %}

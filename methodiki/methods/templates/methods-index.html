@@ -1,56 +1,32 @@
 {% extends "base-with-sidebar.html" %}
-{% load comments i18n markup methods thumbnail %}
+{% load comments i18n markup media methods taggit_extras thumbnail %}
+
 {% block feeds %}
   <link rel="alternate" type="application/rss+xml"
         title="{% trans "Latest methods" %}"
         href="{% url methods-feed latest %}" />
 {% endblock %}
+
 {% block javascript %}
 <script type="text/javascript">
   $(document).ready(function() {
+    $("a.method-thumb-zoom").fancybox({"hideOnContentClick": true,
+                          "type": "image",
+                          "href": this.src,
+                          "margin": 14});
   });
 </script>
 {% endblock %}
+
 {% block main %}
   <h2>{{ methods.count }} {% trans "Methods and best practices" %}</h2>
 
   {% if methods %}
-  <ul style="list-style-type: none;">
+  <ul id="method-index" style="list-style-type: none;">
     {% for method in methods %}
     <li>
-      {% if method.methodbonus_set.all %}
-      <a href="{% url methods-show-bonus method.published_at.year method.published_at.month method.published_at.day method.slug %}">
-        <img style="float:right;"
-             src="/media/images/pedagogic-bonus-badge.png" />
-      </a>
-      {% endif %}
-      <h3>
-        <a href="{% url methods-show-method method.published_at.year method.published_at.month method.published_at.day method.slug %}">
-          {{ method.title }}
-        </a>
-      </h3>
-      {% if method.methodfile_set.all.0.image %}
-      <img class="rounded-3"
-           src="{% thumbnail method.methodfile_set.all.0.image 25x25 crop %}"
-           title=""
-           style="border:2px solid #bbb; float:left; margin-right:0.5em;" />
-      {% endif %}
-      {{ method.description|markdown:"autolink"|abstract }}
-
-      {% get_comment_count for method as comment_count %}
-      {% if comment_count %}
-      <span><em>
-        <a href="{% url methods-show-method method.published_at.year method.published_at.month method.published_at.day method.slug %}#comments">
-        {% blocktrans count comment_count as cc %}
-          1 comment.
-          {% plural %}
-          {{ cc }} comments.
-        {% endblocktrans %}
-        </a>
-      </em></span>
-      {% endif %}
+      {% include "methods-listitem.html" %}
       {% include "methods-meta.html" %}
-      <hr />
     </li>
     {% endfor %}
   </ul>

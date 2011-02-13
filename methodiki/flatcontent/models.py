@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.models import User
+from django.core.cache import cache
 from django.db.models import (Manager, Model, CharField, DateField,
                               DateTimeField, FloatField, ForeignKey,
                               ManyToManyField, TextField)
@@ -48,19 +49,28 @@ def get_flatcontent(name):
 
     """
     language_code = translation.get_language()
+    cache_key = "%s--%s" % (language_code, name)
 
-    content = FlatContent.objects.filter(name__iexact=name) \
-                                 .filter(language_code__iexact=language_code)
+    content = cache.get(cache_key)
+    if content:
+        return content
 
-    if not len(content):
+    try:
         content = FlatContent.objects.filter(name__iexact=name) \
-                                   .filter(language_code__iexact='en-US')
+                                     .filter(language_code__iexact=
+                                             language_code)[0]
+    except IndexError:
+        try:
+            content = FlatContent.objects.filter(name__iexact=name) \
+                                         .filter(language_code__iexact=
+                                                 'en-US')[0]
+        except IndexError:
+            try:
+                content = FlatContent.objects.filter(name__iexact=name)[0]
+            except IndexError:
+                return _("No matching content for flat content '%(name)s', "
+                         "please use admin interface to create it.") \
+                       % {'name': name}
 
-    if not len(content):
-        content = FlatContent.objects.filter(name__iexact=name)
-
-    if not len(content):
-        return _("No matching content for flat content '%(name)s', "
-                 "please use admin interface to create it.") % {'name': name}
-    else:
-        return content[0].content
+    cache.set(cache_key, content)
+    return content

@@ -6,37 +6,34 @@
 
   <form method="get" action=".">
     {% if query %}
-      {% for result in page.object_list %}
-        {% with result.object as method %}
-        <h3>
-          <a href="{{ method.get_absolute_url }}">
-            {{ method.title }}
-          </a>
-        </h3>
-        <p>
-          {{ method.description|markdown:"autolink"|abstract }}
-          {% include "methods-meta.html" %}
-        </p>
-        {% endwith %}
-      {% empty %}
-        <p>{% trans "Sorry, could not find any matching methods." %}</p>
-      {% endfor %}
-
-      {% if page.has_previous or page.has_next %}
-        <div>
-          {% if page.has_previous %}
-          <a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">
-          {% endif %}
-            &laquo; {% trans "Previous" %}
-          {% if page.has_previous %}</a>{% endif %}
-          |
-          {% if page.has_next %}
-          <a href="?q={{ query }}&amp;page={{ page.next_page_number }}">
-          {% endif %}
-            {% trans "Next" %} &raquo;
-          {% if page.has_next %}</a>{% endif %}
-        </div>
-      {% endif %}
+    <ul id="method-index" style="list-style-type: none;">
+    {% for result in page.object_list %}
+      {% with result.object as method %}
+      <li>
+        {% include "methods-listitem.html" %}
+        {% include "methods-meta.html" %}
+      </li>
+      {% endwith %}
+    {% empty %}
+      <p>{% trans "Sorry, could not find any matching methods." %}</p>
+    {% endfor %}
+    </ul>
+   
+    {% if page.has_previous or page.has_next %}
+      <div>
+        {% if page.has_previous %}
+        <a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">
+        {% endif %}
+          &laquo; {% trans "Previous" %}
+        {% if page.has_previous %}</a>{% endif %}
+        |
+        {% if page.has_next %}
+        <a href="?q={{ query }}&amp;page={{ page.next_page_number }}">
+        {% endif %}
+          {% trans "Next" %} &raquo;
+        {% if page.has_next %}</a>{% endif %}
+      </div>
+    {% endif %}
     {% else %}
       {# Show some example queries to run, maybe query syntax, something else? #}
     {% endif %}

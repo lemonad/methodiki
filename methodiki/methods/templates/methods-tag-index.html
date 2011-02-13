@@ -1,5 +1,5 @@
 {% extends "base-with-sidebar.html" %}
-{% load comments i18n markup methods thumbnail %}
+{% load comments i18n markup media methods thumbnail %}
 {% block feeds %}
   <link rel="alternate" type="application/rss+xml"
         title="{% trans "Latest methods" %}"
@@ -25,7 +25,7 @@
       {% if method.methodbonus_set.all %}
       <a href="{% url methods-show-bonus method.published_at.year method.published_at.month method.published_at.day method.slug %}">
         <img style="float:right;"
-             src="/media/images/pedagogic-bonus-badge.png" />
+             src="{% media_url "images/pedagogic-bonus-badge.png" %}" />
       </a>
       {% endif %}
       <h3>

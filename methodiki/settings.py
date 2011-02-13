@@ -10,6 +10,7 @@ ugettext = lambda s: s
 PROJECT_ROOT = os.path.dirname(__file__)
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 MEDIA_URL = '/media/'
+
 STATIC_DOC_ROOT = os.path.join(PROJECT_ROOT, 'media')
 ADMIN_MEDIA_PREFIX = '/admin_media/'
 
@@ -66,6 +67,8 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    # Media middleware has to come first
+    'mediagenerator.middleware.MediaMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -76,8 +79,9 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'methodiki.urls'
 
 TEMPLATE_DIRS = (
-    os.path.join(os.path.dirname(__file__), "templates"),
+    os.path.join(PROJECT_ROOT, "templates"),
 )
+
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
     "django.core.context_processors.debug",
@@ -86,11 +90,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     # "django.contrib.staticfiles.context_processors.staticfiles",
     "django.contrib.messages.context_processors.messages",
     "django.core.context_processors.request",
+    "common.context_processors.site",
+    "methods.context_processors.user_methods",
 )
 
 FIXTURE_DIRS = (
-    os.path.join(os.path.dirname(__file__), "fixtures"),
-    os.path.join(os.path.dirname(__file__), "flatcontent/fixtures"),
+    os.path.join(PROJECT_ROOT, "fixtures"),
+    os.path.join(PROJECT_ROOT, "flatcontent/fixtures"),
 )
 
 INSTALLED_APPS = (
@@ -108,11 +114,13 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'haystack',
     'markitup',
+    'mediagenerator',
     'south',
     'taggit',
     'taggit_templatetags',
     # methodiki apps
     'about',
+    'common',
     'customcomments',
     'flatcontent',
     'methods',
@@ -127,9 +135,9 @@ AUTH_PROFILE_MODULE = 'users.UserProfile'
 # LOGIN_REDIRECT_URL = ugettext(r'/settings/profile/')
 # LOGIN_URL = ugettext(r'/login/')
 # LOGOUT_URL = ugettext(r'/logout/')
-LOGIN_REDIRECT_URL = ugettext(r'/installningar/profil/')
-LOGIN_URL = ugettext(r'/logga-in/')
-LOGOUT_URL = ugettext(r'/logga-ut/')
+LOGIN_REDIRECT_URL = ugettext(r'/settings/profile/')
+LOGIN_URL = ugettext(r'/login/')
+LOGOUT_URL = ugettext(r'/logout/')
 
 #
 # Comments
@@ -145,10 +153,52 @@ COMMENT_MAX_LENGTH = 100000
 #
 MARKITUP_FILTER = ('markdown.markdown', {'safe_mode': True,
                                          'extensions': ['autolink']})
-MARKITUP_SET = "markitup/sets/markdown"
+MARKITUP_SET = "markitup-markdown-set"
 MARKITUP_SKIN = "markitup/skins/simple"
 MARKITUP_AUTO_PREVIEW = False
 MARKITUP_MEDIA_URL = os.path.join(MEDIA_URL, 'javascript')
+
+#
+# Django-mediagenerator
+#
+MEDIA_DEV_MODE = DEBUG
+DEV_MEDIA_URL = '/devmedia/'
+PRODUCTION_MEDIA_URL = '/media/'
+GLOBAL_MEDIA_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
+_base_screen_bundle = (
+    'css/blueprint/blueprint/screen.css',
+    'css/blueprint/blueprint/src/forms.css',
+    'css/blueprint/blueprint/plugins/buttons/screen.css',
+    'css/screen.scss',
+    'javascript/jquery.fancybox-1.3.4/jquery.fancybox-1.3.4.css',
+)
+MEDIA_BUNDLES = (
+    # CSS
+    ('screen.css',) + _base_screen_bundle,
+    ('screen-ie.css',) + _base_screen_bundle
+                       + ('css/blueprint/blueprint/ie.css',),
+    ('edit-methods.css', 'javascript/jquery-taggit/jquery.taggit.css',
+                         'javascript/fileuploader/fileuploader.css',
+                         'javascript/markitup/skins/simple/style.css',
+                         'javascript/markitup-markdown-set/style.css',),
+    ('print.css', 'css/blueprint/blueprint/print.css',
+                  'css/print.css',),
+    # Javascript
+    ('main.js', 'javascript/modernizr-1.6.min.js',
+                'javascript/jquery-1.4.4.min.js',
+                'javascript/jquery.corner.js',
+                'javascript/jquery.fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js',),
+    ('edit-methods.js', 'javascript/jquery.timers-1.2.js',
+                        'javascript/jquery-taggit/jquery.taggit.js',
+                        'javascript/fileuploader/fileuploader.js',
+                        'javascript/markitup/jquery.markitup.js',
+                        'javascript/markitup-markdown-set/set.js',),
+)
+
+ROOT_MEDIA_FILTERS = {
+    'sass': 'mediagenerator.filters.sass.Sass',
+    'scss': 'mediagenerator.filters.sass.Sass',
+}
 
 #
 # Django-taggit

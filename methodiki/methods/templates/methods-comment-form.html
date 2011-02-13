@@ -1,0 +1,65 @@
+{% load comments i18n %}
+<div id="comment-form"
+     class="span-16 last rounded-9">
+  <h2>{% trans "What are your reflections?" %}</h2>
+  <p>{% blocktrans %}
+    Try to be constructive and give positive feedback!
+  {% endblocktrans %}</p>
+  {% get_comment_form for method as form %}
+  <form action="{% comment_form_target %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="next"
+           value="{% url methods-show-method method.published_at.year method.published_at.month method.published_at.day method.slug %}#comments" />
+
+    {% if not user.is_authenticated %}
+    <fieldset>
+      <div class="span-3">
+        {{ form.name.label_tag }}
+      </div>
+      {{ form.name }}
+    </fieldset>
+
+    <fieldset>
+      <div class="span-3">
+        {{ form.email.label_tag }}
+      </div>
+      {{ form.email }}
+    </fieldset>
+
+    <fieldset>
+      <div class="span-3">
+        {{ form.url.label_tag }}
+      </div>
+      {{ form.url }}
+    </fieldset>
+    {% endif %}
+
+    <fieldset>
+      <div class="span-3">
+        {{ form.comment.label_tag }}
+      </div>
+      {{ form.comment }}
+    </fieldset>
+
+    <fieldset>
+      <div class="prepend-3 span-10 append-3 last">
+        {% blocktrans %}
+        With this comment, do you also want to lift this method
+        to the top of the methods list?
+        {% endblocktrans %}
+        {{ form.lift_method }}
+      </div>
+    </fieldset>
+
+    {{ form.content_type }}
+    {{ form.object_pk }}
+    {{ form.timestamp }}
+    {{ form.security_hash }}
+    <fieldset class="prepend-top">
+      <div class="prepend-3 span-10 append-3 last" style="text-align:right;">
+        <input type="submit" name="submit" class="submit-post" value="Submit">
+        <input type="submit" name="preview" class="submit-post" value="Preview">
+      </div>
+    </fieldset>
+  </form>
+</div>

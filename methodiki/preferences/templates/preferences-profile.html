@@ -1,10 +1,6 @@
 {% extends "base-with-sidebar.html" %}
 {% load i18n thumbnail %}
-{% block css %}
-  <link href="/media/javascript/jquery.fancybox-1.3.4/jquery.fancybox-1.3.4.css" rel="stylesheet" type="text/css" />
-{% endblock %}
 {% block javascript %}
-  <script type="text/javascript" src="/media/javascript/jquery.fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
       $("a.avatar-preview").fancybox({"hideOnContentClick": true,
@@ -12,9 +8,11 @@
     });
   </script>
 {% endblock %}
+
 {% block sidebar %}
 {% include "sidebar/preferences-sidebar-info.html" %}
 {% endblock %}
+
 {% block navigation %}
   <ul>
     <li class="rounded-9"><a href="#">{% trans "Account" %}</a></li>
@@ -23,6 +21,7 @@
     <li class="rounded-9 active"><a href="#">{% trans "Profile" %}</a></li>
   </ul>
 {% endblock %}
+
 {% block main %}
   <h2>{% trans "Edit your profile information" %}</h2>
 

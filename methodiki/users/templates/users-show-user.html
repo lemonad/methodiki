@@ -1,29 +1,32 @@
 {% extends "base-with-sidebar.html" %}
-{% load comments i18n markup methods thumbnail %}
-{% block javascript %}
-  <script type="text/javascript">
-    $(document).ready(function() {
-    });
-  </script>
-{% endblock %}
+{% load comments i18n markup media methods thumbnail %}
 
 {% block main %}
-  <h2>{{ profile.get_profile.name }} (<em>{{ profile.username }}</em>)</h2>
-
-  {% if user.get_profile.avatar %}
+  <div class="span-8">
+  <h2 style="margin-top:80px">
+    {{ profile.get_profile.name }} (<em>@{{ profile.username }}</em>)
+  </h2>
+  </div>
+  <div class="span-8 last" style="text-align:right;margin-bottom:0.5em;">
+  {% if profile.get_profile.avatar %}
   <img src="{% thumbnail profile.get_profile.avatar 100x100 %}"
-       style="border: 1px solid #999;" />
+       style="padding: 8px;
+       border: 1px solid #999;
+       background-color: #f8f8f8;
+       -webkit-transform: rotate(7deg);
+       -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2)" />
   {% endif %}
+  </div>
 
   {% if user_methods %}
-  <hr />
+  <hr style="clear:both;" />
   <h2>{% trans "Recent methods" %}</h2>
   <ul style="list-style-type: none;">
     {% for method in user_methods %}
     <li>
       <a href="#">
         <img style="float:right;"
-             src="/media/images/pedagogic-bonus-badge.png" />
+             src="{% media_url "images/pedagogic-bonus-badge.png" %}" />
       </a>
       <h3>
         <a href="{% url methods-show-method method.published_at.year method.published_at.month method.published_at.day method.slug %}">

@@ -1,8 +1,8 @@
 {% load i18n %}
 {% if sidebar_methods.recent_comments %}
-<div class="rounded-9 box sidebar-box">
+<div>
   <h4>{% trans "Recent comments" %}</h4>
-  <ul>
+  <ol>
     {% for comment in sidebar_methods.recent_comments|slice:"5" %}
     {% with comment.content_object as method %}
     {% if method %}
@@ -15,6 +15,6 @@
     {% endif %}
     {% endwith %}
     {% endfor %}
-  </ul>
+  </ol>
 </div>
 {% endif %}

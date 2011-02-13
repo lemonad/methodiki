@@ -1,33 +1,35 @@
 {% load i18n thumbnail %}
-<p class="method-meta" style="clear:left;margin-top:0.5em;">
-  {% url user method.user.username as link_to_person %}
-  {% comment %}
-  {% if method.user.get_profile.avatar %}
-  <img class="rounded-3" 
-       src="{% thumbnail method.user.get_profile.avatar 25x25 crop %}"
-       style="border: 2px solid #bbb;" />
-  {% endif %}
-  {% endcomment %}
-  <em>
-    {% ifequal method.status "PUBLISHED" %}
-    {% blocktrans with method.user.get_profile.name as name and method.published_at as published_at %}
-    Created by <a href="{{ link_to_person }}">{{ name }}</a>
-    and published at {{ published_at }}.
-    {% endblocktrans %}
-    {% endifequal %}
-    {% ifequal method.status "DRAFT" %}
-    {% blocktrans with method.user.get_profile.name as name and method.date_created as created_at %}
-    Created by <a href="{{ link_to_person }}">{{ name }}</a> at {{ created_at }}.
-    <strong>Method is not yet published.</strong>
-    {% endblocktrans %}
-    {% endifequal %}
-
-    <br/>
-    <span>
-      {% trans "Tags" %}:
-      {% for method_tag in method.tags.all %}
-      <a href="{% url methods-tag-index method_tag.slug %}">{{ method_tag.name }}</a>
-      {% endfor %}
-    </span>
-  </em>
-</p>
+<div class="method-meta">
+  <p>
+    {% url user method.user.username as link_to_person %}
+    {% comment %}
+    {% if method.user.get_profile.avatar %}
+    <img class="rounded-3" 
+         src="{% thumbnail method.user.get_profile.avatar 25x25 crop %}"
+         style="border: 2px solid #bbb;" />
+    {% endif %}
+    {% endcomment %}
+    <em>
+      {% ifequal method.status "PUBLISHED" %}
+      {% blocktrans with method.user.get_profile.name as name and method.published_at as published_at %}
+      Created by <a href="{{ link_to_person }}">{{ name }}</a>
+      and published at {{ published_at }}.
+      {% endblocktrans %}
+      {% endifequal %}
+      {% ifequal method.status "DRAFT" %}
+      {% blocktrans with method.user.get_profile.name as name and method.date_created as created_at %}
+      Created by <a href="{{ link_to_person }}">{{ name }}</a> at {{ created_at }}.
+      <strong>Method is not yet published.</strong>
+      {% endblocktrans %}
+      {% endifequal %}
+    
+      <br/>
+      <span>
+        {% trans "Tags" %}:
+        {% for method_tag in method.tags.all %}
+        <a href="{% url methods-tag-index method_tag.slug %}">{{ method_tag.name }}</a>{% if not forloop.last %},{% endif %}
+        {% endfor %}
+      </span>
+    </em>
+  </p>
+</div>

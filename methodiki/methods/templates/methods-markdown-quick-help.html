@@ -1,5 +1,8 @@
 {% load i18n %}
+{% comment %}
 <h4 style="border-bottom: 1px solid #ddd; margin-bottom: 0.25em;">
+{% endcomment %}
+<h4 style="margin-bottom: 0.25em;">
   {% trans "Quick help" %}
   <br/>
   <span class="description" style="font-size:80%;">
@@ -9,7 +12,7 @@
 <ul>
   <li>
     <strong>{% trans "Text format" %}</strong>
-    &gt; {% trans "Subset of markdown. No inline html." %}
+    &gt; {% trans "Subset of markdown. No html." %}
   </li>
   <li>
     <strong>{% trans "Images" %}</strong> &gt;
@@ -22,8 +25,8 @@
       </li>
       <li>
         {% blocktrans %}
-        Use images already uploaded somewhere else, copy url and
-        then use editor button to insert in text.
+        Use images already uploaded somewhere else; paste urls
+        directly into text.
         {% endblocktrans %}
       </li>
     </ul>
@@ -31,9 +34,5 @@
   <li>
     <strong>{% trans "Videos" %}</strong>
     &gt; {% trans "Not yet. Just add a link to it for now." %}
-  </li>
-  <li>
-    <strong>{% trans "Design" %}</strong>
-    &gt; {% trans "Simple. Set font and color schemes below edit area" %}
   </li>
 </ul>

@@ -1,32 +1,46 @@
-{% extends "base-with-sidebar.html" %}
+{% extends "base-without-sidebar.html" %}
 {% load i18n %}
 {% block main %}
-  {% if form.errors %}
-  <p>
-    {% trans "Your username and password did not match. Please try again." %}
-  </p>
-  {% endif %}
-
-  <form method="post" action=".">
-    <table>
-      <tr>
-        <td>{{ form.username.label_tag }}</td>
-        <td>{{ form.username }}</td>
-      </tr>
-      <tr>
-        <td>{{ form.password.label_tag }}</td>
-        <td>{{ form.password }}</td>
-      </tr>
-    </table>
-
+<div class="prepend-6 span-10 append-6 last">
+  <div id="login-form" class="rounded-9 prepend-1 span-8 append-1 last">
+  <div>
+    <h2>{% trans "Logga in" %}</h2>
+    {% if form.errors %}
     <p>
-      <a href="{% url password-reset %}">
-        {% trans "Forgot your password?" %}
-      </a>
+      {% trans "Your username and password did not match. Please try again." %}
     </p>
-
-    <input type="submit" value="{% trans "Log in" %}" />
-    <input type="hidden" name="next" value="{{ next }}" />
-    {% csrf_token %}
-  </form>
+    {% endif %}
+    
+    <form method="post" action=".">
+      {% csrf_token %}
+    
+      <fieldset>
+        <div class="span-3">
+          {{ form.username.label_tag }}
+        </div>
+        {{ form.username }}
+      </fieldset>
+      <fieldset>
+        <div class="span-3">
+          {{ form.password.label_tag }}
+        </div>
+        {{ form.password }}
+      </fieldset>
+    
+      <p>
+        <a href="{% url password-reset %}">
+          {% trans "Forgot your password?" %}
+        </a>
+      </p>
+    
+      <fieldset>
+        <div class="span-8 last" style="text-align:right;">
+          <input type="submit" value="{% trans "Log in" %}" />
+          <input type="hidden" name="next" value="{{ next }}" />
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+</div>
 {% endblock %}

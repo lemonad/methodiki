@@ -1,13 +1,7 @@
 {% extends "base-with-sidebar.html" %}
-{% load comments i18n markup thumbnail %}
-{% block css %}
-  <link rel="stylesheet" type="text/css"
-        href="/media/javascript/jquery.fancybox-1.3.4/jquery.fancybox-1.3.4.css" />
-{% endblock %}
+{% load comments i18n markup media thumbnail %}
 
 {% block javascript %}
-  <script type="text/javascript"
-          src="/media/javascript/jquery.fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
       $("#bonus img").each(function() {
@@ -21,10 +15,8 @@
 {% endblock %}
 
 {% block main %}
-  <a href="#">
-    <img style="float:right;margin-top:-2em;"
-         src="/media/images/pedagogic-bonus.png" />
-  </a>
+  <img style="float:right;margin-top:-2em;"
+       src="{% media_url "images/pedagogic-bonus.png" %}" />
   <h2>
     {% trans "Good method" %}:
     <em>

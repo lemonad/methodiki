@@ -1,7 +1,7 @@
 {% extends "base-without-sidebar.html" %}
-{% load comments i18n markup methods thumbnail %}
+{% load comments i18n markup media methods thumbnail %}
 {% block main %}
-  <div id="preview-comment" class="span-18 prepend-3 append-3 last">
+  <div id="preview-comment" class="prepend-4 span-16 append-4 last">
     <form action="{% comment_form_target %}" method="post">
       {% csrf_token %}
       {% if next %}
@@ -9,46 +9,60 @@
       {% endif %}
 
       {% if form.errors %}
-      <h2>
+
+      <h2 style="margin-top:0;">
         {% blocktrans count form.errors|length as counter %}
         Please correct the error below
         {% plural %}
         Please correct the errors below
         {% endblocktrans %}
       </h2>
+      <div id="comment-preview-form"
+           class="span-16 last rounded-9">
+
       {% else %}
-      <h2>{% trans "Preview your comment" %}</h2>
-      <ul id="comments" class="span-18 last"
+
+      <h2 style="margin-top:0;">{% trans "Preview your comment" %}</h2>
+      <ul id="comments" class="span-16 last"
           style="padding:0;list-style-type:none;">
-        <li class="span-18 last{% if form.cleaned_data.lift_method %} comment-thumbsup{% endif %}"
+        <li class="span-16 last{% if form.cleaned_data.lift_method %} comment-thumbsup{% endif %}"
             style="margin-bottom:1em;">
           <div class="span-1">
             {% if user.is_authenticated and user.get_profile.avatar %}
-            <img class="rounded-3" 
-                 src="{% thumbnail user.get_profile.avatar 25x25 crop %}"
-                 style="border: 2px solid #bbb;float:left;margin-right:0.5em;margin-bottom:0.5em;margin-top:0.5em" />
+            <img src="{% thumbnail user.get_profile.avatar 25x25 crop %}"
+                 style="background-color:#fff;padding:2px;border:1px solid #ccc;float:left;margin-right:0.5em;margin-bottom:0.5em;margin-top:3px;" />
             {% else %}
-            <div style="border:2px solid #bbb;float:left;margin-right:0.5em;margin-bottom:0.5em;margin-top:0.5em;background-color:#ddd;width:25px;height:25px;">&nbsp;</div>
+            <img src="{% media_url "images/icons/001_54.png" %}"
+                 style="background-color:#fff;padding:3px;border:1px solid #ccc;float:left;margin:3px 0.5em 0.5em 0;" />
             {% endif %}
           </div>
           <div class="span-4">
-            <div style="padding-top:0.5em;">
-              <h3 style="margin-bottom:0.5em;">
-                <a href="#">{{ form.cleaned_data.name }}</a>
-              </h3>
-              <a class="alt" href="#" style="font-style:italic;">
-                {% now "Y-m-d H:i" %}
+            <h3 style="margin-bottom:0;margin-top:0;">
+              {% if request.user.is_authenticated %}
+              <a href="{% url user user.username %}">
+                {% if user.get_profile.name %}
+                  {{ user.get_profile.name }}
+                {% else %}
+                  {{ user_name }}
+                {% endif %}
               </a>
-            </div>
+              {% else %}
+              {{ user_name }}
+              {% endif %}
+            </h3>
+            <a class="alt" href="#"
+               style="font-style:italic;font-size:95%;">
+              {% now "Y-m-d H:i" %}
+            </a>
           </div>
-          <div class="span-13 last">
+          <div class="span-11 last">
             <div class="comment-counter">
               1
             </div>
             <div class="rounded-6 comment-body">
               {% if form.cleaned_data.lift_method %}
               <img style="float:left;margin-right:0.5em;"
-                   src="/media/images/icons/001_18.png"
+                   src="{% media_url "images/icons/001_18.png" %}"
                    width="24" height="24" />
               {% endif %}
               {{ comment|markdown:"autolink" }}
@@ -56,99 +70,108 @@
           </div>
         </li>
       </ul>
-      <p>
-        {% trans "and" %}
-        <input type="submit" name="submit" class="submit-post"
-               value="{% trans "post your comment" %}" id="submit" />
-        {% trans "or make changes" %}:
-      </p>
-      {% endif %}
 
-      <div class="span-10 append-8 last">
-        {{ form.non_field_errors }}
-      </div>
-
-      {% if not user.is_authenticated %}
-      <div class="span-10 append-8 last">
-        {% if form.name.errors %}
-        {% for error in form.name.errors %}
-        <p class="error">
-          <strong>{{ error|escape }}</strong>
+      <div id="comment-preview-form"
+           class="span-16 last rounded-9">
+        <p>
+          {% trans "and" %}
+          <input type="submit" name="submit" class="submit-post"
+                 value="{% trans "post your comment" %}" id="submit" />
+          {% trans "or make changes" %}:
         </p>
-        {% endfor %}
         {% endif %}
-        <div class="span-3">
-          {{ form.name.label_tag }}
+
+        <div class="span-10 append-6 last">
+          {{ form.non_field_errors }}
         </div>
-        <div class="span-7 last">
+
+        {% if not user.is_authenticated %}
+        <fieldset>
+          {% if form.name.errors %}
+          <div class="prepend-3 span-10 append-3 last">
+            {% for error in form.name.errors %}
+            <p class="error">
+              {{ error|escape }}
+            </p>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <div class="span-3{% if form.name.errors %} loud{% endif %}">
+            {{ form.name.label_tag }}
+          </div>
           {{ form.name }}
-        </div>
-      </div>
+        </fieldset>
 
-      {% if form.email.errors %}
-      <div class="span-10 append-8 last">
-        <div class="error">
-          {{ form.email.errors }}
-        </div>
-      </div>
-      {% endif %}
-      <div class="span-3">
-        {{ form.email.label_tag }}
-      </div>
-      <div class="span-7 append-8 last">
-        {{ form.email }}
-      </div>
+        <fieldset>
+          {% if form.email.errors %}
+          <div class="prepend-3 span-10 append-3 last">
+            {% for error in form.email.errors %}
+            <p class="last error">
+              {{ error|escape }}
+            </p>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <div class="span-3{% if form.email.errors %} loud{% endif %}">
+            {{ form.email.label_tag }}
+          </div>
+          {{ form.email }}
+        </fieldset>
 
-      {% if form.url.errors %}
-      <div class="span-10 append-8 last">
-        <div class="error">
-          {{ form.url.errors }}
-        </div>
-      </div>
-      {% endif %}
-      <div class="span-3">
-        {{ form.url.label_tag }}
-      </div>
-      <div class="span-7 append-8 last">
-        {{ form.url }}
-      </div>
-      {% endif %}
+        <fieldset>
+          {% if form.url.errors %}
+          <div class="prepend-3 span-10 append-3 last">
+            {% for error in form.url.errors %}
+            <p class="last error">
+              {{ error|escape }}
+            </div>
+            {% endfor %}
+          {% endif %}
+          <div class="span-3{% if form.url.errors %} loud{% endif %}">
+            {{ form.url.label_tag }}
+          </div>
+          {{ form.url }}
+        </fieldset>
+        {% endif %}
 
-      <div class="span-10 append-8 last">
-        <div class="span-10 last">
-          {{ form.comment.label_tag }}
-        </div>
-        <div class="span-10 last">
-          {% if form.comment.errors %}
+        {% if form.comment.errors %}
+        <div class="prepend-3 span-10 append-3 last">
           {% for error in form.comment.errors %}
           <p class="error">
             {{ error|escape }}
           </p>
           {% endfor %}
-          {% endif %}
         </div>
-        <div class="span-10 last">
+        {% endif %}
+        <fieldset>
+          <div class="span-3{% if form.comment.errors %} loud{% endif %}">
+            {{ form.comment.label_tag }}
+          </div>
           {{ form.comment }}
-        </div>
-      </div>
+        </fieldset>
 
-      <div class="span-10 append-8 last">
-        {% blocktrans %}
-        With this comment, do you also want to lift this method
-        to the top of the methods list?
-        {% endblocktrans %}
-        {{ form.lift_method }}
-      </div>
+        <fieldset>
+          <div class="prepend-3 span-10 append-3 last">
+            {% blocktrans %}
+            With this comment, do you also want to lift this method
+            to the top of the methods list?
+            {% endblocktrans %}
+            {{ form.lift_method }}
+          </div>
+        </fieldset>
 
-      {{ form.content_type }}
-      {{ form.object_pk }}
-      {{ form.timestamp }}
-      {{ form.security_hash }}
-      <div class="span-18 last">
-        <input type="submit" name="submit" class="submit-post"
-               value="{% trans "Submit" %}">
-        <input type="submit" name="preview" class="submit-post"
-               value="{% trans "Preview" %}">
+        {{ form.content_type }}
+        {{ form.object_pk }}
+        {{ form.timestamp }}
+        {{ form.security_hash }}
+        <fieldset class="prepend-top">
+          <div class="prepend-3 span-10 append-3 last" style="text-align:right;">
+            <input type="submit" name="submit" class="submit-post"
+                   value="{% trans "Submit" %}">
+            <input type="submit" name="preview" class="submit-post"
+                   value="{% trans "Preview" %}">
+          </div>
+        </fieldset>
       </div>
     </form>
   </div>

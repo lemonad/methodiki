@@ -18,8 +18,13 @@
         <div class="span-2">
           {% if user.get_profile.avatar %}
           <img src="{% thumbnail user.get_profile.avatar 50x50 crop %}"
-               style="border: 1px solid #999;"
+               style="padding: 3px;
+                      border: 1px solid #999;
+                      background-color: #f8f8f8;
+                      -webkit-transform: rotate(-3deg);
+                      -webkit-box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.15)"
                width="50" height="50" />
+
           {% endif %}
         </div>
         <div class="span-16 last">

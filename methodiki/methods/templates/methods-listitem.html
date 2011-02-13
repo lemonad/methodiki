@@ -1,0 +1,44 @@
+{% load comments i18n markup media methods thumbnail %}
+{% if method.methodbonus_set.all %}
+<a href="{% url methods-show-bonus method.published_at.year method.published_at.month method.published_at.day method.slug %}">
+  <img class="bonus-star"
+       src="{% media_url "images/pedagogic-bonus-badge.png" %}" />
+</a>
+{% endif %}
+<a href="{% url methods-show-method method.published_at.year method.published_at.month method.published_at.day method.slug %}">
+  <h3>
+    {{ method.title }}
+  </h3>
+</a>
+{% if method.methodfile_set.all.0.image %}
+{% for m in method.methodfile_set.all %}
+{% if forloop.first %}
+<a class="method-thumb-zoom"
+   href="{{ m.image.url }}"
+   rel="thumb-group-{{ method.id }}">
+  <img class="method-thumb"
+       src="{% thumbnail m.image 48x48 crop %}"
+       title="" />
+</a>
+{% else %}
+<a class="method-thumb-zoom"
+   href="{{ m.image.url }}"
+   rel="thumb-group-{{ method.id }}"></a>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{{ method.description|markdown:"autolink"|abstract }}
+
+{% get_comment_count for method as comment_count %}
+{% if comment_count %}
+<span><em>
+  <a href="{% url methods-show-method method.published_at.year method.published_at.month method.published_at.day method.slug %}#comments">
+  {% blocktrans count comment_count as cc %}
+    1 comment.
+    {% plural %}
+    {{ cc }} comments.
+  {% endblocktrans %}
+  </a>
+</em></span>
+{% endif %}

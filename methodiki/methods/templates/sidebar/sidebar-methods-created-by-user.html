@@ -1,15 +1,15 @@
 {% load i18n %}
 {% if user.is_authenticated and sidebar_methods.created_by_user %}
-<div class="rounded-9 box sidebar-box">
+<div>
   <h4>{% trans "Your methods" %}</h4>
-  {% if sidebar_methods.draft_methods_flag %}
+  {% if user_methods_draft_flag %}
   <p class="notice">
     {% blocktrans %}
     You have methods to publish!
     {% endblocktrans %}
   </p>
   {% endif %}
-  <ul>
+  <ol>
     {% for method in sidebar_methods.created_by_user %}
     <li>
       {% ifequal method.status "DRAFT" %}
@@ -30,6 +30,6 @@
       {% endifequal %}
     </li>
     {% endfor %}
-  </ul>
+  </ol>
 </div>
 {% endif %}

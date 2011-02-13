@@ -8,20 +8,13 @@ from django.utils.translation import ugettext as _
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', 'methodiki.methods.views.index'),
-
+    url(r'^$', 'methodiki.methods.views.frontpage'),
     (_(r'^about/'), include('methodiki.about.urls')),
-
-    (r'^metoder/', include('methodiki.methods.urls')),
-
-    (r'^markitup/', include('markitup.urls')),
-
-    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
     (r'^admin/', include(admin.site.urls)),
-
+    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    (r'^metoder/', include('methodiki.methods.urls')),
+    (r'^markitup/', include('markitup.urls')),
     (r'^search/', include('haystack.urls')),
-
     (_(r'^settings/'), include('methodiki.preferences.urls')),
 )
 

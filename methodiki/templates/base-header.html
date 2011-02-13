@@ -9,44 +9,78 @@
   </ul>
   {% endif %}
 
-  <header class="span-24 last">
-    <h1 class="span-7">
-      <a href="/">Methodiki</a>
-    </h1>
-
-    <div class="span-17 last">
-      <ul>
-        {% if request.user.is_authenticated %}
-        <li class="nav-first nav-border">
-          {% trans "Welcome" %} {{ request.user.get_profile.name }}
-        </li>
-        <li class="nav-border">
-          <a href="{% url user request.user.username %}">{% trans "My profile" %}</a>
-        </li>
-        <li class="nav-border">
-          <a href="{% url logout %}">{% trans "Log out" %}</a>
-        </li>
-        {% if request.user.is_staff or request.user.is_superuser %}
-        <li>
-          <a href="/admin/">{% trans "Administration" %}</a>
-        </li>
-        {% endif %}
-        {% else %}
-        <li class="nav-first nav-border">
-          <a href="{% url login %}?next={{ request.path }}{% if request.META.QUERY_STRING %}?{{ request.META.QUERY_STRING }}{% endif %}">
-            {% trans "Log in" %}
-          </a>
-        </li>
-        <li>
-          <a href="{% url register %}">{% trans "Sign up" %}</a>
-        </li>
-        {% endif %}
-        <li class="nav-first" style="display:block;">
-          <form action="/search">
-            <input type="text" name="q" />
-            <input type="submit" value="{% trans "Search" %}" />
-          </form>
-        </li>
-      </ul>
+  <header>
+    <div id="user-nav">
+      <div class="container">
+        <ol>
+          {% if request.user.is_authenticated %}
+          <li>
+            <span class="no-separator">
+              {% trans "Welcome" %} {{ request.user.get_profile.name }}
+            </span>
+          </li>
+          <li>
+            <a href="{% url user request.user.username %}">{% trans "My profile" %}</a>
+          </li>
+          <li>
+            <a href="{% url logout %}">{% trans "Log out" %}</a>
+          </li>
+          {% if request.user.is_staff or request.user.is_superuser %}
+          <li>
+            <a href="/admin/">{% trans "Administration" %}</a>
+          </li>
+          {% endif %}
+          {% else %}
+          <li>
+            <a class="no-separator"
+               href="{% url login %}?next={{ request.path }}{% if request.META.QUERY_STRING %}?{{ request.META.QUERY_STRING }}{% endif %}">
+              {% trans "Log in" %}
+            </a>
+          </li>
+          <li>
+            <a href="{% url register %}">{% trans "Sign up" %}</a>
+          </li>
+          {% endif %}
+        </ol>
+      </div>
     </div>
+
+    <nav>
+      <div class="container">
+        <h1 class="span-7">
+          <a href="/">{{ site_name }}</a>
+        </h1>
+
+        <div class="span-17 last">
+          <ol>
+            <li>
+              <a class="no-separator"
+                 href="#">{% trans "Methods" %}
+              </a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li>
+              <a href="#">
+                {% trans "My methods" %}
+                ({{ number_of_user_methods }}{% spaceless %}
+                {% if not user_methods_draft_flag %}
+                , <em>drafts</em>
+                {% endif %}
+                {% endspaceless %})
+              </a>
+            </li>
+            {% endif %}
+            <li>
+              <a href="#">{% trans "Tags" %}</a>
+            </li>
+            <li>
+              <form action="/search">
+                <input type="text" name="q" />
+                <input type="submit" value="{% trans "Search" %}" />
+              </form>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </nav>
   </header>

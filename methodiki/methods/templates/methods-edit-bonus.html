@@ -1,0 +1,83 @@
+{% extends "base-without-sidebar.html" %}
+{% load comments i18n markup media thumbnail %}
+
+{% block javascript %}
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#bonus img").each(function() {
+          $(this).fancybox({"hideOnContentClick": true,
+                            "type": "image",
+                            "href": this.src,
+                            "margin": 14});
+      });
+    });
+  </script>
+{% endblock %}
+
+{% block main %}
+  <a href="#">
+    <img style="float:right;margin-top:-2em;"
+         src="{% media_url "images/pedagogic-bonus.png" %}" />
+  </a>
+  {% include "methods-bonus-preview.html" %}
+
+  <div class="bonus span-18 prepend-3 append-3 last">
+    <h2>{% trans "Edit away!" %}</h2>
+    {% include "methods-markdown-quick-help.html" %}
+  </div>
+
+  <div class="bonus span-18 prepend-3 append-3 last">
+  <div class="column box rounded-9">
+    <form id="bonus-form" method="post"
+          action="{% url methods-edit-bonus bonus.id %}">
+      {% csrf_token %}
+      <div class="span-18 last">
+        {{ form.description.label_tag }}
+      </div>
+      <div class="span-18 last">
+        {{ form.description }}
+      </div>
+      {% if form.description.errors %}
+      <p class="error">
+        {{ form.description.errors }}
+      </p>
+      {% endif %}
+
+      <div class="span-18 last" style="text-align:right;margin-bottom:1em;">
+        <input class="submit" type="submit" name="preview"
+               value="{% trans "Preview" %}" />
+        <input class="submit" type="submit" name="method"
+               value="{% trans "Save" %}" />
+      </div>
+    </form>
+
+    <hr />
+    {% include "methods-bonus-meta.html" %}
+
+    {% ifequal bonus.status "DRAFT" %}
+    <form style="display:inline;" method="post"
+          action="{% url methods-edit-bonus bonus.id %}">
+      {% csrf_token %}
+      <input class="submit" type="submit" name="publish"
+             value="{% trans "Publish bonus" %}" />
+    </form>
+    {% endifequal %}
+
+    {% ifequal bonus.status "PUBLISHED" %}
+    <form style="display:inline;" method="post"
+          action="{% url methods-edit-bonus bonus.id %}">
+      {% csrf_token %}
+      <input class="submit" type="submit" name="unpublish"
+             value="{% trans "Unpublish bonus" %}" />
+    </form>
+    {% endifequal %}
+
+    <form style="display:inline;" method="post"
+          action="{% url methods-edit-bonus bonus.id %}">
+      {% csrf_token %}
+      <input class="submit" type="submit" name="delete"
+             value="{% trans "Delete bonus" %}" />
+    </form>
+  </div>
+  </div>
+{% endblock %}

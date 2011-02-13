@@ -1,18 +1,14 @@
 {% extends "base-html5.html" %}
 {% load i18n %}
 {% block body %}
+  {% include "base-header.html" %}
+
   <div class="container">
-    {% include "base-header.html" %}
-
-    <nav class="span-24 last">
-      {% block navigation %}{% endblock %}
-    </nav>
-
-    <article class="span-18">
+    <article class="span-16 colborder">
       {% block main %}Main content{% endblock %}
     </article>
 
-    <aside class="span-6 last">
+    <aside class="span-7 last">
       {% block sidebar %}
       {% include "sidebar/sidebar-create-method.html" %}
       {% include "sidebar/sidebar-recent-methods.html" %}
@@ -22,8 +18,7 @@
       {% include "sidebar/sidebar-meta.html" %}
       {% endblock %}
     </aside>
-
-    <footer class="span-24 last">
-    </footer>
   </div>
+
+  {% include "base-footer.html" %}
 {% endblock %}
