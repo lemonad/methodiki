@@ -8,5 +8,6 @@ from models import CustomComment
 def get_model():
     return CustomComment
 
+
 def get_form():
     return CustomCommentForm

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-"""Autolinks URLs as anchors and images.
+"""
+Autolinks URLs as anchors and images.
 
 Examples:
 >>> import markdown

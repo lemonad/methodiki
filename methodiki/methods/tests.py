@@ -193,8 +193,9 @@ class EditMethodTests(TestCase):
     def test_edit_method_view(self):
         """
         Make sure the edit method view renders when logged in as
-        the user who created the method. """
+        the user who created the method.
 
+        """
         # Should be able to render edit view for own method
         m = Method.objects.get(id=1)
         response = self.client.get(reverse('methods-edit-method',

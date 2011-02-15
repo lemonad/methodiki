@@ -75,6 +75,7 @@ def frontpage(request):
                        {'method': method})
     return HttpResponse(t.render(c))
 
+
 def index(request):
     """ Index page """
 
@@ -88,6 +89,7 @@ def index(request):
                        {'methods': popular_methods,
                         'sidebar_methods': sidebar_methods})
     return HttpResponse(t.render(c))
+
 
 def tag_index(request, tag_slug):
     """ Index page for a specific tag """
@@ -103,6 +105,7 @@ def tag_index(request, tag_slug):
                         'sidebar_methods': sidebar_methods})
     return HttpResponse(t.render(c))
 
+
 def show_method(request, year, month, day, slug):
     method = get_object_or_404(Method, slug=slug)
 
@@ -113,6 +116,7 @@ def show_method(request, year, month, day, slug):
                        {'method': method,
                         'sidebar_methods': sidebar_methods})
     return HttpResponse(t.render(c))
+
 
 def show_bonus(request, year, month, day, slug):
     method = get_object_or_404(Method, slug=slug)
@@ -126,6 +130,7 @@ def show_bonus(request, year, month, day, slug):
                         'bonuses': bonuses,
                         'sidebar_methods': sidebar_methods})
     return HttpResponse(t.render(c))
+
 
 def about_bonus(request):
     about_text = get_flatcontent('about-bonus-template')
@@ -250,6 +255,13 @@ def edit_method(request, slug):
     sidebar_methods = get_sidebar_methods(request.user)
     images = MethodFile.objects.filter(method=method)
 
+    # FIXME: Replace example hard coded suggestions with tag category
+    # and suggestion model which is editable by admins.
+    suggested_tags = [("Lärmiljö", ["simulator", "klassrum", "självstudie",
+                       "distans"]),
+                      ("Form", ["reflektion", "diskussion", "laboration",
+                       "redovisning", "examination"])]
+
     t = loader.get_template('methods-edit-method.html')
     c = RequestContext(request,
                        {'method': method,
@@ -257,7 +269,8 @@ def edit_method(request, slug):
                         'preview': preview,
                         'form': form,
                         'images': images,
-                        'sidebar_methods': sidebar_methods})
+                        'sidebar_methods': sidebar_methods,
+                        'suggested_tags': suggested_tags})
     return HttpResponse(t.render(c))
 
 

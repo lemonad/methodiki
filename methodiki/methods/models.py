@@ -6,7 +6,6 @@ from django.db.models import (BooleanField, CharField, Count, DateField,
                               IntegerField, Manager, Model, permalink, Q,
                               TextField, TimeField)
 from django.utils.translation import ugettext_lazy as _
-
 from easy_thumbnails.fields import ThumbnailerImageField
 from taggit.managers import TaggableManager
 
@@ -26,8 +25,8 @@ class MethodManager(Manager):
                    .order_by('-last_pushed_at')
 
     def pushed(self):
-       return self.exclude(status='DRAFT') \
-                  .order_by('-last_pushed_at', '-published_at')
+        return self.exclude(status='DRAFT') \
+                   .order_by('-last_pushed_at', '-published_at')
 
     def recent(self):
         return self.exclude(status='DRAFT') \
@@ -38,7 +37,8 @@ class MethodManager(Manager):
                                     .order_by('method') \
                                     .distinct()
         return self.filter(id__in=list(methods)) \
-                   .exclude(status='DRAFT') \
+                   .exclude(status='DRAFT')
+
 
 class Method(Model):
     STATUS_CHOICES = (('DRAFT', _("Draft")),
@@ -79,7 +79,7 @@ class Method(Model):
                                   db_index=True,
                                   auto_now=True)
     objects = MethodManager()
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
 
     def __unicode__(self):
         return self.title

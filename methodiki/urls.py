@@ -8,14 +8,16 @@ from django.utils.translation import ugettext as _
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', 'methodiki.methods.views.frontpage'),
-    (_(r'^about/'), include('methodiki.about.urls')),
+    url(r'^$',
+        'methods.views.frontpage',
+        name="methods-frontpage"),
+    (_(r'^about/'), include('about.urls')),
     (r'^admin/', include(admin.site.urls)),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    (r'^metoder/', include('methodiki.methods.urls')),
+    (r'^metoder/', include('methods.urls')),
     (r'^markitup/', include('markitup.urls')),
     (r'^search/', include('haystack.urls')),
-    (_(r'^settings/'), include('methodiki.preferences.urls')),
+    (_(r'^settings/'), include('preferences.urls')),
 )
 
 # Comments
@@ -56,10 +58,13 @@ urlpatterns += patterns('django.contrib.auth.views',
 
 # Users + account registering
 urlpatterns += patterns('',
-    (r'^users/', include('methodiki.users.urls')),
+    (r'^users/', include('users.urls')),
     url(_(r'^signup/$'),
         'users.views.register',
         name="register"),
+    url(r'^login-check-profile/$',
+        'users.views.check_profile',
+        name="login-check-profile"),
 )
 
 # Language

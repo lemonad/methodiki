@@ -13,5 +13,5 @@ class ProfileForm(ModelForm):
         model = UserProfile
         fields = ('name', 'avatar')
         widgets = {
-            'name': TextInput(attrs={'class': 'span-6 last input'}),
+            'name': TextInput(attrs={'class': 'span-9 last input'}),
         }

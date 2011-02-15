@@ -33,6 +33,7 @@ class CustomCommentForm(CommentForm):
         data['lift_method'] = self.cleaned_data['lift_method']
         return data
 
+
 class IntranetURLValidator(URLValidator):
     """ URL validation that support local URLs, e.g. without TLDs. """
 

@@ -82,7 +82,11 @@
         {% endif %}
 
         <div class="span-10 append-6 last">
-          {{ form.non_field_errors }}
+          {% for error in form.non_field_errors %}
+          <p class="error">
+            {{ error|escape }}
+          </p>
+          {% endfor %}
         </div>
 
         {% if not user.is_authenticated %}

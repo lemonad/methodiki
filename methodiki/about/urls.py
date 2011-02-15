@@ -11,7 +11,7 @@ language_for_urls = settings.LANGUAGE_CODE[:2]
 language_saved = translation.get_language()
 translation.activate(language_for_urls)
 
-urlpatterns = patterns('methodiki.about.views',
+urlpatterns = patterns('about.views',
     url(_(r'^why-methodiki/$'), 'why_methodiki', name='why-methodiki'),
 )
 

@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.db.models import (CharField, DateTimeField, ForeignKey, Manager,
                               Model)
 from django.utils.translation import ugettext_lazy as _
-
 from easy_thumbnails.fields import ThumbnailerImageField
 
 

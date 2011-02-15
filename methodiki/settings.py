@@ -135,7 +135,7 @@ AUTH_PROFILE_MODULE = 'users.UserProfile'
 # LOGIN_REDIRECT_URL = ugettext(r'/settings/profile/')
 # LOGIN_URL = ugettext(r'/login/')
 # LOGOUT_URL = ugettext(r'/logout/')
-LOGIN_REDIRECT_URL = ugettext(r'/settings/profile/')
+LOGIN_REDIRECT_URL = r'/login-check-profile'
 LOGIN_URL = ugettext(r'/login/')
 LOGOUT_URL = ugettext(r'/logout/')
 

@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block sidebar %}
-{% include "sidebar/preferences-sidebar-info.html" %}
+  {% include "sidebar/preferences-sidebar-info.html" %}
 {% endblock %}
 
 {% block navigation %}
@@ -23,56 +23,75 @@
 {% endblock %}
 
 {% block main %}
-  <h2>{% trans "Edit your profile information" %}</h2>
+  <div class="prepend-2 span-12 append-2 last">
+    <div id="preferences-profile-form"
+         class="rounded-9">
+      <h2>
+        {% trans "Edit your profile information" %}
+      </h2>
 
-  <form action="" id="profile-form" enctype="multipart/form-data"
-        method="post">
-    {% csrf_token %}
+      <form action="#" id="profile-form" enctype="multipart/form-data"
+            method="post">
+        {% csrf_token %}
 
-    {% if form.non_field_errors %}
-    <div class="span-10 append-8 last">
-      {{ form.non_field_errors }}
+        <div class="span-12 last">
+          {% for error in form.non_field_errors %}
+          <p class="error">
+            {{ error|escape }}
+          </p>
+          {% endfor %}
+        </div>
+
+        <fieldset>
+          {% if form.avatar.errors %}
+          <div class="span-12 last">
+            {% for error in form.avatar.errors %}
+            <p class="error">{{ error|escape }}</p>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <div class="span-3{% if form.avatar.errors %} loud{% endif %}">
+            {{ form.avatar.label_tag }}
+          </div>
+          <div class="span-9 last">
+            {% if user.get_profile.avatar %}
+            <a class="avatar-preview"
+               href="{{ user.get_profile.avatar.url }}">
+              <img src="{% thumbnail user.get_profile.avatar 100x100 %}"
+                   style="padding:3px;background-color:white;border: 1px solid #999;" />
+            </a>
+            {% endif %}
+            <div class="span-9 last">
+              {{ form.avatar }}
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="prepend-top">
+          {% if form.name.errors %}
+          <div class="span-12 last">
+            {% for error in form.name.errors %}
+            <p class="error">{{ error|escape }}</p>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <div class="span-3{% if form.name.errors %} loud{% endif %}">
+            {{ form.name.label_tag }}
+          </div>
+          <div class="span-9 last">
+            {{ form.name }}
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <div class="span-12 last prepend-top" style="text-align:right;">
+            <input type="submit" value="{% trans "Save" %}">
+          </div>
+        </fieldset>
+      </form>
+
     </div>
-    {% endif %}
-
-    <div class="span-10 append-8 last">
-      {% if form.avatar.errors %}
-      {% for error in form.avatar.errors %}
-      <p class="error"><strong>{{ error|escape }}</strong></p>
-      {% endfor %}
-      {% endif %}
-      <div class="span-4">
-        {{ form.avatar.label_tag }}
-      </div>
-      <div class="span-6 last">
-        {% if user.get_profile.avatar %}
-        <a class="avatar-preview"
-           href="{{ user.get_profile.avatar.url }}">
-          <img src="{% thumbnail user.get_profile.avatar 50x50 %}"
-               style="border: 1px solid #999;" />
-        </a>
-        {% endif %}
-        {{ form.avatar }}
-      </div>
-    </div>
-
-    <div class="span-10 append-8 last">
-      {% if form.name.errors %}
-      {% for error in form.name.errors %}
-      <p class="error"><strong>{{ error|escape }}</strong></p>
-      {% endfor %}
-      {% endif %}
-      <div class="span-4">
-        {{ form.name.label_tag }}
-      </div>
-      <div class="span-6 last">
-        {{ form.name }}
-        <p>{{ form.name.help_text }}</p>
-      </div>
-    </div>
-
-    <div class="span-10 append-8 last">
-      <input type="submit" value="{% trans "Save" %}">
-    </div>
-  </form>
+  </div>
 {% endblock %}

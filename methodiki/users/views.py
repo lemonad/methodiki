@@ -74,6 +74,20 @@ def register(request):
     return HttpResponse(t.render(c))
 
 
+@login_required
+def check_profile(request):
+    """
+    After login, checks if profile name has been filled in.
+
+    If not, it redirects to the profile edit page.
+
+    """
+    if request.user.get_profile().name:
+        return HttpResponseRedirect(reverse('methods-frontpage'))
+    else:
+        return HttpResponseRedirect(reverse('settings-profile'))
+
+
 def username_exists_ajax(request):
     if request.method == 'GET' and 'username' in request.GET:
         username = request.GET['username']

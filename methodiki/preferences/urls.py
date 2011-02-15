@@ -11,7 +11,7 @@ language_for_urls = settings.LANGUAGE_CODE[:2]
 language_saved = translation.get_language()
 translation.activate(language_for_urls)
 
-urlpatterns = patterns('methodiki.preferences.views',
+urlpatterns = patterns('preferences.views',
     # Change language
     url(_(r'^language/$'),
         'select_language',

@@ -10,7 +10,7 @@ language_for_urls = settings.LANGUAGE_CODE[:2]
 language_saved = translation.get_language()
 translation.activate(language_for_urls)
 
-urlpatterns = patterns('methodiki.users.views',
+urlpatterns = patterns('users.views',
     url(r'^$', 'index', name='users-index'),
     # Disallow the corresponding usernames in forms.py if adding URLs here.
     url(r'^(?P<username>.+)$', 'show_user', name='user')

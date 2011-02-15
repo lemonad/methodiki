@@ -12,4 +12,3 @@ def site(request):
 
     """
     return {"site_name": Site.objects.get_current().name}
-

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import datetime
-import pytz
 
 from django import template
 from django.conf import settings
@@ -8,6 +7,7 @@ from pytz import timezone
 
 
 register = template.Library()
+
 
 @register.filter(name='html5_time')
 def html5_time(value):
@@ -27,4 +27,3 @@ def html5_time(value):
         return tz_str[:-2] + ':' + tz_str[-2:]
     else:
         return value
-
