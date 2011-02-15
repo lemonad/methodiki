@@ -56,21 +56,21 @@ def get_flatcontent(name):
         return content
 
     try:
-        content = FlatContent.objects.filter(name__iexact=name) \
-                                     .filter(language_code__iexact=
-                                             language_code)[0]
+        flatcontent = FlatContent.objects.filter(name__iexact=name) \
+                                         .filter(language_code__iexact=
+                                                 language_code)[0]
     except IndexError:
         try:
-            content = FlatContent.objects.filter(name__iexact=name) \
-                                         .filter(language_code__iexact=
-                                                 'en-US')[0]
+            flatcontent = FlatContent.objects.filter(name__iexact=name) \
+                                             .filter(language_code__iexact=
+                                                     'en-US')[0]
         except IndexError:
             try:
-                content = FlatContent.objects.filter(name__iexact=name)[0]
+                flatcontent = FlatContent.objects.filter(name__iexact=name)[0]
             except IndexError:
                 return _("No matching content for flat content '%(name)s', "
                          "please use admin interface to create it.") \
                        % {'name': name}
 
-    cache.set(cache_key, content)
-    return content
+    cache.set(cache_key, flatcontent.content)
+    return flatcontent.content
