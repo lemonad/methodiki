@@ -13,6 +13,8 @@
 /lib
 /parts
 /src
+/methodiki/_generated_media
+/methodiki/_generated_media_names.py
 /methodiki/local_settings.py
 /methodiki/methodiki.db
 /methodiki/media/avatars/
