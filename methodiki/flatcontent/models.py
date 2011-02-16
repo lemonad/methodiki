@@ -72,5 +72,5 @@ def get_flatcontent(name):
                          "please use admin interface to create it.") \
                        % {'name': name}
 
-    cache.set(cache_key, flatcontent.content)
+    cache.set(cache_key, flatcontent.content.encode('utf-8'))
     return flatcontent.content
