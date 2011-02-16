@@ -114,6 +114,7 @@ INSTALLED_APPS = (
     'methods',
     'preferences',
     'tagsuggestions',
+    'tips',
     'users',
 )
 
