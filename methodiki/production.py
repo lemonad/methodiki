@@ -15,7 +15,13 @@ SEND_BROKEN_LINK_EMAILS = True
 #
 # Caching
 #
-CACHE_BACKEND = 'memcached://127.0.0.1:11211/?timeout=300&max_entries=1000'
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+        'TIMEOUT': 3600,
+    }
+}
 
 #
 # Whoosh

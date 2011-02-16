@@ -133,7 +133,11 @@ SEND_BROKEN_LINK_EMAILS = False
 #
 # Caching
 #
-CACHE_BACKEND = 'locmem:///?timeout=60&max_entries=10000'
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
 
 #
 # Comments
