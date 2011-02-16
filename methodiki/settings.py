@@ -17,12 +17,6 @@ ADMIN_MEDIA_PREFIX = '/admin_media/'
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
-)
-
-MANAGERS = ADMINS
-
 DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3',
                          'NAME': 'methodiki.db',
                          'USER': '',
