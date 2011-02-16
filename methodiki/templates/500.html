@@ -1,0 +1,14 @@
+{% extends "base-without-sidebar.html" %}
+{% load i18n %}
+{% block main %}
+<h2>{% trans "HTTP 500: Internal server error" %}</h2>
+{% blocktrans %}
+<p>
+  You've come across a bug! We've been notified of the problem and
+  will try to fix it as soon as possible.
+</p>
+<p>
+  Thank you for your patience!
+</p>
+{% endblocktrans %}
+{% endblock %}

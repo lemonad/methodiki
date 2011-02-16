@@ -1,0 +1,14 @@
+{% extends "base-without-sidebar.html" %}
+{% load i18n %}
+{% block main %}
+<h2>{% trans "HTTP 404: Page not found" %}</h2>
+{% blocktrans %}
+<p>
+  Unfortunately, what you were looking for could not be found. Please
+  send us an error report.
+</p>
+<p>
+  Thank you for your patience!
+</p>
+{% endblocktrans %}
+{% endblock %}
