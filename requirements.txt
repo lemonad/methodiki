@@ -10,8 +10,10 @@ docutils
 easy_thumbnails
 gunicorn
 markdown
+mysql-python
 pep8
 PIL
+python-memcached
 simplejson
 south
 whoosh
