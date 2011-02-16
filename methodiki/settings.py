@@ -158,8 +158,8 @@ MARKITUP_MEDIA_URL = os.path.join(MEDIA_URL, 'javascript')
 # Django-mediagenerator
 #
 MEDIA_DEV_MODE = DEBUG
-DEV_MEDIA_URL = '/devmedia/'
-PRODUCTION_MEDIA_URL = '/media/'
+DEV_MEDIA_URL = '/devstatic/'
+PRODUCTION_MEDIA_URL = '/static/'
 GLOBAL_MEDIA_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
 _base_screen_bundle = (
     'css/blueprint/blueprint/screen.css',
