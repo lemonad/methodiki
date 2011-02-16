@@ -1,0 +1,14 @@
+# -*- coding: utf-8 -*-
+DATABASES = {'default': {'ENGINE': 'django.db.backends.mysql',
+                         'NAME': 'metodiki',
+                         'USER': 'metodiki',
+                         'PASSWORD': 'PASSWORD',
+                         'HOST': '',
+                         'PORT': '',
+                         'OPTIONS': {'init_command':
+                                     'SET storage_engine=INNODB'},
+                         'TEST_CHARSET': 'utf8',
+                         'TEST_COLLATION': 'utf8_swedish_ci'},}
+
+SECRET_KEY = 'make-this-unique-and-don't-share-it-with-anybody'
+

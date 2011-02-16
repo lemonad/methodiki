@@ -23,16 +23,12 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'methodiki.db',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
-    }
-}
+DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3',
+                         'NAME': 'methodiki.db',
+                         'USER': '',
+                         'PASSWORD': '',
+                         'HOST': '',
+                         'PORT': '',},}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -56,8 +52,6 @@ USE_I18N = True
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale
 USE_L10N = True
-
-SECRET_KEY = "make-this-unique-and-don't-share-it-with-anybody"
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -125,6 +119,7 @@ INSTALLED_APPS = (
     'flatcontent',
     'methods',
     'preferences',
+    'tagsuggestions',
     'users',
 )
 
@@ -138,6 +133,8 @@ AUTH_PROFILE_MODULE = 'users.UserProfile'
 LOGIN_REDIRECT_URL = r'/login-check-profile'
 LOGIN_URL = ugettext(r'/login/')
 LOGOUT_URL = ugettext(r'/logout/')
+
+SEND_BROKEN_LINK_EMAILS = False
 
 #
 # Comments
@@ -216,8 +213,3 @@ THUMBNAIL_MEDIA_URL = MEDIA_URL + 'thumbnails/'
 #
 HAYSTACK_SEARCH_ENGINE = "whoosh"
 HAYSTACK_SITECONF = "methodiki.search_sites"
-if TESTING:
-    HAYSTACK_WHOOSH_STORAGE = 'ram'
-else:
-    HAYSTACK_WHOOSH_STORAGE = 'file'
-    HAYSTACK_WHOOSH_PATH = os.path.join(PROJECT_ROOT, 'whoosh/mysite_index')

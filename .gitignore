@@ -13,6 +13,7 @@
 /lib
 /parts
 /src
+/methodiki/local_settings.py
 /methodiki/methodiki.db
 /methodiki/media/avatars/
 /methodiki/media/methods/
