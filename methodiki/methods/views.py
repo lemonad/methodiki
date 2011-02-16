@@ -67,8 +67,11 @@ def get_token(request):
 def frontpage(request):
     """ The frontpage """
 
-    method = Method.objects.with_pictures() \
-                           .order_by('?')[0]
+    try:
+        method = Method.objects.with_pictures() \
+                               .order_by('?')[0]
+    except IndexError:
+        method = None
 
     t = loader.get_template('methods-frontpage.html')
     c = RequestContext(request,
