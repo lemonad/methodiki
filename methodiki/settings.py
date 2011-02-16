@@ -137,6 +137,11 @@ LOGOUT_URL = ugettext(r'/logout/')
 SEND_BROKEN_LINK_EMAILS = False
 
 #
+# Caching
+#
+CACHE_BACKEND = 'locmem:///?timeout=60&max_entries=10000'
+
+#
 # Comments
 #
 COMMENTS_APP = 'customcomments'

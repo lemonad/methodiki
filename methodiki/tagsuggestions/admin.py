@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.contrib.admin import ModelAdmin
-from django.contrib.admin.site import register
+from django.contrib.admin import ModelAdmin, site
 from django.utils.translation import ugettext_lazy as _
 
 from models import TagSuggestion, TagSuggestionCategory
@@ -22,5 +21,5 @@ class TagSuggestionCategoryAdmin(ModelAdmin):
     search_fields = ['name']
 
 
-register(TagSuggestion, TagSuggestionAdmin)
-register(TagSuggestionCategory, TagSuggestionCategoryAdmin)
+site.register(TagSuggestion, TagSuggestionAdmin)
+site.register(TagSuggestionCategory, TagSuggestionCategoryAdmin)

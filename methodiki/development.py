@@ -10,11 +10,6 @@ LOCAL_DEVELOPMENT = DEBUG
 TEMPLATE_DEBUG = DEBUG
 
 #
-# Caching
-#
-CACHE_BACKEND = 'locmem:///?timeout=60&max_entries=10000'
-
-#
 # Whoosh
 #
 if TESTING:
