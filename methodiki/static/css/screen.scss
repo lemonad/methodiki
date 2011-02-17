@@ -238,6 +238,7 @@ nav ol li form {
 nav ol li form input {
     font-size: 14px;
     line-height: 24px;
+    height: 24px;
     vertical-align: middle;
     margin: 0 !important;
 }
@@ -628,6 +629,7 @@ input[type="submit"] {
     font-size: 14px;
     font-weight: bold;
     line-height: 24px;
+    height: 24px;
     color: #fcfaf8;
     border: 0;
     background-color: #a2c615;
@@ -648,6 +650,9 @@ input[type="text"], input[type="password"], textarea {
 
     @include border-radius-4;
     background-image: -webkit-gradient(linear, 0% 0%, 0% 12%, from(#999), to(#fff), color-stop(.99,#fff));
+}
+input[type="text"], input[type="password"] {
+    height: 24px;
 }
 textarea {
     background-image: -webkit-gradient(linear, 0% 0%, 0% 3%, from(#999), to(#fff), color-stop(.99,#fff));
