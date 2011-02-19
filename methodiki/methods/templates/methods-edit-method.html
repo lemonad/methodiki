@@ -212,13 +212,18 @@
         {% endif %}
         {{ form.tags }}
 
-        <div class="span-18 last tagInputSuggestedTags">
-          <span class="label">{% trans "Suggested tags:" %}</span>
-          <span id="suggested-tags" class="tagInputSuggestedTagList">
-            {% for tag in suggested_tags %}
-            <span class="taggit-tag">{{ tag }}</span>
+        <div class="span-18 last">
+          <h4>{% trans "Suggested tags:" %}</h4>
+          <div id="suggested-tags">
+            {% for title, tags in suggested_tags %}
+            <p>
+              <strong>{{ title }}:</strong>
+              {% for tag in tags %}
+              <span class="taggit-tag">{{ tag }}</span>
+              {% endfor %}
+            </p>
             {% endfor %}
-          </span>
+          </div>
         </div>
       </fieldset>
 

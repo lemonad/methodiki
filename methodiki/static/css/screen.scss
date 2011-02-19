@@ -1,3 +1,4 @@
+$blueprint-width: 950px;
 $almost-white: #fffff5; /* Body background */
 $body-text: #5e4a3f;
 $blue: #1177aa;
@@ -121,7 +122,7 @@ h2 {
     font-weight: bold;
     letter-spacing: normal;
     line-height: 24px;
-    text-shadow: 0 1px white;
+    text-shadow: 0 1px lighten($greenish, 25%);
     margin: 32px 0 8px 0;
 }
 h3 {
@@ -172,6 +173,7 @@ header #user-nav {
     margin: 0;
     color: white;
     font-size: 90%;
+    min-width: $blueprint-width;
 }
 header #user-nav ol {
     margin: 0;
@@ -207,6 +209,7 @@ nav {
     border-bottom: 1px solid $border-color;
     padding: 1em 0 1em 0;
     margin-bottom: 3em;
+    min-width: $blueprint-width;
     @include box-shadow-dark-10;
 }
 nav h1 {
@@ -283,8 +286,9 @@ footer {
     margin: 3em 0 0 0;
     padding-bottom: 0;
     border: 0;
-    width: 100%;
+    min-width: $blueprint-width;
     position: relative;
+    text-align: center;
 }
 
 ul#messages {
@@ -294,7 +298,7 @@ ul#messages {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    min-width: $blueprint-width;
     overflow: visible;
     z-index: 10000;
     text-align: center;
@@ -670,4 +674,42 @@ nav input[type="submit"] {
     color: $ultra-light-brown;
     background-color: $brown;
     border: 0;
+}
+
+#frontpage-midsection {
+    margin-top: -1.5em;
+    padding: 1.5em 0;
+    background-color: $green;
+    min-width: $blueprint-width;
+}
+span.popular-tag {
+    margin: 0 1em 0 0;
+    font-size: 19px;
+}
+#frontpage-midsection a.popular-tag {
+    color: lighten($green, 50%);
+    text-shadow: 0 1px darken($green, 10%);
+    margin: 0 1em 0 0;
+    font-size: 19px;
+}
+#frontpage-midsection a.popular-tag:hover,
+#frontpage-midsection a.popular-tag:active {
+    color: darken($green, 30%);
+    text-shadow: 0 1px lighten($green, 15%);
+}
+.tag-1 {background-color: #f4970a;}
+.tag-2 {background-color: #da900a;}
+.tag-3 {background-color: #c18a0a;}
+.tag-4 {background-color: #a8840b;}
+.tag-5 {background-color: #8f7e0b;}
+.tag-6 {background-color: #76780b;}
+.tag-7 {background-color: #5d720c;}
+.tag-8 {background-color: #4d6a20;}
+.tag-9 {background-color: #3e6334;}
+.tag-10 {background-color: #2e5b49;}
+.tag-11 {background-color: #1e545e;}
+.tag-12 {background-color: #0f4c72;}
+
+#suggested-tags p {
+    margin: 0;
 }

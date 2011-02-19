@@ -1,0 +1,7 @@
+{% load comments i18n %}
+{% if sidebar_methods.tips %}
+<div class="rounded-9">
+  <h4>{% trans "Quick tip" %}</h4>
+  {{ sidebar_methods.tips.0 }}
+</div>
+{% endif %}

@@ -4,7 +4,6 @@ try:
     import json
 except ImportError:
     import simplejson as json
-import markdown
 
 from django import forms
 from django.conf import settings
@@ -26,9 +25,12 @@ from django.template import Context, RequestContext, loader
 from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext_lazy as _
 from easy_thumbnails.files import get_thumbnailer
-from taggit.models import Tag
+from taggit.models import Tag, TaggedItem
 
 from flatcontent.models import get_flatcontent
+from tagsuggestions.models import (TagSuggestion, TagSuggestionCategory,
+                                   TagText)
+from tips.models import Tip
 from forms import MethodForm, MethodBonusForm
 from models import Method, MethodBonus, MethodFile
 
@@ -42,10 +44,12 @@ def get_sidebar_methods(user):
     recent_methods = Method.objects.recent()
     recent_comments = Comment.objects.filter(content_type__model="method") \
                                      .order_by('-submit_date')
+    tips = Tip.objects.order_by('?')
 
     return {'created_by_user': created_by_user,
             'recent': recent_methods,
-            'recent_comments': recent_comments}
+            'recent_comments': recent_comments,
+            'tips': tips}
 
 
 def get_token(request):
@@ -73,9 +77,16 @@ def frontpage(request):
     except IndexError:
         method = None
 
+    popular_tags = Tag.objects.annotate(Count('method')) \
+                              .order_by('-method__count')[0:10]
+
+    tips = Tip.objects.order_by('?')
+
     t = loader.get_template('methods-frontpage.html')
     c = RequestContext(request,
-                       {'method': method})
+                       {'method': method,
+                        'popular_tags': popular_tags,
+                        'tips': tips})
     return HttpResponse(t.render(c))
 
 
@@ -112,11 +123,19 @@ def tag_index(request, tag_slug):
 def show_method(request, year, month, day, slug):
     method = get_object_or_404(Method, slug=slug)
 
+    tags_list = method.tags.values_list('name', flat=True)
+    try:
+        tagtext = TagText.objects.tag_texts_for_tags(tags_list) \
+                                 .order_by('?')[0]
+    except IndexError:
+        tagtext = None
+
     sidebar_methods = get_sidebar_methods(request.user)
 
     t = loader.get_template('methods-show-method.html')
     c = RequestContext(request,
                        {'method': method,
+                        'tagtext': tagtext,
                         'sidebar_methods': sidebar_methods})
     return HttpResponse(t.render(c))
 
@@ -173,21 +192,18 @@ def create_method(request):
         form_defaults = {'description': method_template}
         form = MethodForm(request, initial=form_defaults, prefix='method')
 
-    tag_cloud = Method.tags.most_common()
-
     sidebar_methods = get_sidebar_methods(request.user)
 
-    # FIXME: Replace example hard coded suggestions with tag category
-    # and suggestion model which is editable by admins.
-    suggested_tags = [("Lärmiljö", ["simulator", "klassrum", "självstudie",
-                       "distans"]),
-                      ("Form", ["reflektion", "diskussion", "laboration",
-                       "redovisning", "examination"])]
+    suggested_tags = []
+    suggested_tag_categories = TagSuggestionCategory.objects.all()
+    for category in suggested_tag_categories:
+        tags = TagSuggestion.objects.filter(category=category) \
+                                    .values_list('name', flat=True)
+        suggested_tags.append((category.name, tags))
 
     t = loader.get_template('methods-create-method.html')
     c = RequestContext(request,
                        {'form': form,
-                        'tag_cloud': tag_cloud,
                         'preview': preview,
                         'suggested_tags': suggested_tags,
                         'sidebar_methods': sidebar_methods})
@@ -254,21 +270,19 @@ def edit_method(request, slug):
         else:
             raise Http404
 
-    tag_cloud = Method.tags.most_common()
     sidebar_methods = get_sidebar_methods(request.user)
     images = MethodFile.objects.filter(method=method)
 
-    # FIXME: Replace example hard coded suggestions with tag category
-    # and suggestion model which is editable by admins.
-    suggested_tags = [("Lärmiljö", ["simulator", "klassrum", "självstudie",
-                       "distans"]),
-                      ("Form", ["reflektion", "diskussion", "laboration",
-                       "redovisning", "examination"])]
+    suggested_tags = []
+    suggested_tag_categories = TagSuggestionCategory.objects.all()
+    for category in suggested_tag_categories:
+        tags = TagSuggestion.objects.filter(category=category) \
+                                    .values_list('name', flat=True)
+        suggested_tags.append((category.name, tags))
 
     t = loader.get_template('methods-edit-method.html')
     c = RequestContext(request,
                        {'method': method,
-                        'tag_cloud': tag_cloud,
                         'preview': preview,
                         'form': form,
                         'images': images,

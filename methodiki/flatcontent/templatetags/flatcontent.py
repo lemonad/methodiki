@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import template
+from markdown import markdown
 
 from ..models import get_flatcontent
 
@@ -12,7 +13,8 @@ class FlatContentNode(template.Node):
         self.name = name
 
     def render(self, context):
-        return get_flatcontent(self.name)
+        content = get_flatcontent(self.name)
+        return markdown(content, safe_mode=True)
 
 
 @register.tag

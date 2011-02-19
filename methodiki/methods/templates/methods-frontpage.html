@@ -7,6 +7,35 @@
     font-size: 40px;
     line-height: 48px;
 }
+blockquote {
+    margin: 0 0 0 110px;
+    width: 310px;
+    height: 200px;
+    background: #b9bf04 url({% media_url "images/chat-bubble.png" %}) no-repeat;
+    position: relative;
+}
+#bubblewrap {
+    display: table;
+    width: 240px;
+    height: 120px;
+    position: absolute;
+    top: 31px;
+    left: 35px;
+    font-size: 17px;
+    text-align: center;
+}
+#bubblewrap p {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+#tip-author {
+    text-align: right;
+    width: 190px;
+    position: absolute;
+    top: 177px;
+    z-index: 1;
+}
 </style>
 {% endblock %}
 
@@ -16,7 +45,7 @@
       <h2>
         {% trans "Welcome!" %}
       </h2>
-  
+
       <div id="frontpage" class="span-24 last">
         <div class="span-15 append-1">
         {% if method %}
@@ -33,9 +62,9 @@
                 {{ method.title }}
               </h3>
             </a>
-      
+
             {{ method.description|markdown:"autolink"|abstract }}
-      
+
             {% get_comment_count for method as comment_count %}
             {% if comment_count %}
             <span><em>
@@ -48,7 +77,7 @@
               </a>
             </em></span>
             {% endif %}
-      
+
             {% include "methods-meta.html" %}
           </li>
         </ul>
@@ -58,7 +87,7 @@
         </p>
         {% endif %}
         </div>
-      
+
         <div class="span-8 last">
           {% if method.methodfile_set.all.0.image %}
           {% for m in method.methodfile_set.all %}
@@ -82,9 +111,25 @@
     </div>
   </div>
 
-  <div style="background-color:#b9bf04;width:100%;">
+  <div id="frontpage-midsection">
     <div class="container">
-        Hello
+      <div class="span-12" style="position:relative;">
+        <h2 id="tip-author">{{ tips.0.user.get_profile.name }}</h2>
+        <blockquote>
+          <div id="bubblewrap">
+            <p>{{ tips.0 }}</p>
+          </div>
+        </blockquote>
+      </div>
+
+      <div class="span-12 last">
+        <h2>{% trans "Popular Tags" %}</h2>
+        {% for tag in popular_tags %}
+        <a class="popular-tag" href="#">
+          {{ tag.name }}
+        </a>
+        {% endfor %}
+      </div>
     </div>
   </div>
 

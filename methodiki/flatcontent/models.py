@@ -53,7 +53,7 @@ def get_flatcontent(name):
 
     content = cache.get(cache_key)
     if content:
-        return content
+        return content.decode('utf-8')
 
     try:
         flatcontent = FlatContent.objects.filter(name__iexact=name) \

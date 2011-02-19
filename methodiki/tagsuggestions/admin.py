@@ -2,7 +2,7 @@
 from django.contrib.admin import ModelAdmin, site
 from django.utils.translation import ugettext_lazy as _
 
-from models import TagSuggestion, TagSuggestionCategory
+from models import TagSuggestion, TagSuggestionCategory, TagText
 
 
 class TagSuggestionAdmin(ModelAdmin):
@@ -21,5 +21,12 @@ class TagSuggestionCategoryAdmin(ModelAdmin):
     search_fields = ['name']
 
 
+class TagTextAdmin(ModelAdmin):
+    fields = ['text', 'tag']
+    list_display = ['tag', 'date_created', 'date_modified']
+    search_fields = ['tag', 'text']
+
+
 site.register(TagSuggestion, TagSuggestionAdmin)
 site.register(TagSuggestionCategory, TagSuggestionCategoryAdmin)
+site.register(TagText, TagTextAdmin)
