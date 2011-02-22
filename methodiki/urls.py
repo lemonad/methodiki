@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     (r'^markitup/', include('markitup.urls')),
     (r'^search/', include('haystack.urls')),
     (_(r'^settings/'), include('preferences.urls')),
+    (_(r'^tips/'), include('tips.urls')),
 )
 
 # Comments

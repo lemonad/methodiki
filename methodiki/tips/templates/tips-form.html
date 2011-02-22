@@ -1,0 +1,42 @@
+{% load i18n %}
+  <form action="#" method="post" name="tip">
+    {% csrf_token %}
+
+    <div class="span-15 last">
+      {% for error in form.non_field_errors %}
+      <p class="error">
+        {{ error|escape }}
+      </p>
+      {% endfor %}
+    </div>
+
+    <fieldset>
+      {% if form.text.errors %}
+      <div class="span-15 last">
+        {% for error in form.text.errors %}
+        <p class="error">
+          {{ error|escape }}
+        </p>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {{ form.text }}
+    </fieldset>
+
+    <fieldset>
+      <div class="span-12">
+        <p>
+          {% blocktrans %}
+          Keep it short and to the point (less than 200 characters)!
+          {% endblocktrans %}
+        </p>
+      </div>
+      <div class="span-3 last" style="text-align:right;">
+        <input type="submit"
+               name="submit"
+               class="submit-post"
+               value="{% trans "Submit" %}">
+      </div>
+    </fieldset>
+  </form>

@@ -58,6 +58,9 @@
                  href="{% url methods-index %}">{% trans "Methods" %}
               </a>
             </li>
+            <li>
+              <a href="{% url tips-index %}">{% trans "Tips" %}</a>
+            </li>
             {% if request.user.is_authenticated %}
             <li>
               <a href="#">

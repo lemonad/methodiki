@@ -1,0 +1,25 @@
+{% load i18n thumbnail %}
+<li class="span-16 last">
+  <div class="span-2">
+    {% if tip.user.get_profile.avatar %}
+    <img src="{% thumbnail tip.user.get_profile.avatar 50x50 crop %}"
+         style="padding: 3px;
+                border: 1px solid #999;
+                background-color: #f8f8f8;
+                -webkit-transform: rotate(-3deg);
+                -webkit-box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.15)"
+         width="50" height="50" />
+    {% endif %}
+  </div>
+  <div class="span-14 last">
+    <p>
+      {{ tip.text }}
+      <span>
+        &mdash;&nbsp;<a href="{% url user tip.user.username %}">{{ tip.user.get_profile.name }}</a>
+        {% ifequal request.user tip.user %}
+        (<a href="{% url tips-edit-tip tip.id %}">edit</a>...)
+        {% endifequal %}
+      </span>
+    </p>
+  </div>
+</li>

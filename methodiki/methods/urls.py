@@ -20,7 +20,7 @@ urlpatterns = patterns('methods.views',
         'index',
         name='methods-index'),
 
-    # Tags
+    # Methods
     url(r'^new/$',
         'create_method',
         name='methods-create-method'),

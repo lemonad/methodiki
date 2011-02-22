@@ -1,0 +1,57 @@
+{% extends "base-with-sidebar.html" %}
+{% load i18n thumbnail %}
+{% block javascript %}
+  <script type="text/javascript">
+    function update_counter() {
+      var count = $("#id_text").val().length;
+      var cc = $("#character-counter");
+
+      if (count >= 200) {
+        cc.addClass("error");
+      } else if (cc.hasClass("error")) {
+        cc.removeClass("error");
+      }
+      cc.text(count);
+    }
+
+    $(document).ready(function() {
+      $("#id_text").bind('keydown keyup keypress', function() {
+          update_counter();
+      });
+      update_counter();
+    });
+  </script>
+{% endblock %}
+
+{% block main %}
+  {% if request.user.is_authenticated %}
+  <div id="tip-form" class="span-15 append-1 last rounded-9">
+    <div class="span-14">
+      <h2>{% trans "Add a tip!" %}</h2>
+    </div>
+    <div class="span-1 last" style="text-align:right;">
+      (<span id="character-counter"></span>)
+    </div>
+    <div class="span-15 last">
+      {% include "tips-form.html" %}
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="span-16 last">
+    {% if tips %}
+    <h2>{% trans "All tips" %}</h2>
+    <ul id="tips-list">
+      {% for tip in tips %}
+      {% include "tips-tip-listitem.html" %}
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>
+      {% blocktrans %}
+      No tips, yet!
+      {% endblocktrans %}
+    </p>
+    {% endif %}
+  </div>
+{% endblock %}

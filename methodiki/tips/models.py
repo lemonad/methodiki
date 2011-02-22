@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from autoslug import AutoSlugField
 from django.contrib.auth.models import User
-from django.core.validators import MaxLengthValidator
 from django.db.models import (BooleanField, CharField, DateTimeField,
                               ForeignKey, Manager, Model, TextField)
 from django.utils.translation import ugettext_lazy as _
@@ -24,8 +23,9 @@ class Tip(Model):
     user = ForeignKey(User,
                       verbose_name=_("Created by"),
                       db_index=True)
-    text = TextField(_("Text"),
-                     validators=[MaxLengthValidator(200)])
+    text = CharField(_("Text"),
+                     max_length=200,
+                     unique=True)
     date_created = DateTimeField(_('Created (date)'),
                                  db_index=True,
                                  auto_now_add=True)

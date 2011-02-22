@@ -22,7 +22,8 @@
       <strong>Method is not yet published.</strong>
       {% endblocktrans %}
       {% endifequal %}
-    
+
+      {% if method.tags.all %}
       <br/>
       <span>
         {% trans "Tags" %}:
@@ -30,6 +31,7 @@
         <a href="{% url methods-tag-index method_tag.slug %}">{{ method_tag.name }}</a>{% if not forloop.last %},{% endif %}
         {% endfor %}
       </span>
+      {% endif %}
     </em>
   </p>
 </div>
