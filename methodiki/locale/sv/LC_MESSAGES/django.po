@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-14 13:07+0100\n"
+"POT-Creation-Date: 2011-02-23 10:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,51 +18,51 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: settings.py:138
-msgid "/settings/profile/"
-msgstr "/installningar/profil/"
-
-#: settings.py:139
+#: settings.py:129
 msgid "/login/"
 msgstr "/logga-in/"
 
-#: settings.py:140
+#: settings.py:130
 msgid "/logout/"
 msgstr "logga-ut/"
 
-#: urls.py:12
+#: urls.py:14
 msgid "^about/"
 msgstr "^om/"
 
-#: urls.py:18
+#: urls.py:20
 msgid "^settings/"
 msgstr "^installningar/"
 
-#: urls.py:28
+#: urls.py:21
+msgid "^tips/"
+msgstr "^tips/"
+
+#: urls.py:31
 msgid "^login/$"
 msgstr "^logga-in/$"
 
-#: urls.py:32
+#: urls.py:35
 msgid "^login/new-password/$"
 msgstr "^logga-in/nytt-losenord/$"
 
-#: urls.py:37
+#: urls.py:40
 msgid "^login/new-password/sent/$"
 msgstr "^logga-in/nytt-losenord/skickat/$"
 
-#: urls.py:41
+#: urls.py:44
 msgid "^login/new-password/complete/$"
 msgstr "^logga-in/nytt-losenord/klart/$"
 
-#: urls.py:45
+#: urls.py:48
 msgid "^login/new-password/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+?)/$"
 msgstr "^logga-in/nytt-losenord/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+?)/$"
 
-#: urls.py:51
+#: urls.py:54
 msgid "^logout/$"
 msgstr "^logga-ut/$"
 
-#: urls.py:60
+#: urls.py:63
 msgid "^signup/$"
 msgstr "^skapa-konto/$"
 
@@ -121,11 +121,11 @@ msgstr "Utkast"
 msgid "Published"
 msgstr "Publicerad"
 
-#: methods/models.py:47
+#: methods/models.py:47 tips/models.py:16
 msgid "Slug"
 msgstr "Slugg"
 
-#: methods/models.py:55
+#: methods/models.py:55 tips/models.py:24
 msgid "Created by"
 msgstr "Inlagd av"
 
@@ -150,12 +150,14 @@ msgid "Date and time published"
 msgstr "Datum och tid för publicering"
 
 #: methods/models.py:75 methods/models.py:124 methods/models.py:171
-#: users/models.py:26
+#: tagsuggestions/models.py:11 tagsuggestions/models.py:38
+#: tagsuggestions/models.py:65 tips/models.py:29 users/models.py:26
 msgid "Created (date)"
 msgstr "Skapad (datum)"
 
 #: methods/models.py:78 methods/models.py:127 methods/models.py:174
-#: users/models.py:29
+#: tagsuggestions/models.py:14 tagsuggestions/models.py:41
+#: tagsuggestions/models.py:68 tips/models.py:32 users/models.py:29
 msgid "Modified (date)"
 msgstr "Ändrad (datum)"
 
@@ -203,7 +205,7 @@ msgstr "metodbonus"
 msgid "method bonuses"
 msgstr "metodbonusar"
 
-#: methods/views.py:160
+#: methods/views.py:182
 msgid ""
 "Thanks for adding a new method! Don't forget to publish it so it becomes "
 "visible to others."
@@ -211,30 +213,30 @@ msgstr ""
 "Tack för att du lade in en ny metod! Glöm inte att publicera den så den blir "
 "synlig för andra."
 
-#: methods/views.py:222
+#: methods/views.py:241
 msgid "Method saved!"
 msgstr "Metoden sparades!"
 
-#: methods/views.py:224
+#: methods/views.py:243
 msgid ""
 "Method saved! Don't forget to publish it so it becomes visible to others."
 msgstr ""
 "Metoden sparades! Glöm inte att publicera den så att den blir synlig för "
 "andra."
 
-#: methods/views.py:233
+#: methods/views.py:252
 msgid "Method deleted!"
 msgstr "Metoden togs bort!"
 
-#: methods/views.py:241
+#: methods/views.py:260
 msgid "Method is now published and visible to everyone"
 msgstr "Metoden publicerades och är nu synlig för alla"
 
-#: methods/views.py:248 methods/views.py:372
+#: methods/views.py:267 methods/views.py:397
 msgid "Method is now draft"
 msgstr "Metoden är nu ett utkast"
 
-#: methods/views.py:284
+#: methods/views.py:309
 msgid ""
 "Thanks for adding a new method bonus! Don't forget to publish it so it "
 "becomes visible to others."
@@ -242,22 +244,22 @@ msgstr ""
 "Tack för att du lade in en ny metodbonus! Glöm inte att publicera den så den "
 "blir synlig för andra."
 
-#: methods/views.py:334
+#: methods/views.py:359
 msgid "Bonus saved!"
 msgstr "Bonusen sparades!"
 
-#: methods/views.py:341
+#: methods/views.py:366
 msgid ""
 "Bonus saved! Don't forget to publish it so it becomes visible to others."
 msgstr ""
 "Bonusen sparades! Glöm inte att publicera den så att den blir synlig för "
 "andra."
 
-#: methods/views.py:350
+#: methods/views.py:375
 msgid "Bonus deleted!"
 msgstr "Bonusen togs bort!"
 
-#: methods/views.py:361
+#: methods/views.py:386
 msgid "Bonus is now published and visible to everyone"
 msgstr "Bonusen publicerades och är nu synlig för alla"
 
@@ -287,6 +289,9 @@ msgid ""
 "    That is, you might be a:\n"
 "    "
 msgstr ""
+"\n"
+"    Det vill säga, du/ni kanske är en:\n"
+"    "
 
 #: methods/templates/methods-about-bonus.html:19
 msgid ""
@@ -300,6 +305,15 @@ msgid ""
 "  </ul>\n"
 "  "
 msgstr ""
+"\n"
+"  <ul>\n"
+"    <li>diskussionsgrupp</li>\n"
+"    <li>expert i ditt fält</li>\n"
+"    <li>generalist med höjd blick</li>\n"
+"    <li>kundrepresentant</li>\n"
+"    <li>utbildningsutvärderare</li>\n"
+"  </ul>\n"
+"  "
 
 #: methods/templates/methods-about-bonus.html:32
 msgid ""
@@ -323,6 +337,15 @@ msgid ""
 "  </ul>\n"
 "  "
 msgstr ""
+"\n"
+"  <ul>\n"
+"    <li>översvallande värderingar från kursdeltagarna</li>\n"
+"    <li>utbildningseffektivitet</li>\n"
+"    <li>kreativitet</li>\n"
+"    <li>tekniskt författande</li>\n"
+"    <li>pedagogisk teori</li>\n"
+"  </ul>\n"
+"  "
 
 #: methods/templates/methods-bonus-meta.html:7
 #: methods/templates/methods-meta.html:14
@@ -410,16 +433,16 @@ msgid "Start writing!"
 msgstr "Börja skriva!"
 
 #: methods/templates/methods-create-bonus.html:48
-#: methods/templates/methods-create-method.html:110
+#: methods/templates/methods-create-method.html:112
 #: methods/templates/methods-edit-bonus.html:48
-#: methods/templates/methods-edit-method.html:227
+#: methods/templates/methods-edit-method.html:232
 #: methods/templates/methods-preview.html:4
-#: templates/comments/preview.html:172
+#: templates/comments/preview.html:176
 msgid "Preview"
 msgstr "Förhandsgranska"
 
 #: methods/templates/methods-create-bonus.html:50
-#: methods/templates/methods-create-method.html:112
+#: methods/templates/methods-create-method.html:114
 msgid "Create"
 msgstr "Skapa"
 
@@ -434,7 +457,7 @@ msgstr "Valfria fält"
 
 #: methods/templates/methods-create-method.html:83
 #: methods/templates/methods-edit-method.html:201
-#: methods/templates/methods-meta.html:28 templates/base-header.html:74
+#: methods/templates/methods-meta.html:29 templates/base-header.html:77
 msgid "Tags"
 msgstr "Taggar"
 
@@ -443,7 +466,7 @@ msgstr "Taggar"
 msgid "Suggested tags:"
 msgstr "Förslag på taggar:"
 
-#: methods/templates/methods-create-method.html:119
+#: methods/templates/methods-create-method.html:121
 #: methods/templates/methods-edit-method.html:24
 msgid "Upload an image"
 msgstr "Ladda upp en bild"
@@ -454,8 +477,8 @@ msgid "Edit away!"
 msgstr "Redigera!"
 
 #: methods/templates/methods-edit-bonus.html:50
-#: methods/templates/methods-edit-method.html:229
-#: preferences/templates/preferences-profile.html:75
+#: methods/templates/methods-edit-method.html:234
+#: preferences/templates/preferences-profile.html:90
 msgid "Save"
 msgstr "Spara"
 
@@ -495,23 +518,23 @@ msgstr ""
 "          att lägga till bilden där du placerat markören i texten.\n"
 "        "
 
-#: methods/templates/methods-edit-method.html:241
+#: methods/templates/methods-edit-method.html:246
 msgid "Publish method"
 msgstr "Publicera metoden"
 
-#: methods/templates/methods-edit-method.html:250
+#: methods/templates/methods-edit-method.html:255
 msgid "Unpublish method"
 msgstr "Avpublicera metoden"
 
-#: methods/templates/methods-edit-method.html:258
+#: methods/templates/methods-edit-method.html:263
 msgid "Delete method"
 msgstr "Ta bort metoden"
 
-#: methods/templates/methods-frontpage.html:17
+#: methods/templates/methods-frontpage.html:46
 msgid "Welcome!"
 msgstr "Välkommen!"
 
-#: methods/templates/methods-frontpage.html:43
+#: methods/templates/methods-frontpage.html:72
 #, python-format
 msgid ""
 "\n"
@@ -530,10 +553,14 @@ msgstr[1] ""
 "          %(cc)s kommentarer.\n"
 "        "
 
-#: methods/templates/methods-frontpage.html:57
+#: methods/templates/methods-frontpage.html:86
 #: methods/templates/methods-index.html:35
 msgid "Go ahead, create the first method!"
 msgstr "Kom igen, lägg in den första metoden!"
+
+#: methods/templates/methods-frontpage.html:126
+msgid "Popular Tags"
+msgstr "Populära taggar"
 
 #: methods/templates/methods-index.html:22
 msgid "Methods and best practices"
@@ -622,7 +649,7 @@ msgstr "Redigera eller spara metoden nedan"
 msgid "Good method"
 msgstr "Bra metod"
 
-#: methods/templates/methods-show-method.html:40
+#: methods/templates/methods-show-method.html:41
 #, python-format
 msgid ""
 "\n"
@@ -641,11 +668,11 @@ msgstr[1] ""
 "        %(cc)s kommentarer:\n"
 "      "
 
-#: methods/templates/methods-show-method.html:108
+#: methods/templates/methods-show-method.html:109
 msgid "Good method?"
 msgstr "Bra metod?"
 
-#: methods/templates/methods-show-method.html:111
+#: methods/templates/methods-show-method.html:112
 #, python-format
 msgid ""
 "\n"
@@ -657,11 +684,10 @@ msgstr ""
 "\n"
 "      Är den här metoden bra från andra perspektiv än ren      "
 "återanvändbarhet?\n"
-"      <a href=\"%(create_bonus_url)s\">Läs mer</a> och skapa en "
-"metodbonus.\n"
+"      <a href=\"%(create_bonus_url)s\">Läs mer</a> och skapa en metodbonus.\n"
 "      "
 
-#: methods/templates/methods-show-method.html:121
+#: methods/templates/methods-show-method.html:122
 msgid "Create bonus"
 msgstr "Skapa bonus"
 
@@ -757,13 +783,17 @@ msgstr "Se fler..."
 msgid "Popular tags"
 msgstr "Populära taggar"
 
-#: methods/templates/sidebar/sidebar-theory.html:9
+#: methods/templates/sidebar/sidebar-theory.html:4
 msgid "Background"
 msgstr "Bakgrund"
 
-#: methods/templates/sidebar/sidebar-theory.html:37
+#: methods/templates/sidebar/sidebar-theory.html:8
 msgid "Read more..."
 msgstr "Läs mer..."
+
+#: methods/templates/sidebar/sidebar-tips.html:4
+msgid "Quick tip"
+msgstr "Snabbtips"
 
 #: preferences/urls.py:16
 msgid "^language/$"
@@ -801,7 +831,7 @@ msgstr "Notiser"
 msgid "Profile"
 msgstr "Profil"
 
-#: preferences/templates/preferences-profile.html:26
+#: preferences/templates/preferences-profile.html:30
 msgid "Edit your profile information"
 msgstr "Redigera din profilinformation"
 
@@ -819,6 +849,86 @@ msgstr ""
 "  sajten och hjälpa dina kollegor genom att bidra med goda exempel.\n"
 "  "
 
+#: tagsuggestions/models.py:8
+msgid "Tag category name"
+msgstr "Taggkategorinamn"
+
+#: tagsuggestions/models.py:23
+msgid "tag suggestion category"
+msgstr "taggförslagskategori"
+
+#: tagsuggestions/models.py:24
+msgid "tag suggestion categories"
+msgstr "taggförslagskategorier"
+
+#: tagsuggestions/models.py:28
+msgid "Tag name"
+msgstr "Taggnamn"
+
+#: tagsuggestions/models.py:32
+msgid "Category"
+msgstr "Kategori"
+
+#: tagsuggestions/models.py:34
+msgid "Show on frontpage?"
+msgstr "Visa på förstasidan?"
+
+#: tagsuggestions/models.py:50
+msgid "tag suggestion"
+msgstr "taggförslag"
+
+#: tagsuggestions/models.py:51
+msgid "tag suggestions"
+msgstr "taggförslag"
+
+#: tagsuggestions/models.py:61 tips/models.py:26
+msgid "Text"
+msgstr "Text"
+
+#: tagsuggestions/models.py:63
+msgid "Tag text"
+msgstr "Taggtext"
+
+#: tagsuggestions/models.py:78
+msgid "tag text"
+msgstr "taggtext"
+
+#: tagsuggestions/models.py:79
+msgid "tag texts"
+msgstr ""
+
+#: templates/404.html:4
+msgid "HTTP 404: Page not found"
+msgstr ""
+
+#: templates/404.html:5
+msgid ""
+"\n"
+"<p>\n"
+"  Unfortunately, what you were looking for could not be found. Please\n"
+"  send us an error report.\n"
+"</p>\n"
+"<p>\n"
+"  Thank you for your patience!\n"
+"</p>\n"
+msgstr ""
+
+#: templates/500.html:4
+msgid "HTTP 500: Internal server error"
+msgstr ""
+
+#: templates/500.html:5
+msgid ""
+"\n"
+"<p>\n"
+"  You've come across a bug! We've been notified of the problem and\n"
+"  will try to fix it as soon as possible.\n"
+"</p>\n"
+"<p>\n"
+"  Thank you for your patience!\n"
+"</p>\n"
+msgstr ""
+
 #: templates/base-header.html:19
 msgid "Welcome"
 msgstr "Välkommen"
@@ -835,7 +945,7 @@ msgstr "Logga ut"
 msgid "Administration"
 msgstr "Administration"
 
-#: templates/base-header.html:37 templates/login.html:38
+#: templates/base-header.html:37 templates/login.html:43
 #: templates/password_reset_complete.html:8
 msgid "Log in"
 msgstr "Logga in"
@@ -848,11 +958,15 @@ msgstr "Skapa konto"
 msgid "Methods"
 msgstr "Metoder"
 
-#: templates/base-header.html:64
+#: templates/base-header.html:62
+msgid "Tips"
+msgstr ""
+
+#: templates/base-header.html:67
 msgid "My methods"
 msgstr "Mina metoder"
 
-#: templates/base-header.html:79
+#: templates/base-header.html:82
 msgid "Search"
 msgstr "Sök"
 
@@ -872,7 +986,7 @@ msgstr "Logga in"
 msgid "Your username and password did not match. Please try again."
 msgstr "Ditt användarnamn och läsenord matchade inte. Var god försök igen."
 
-#: templates/login.html:32
+#: templates/login.html:37
 msgid "Forgot your password?"
 msgstr "Glömt ditt lösenord?"
 
@@ -1011,7 +1125,7 @@ msgstr "posta din kommentar"
 msgid "or make changes"
 msgstr "eller gör ändringar"
 
-#: templates/comments/preview.html:155
+#: templates/comments/preview.html:159
 msgid ""
 "\n"
 "            With this comment, do you also want to lift this method\n"
@@ -1023,7 +1137,7 @@ msgstr ""
 "        metod till toppen av metodlistan?\n"
 "        "
 
-#: templates/comments/preview.html:170
+#: templates/comments/preview.html:174 tips/templates/tips-form.html:39
 msgid "Submit"
 msgstr "Skicka"
 
@@ -1042,6 +1156,63 @@ msgstr "Föregående"
 #: templates/search/search.html:33
 msgid "Next"
 msgstr "Nästa"
+
+#: tips/models.py:42
+msgid "tip"
+msgstr ""
+
+#: tips/models.py:43
+msgid "tips"
+msgstr ""
+
+#: tips/urls.py:15
+msgid "^(?P<tip_id>[0-9]+)/edit$"
+msgstr ""
+
+#: tips/views.py:34
+msgid "Thanks for adding a new tip!"
+msgstr ""
+
+#: tips/views.py:58
+msgid "Tip saved!"
+msgstr "Tipset sparades!"
+
+#: tips/templates/tips-edit-tip.html:29
+msgid "Edit your tip!"
+msgstr ""
+
+#: tips/templates/tips-edit-tip.html:46
+msgid "delete"
+msgstr "ta bort"
+
+#: tips/templates/tips-edit-tip.html:54
+msgid "Your tip, before editing"
+msgstr ""
+
+#: tips/templates/tips-form.html:30
+msgid ""
+"\n"
+"          Keep it short and to the point (less than 200 characters)!\n"
+"          "
+msgstr ""
+
+#: tips/templates/tips-index.html:30
+msgid "Add a tip!"
+msgstr "Lägg till ett tips!"
+
+#: tips/templates/tips-index.html:43
+msgid "All tips"
+msgstr ""
+
+#: tips/templates/tips-index.html:51
+msgid ""
+"\n"
+"      No tips, yet!\n"
+"      "
+msgstr ""
+"\n"
+"      Inga tips, ännu!\n"
+"      "
 
 #: users/admin.py:19 users/models.py:22
 msgid "Avatar"
@@ -1089,3 +1260,6 @@ msgstr "Logga in"
 #: users/templates/users-index.html:12
 msgid "All users"
 msgstr "Alla användare"
+
+#~ msgid "/settings/profile/"
+#~ msgstr "/installningar/profil/"
