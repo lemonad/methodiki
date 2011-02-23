@@ -445,7 +445,7 @@ def upload_file(request, slug):
                     'image_id': uf.id}
         return HttpResponse(json.dumps(ret_json))
     else:
-        return Http404()
+        raise Http404
 
 
 @login_required
@@ -470,4 +470,4 @@ def delete_file(request, slug):
             return HttpResponse(json.dumps({"image_id": image_id}),
                                 mimetype="application/json")
         else:
-            return Http404()
+            raise Http404

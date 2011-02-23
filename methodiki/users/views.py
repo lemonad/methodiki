@@ -55,7 +55,7 @@ def show_user(request, username):
 def register(request):
     # Only allow not logged users to register new accounts
     if request.user.is_authenticated():
-        return Http404()
+        return HttpResponseRedirect(reverse('methods-frontpage'))
 
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -101,4 +101,4 @@ def username_exists_ajax(request):
         ret_json = {'exists': exists}
         return HttpResponse(json.dumps(ret_json))
     else:
-        return Http404()
+        raise Http404
