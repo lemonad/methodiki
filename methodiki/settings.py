@@ -173,6 +173,13 @@ _base_screen_bundle = (
     'css/screen.scss',
     'javascript/jquery.fancybox-1.3.4/jquery.fancybox-1.3.4.css',
 )
+_base_js_bundle = (
+    'javascript/modernizr-1.6.min.js',
+    'javascript/jquery-1.4.4.min.js',
+    'javascript/jquery.corner.js',
+    'javascript/jquery.fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js',
+)
+
 MEDIA_BUNDLES = (
     # CSS
     ('screen.css',) + _base_screen_bundle,
@@ -185,10 +192,9 @@ MEDIA_BUNDLES = (
     ('print.css', 'css/blueprint/blueprint/print.css',
                   'css/print.css',),
     # Javascript
-    ('main.js', 'javascript/modernizr-1.6.min.js',
-                'javascript/jquery-1.4.4.min.js',
-                'javascript/jquery.corner.js',
-                'javascript/jquery.fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js',),
+    ('main.js',) + _base_js_bundle,
+    ('main-ie.js',) + _base_js_bundle
+                    + ('javascript/html5.js',),
     ('edit-methods.js', 'javascript/jquery.timers-1.2.js',
                         'javascript/jquery-taggit/jquery.taggit.js',
                         'javascript/fileuploader/fileuploader.js',

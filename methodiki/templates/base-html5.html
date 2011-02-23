@@ -23,7 +23,13 @@
   {% include_media "print.css" media="print" %}
   {% block css %}{% endblock %}
 
-  {% include_media 'main.js' %}
+  <!--[if (!IE)|(gte IE 9)]><!-->
+    {% include_media 'main.js' %}
+  <!--<![endif]-->
+  <!--[if lt IE 9]>
+    {% include_media 'main-ie.js' %}
+  <![endif]-->
+
   <script type="text/javascript">
     $(document).ready(function() {
       if (!Modernizr.borderradius) {
