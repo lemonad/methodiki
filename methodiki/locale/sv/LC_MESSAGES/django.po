@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-23 10:25+0100\n"
+"POT-Creation-Date: 2011-02-25 15:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -895,11 +895,11 @@ msgstr "taggtext"
 
 #: tagsuggestions/models.py:79
 msgid "tag texts"
-msgstr ""
+msgstr "taggtexter"
 
 #: templates/404.html:4
 msgid "HTTP 404: Page not found"
-msgstr ""
+msgstr "HTTP 404: Sidan kunde inte hittas"
 
 #: templates/404.html:5
 msgid ""
@@ -912,10 +912,18 @@ msgid ""
 "  Thank you for your patience!\n"
 "</p>\n"
 msgstr ""
+"\n"
+"<p>\n"
+"  Tyvärr kunde det du letade efter inte hittas. Skicka gärna\n"
+"  en felrapport.\n"
+"</p>\n"
+"<p>\n"
+"  Tack för ditt tålamod!\n"
+"</p>\n"
 
 #: templates/500.html:4
 msgid "HTTP 500: Internal server error"
-msgstr ""
+msgstr "HTTP 500: Internt serverfel"
 
 #: templates/500.html:5
 msgid ""
@@ -928,6 +936,14 @@ msgid ""
 "  Thank you for your patience!\n"
 "</p>\n"
 msgstr ""
+"\n"
+"<p>\n"
+"  Du har råkat på en bugg! Vi har blivit notifierade om problemet och\n"
+"  kommer försöka rätta till det hela så fort som möjligt.\n"
+"</p>\n"
+"<p>\n"
+"  Tack för ditt tålamod!\n"
+"</p>\n"
 
 #: templates/base-header.html:19
 msgid "Welcome"
@@ -960,7 +976,7 @@ msgstr "Metoder"
 
 #: templates/base-header.html:62
 msgid "Tips"
-msgstr ""
+msgstr "Tips"
 
 #: templates/base-header.html:67
 msgid "My methods"
@@ -1159,35 +1175,51 @@ msgstr "Nästa"
 
 #: tips/models.py:42
 msgid "tip"
-msgstr ""
+msgstr "tips"
 
 #: tips/models.py:43
 msgid "tips"
-msgstr ""
+msgstr "tips"
 
 #: tips/urls.py:15
 msgid "^(?P<tip_id>[0-9]+)/edit$"
-msgstr ""
+msgstr "^(?P<tip_id>[0-9]+)/redigera$"
 
 #: tips/views.py:34
 msgid "Thanks for adding a new tip!"
-msgstr ""
+msgstr "Tack för att du lade till ett nytt tips!"
 
-#: tips/views.py:58
+#: tips/views.py:64
 msgid "Tip saved!"
 msgstr "Tipset sparades!"
 
-#: tips/templates/tips-edit-tip.html:29
+#: tips/views.py:68
+msgid "Tip deleted!"
+msgstr "Tipset togs bort!"
+
+#: tips/templates/tips-edit-tip.html:22
+msgid "Really delete tip?"
+msgstr "Verkligen ta bort tipset?"
+
+#: tips/templates/tips-edit-tip.html:33
 msgid "Edit your tip!"
-msgstr ""
+msgstr "Redigera ditt tips!"
 
 #: tips/templates/tips-edit-tip.html:46
+msgid "or"
+msgstr "eller"
+
+#: tips/templates/tips-edit-tip.html:49
 msgid "delete"
 msgstr "ta bort"
 
-#: tips/templates/tips-edit-tip.html:54
+#: tips/templates/tips-edit-tip.html:50
+msgid "it?"
+msgstr "det?"
+
+#: tips/templates/tips-edit-tip.html:57
 msgid "Your tip, before editing"
-msgstr ""
+msgstr "Ditt tips, innan redigering"
 
 #: tips/templates/tips-form.html:30
 msgid ""
@@ -1195,6 +1227,9 @@ msgid ""
 "          Keep it short and to the point (less than 200 characters)!\n"
 "          "
 msgstr ""
+"\n"
+"          Ta det kort och koncist (mindre än 200 tecken)!\n"
+"          "
 
 #: tips/templates/tips-index.html:30
 msgid "Add a tip!"
@@ -1202,7 +1237,7 @@ msgstr "Lägg till ett tips!"
 
 #: tips/templates/tips-index.html:43
 msgid "All tips"
-msgstr ""
+msgstr "Alla tips"
 
 #: tips/templates/tips-index.html:51
 msgid ""

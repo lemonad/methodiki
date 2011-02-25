@@ -18,6 +18,10 @@
       $("#id_text").bind('keydown keyup keypress', function() {
           update_counter();
       });
+      $('#delete-tip').submit(function() {
+        return confirm("{% trans "Really delete tip?" %}");
+      });
+
       update_counter();
     });
   </script>
@@ -34,17 +38,16 @@
   <div class="span-15 last">
     {% include "tips-form.html" %}
 
-    <form action="#" method="post" name="delete-tip">
+    <form action="#" method="post" id="delete-tip" name="delete-tip">
       {% csrf_token %}
 
       <fieldset>
         <p>
-          ...or
+          ...{% trans "or" %}
           <input type="submit"
-                 name="submit"
-                 class="submit-post"
+                 name="delete-tip"
                  value="{% trans "delete" %}">
-          it?
+          {% trans "it?" %}
         </p>
       </fieldset>
     </form>

@@ -27,7 +27,7 @@ def index(request):
 
     tips = Tip.objects.all()
 
-    if request.method == 'POST':
+    if request.method == 'POST' and request.user.is_authenticated:
         form = TipForm(request, request.POST)
         if form.is_valid():
             t = form.save()
@@ -49,17 +49,26 @@ def edit_tip(request, tip_id):
 
     tip = get_object_or_404(Tip, id=tip_id)
 
+    if not request.user.is_superuser and request.user != tip.user:
+        raise PermissionDenied("You must own a tip in order to edit it.")
+
+    form = TipForm(request, instance=tip)
+
     if request.method == 'POST':
-        form = TipForm(request,
-                       request.POST,
-                       instance=tip)
-        if form.is_valid():
-            t = form.save()
-            messages.success(request, _("Tip saved!"))
+        if 'post-tip' in request.POST:
+            form = TipForm(request,
+                           request.POST,
+                           instance=tip)
+            if form.is_valid():
+                t = form.save()
+                messages.success(request, _("Tip saved!"))
+                return HttpResponseRedirect(reverse('tips-index'))
+        elif 'delete-tip' in request.POST:
+            tip.delete()
+            messages.success(request, _("Tip deleted!"))
             return HttpResponseRedirect(reverse('tips-index'))
-    else:
-        # Initialize form
-        form = TipForm(request, instance=tip)
+        else:
+            raise Http404
 
     t = loader.get_template('tips-edit-tip.html')
     c = RequestContext(request,
