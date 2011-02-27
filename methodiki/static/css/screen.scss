@@ -291,6 +291,9 @@ footer {
     min-width: $blueprint-width;
     text-align: center;
 }
+footer .container {
+    text-align: center;
+}
 
 ul#messages {
     margin: 0;
