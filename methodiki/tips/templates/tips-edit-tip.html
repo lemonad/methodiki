@@ -28,34 +28,36 @@
 {% endblock %}
 
 {% block main %}
-<div id="tip-form" class="span-15 append-1 last rounded-9">
-  <div class="span-14">
-    <h2>{% trans "Edit your tip!" %}</h2>
-  </div>
-  <div class="span-1 last" style="text-align:right;">
-    (<span id="character-counter"></span>)
-  </div>
-  <div class="span-15 last">
-    {% include "tips-form.html" %}
+<div class="span-15 append-1 last">
+  <div id="tip-form" class="inset rounded-9 span-15 last append-bottom">
+    <div class="span-14">
+      <h2>{% trans "Edit your tip!" %}</h2>
+    </div>
+    <div class="span-1 last" style="text-align:right;">
+      (<span id="character-counter"></span>)
+    </div>
 
-    <form action="#" method="post" id="delete-tip" name="delete-tip">
-      {% csrf_token %}
+    <div class="span-15 last">
+      {% include "tips-form.html" %}
 
-      <fieldset>
-        <p>
-          ...{% trans "or" %}
-          <input type="submit"
-                 name="delete-tip"
-                 value="{% trans "delete" %}">
-          {% trans "it?" %}
-        </p>
-      </fieldset>
-    </form>
+      <form action="#" method="post" id="delete-tip" name="delete-tip">
+        {% csrf_token %}
+
+        ...{% trans "or" %}
+        <input type="submit"
+               name="delete-tip"
+               value="{% trans "delete" %}"
+               class="prepend-top">
+        {% trans "it?" %}
+      </form>
+    </div>
   </div>
 </div>
 
+<div class="span-16 last">
   <h2>{% trans "Your tip, before editing" %}</h2>
   <ul id="tips-list">
     {% include "tips-tip-listitem.html" %}
   </ul>
+</div>
 {% endblock %}

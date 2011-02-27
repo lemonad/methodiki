@@ -10,9 +10,19 @@ DATABASES = {'default': {'ENGINE': 'django.db.backends.mysql',
                          'TEST_CHARSET': 'utf8',
                          'TEST_COLLATION': 'utf8_swedish_ci'},}
 
-SECRET_KEY = 'make-this-unique-and-don't-share-it-with-anybody'
+SECRET_KEY = "make-this-unique-and-don't-share-it-with-anybody"
 
 ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
+    ("Your username", "your_email@domain.com"),
 )
 MANAGERS = ADMINS
+
+# Email
+DEFAULT_FROM_EMAIL = "email@example.com"
+SERVER_EMAIL = "email@example.com"
+EMAIL_SUBJECT_PREFIX = "Methodiki: "
+EMAIL_HOST = "your-smtp-server"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "username"
+EMAIL_HOST_PASSWORD = "password"
+EMAIL_USE_TLS = True

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-25 15:03+0100\n"
+"POT-Creation-Date: 2011-02-27 22:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -114,6 +114,7 @@ msgid "The latest methods submitted by your co-workers"
 msgstr "De nyaste upplagda metoderna från dina kollegor"
 
 #: methods/models.py:44 methods/models.py:151
+#: users/templates/users-show-user.html:35
 msgid "Draft"
 msgstr "Utkast"
 
@@ -397,31 +398,31 @@ msgstr "Endast förhandsgranskning"
 msgid "Edit or save bonus below"
 msgstr "Redigera eller spara bonusen nedan"
 
-#: methods/templates/methods-comment-form.html:4
-msgid "What are your reflections?"
-msgstr "Vad är dina reflektioner?"
-
-#: methods/templates/methods-comment-form.html:5
+#: methods/templates/methods-comment-form.html:106
 msgid ""
 "\n"
-"    Try to be constructive and give positive feedback!\n"
-"  "
+"    With this comment, do you also want to lift this method\n"
+"    to the top of the methods list?\n"
+"    "
 msgstr ""
 "\n"
-"      Försök att vara konstruktiv och ge positiv återkoppling!\n"
+"    Med den här kommentaren, vill du också lyfta den här\n"
+"    metoden till toppen av metodlistan?\n"
 "    "
 
-#: methods/templates/methods-comment-form.html:46
-msgid ""
-"\n"
-"        With this comment, do you also want to lift this method\n"
-"        to the top of the methods list?\n"
-"        "
-msgstr ""
-"\n"
-"        Med den här kommentaren, vill du också lyfta den här\n"
-"        metoden till toppen av metodlistan?\n"
-"        "
+#: methods/templates/methods-comment-form.html:120
+#: methods/templates/methods-create-bonus.html:48
+#: methods/templates/methods-create-method.html:112
+#: methods/templates/methods-edit-bonus.html:48
+#: methods/templates/methods-edit-method.html:232
+#: methods/templates/methods-preview.html:4
+msgid "Preview"
+msgstr "Förhandsgranska"
+
+#: methods/templates/methods-comment-form.html:122
+#: tips/templates/tips-form.html:31
+msgid "Submit"
+msgstr "Skicka"
 
 #: methods/templates/methods-create-bonus.html:18
 msgid "Give a bonus!"
@@ -431,15 +432,6 @@ msgstr "Ge en bonus!"
 #: methods/templates/methods-create-method.html:40
 msgid "Start writing!"
 msgstr "Börja skriva!"
-
-#: methods/templates/methods-create-bonus.html:48
-#: methods/templates/methods-create-method.html:112
-#: methods/templates/methods-edit-bonus.html:48
-#: methods/templates/methods-edit-method.html:232
-#: methods/templates/methods-preview.html:4
-#: templates/comments/preview.html:176
-msgid "Preview"
-msgstr "Förhandsgranska"
 
 #: methods/templates/methods-create-bonus.html:50
 #: methods/templates/methods-create-method.html:114
@@ -478,7 +470,7 @@ msgstr "Redigera!"
 
 #: methods/templates/methods-edit-bonus.html:50
 #: methods/templates/methods-edit-method.html:234
-#: preferences/templates/preferences-profile.html:90
+#: preferences/templates/preferences-profile.html:86
 msgid "Save"
 msgstr "Spara"
 
@@ -668,11 +660,25 @@ msgstr[1] ""
 "        %(cc)s kommentarer:\n"
 "      "
 
-#: methods/templates/methods-show-method.html:109
+#: methods/templates/methods-show-method.html:110
+msgid "What are your reflections?"
+msgstr "Vad är dina reflektioner?"
+
+#: methods/templates/methods-show-method.html:112
+msgid ""
+"\n"
+"          Try to be constructive and give positive feedback!\n"
+"          "
+msgstr ""
+"\n"
+"          Försök att vara konstruktiv och ge positiv återkoppling!\n"
+"          "
+
+#: methods/templates/methods-show-method.html:127
 msgid "Good method?"
 msgstr "Bra metod?"
 
-#: methods/templates/methods-show-method.html:112
+#: methods/templates/methods-show-method.html:130
 #, python-format
 msgid ""
 "\n"
@@ -687,7 +693,7 @@ msgstr ""
 "      <a href=\"%(create_bonus_url)s\">Läs mer</a> och skapa en metodbonus.\n"
 "      "
 
-#: methods/templates/methods-show-method.html:122
+#: methods/templates/methods-show-method.html:140
 msgid "Create bonus"
 msgstr "Skapa bonus"
 
@@ -696,7 +702,7 @@ msgid "methods tagged with"
 msgstr "metoder taggade med"
 
 #: methods/templates/methods-tag-index.html:48
-#: users/templates/users-show-user.html:48
+#: users/templates/users-show-user.html:54
 #, python-format
 msgid ""
 "\n"
@@ -815,39 +821,41 @@ msgstr "Tack, dina inställningar har sparats"
 msgid "Create an account"
 msgstr "Skapa ett konto"
 
-#: preferences/templates/preferences-profile.html:18
+#: preferences/templates/preferences-profile.html:15
 msgid "Account"
 msgstr "Konto"
 
-#: preferences/templates/preferences-profile.html:19
+#: preferences/templates/preferences-profile.html:16
 msgid "Password"
 msgstr "Lösenord"
 
-#: preferences/templates/preferences-profile.html:20
+#: preferences/templates/preferences-profile.html:17
 msgid "Notices"
 msgstr "Notiser"
 
-#: preferences/templates/preferences-profile.html:21
+#: preferences/templates/preferences-profile.html:18
 msgid "Profile"
 msgstr "Profil"
 
-#: preferences/templates/preferences-profile.html:30
+#: preferences/templates/preferences-profile.html:25
 msgid "Edit your profile information"
 msgstr "Redigera din profilinformation"
 
-#: preferences/templates/sidebar/preferences-sidebar-info.html:3
+#: preferences/templates/preferences-profile.html:27
 msgid ""
 "\n"
-"  Please take a little time to fill in your profile information before "
+"      Please take a little time to fill in your profile information before "
 "going\n"
-"  off exploring the site and helping your colleagues by setting good "
+"      off exploring the site and helping your colleagues by setting good "
 "examples.\n"
-"  "
+"      "
 msgstr ""
 "\n"
-"  Ta lite tid och fyll i din profilinformation innan du börjar utforska\n"
-"  sajten och hjälpa dina kollegor genom att bidra med goda exempel.\n"
-"  "
+"      Ta lite tid och fyll i din profilinformation innan du börjar "
+"utforska\n"
+"      sajten och hjälpa dina kollegor genom att bidra med goda "
+"exempel.\n"
+"      "
 
 #: tagsuggestions/models.py:8
 msgid "Tag category name"
@@ -961,8 +969,8 @@ msgstr "Logga ut"
 msgid "Administration"
 msgstr "Administration"
 
-#: templates/base-header.html:37 templates/login.html:43
-#: templates/password_reset_complete.html:8
+#: templates/base-header.html:37 templates/login.html:14
+#: templates/login.html.py:43 templates/password_reset_complete.html:9
 msgid "Log in"
 msgstr "Logga in"
 
@@ -994,15 +1002,11 @@ msgstr "Utloggad"
 msgid "Sign in as another user?"
 msgstr "Logga in som en annan användare?"
 
-#: templates/login.html:7
-msgid "Logga in"
-msgstr "Logga in"
-
-#: templates/login.html:10
+#: templates/login.html:17
 msgid "Your username and password did not match. Please try again."
-msgstr "Ditt användarnamn och läsenord matchade inte. Var god försök igen."
+msgstr "Ditt användarnamn och lösenord matchade inte. Var god försök igen."
 
-#: templates/login.html:37
+#: templates/login.html:39 templates/password_reset_form.html:14
 msgid "Forgot your password?"
 msgstr "Glömt ditt lösenord?"
 
@@ -1014,35 +1018,47 @@ msgstr "Inloggningsfel"
 msgid "Log in as another user?"
 msgstr "Logga in som en annan användare?"
 
-#: templates/password_reset_complete.html:5
+#: templates/password_reset_complete.html:4
+msgid "Password changed"
+msgstr "Lösenordet har ändrats"
+
+#: templates/password_reset_complete.html:6
 msgid "Your password has been set. You may go ahead and log in now."
 msgstr "Ditt lösenord har uppdaterats. Du kan logga in nu."
 
-#: templates/password_reset_confirm.html:6
-msgid ""
-"Please enter your new password twice so we can verify you typed it in "
-"correctly."
-msgstr ""
-"Var god skriv in ditt nya lösenord två gånger så vi kan verifiera att du "
-"skrivit in det korrekt."
+#: templates/password_reset_confirm.html:15
+msgid "Confirm new password"
+msgstr "Verifiera nytt lösenord"
 
-#: templates/password_reset_confirm.html:13
+#: templates/password_reset_confirm.html:17
+msgid ""
+"\n"
+"      Please enter your new password twice so we can verify you\n"
+"      typed it in correctly.\n"
+"      "
+msgstr ""
+"\n"
+"      Var god skriv in ditt nya lösenord två gånger så vi kan\n"
+"      verifiera att du skrivit in det korrekt.\n"
+"      "
+
+#: templates/password_reset_confirm.html:43
 msgid "New password"
 msgstr "Nytt lösenord"
 
-#: templates/password_reset_confirm.html:21
+#: templates/password_reset_confirm.html:60
 msgid "Confirm password"
 msgstr "Verifiera lösenord"
 
-#: templates/password_reset_confirm.html:27
+#: templates/password_reset_confirm.html:67
 msgid "Change my password"
 msgstr "Ändra mitt lösenord"
 
-#: templates/password_reset_confirm.html:34
+#: templates/password_reset_confirm.html:73
 msgid "Password reset unsuccessful"
 msgstr "Lösenordsåterställning misslyckades"
 
-#: templates/password_reset_confirm.html:36
+#: templates/password_reset_confirm.html:75
 msgid ""
 "\n"
 "    The password reset link was invalid, possibly because it has\n"
@@ -1054,108 +1070,84 @@ msgstr ""
 "    den redan använts förut. Var god begär en ny lösenordsåterställning.\n"
 "    "
 
-#: templates/password_reset_done.html:5
+#: templates/password_reset_done.html:4
+msgid "Instructions"
+msgstr "Instruktioner"
+
+#: templates/password_reset_done.html:6
 msgid ""
 "\n"
-"    We've e-mailed you instructions for setting your password to the\n"
-"    e-mail address you submitted. You should be receiving it shortly.\n"
-"    "
+"  We've e-mailed you instructions for setting your password to the\n"
+"  e-mail address you submitted. You should be receiving it shortly.\n"
+"  "
 msgstr ""
 "\n"
-"    Vi har mejlat dig instruktioner för att skapa ett nytt lösenord.\n"
-"    Du bör få det inom kort.\n"
-"    "
+"  Vi har mejlat dig instruktioner för att skapa ett nytt lösenord.\n"
+"  Du bör få det inom kort.\n"
+"  "
 
 #: templates/password_reset_email.html:2
 #, python-format
 msgid ""
-"Someone, probably you, requested a password reset for your\n"
+"You're receiving this e-mail because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
 "Någon, troligen du själv, har begärt en lösenordsåterställning för\n"
 "ditt användarkonto på %(site_name)s."
 
-#: templates/password_reset_email.html:5
+#: templates/password_reset_email.html:3
 msgid "Please go to the following page and choose a new password:"
 msgstr "Var god besök följande sida och välj ett nytt lösenord:"
 
-#: templates/password_reset_email.html:9
+#: templates/password_reset_email.html:7
 msgid "Your username, in case you've forgotten:"
 msgstr "Ditt användarnamn, ifall du glömt det:"
 
-#: templates/password_reset_email.html:11
+#: templates/password_reset_email.html:9
 msgid "Have a nice day!"
 msgstr "Vänliga hälsningar"
 
-#: templates/password_reset_form.html:5
+#: templates/password_reset_form.html:16
 msgid ""
 "\n"
-"    Forgotten your password? Enter your e-mail address below, and\n"
-"    we'll e-mail instructions for setting a new one.\n"
-"    "
+"      Enter your e-mail address below, and we'll e-mail instructions\n"
+"      for setting a new one.\n"
+"      "
 msgstr ""
 "\n"
-"    Glömt ditt lösenord? Skriv in din epost-adress nedan och\n"
-"    vi mejlar dig instruktioner för att skapa ett nytt.\n"
-"    "
+"      Skriv in din epost-adress nedan och vi mejlar dig instruktioner\n"
+"      för att skapa ett nytt.\n"
+"      "
 
-#: templates/password_reset_form.html:13
+#: templates/password_reset_form.html:42
 msgid "E-mail address"
 msgstr "E-postadress"
 
-#: templates/password_reset_form.html:17
+#: templates/password_reset_form.html:49
 msgid "Reset my password"
 msgstr "Återställ mitt lösenord"
 
-#: templates/comments/preview.html:14
+#: templates/comments/preview.html:64
 msgid ""
 "\n"
-"        Please correct the error below\n"
-"        "
+"      Please correct the error below\n"
+"      "
 msgid_plural ""
 "\n"
-"        Please correct the errors below\n"
-"        "
+"      Please correct the errors below\n"
+"      "
 msgstr[0] ""
 "\n"
-"        Var god rätta felet nedan\n"
-"        "
+"      Var god rätta felet nedan\n"
+"      "
 msgstr[1] ""
 "\n"
-"        Var god rätta felen nedan\n"
-"        "
+"      Var god rätta felen nedan\n"
+"      "
 
-#: templates/comments/preview.html:25
+#: templates/comments/preview.html:72
 msgid "Preview your comment"
 msgstr "Förhandsgranska din kommentar"
-
-#: templates/comments/preview.html:77
-msgid "and"
-msgstr "och"
-
-#: templates/comments/preview.html:79
-msgid "post your comment"
-msgstr "posta din kommentar"
-
-#: templates/comments/preview.html:80
-msgid "or make changes"
-msgstr "eller gör ändringar"
-
-#: templates/comments/preview.html:159
-msgid ""
-"\n"
-"            With this comment, do you also want to lift this method\n"
-"            to the top of the methods list?\n"
-"            "
-msgstr ""
-"\n"
-"        Med den här kommentaren, vill du också lyfta denna\n"
-"        metod till toppen av metodlistan?\n"
-"        "
-
-#: templates/comments/preview.html:174 tips/templates/tips-form.html:39
-msgid "Submit"
-msgstr "Skicka"
 
 #: templates/search/search.html:5
 msgid "Found the following methods..."
@@ -1201,7 +1193,7 @@ msgstr "Tipset togs bort!"
 msgid "Really delete tip?"
 msgstr "Verkligen ta bort tipset?"
 
-#: tips/templates/tips-edit-tip.html:33
+#: tips/templates/tips-edit-tip.html:34
 msgid "Edit your tip!"
 msgstr "Redigera ditt tips!"
 
@@ -1213,33 +1205,33 @@ msgstr "eller"
 msgid "delete"
 msgstr "ta bort"
 
-#: tips/templates/tips-edit-tip.html:50
+#: tips/templates/tips-edit-tip.html:51
 msgid "it?"
 msgstr "det?"
 
-#: tips/templates/tips-edit-tip.html:57
+#: tips/templates/tips-edit-tip.html:58
 msgid "Your tip, before editing"
 msgstr "Ditt tips, innan redigering"
 
-#: tips/templates/tips-form.html:30
+#: tips/templates/tips-form.html:26
 msgid ""
 "\n"
-"          Keep it short and to the point (less than 200 characters)!\n"
-"          "
+"      Keep it short and to the point (less than 200 characters)!\n"
+"      "
 msgstr ""
 "\n"
-"          Ta det kort och koncist (mindre än 200 tecken)!\n"
-"          "
+"      Ta det kort och koncist (mindre än 200 tecken)!\n"
+"      "
 
-#: tips/templates/tips-index.html:30
+#: tips/templates/tips-index.html:31
 msgid "Add a tip!"
 msgstr "Lägg till ett tips!"
 
-#: tips/templates/tips-index.html:43
+#: tips/templates/tips-index.html:46
 msgid "All tips"
 msgstr "Alla tips"
 
-#: tips/templates/tips-index.html:51
+#: tips/templates/tips-index.html:54
 msgid ""
 "\n"
 "      No tips, yet!\n"
@@ -1273,28 +1265,25 @@ msgstr "användare"
 msgid "users"
 msgstr "användare"
 
-#: users/templates/register.html:8
+#: users/templates/register.html:14
 msgid "Sign up and sign in"
 msgstr "Skapa konto och logga in"
 
-#: users/templates/register.html:10
+#: users/templates/register.html:16
 msgid ""
 "\n"
-"    Just fill in the fields below and you'll be signed in with your\n"
-"    new account.\n"
-"    "
+"      Just fill in the fields below and you'll be signed in with your\n"
+"      new account.\n"
+"      "
 msgstr ""
 "\n"
 "    Fyll bara i fälten nedan och du loggas in med ditt nya konto.\n"
 "    "
 
-#: users/templates/register.html:68
+#: users/templates/register.html:83
 msgid "Sign in"
 msgstr "Logga in"
 
 #: users/templates/users-index.html:12
 msgid "All users"
 msgstr "Alla användare"
-
-#~ msgid "/settings/profile/"
-#~ msgstr "/installningar/profil/"

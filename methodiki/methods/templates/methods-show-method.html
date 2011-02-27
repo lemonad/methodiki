@@ -33,7 +33,7 @@
   <hr />
   {% include "methods-meta.html" %}
 
-  <div id="comments" class="span-16 last">
+  <div id="comments" class="span-16 last prepend-top">
     {% get_comment_count for method as comment_count %}
     {% get_comment_list for method as comment_list %}
     {% if comment_count %}
@@ -54,11 +54,11 @@
           style="margin-bottom:1em;">
         <div class="span-1">
           {% if comment.user.get_profile.avatar %}
-          <img src="{% thumbnail comment.user.get_profile.avatar 25x25 crop %}"
-               style="padding:2px;border:1px solid #ccc;float:left;margin-right:0.5em;margin-bottom:0.5em;margin-top:3px;" />
+          <img class="profile"
+               src="{% thumbnail comment.user.get_profile.avatar 25x25 crop %}" />
           {% else %}
-          <img src="{% media_url "images/icons/001_54.png" %}"
-               style="background-color:#fff;padding:3px;border:1px solid #ccc;float:left;margin:3px 0.5em 0.5em 0;" />
+          <img class="profile"
+               src="{% media_url "images/icons/001_54.png" %}" />
           {% endif %}
         </div>
         <div class="span-4">
@@ -72,7 +72,13 @@
               {% endif %}
             </a>
             {% else %}
+            {% if comment.url %}
+            <a href="{{ comment.url }}">
+              {{ comment.user_name }}
+            </a>
+            {% else %}
             {{ comment.user_name }}
+            {% endif %}
             {% endif %}
           </h3>
           <a class="alt"
@@ -99,7 +105,19 @@
     </ul>
     {% endif %}
 
-    {% include "methods-comment-form.html" %}
+    <div class="span-15 append-1 last">
+      <div class="inset rounded-9 span-15 last">
+        <h2>{% trans "What are your reflections?" %}</h2>
+        <p>
+          {% blocktrans %}
+          Try to be constructive and give positive feedback!
+          {% endblocktrans %}
+        </p>
+
+        {% get_comment_form for method as form %}
+        {% include "methods-comment-form.html" %}
+      </div>
+    </div>
   </div>
 
   {% if user.is_authenticated %}

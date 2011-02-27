@@ -1,51 +1,49 @@
 {% extends "base-without-sidebar.html" %}
 {% load i18n %}
+{% block javascript %}
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $("#id_username").focus();
+    });
+  </script>
+{% endblock %}
+
 {% block main %}
-<div class="prepend-6 span-10 append-6 last">
-  <div id="login-form" class="rounded-9 prepend-1 span-8 append-1 last">
-    <div>
-      <h2>{% trans "Logga in" %}</h2>
-      {% if form.errors %}
-      <p>
-        {% trans "Your username and password did not match. Please try again." %}
-      </p>
-      {% endif %}
+<div class="prepend-8 span-8 append-8 last">
+  <div class="inset rounded-9 span-8 last">
+    <h2>{% trans "Log in" %}</h2>
+    {% if form.errors %}
+    <p class="error">
+      {% trans "Your username and password did not match. Please try again." %}
+    </p>
+    {% endif %}
 
-      <form method="post" action=".">
-        {% csrf_token %}
+    <form method="post" action="#">
+      {% csrf_token %}
 
-        <fieldset>
-          <div class="span-3">
-            {{ form.username.label_tag }}
-          </div>
-          <div class="span-5 last">
-            {{ form.username }}
-          </div>
-        </fieldset>
+      <div class="span-3">
+        {{ form.username.label_tag }}
+      </div>
+      <div class="span-5 last">
+        {{ form.username }}
+      </div>
 
-        <fieldset>
-          <div class="span-3">
-            {{ form.password.label_tag }}
-          </div>
-          <div class="span-5 last">
-            {{ form.password }}
-          </div>
-        </fieldset>
+      <div class="span-3">
+        {{ form.password.label_tag }}
+      </div>
+      <div class="span-5 last">
+        {{ form.password }}
+      </div>
 
-        <p>
-          <a href="{% url password-reset %}">
-            {% trans "Forgot your password?" %}
-          </a>
-        </p>
+      <a href="{% url password-reset %}">
+        {% trans "Forgot your password?" %}
+      </a>
 
-        <fieldset>
-          <div class="span-8 prepend-top last" style="text-align:right;">
-            <input type="submit" value="{% trans "Log in" %}" />
-            <input type="hidden" name="next" value="{{ next }}" />
-          </div>
-        </fieldset>
-      </form>
-    </div>
+      <div class="span-8 last prepend-top" style="text-align:right;">
+        <input type="submit" value="{% trans "Log in" %}" />
+        <input type="hidden" name="next" value="{{ next }}" />
+      </div>
+    </form>
   </div>
 </div>
 {% endblock %}

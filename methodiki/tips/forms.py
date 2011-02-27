@@ -13,8 +13,8 @@ class TipForm(ModelFormRequestUser):
         model = Tip
         fields = ('text',)
         widgets = {
-            'text': Textarea(attrs={'class': 'span-15 last input',
-                                    'maxlength': '200'}),
+            'text': Textarea(attrs={'maxlength': '200',
+                                    'style': 'overflow:hidden;'}),
         }
 
     def __init__(self, request, *args, **kwargs):

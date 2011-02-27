@@ -25,15 +25,18 @@
 
 {% block main %}
   {% if request.user.is_authenticated %}
-  <div id="tip-form" class="span-15 append-1 last rounded-9">
-    <div class="span-14">
-      <h2>{% trans "Add a tip!" %}</h2>
-    </div>
-    <div class="span-1 last" style="text-align:right;">
-      (<span id="character-counter"></span>)
-    </div>
-    <div class="span-15 last">
-      {% include "tips-form.html" %}
+  <div class="span-15 append-1 last">
+    <div id="tip-form" class="inset rounded-9 span-15 last append-bottom">
+      <div class="span-14">
+        <h2>{% trans "Add a tip!" %}</h2>
+      </div>
+      <div class="span-1 last" style="text-align:right;">
+        (<span id="character-counter"></span>)
+      </div>
+
+      <div class="span-15 last">
+        {% include "tips-form.html" %}
+      </div>
     </div>
   </div>
   {% endif %}

@@ -1,74 +1,88 @@
 {% extends "base-without-sidebar.html" %}
 {% load i18n thumbnail %}
+{% block javascript %}
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $("#id_username").focus();
+    });
+  </script>
+{% endblock %}
 
 {% block main %}
-<div class="prepend-6 span-10 append-6 last">
-  <div id="register-form" class="rounded-9 prepend-1 span-8 append-1 last">
-  <div>
-  <h2>{% trans "Sign up and sign in" %}</h2>
-  <p>
-    {% blocktrans %}
-    Just fill in the fields below and you'll be signed in with your
-    new account.
-    {% endblocktrans %}
-  </p>
+<div class="prepend-7 span-10 append-7 last">
+  <div class="inset rounded-9 span-10 last">
+    <h2>{% trans "Sign up and sign in" %}</h2>
+    <p>
+      {% blocktrans %}
+      Just fill in the fields below and you'll be signed in with your
+      new account.
+      {% endblocktrans %}
+    </p>
 
-  <form action="" method="post">
-    {% csrf_token %}
+    <form action="#" method="post">
+      {% csrf_token %}
 
-    {% if form.non_field_errors %}
-    <div class="span-8 last">
-      {{ form.non_field_errors }}
-    </div>
-    {% endif %}
+      {% if form.non_field_errors or form.username.errors %}
+      <div class="span-10 last">
+        {% for error in form.non_field_errors %}
+        <p class="error">
+          {{ error|escape }}
+        </p>
+        {% endfor %}
 
-    <div class="span-8 last">
-      {% if form.username.errors %}
-      {% for error in form.username.errors %}
-      <p class="error"><strong>{{ error|escape }}</strong></p>
-      {% endfor %}
+        {% for error in form.username.errors %}
+        <p class="error">
+          {{ error|escape }}
+        </p>
+        {% endfor %}
+      </div>
       {% endif %}
+
       <div class="span-4">
         {{ form.username.label_tag }}
       </div>
-      <div class="span-4 last">
+      <div class="span-6 last">
         {{ form.username }}
       </div>
-    </div>
 
-    <div class="span-8 last">
       {% if form.email.errors %}
-      {% for error in form.email.errors %}
-      <p class="error"><strong>{{ error|escape }}</strong></p>
-      {% endfor %}
+      <div class="span-10 last">
+        {% for error in form.email.errors %}
+        <p class="error">
+          {{ error|escape }}
+        </p>
+        {% endfor %}
+      </div>
       {% endif %}
+
       <div class="span-4">
         {{ form.email.label_tag }}
       </div>
-      <div class="span-4 last">
+      <div class="span-6 last">
         {{ form.email }}
       </div>
-    </div>
 
-    <div class="span-8 last">
       {% if form.password1.errors %}
-      {% for error in form.password1.errors %}
-      <p class="error"><strong>{{ error|escape }}</strong></p>
-      {% endfor %}
+      <div class="span-10 last">
+        {% for error in form.password1.errors %}
+        <p class="error">
+          {{ error|escape }}
+        </p>
+        {% endfor %}
+      </div>
       {% endif %}
+
       <div class="span-4">
         {{ form.password1.label_tag }}
       </div>
-      <div class="span-4 last">
+      <div class="span-6 last">
         {{ form.password1 }}
       </div>
-    </div>
 
-    <div class="span-8 last" style="text-align:right;">
-      <input type="submit" value="{% trans "Sign in" %}">
-    </div>
-  </form>
+      <div class="span-10 last prepend-top" style="text-align:right;">
+        <input type="submit" value="{% trans "Sign in" %}" />
+      </div>
+    </form>
   </div>
-</div>
 </div>
 {% endblock %}

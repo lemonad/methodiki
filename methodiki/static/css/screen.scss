@@ -13,6 +13,10 @@ $light-green: #eceae8; /* ??? */
 $greenish: #7b7f03; /* ??? */
 $brownish: #47403f; /* ??? */
 $alt: #f00; /* ??? */
+$comment-body: #b0b579;
+$comment-body-owner: #a2c615;
+$comment-body-thumbsup: #f8df17;
+$comment-text-color: #354107;
 
 @mixin box-shadow-light-75 {
     -webkit-box-shadow: 0 2px 4px rgba(255, 255, 255, 0.75);
@@ -97,7 +101,7 @@ a.alt {
     font-weight:normal;
 }
 a.alt:hover, a.alt:focus {
-    color: $alt;
+    color: darken($gray, 25%);
 }
 
 h1 {
@@ -265,6 +269,7 @@ nav ol li a:hover, nav ol li a:focus {
 }
 
 article {
+    min-height: 400px;
 }
 
 aside {
@@ -467,10 +472,6 @@ span.taggit-tag {
     cursor: pointer;
     color: $blue;
 }
-span.taggit-tag:hover {
-  color: #fff;
-  background-color: $alt;
-}
 span.taggit-tag-used {
     background-color: darken($blue, 30%);
     color: white;
@@ -520,46 +521,54 @@ div.bonus-meta p {
 
 #comments {
     margin-bottom: 2em;
+    padding: 0;
+    list-style-type: none;
 }
-#comments h2, #login-form h2, #register-form h2 {
-    padding-top: 1.5em;
-    margin-top: 0;
-}
-#comments textarea, #preview-comment textarea {
+#comments textarea {
     height: 80px;
 }
-#comments li div.comment-body, #preview-comment li div.comment-body {
+#comments img.profile {
+    float: left;
+    background-color: #fff;
+    margin: 3px 0.5em 0.5em 0;
+    padding: 2px;
+    border: 1px solid #ccc;
+}
+li div.comment-body {
     padding: 0.5em;
-    background-color: #b0b579;
-    color: #354107;
+    background-color: lighten($comment-body, 15%);
+    color: $comment-text-color;
 }
-#comments li.comment-method-owner div.comment-body {
-    background-color: #a2c615;
-    color: #354107;
+li.comment-method-owner div.comment-body {
+    background-color: $comment-body-owner;
+    color: $comment-text-color;
 }
-#comments li div.comment-counter, #preview-comment li div.comment-counter {
+li div.comment-counter {
     float: right;
     padding-right: 3px;
-    color: #c8ce8a;
+    color: lighten($comment-body, 25%);
     font-size: 250%;
     font-weight: bold;
 }
-#comments li.comment-method-owner div.comment-counter {
-    color: #b8e118; /* 69c5ff */
+li.comment-method-owner div.comment-counter {
+    color: lighten($comment-body-owner, 5%);
 }
-#comments li.comment-thumbsup div.comment-body, #preview-comment li.comment-thumbsup div.comment-body {
-    background-color: #f8df17;
-    color: #354107;
+li.comment-thumbsup div.comment-body {
+    background-color: $comment-body-thumbsup;
+    color: $comment-text-color;
 }
-#comments li.comment-thumbsup div.comment-counter {
-    color: #ff0;
+li.comment-thumbsup div.comment-counter {
+    color: lighten($comment-body-thumbsup, 20%);
 }
-#comment-form,
-#login-form,
-#register-form,
-#comment-preview-form,
-#preferences-profile-form,
-#tip-form {
+.inset {
+    background: #dcdcd2 url(images/background-tile-noise.jpg) 0 0 repeat;
+    border-bottom: 1px solid #cecec5;
+    margin: 0 -40px 0 -30px;
+    padding: 1.5em 40px 1.5em 30px;
+    @include box-shadow-form-inset;
+}
+
+#comment-preview-form2 {
     background: #dcdcd2 url(images/background-tile-noise.jpg) 0 0 repeat;
     border-bottom: 1px solid #cecec5;
     margin-top: 0;
@@ -567,26 +576,12 @@ div.bonus-meta p {
     padding-bottom: 2em;
     @include box-shadow-form-inset;
 }
-#preferences-profile-form,
-#tip-form {
-    padding-top: 1.5em;
-    margin-left: -30px;
-    padding-left: 30px;
-    margin-right: -30px;
-    padding-right: 30px;
-}
-#tip-form {
-    padding-top: 1em;
-    padding-bottom: 0;
-    margin-top: 2em;
-    margin-bottom: 1em;
-}
-#comment-form, #comment-preview-form {
+#comment-preview-form2 {
     width: 630px;
     margin-left: -30px;
     padding-left: 30px;
 }
-#comment-preview-form {
+#comment-preview-form2 {
     padding-top: 2em;
 }
 
@@ -736,3 +731,25 @@ span.popular-tag {
 #tips-list h3 {
     margin-top: 0;
 }
+
+.inset .span-4 input[type=text],
+.inset .span-4 input[type=password] {
+    width: 138px;
+}
+.inset .span-5 input[type=text],
+.inset .span-5 input[type=password] {
+    width: 178px;
+}
+.inset .span-6 input[type=text],
+.inset .span-6 input[type=password] {
+    width: 218px;
+}
+.inset .span-7 input[type=text],
+.inset .span-7 input[type=password] {
+    width: 258px;
+}
+.inset .span-10 input[type=text],
+.inset .span-10 textarea {
+    width: 378px;
+}
+.inset .span-15 textarea {width:578px;}

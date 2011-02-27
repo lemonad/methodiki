@@ -1,182 +1,80 @@
 {% extends "base-without-sidebar.html" %}
 {% load comments i18n markup media methods thumbnail %}
 {% block main %}
-  <div id="preview-comment" class="prepend-4 span-16 append-4 last">
-    <form action="{% comment_form_target %}" method="post">
-      {% csrf_token %}
-      {% if next %}
-      <input type="hidden" name="next" value="{{ next }}" />
-      {% endif %}
+<div class="prepend-4 span-16 append-4 last">
 
-      {% if form.errors %}
-
-      <h2 style="margin-top:0;">
-        {% blocktrans count form.errors|length as counter %}
-        Please correct the error below
-        {% plural %}
-        Please correct the errors below
-        {% endblocktrans %}
-      </h2>
-      <div id="comment-preview-form"
-           class="span-16 last rounded-9">
-
-      {% else %}
-
-      <h2 style="margin-top:0;">{% trans "Preview your comment" %}</h2>
-      <ul id="comments" class="span-16 last"
-          style="padding:0;list-style-type:none;">
-        <li class="span-16 last{% if form.cleaned_data.lift_method %} comment-thumbsup{% endif %}"
-            style="margin-bottom:1em;">
-          <div class="span-1">
-            {% if user.is_authenticated and user.get_profile.avatar %}
-            <img src="{% thumbnail user.get_profile.avatar 25x25 crop %}"
-                 style="background-color:#fff;padding:2px;border:1px solid #ccc;float:left;margin-right:0.5em;margin-bottom:0.5em;margin-top:3px;" />
-            {% else %}
-            <img src="{% media_url "images/icons/001_54.png" %}"
-                 style="background-color:#fff;padding:3px;border:1px solid #ccc;float:left;margin:3px 0.5em 0.5em 0;" />
-            {% endif %}
-          </div>
-          <div class="span-4">
-            <h3 style="margin-bottom:0;margin-top:0;">
-              {% if request.user.is_authenticated %}
-              <a href="{% url user user.username %}">
-                {% if user.get_profile.name %}
-                  {{ user.get_profile.name }}
-                {% else %}
-                  {{ user_name }}
-                {% endif %}
-              </a>
-              {% else %}
-              {{ user_name }}
-              {% endif %}
-            </h3>
-            <a class="alt" href="#"
-               style="font-style:italic;font-size:95%;">
-              {% now "Y-m-d H:i" %}
-            </a>
-          </div>
-          <div class="span-11 last">
-            <div class="comment-counter">
-              1
-            </div>
-            <div class="rounded-6 comment-body">
-              {% if form.cleaned_data.lift_method %}
-              <img style="float:left;margin-right:0.5em;"
-                   src="{% media_url "images/icons/001_18.png" %}"
-                   width="24" height="24" />
-              {% endif %}
-              {{ comment|markdown:"autolink" }}
-            </div>
-          </div>
-        </li>
-      </ul>
-
-      <div id="comment-preview-form"
-           class="span-16 last rounded-9">
-        <p>
-          {% trans "and" %}
-          <input type="submit" name="submit" class="submit-post"
-                 value="{% trans "post your comment" %}" id="submit" />
-          {% trans "or make changes" %}:
-        </p>
+  {% if not form.errors %}
+  <ul id="comments" class="span-16 last"
+      style="padding:0;list-style-type:none;">
+    <li class="span-16 last append-bottom{% if form.cleaned_data.lift_method %} comment-thumbsup{% endif %}">
+      <div class="span-1">
+        {% if user.is_authenticated and user.get_profile.avatar %}
+        <img class="profile"
+             src="{% thumbnail user.get_profile.avatar 25x25 crop %}" />
+        {% else %}
+        <img class="profile"
+             src="{% media_url "images/icons/001_54.png" %}" />
         {% endif %}
-
-        <div class="span-10 append-6 last">
-          {% for error in form.non_field_errors %}
-          <p class="error">
-            {{ error|escape }}
-          </p>
-          {% endfor %}
-        </div>
-
-        {% if not user.is_authenticated %}
-        <fieldset>
-          {% if form.name.errors %}
-          <div class="prepend-3 span-10 append-3 last">
-            {% for error in form.name.errors %}
-            <p class="error">
-              {{ error|escape }}
-            </p>
-            {% endfor %}
-          </div>
-          {% endif %}
-          <div class="span-3{% if form.name.errors %} loud{% endif %}">
-            {{ form.name.label_tag }}
-          </div>
-          {{ form.name }}
-        </fieldset>
-
-        <fieldset>
-          {% if form.email.errors %}
-          <div class="prepend-3 span-10 append-3 last">
-            {% for error in form.email.errors %}
-            <p class="last error">
-              {{ error|escape }}
-            </p>
-            {% endfor %}
-          </div>
-          {% endif %}
-          <div class="span-3{% if form.email.errors %} loud{% endif %}">
-            {{ form.email.label_tag }}
-          </div>
-          {{ form.email }}
-        </fieldset>
-
-        <fieldset>
-          {% if form.url.errors %}
-          <div class="prepend-3 span-10 append-3 last">
-            {% for error in form.url.errors %}
-            <p class="last error">
-              {{ error|escape }}
-            </div>
-            {% endfor %}
-          {% endif %}
-          <div class="span-3{% if form.url.errors %} loud{% endif %}">
-            {{ form.url.label_tag }}
-          </div>
-          {{ form.url }}
-        </fieldset>
-        {% endif %}
-
-        {% if form.comment.errors %}
-        <div class="prepend-3 span-10 append-3 last">
-          {% for error in form.comment.errors %}
-          <p class="error">
-            {{ error|escape }}
-          </p>
-          {% endfor %}
-        </div>
-        {% endif %}
-        <fieldset>
-          <div class="span-3{% if form.comment.errors %} loud{% endif %}">
-            {{ form.comment.label_tag }}
-          </div>
-          {{ form.comment }}
-        </fieldset>
-
-        <fieldset>
-          <div class="prepend-3 span-10 append-3 last">
-            {% blocktrans %}
-            With this comment, do you also want to lift this method
-            to the top of the methods list?
-            {% endblocktrans %}
-            {{ form.lift_method }}
-          </div>
-        </fieldset>
-
-        {{ form.content_type }}
-        {{ form.object_pk }}
-        {{ form.timestamp }}
-        {{ form.security_hash }}
-        <fieldset class="prepend-top">
-          <div class="prepend-3 span-10 append-3 last" style="text-align:right;">
-            <input type="submit" name="submit" class="submit-post"
-                   value="{% trans "Submit" %}">
-            <input type="submit" name="preview" class="submit-post"
-                   value="{% trans "Preview" %}">
-          </div>
-        </fieldset>
       </div>
-    </form>
+      <div class="span-4">
+        <h3 style="margin-bottom:0;margin-top:0;">
+          {% if request.user.is_authenticated %}
+          <a href="{% url user user.username %}">
+            {% if user.get_profile.name %}
+              {{ user.get_profile.name }}
+            {% else %}
+              {{ user_name }}
+            {% endif %}
+          </a>
+          {% else %}
+          {% if form.cleaned_data.url %}
+          <a href="{{ form.cleaned_data.url }}">
+            {{ form.cleaned_data.name }}
+          </a>
+          {% else %}
+          {{ form.cleaned_data.name }}
+          {% endif %}
+          {% endif %}
+        </h3>
+        <a class="alt" href="#"
+           style="font-style:italic;font-size:95%;">
+          {% now "Y-m-d H:i" %}
+        </a>
+      </div>
+      <div class="span-11 last">
+        <div class="comment-counter">
+          1
+        </div>
+        <div class="rounded-6 comment-body">
+          {% if form.cleaned_data.lift_method %}
+          <img style="float:left;margin-right:0.5em;"
+               src="{% media_url "images/icons/001_18.png" %}"
+               width="24" height="24" />
+          {% endif %}
+          {{ comment|markdown:"autolink" }}
+        </div>
+      </div>
+    </li>
+  </ul>
+  {% endif %}
+
+  <div class="inset rounded-9 span-16 last">
+    {% if form.errors %}
+    <h2>
+      {% blocktrans count form.errors|length as counter %}
+      Please correct the error below
+      {% plural %}
+      Please correct the errors below
+      {% endblocktrans %}
+    </h2>
+    {% else %}
+    <h2>
+      {% trans "Preview your comment" %}
+    </h2>
+    {% endif %}
+
+    {% include "methods-comment-form.html" %}
+
   </div>
+</div>
 {% endblock %}
