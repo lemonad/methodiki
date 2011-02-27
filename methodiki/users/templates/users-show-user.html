@@ -20,7 +20,7 @@
 
   {% if user_methods %}
   <hr style="clear:both;" />
-  <h2>{% trans "Recent methods" %}</h2>
+  <h2>{% trans "Methods" %}</h2>
   <ul style="list-style-type: none;">
     {% for method in user_methods %}
     <li>
@@ -29,9 +29,15 @@
              src="{% media_url "images/pedagogic-bonus-badge.png" %}" />
       </a>
       <h3>
+        {% if method.is_draft %}
+        <a href="{% url methods-edit-method method.slug %}">
+          {{ method.title }}
+        </a> (<em>{% trans "Draft" %}</em>)
+        {% else %}
         <a href="{% url methods-show-method method.published_at.year method.published_at.month method.published_at.day method.slug %}">
           {{ method.title }}
         </a>
+        {% endif %}
       </h3>
       {% if method.methodfile_set.all.0.image %}
       <img class="rounded-3"
@@ -60,4 +66,23 @@
   </ul>
   {% endif %}
 
+  {% if user_tips %}
+  <div class="span-16 last">
+    <h2>{% trans "Tips" %}</h2>
+    <ul id="tips-list">
+      {% for tip in user_tips %}
+      <li class="span-16 last">
+        <p>
+          {{ tip.text }}
+          <span>
+            {% if request.user.id == tip.user.id or request.user.is_superuser %}
+            (<a href="{% url tips-edit-tip tip.id %}">edit</a>)
+            {% endif %}
+          </span>
+        </p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
 {% endblock %}
