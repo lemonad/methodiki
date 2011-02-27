@@ -80,7 +80,10 @@ def frontpage(request):
     popular_tags = Tag.objects.annotate(Count('method')) \
                               .order_by('-method__count')[0:10]
 
-    tips = Tip.objects.order_by('?')
+    try:
+        tips = Tip.objects.order_by('?')[0]
+    except IndexError:
+        tips = None
 
     t = loader.get_template('methods-frontpage.html')
     c = RequestContext(request,

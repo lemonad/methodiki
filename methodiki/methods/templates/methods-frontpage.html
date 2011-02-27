@@ -114,10 +114,10 @@ blockquote {
   <div id="frontpage-midsection">
     <div class="container">
       <div class="span-12" style="position:relative;">
-        <h2 id="tip-author">{{ tips.0.user.get_profile.name }}</h2>
+        <h2 id="tip-author">{{ tips.user.get_profile.name }}</h2>
         <blockquote>
           <div id="bubblewrap">
-            <p>{{ tips.0 }}</p>
+            <p>{{ tips }}</p>
           </div>
         </blockquote>
       </div>
@@ -132,5 +132,4 @@ blockquote {
       </div>
     </div>
   </div>
-
 {% endblock %}
