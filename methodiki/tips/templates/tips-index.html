@@ -1,6 +1,7 @@
 {% extends "base-with-sidebar.html" %}
 {% load i18n thumbnail %}
 {% block javascript %}
+  {% if request.user.is_authenticated %}
   <script type="text/javascript">
     function update_counter() {
       var count = $("#id_text").val().length;
@@ -21,6 +22,7 @@
       update_counter();
     });
   </script>
+  {% endif %}
 {% endblock %}
 
 {% block main %}
