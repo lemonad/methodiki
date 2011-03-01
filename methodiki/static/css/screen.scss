@@ -336,14 +336,6 @@ blockquote em {
 #tag-column li.tag-11 { background-color: #1e545e; }
 #tag-column li.tag-12 { background-color: #0f4c72; }
 
-#frontpage img.method-thumb {
-    background-color: white;
-    border: 2px solid #ccc;
-    margin-right: 1em;
-    padding: 12px;
-    @include rotate-slight-right;
-    @include box-shadow-dark-10;
-}
 #method-index img.method-thumb {
     border: 1px solid #ccc;
     float: left;
@@ -678,27 +670,6 @@ nav input[type="submit"] {
     border: 0;
 }
 
-#frontpage-midsection {
-    margin-top: -1.5em;
-    padding: 1.5em 0;
-    background-color: $green;
-    min-width: $blueprint-width;
-}
-span.popular-tag {
-    margin: 0 1em 0 0;
-    font-size: 19px;
-}
-#frontpage-midsection a.popular-tag {
-    color: lighten($green, 50%);
-    text-shadow: 0 1px darken($green, 10%);
-    margin: 0 1em 0 0;
-    font-size: 19px;
-}
-#frontpage-midsection a.popular-tag:hover,
-#frontpage-midsection a.popular-tag:active {
-    color: darken($green, 30%);
-    text-shadow: 0 1px lighten($green, 15%);
-}
 .tag-1 {background-color: #f4970a;}
 .tag-2 {background-color: #da900a;}
 .tag-3 {background-color: #c18a0a;}
@@ -756,3 +727,71 @@ span.popular-tag {
     width: 378px;
 }
 .inset .span-15 textarea {width:578px;}
+
+#frontpage-midsection {
+    margin-top: -1.5em;
+    padding: 1.5em 0;
+    background-color: $green;
+    min-width: $blueprint-width;
+}
+span.popular-tag {
+    margin: 0 1em 0 0;
+    font-size: 19px;
+}
+#frontpage-midsection a.popular-tag {
+    color: lighten($green, 50%);
+    text-shadow: 0 1px darken($green, 10%);
+    margin: 0 1em 0 0;
+    font-size: 19px;
+}
+#frontpage-midsection a.popular-tag:hover,
+#frontpage-midsection a.popular-tag:active {
+    color: darken($green, 30%);
+    text-shadow: 0 1px lighten($green, 15%);
+}
+#frontpage img.method-thumb {
+    background-color: white;
+    border: 2px solid #ccc;
+    margin-right: 1em;
+    padding: 12px;
+    @include rotate-slight-right;
+    @include box-shadow-dark-10;
+}
+#frontpage h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+#frontpage h3 {
+    font-size: 40px;
+    line-height: 48px;
+}
+#frontpage-midsection blockquote {
+    margin: 0 0 0 110px;
+    width: 310px;
+    height: 200px;
+    background: #b9bf04 url(images/chat-bubble.png) no-repeat;
+    position: relative;
+}
+#bubblewrap {
+    display: table;
+    width: 240px;
+    height: 120px;
+    position: absolute;
+    top: 31px;
+    left: 35px;
+    font-size: 17px;
+    text-align: center;
+}
+#bubblewrap p {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+#tip-author {
+    text-align: right;
+    width: 190px;
+    position: absolute;
+    top: 177px;
+    left: 0px;
+    z-index: 1;
+}

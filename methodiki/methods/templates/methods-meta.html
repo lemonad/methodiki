@@ -23,6 +23,12 @@
       {% endblocktrans %}
       {% endifequal %}
 
+      {% if method.user.id == request.user.id or request.user.is_superuser %}
+      <a href="{% url methods-edit-method method.slug %}">
+        {% trans "Edit it?" %}
+      </a>
+      {% endif %}
+
       {% if method.tags.all %}
       <br/>
       <span>

@@ -20,7 +20,7 @@
             </span>
           </li>
           <li>
-            <a href="{% url user request.user.username %}">{% trans "My profile" %}</a>
+            <a href="{% url settings-profile %}">{% trans "My profile" %}</a>
           </li>
           <li>
             <a href="{% url logout %}">{% trans "Log out" %}</a>
@@ -63,7 +63,7 @@
             </li>
             {% if request.user.is_authenticated %}
             <li>
-              <a href="#">
+              <a href="{% url user request.user.username %}">
                 {% trans "My methods" %}
                 ({{ number_of_user_methods }}{% spaceless %}
                 {% if not user_methods_draft_flag %}

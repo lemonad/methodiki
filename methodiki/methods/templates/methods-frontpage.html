@@ -1,53 +1,16 @@
 {% extends "base-frontpage.html" %}
 {% load comments i18n markup media methods thumbnail %}
-
-{% block css %}
-<style>
-#frontpage h3 {
-    font-size: 40px;
-    line-height: 48px;
-}
-blockquote {
-    margin: 0 0 0 110px;
-    width: 310px;
-    height: 200px;
-    background: #b9bf04 url({% media_url "images/chat-bubble.png" %}) no-repeat;
-    position: relative;
-}
-#bubblewrap {
-    display: table;
-    width: 240px;
-    height: 120px;
-    position: absolute;
-    top: 31px;
-    left: 35px;
-    font-size: 17px;
-    text-align: center;
-}
-#bubblewrap p {
-    text-align: center;
-    display: table-cell;
-    vertical-align: middle;
-}
-#tip-author {
-    text-align: right;
-    width: 190px;
-    position: absolute;
-    top: 177px;
-    left: 0px;
-    z-index: 1;
-}
-</style>
-{% endblock %}
-
 {% block main %}
   <div class="container">
-    <div class="span-24 last">
+    <div id="frontpage" class="span-24 last">
       <h2>
-        {% trans "Welcome!" %}
+        {% trans "Great methods to reuse and be inspired by." %}
+        <a href="{% url methods-create-method %}">
+          {% trans "Share yours!" %}
+        </a>
       </h2>
 
-      <div id="frontpage" class="span-24 last">
+      <div class="span-24 last">
         <div class="span-15 append-1">
         {% if method %}
         <ul style="list-style-type:none;">
@@ -98,7 +61,9 @@ blockquote {
              rel="thumb-group-{{ method.id }}">
             <img class="method-thumb"
                  src="{% thumbnail m.image 250x250 crop %}"
-                 title="" />
+                 title=""
+                 width="250"
+                 height="250" />
           </a>
           {% else %}
           <a class="method-thumb-zoom"
