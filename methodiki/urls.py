@@ -28,6 +28,11 @@ urlpatterns += patterns('',
 
 # Login and logout
 urlpatterns += patterns('django.contrib.auth.views',
+    # LOGIN_URL is not internationalized so provide both translated
+    # and untranslated login urls below
+    url(r'^login/$',
+        'login',
+        {'template_name': 'login.html'}),
     url(_(r'^login/$'),
         'login',
         {'template_name': 'login.html'},
@@ -51,7 +56,7 @@ urlpatterns += patterns('django.contrib.auth.views',
         name="password-reset-confirm"),
 
     # Logout
-    url(_(r'^logout/$'),
+    url(r'^logout/$',
         'logout',
         {'template_name': 'logout.html'},
         name="logout"),

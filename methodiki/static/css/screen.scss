@@ -30,6 +30,14 @@ $comment-text-color: #354107;
     -o-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.1);
     box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.1);
 }
+@mixin box-shadow-dark-10-nav {
+    -webkit-box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
+    /* Box-shadow affects layout in Firefox 3 and causes
+       horizontal scrollbar to appear */
+    -moz-box-shadow: -7px 4px 7px rgba(0, 0, 0, 0.1);
+    -o-box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
+}
 @mixin box-shadow-form-inset {
     -webkit-box-shadow: inset 2px 2px 3px #cecec5;
     -moz-box-shadow: inset 2px 2px 3px #cecec5;
@@ -212,9 +220,9 @@ nav {
     background-color: white;
     border-bottom: 1px solid $border-color;
     padding: 1em 0 1em 0;
-    margin-bottom: 3em;
+    margin: 0 0 3em 0;
     min-width: $blueprint-width;
-    @include box-shadow-dark-10;
+    @include box-shadow-dark-10-nav;
 }
 nav h1 {
 }

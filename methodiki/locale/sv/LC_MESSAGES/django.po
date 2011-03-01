@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-01 08:44+0100\n"
+"POT-Creation-Date: 2011-03-01 09:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-
-#: settings.py:129
-msgid "/login/"
-msgstr "/logga-in/"
-
-#: settings.py:130
-msgid "/logout/"
-msgstr "logga-ut/"
 
 #: urls.py:14
 msgid "^about/"
@@ -38,31 +30,27 @@ msgstr "^installningar/"
 msgid "^tips/"
 msgstr "^tips/"
 
-#: urls.py:31
+#: urls.py:36
 msgid "^login/$"
 msgstr "^logga-in/$"
 
-#: urls.py:35
+#: urls.py:40
 msgid "^login/new-password/$"
 msgstr "^logga-in/nytt-losenord/$"
 
-#: urls.py:40
+#: urls.py:45
 msgid "^login/new-password/sent/$"
 msgstr "^logga-in/nytt-losenord/skickat/$"
 
-#: urls.py:44
+#: urls.py:49
 msgid "^login/new-password/complete/$"
 msgstr "^logga-in/nytt-losenord/klart/$"
 
-#: urls.py:48
+#: urls.py:53
 msgid "^login/new-password/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+?)/$"
 msgstr "^logga-in/nytt-losenord/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+?)/$"
 
-#: urls.py:54
-msgid "^logout/$"
-msgstr "^logga-ut/$"
-
-#: urls.py:63
+#: urls.py:68
 msgid "^signup/$"
 msgstr "^skapa-konto/$"
 
@@ -1292,6 +1280,3 @@ msgstr "Logga in"
 #: users/templates/users-index.html:12
 msgid "All users"
 msgstr "Alla användare"
-
-#~ msgid "Welcome!"
-#~ msgstr "Välkommen!"

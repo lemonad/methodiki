@@ -120,14 +120,9 @@ INSTALLED_APPS = (
 
 AUTH_PROFILE_MODULE = 'users.UserProfile'
 
-# Reverse does not work in settings.py so have to use hardcoded
-# internationalized URLs here
-# LOGIN_REDIRECT_URL = ugettext(r'/settings/profile/')
-# LOGIN_URL = ugettext(r'/login/')
-# LOGOUT_URL = ugettext(r'/logout/')
 LOGIN_REDIRECT_URL = r'/login-check-profile'
-LOGIN_URL = ugettext(r'/login/')
-LOGOUT_URL = ugettext(r'/logout/')
+LOGIN_URL = r'/login/'
+LOGOUT_URL = r'/logout/'
 
 SEND_BROKEN_LINK_EMAILS = False
 
