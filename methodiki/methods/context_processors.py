@@ -11,8 +11,11 @@ def user_methods(request):
     if not request.user.is_authenticated():
         return {}
 
-    user_methods = Method.objects.filter(user=request.user)
-    draft_flag = user_methods.exclude(status='PUBLISHED')
-    number_of_user_methods = user_methods.count()
-    return {"number_of_user_methods": number_of_user_methods,
+    user_methods = Method.objects.created_by_user(request.user.id)
+    user_methods_count = user_methods.count()
+    draft_methods = Method.objects.created_by_user_draft(request.user.id)
+    draft_flag = draft_methods.count()
+    return {"user_methods": user_methods,
+            "user_methods_count": user_methods_count,
+            "user_methods_draft": draft_methods,
             "user_methods_draft_flag": draft_flag}

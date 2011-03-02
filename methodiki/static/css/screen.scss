@@ -13,6 +13,7 @@ $light-green: #eceae8; /* ??? */
 $greenish: #7b7f03; /* ??? */
 $brownish: #47403f; /* ??? */
 $alt: #f00; /* ??? */
+$cyan: #91d5ff;
 $comment-body: #b0b579;
 $comment-body-owner: #a2c615;
 $comment-body-thumbsup: #f8df17;
@@ -802,4 +803,13 @@ span.popular-tag {
     top: 177px;
     left: 0px;
     z-index: 1;
+}
+a.rounded-button {
+    display: inline-block;
+    padding: 3px 15px 3px 15px;
+    margin-left: 1em;
+    background-color: $cyan;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
 }

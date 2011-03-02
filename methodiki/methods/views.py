@@ -36,18 +36,12 @@ from models import Method, MethodBonus, MethodFile
 
 
 def get_sidebar_methods(user):
-    if user.is_authenticated():
-        created_by_user = Method.objects.created_by_user(user.id)
-    else:
-        created_by_user = None
-
     recent_methods = Method.objects.recent()
     recent_comments = Comment.objects.filter(content_type__model="method") \
                                      .order_by('-submit_date')
     tips = Tip.objects.order_by('?')
 
-    return {'created_by_user': created_by_user,
-            'recent': recent_methods,
+    return {'recent': recent_methods,
             'recent_comments': recent_comments,
             'tips': tips}
 
@@ -113,7 +107,8 @@ def tag_index(request, tag_slug):
 
     sidebar_methods = get_sidebar_methods(request.user)
     tag = get_object_or_404(Tag, slug=tag_slug)
-    methods = Method.objects.filter(tags__slug=tag_slug)
+    methods = Method.objects.filter(tags__slug=tag_slug) \
+                            .order_by('title')
 
     t = loader.get_template('methods-tag-index.html')
     c = RequestContext(request,
@@ -289,6 +284,7 @@ def edit_method(request, slug):
                         'preview': preview,
                         'form': form,
                         'images': images,
+                        'edit_method_flag': True,
                         'sidebar_methods': sidebar_methods,
                         'suggested_tags': suggested_tags})
     return HttpResponse(t.render(c))
@@ -407,7 +403,8 @@ def edit_bonus(request, bonus_id):
     c = RequestContext(request,
                        {'bonus': bonus,
                         'preview': preview,
-                        'form': form})
+                        'form': form,
+                        'edit_bonus_flag': True})
     return HttpResponse(t.render(c))
 
 

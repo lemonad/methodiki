@@ -91,7 +91,7 @@
       <div class="span-12 last">
         <h2>{% trans "Popular Tags" %}</h2>
         {% for tag in popular_tags %}
-        <a class="popular-tag" href="#">
+        <a class="popular-tag" href="{% url methods-tag-index tag.slug %}">
           {{ tag.name }}
         </a>
         {% endfor %}

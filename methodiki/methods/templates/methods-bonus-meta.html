@@ -15,14 +15,15 @@
       <strong>Method is not yet published.</strong>
       {% endblocktrans %}
       {% endifequal %}
-  
-      {% ifequal bonus.user user %}
-      <a class="rounded-6"
-              style="display:inline-block;padding:3px 15px 3px 15px;margin-left:1em;background-color:#91d5ff;font-style:normal;font-weight:bold;text-decoration:none;"
+
+      {% if not edit_bonus_flag %}
+      {% if bonus.user.id == request.user.id or request.user.is_superuser %}
+      <a class="rounded-button rounded-6"
               href="{% url methods-edit-bonus bonus.id %}">
           {% trans "Edit bonus" %}
       </a>
-      {% endifequal %}
+      {% endif %}
+      {% endif %}
     </em>
   </p>
 </div>

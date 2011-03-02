@@ -15,6 +15,11 @@ class MethodManager(Manager):
         return self.filter(user=userid) \
                    .order_by('-published_at')
 
+    def created_by_user_draft(self, userid):
+        return self.filter(user=userid) \
+                   .exclude(status='PUBLISHED') \
+                   .order_by('-date_created')
+
     def popular(self):
         """
         Popularity is currently as simple as when methods were

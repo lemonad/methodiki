@@ -1,18 +1,15 @@
 {% load i18n %}
-{% if user.is_authenticated and sidebar_methods.created_by_user %}
+{% if user.is_authenticated and user_methods_draft_flag %}
 <div>
   <h4>{% trans "Your methods" %}</h4>
-  {% if user_methods_draft_flag %}
   <p class="notice">
     {% blocktrans %}
     You have methods to publish!
     {% endblocktrans %}
   </p>
-  {% endif %}
   <ol>
-    {% for method in sidebar_methods.created_by_user %}
+    {% for method in user_methods_draft %}
     <li>
-      {% ifequal method.status "DRAFT" %}
       <a href="{% url methods-edit-method method.slug %}">
         {{ method.title }}
       </a>
@@ -20,14 +17,6 @@
         ({% trans "draft" %},
         <a href="{% url methods-edit-method method.slug %}">{% trans "edit..." %}</a>)
       </em>
-      {% else %}
-      <a href="{% url methods-show-method method.published_at.year method.published_at.month method.published_at.day method.slug %}">
-        {{ method.title }}
-      </a>
-      <em>
-        (<a href="{% url methods-edit-method method.slug %}">{% trans "edit..." %}</a>)
-      </em>
-      {% endifequal %}
     </li>
     {% endfor %}
   </ol>
