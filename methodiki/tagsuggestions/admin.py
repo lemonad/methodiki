@@ -12,8 +12,6 @@ class TagSuggestionAdmin(ModelAdmin):
     list_filter = ['category', 'show_on_frontpage']
     search_fields = ['name', 'category']
 
-    def get_excerpt(self, obj):
-        return '%s'%(obj.description)
 
 class TagSuggestionCategoryAdmin(ModelAdmin):
     fields = ['name']
