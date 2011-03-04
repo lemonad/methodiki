@@ -4,6 +4,10 @@
 {% block javascript %}
   <script type="text/javascript">
     $(document).ready(function() {
+      $('#delete-bonus').submit(function() {
+        return confirm("{% trans "Really delete bonus?" %}");
+      });
+
       $("#bonus img").each(function() {
           $(this).fancybox({"hideOnContentClick": true,
                             "type": "image",
@@ -15,13 +19,11 @@
 {% endblock %}
 
 {% block main %}
-  <a href="#">
-    <img style="float:right;margin-top:-2em;"
-         src="{% media_url "images/pedagogic-bonus.png" %}" />
-  </a>
   {% include "methods-bonus-preview.html" %}
 
   <div class="bonus span-18 prepend-3 append-3 last">
+    <img style="float:right;margin-top:-2em;"
+         src="{% media_url "images/pedagogic-bonus.png" %}" />
     <h2>{% trans "Edit away!" %}</h2>
     {% include "methods-markdown-quick-help.html" %}
   </div>
@@ -72,7 +74,7 @@
     </form>
     {% endifequal %}
 
-    <form style="display:inline;" method="post"
+    <form style="display:inline;" method="post" id="delete-bonus"
           action="{% url methods-edit-bonus bonus.id %}">
       {% csrf_token %}
       <input class="submit" type="submit" name="delete"

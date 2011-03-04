@@ -245,7 +245,12 @@ def edit_method(request, slug):
                                                     kwargs={'slug': m.slug}))
 
         elif 'delete' in request.POST:
-            # TODO: Remove associated media
+            # Remove associated media
+            media = method.methodfile_set.all()
+            for m in media:
+                m.delete()
+
+            # Also remove method
             method.delete()
             messages.success(request, _("Method deleted!"))
             return HttpResponseRedirect(reverse('methods-index'))

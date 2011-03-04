@@ -1,5 +1,5 @@
 {% extends "base-with-sidebar.html" %}
-{% load i18n markup %}
+{% load flatcontent i18n markup %}
 {% block main %}
-  {{ why_methodiki|markdown:"autolink" }}
+  {% flatcontent "why-methodiki" %}
 {% endblock %}

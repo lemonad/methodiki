@@ -15,8 +15,13 @@ from flatcontent.models import get_flatcontent
 def why_methodiki(request):
     """ Show why methodiki? """
 
-    why_methodiki = get_flatcontent('why-methodiki')
-
     t = loader.get_template('why-methodiki.html')
-    c = RequestContext(request, {"why_methodiki": why_methodiki})
+    c = RequestContext(request, {})
+    return HttpResponse(t.render(c))
+
+def markdown_help(request):
+    """ Show detailed markdown help """
+
+    t = loader.get_template('markdown-help.html')
+    c = RequestContext(request, {})
     return HttpResponse(t.render(c))

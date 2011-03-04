@@ -13,6 +13,7 @@ translation.activate(language_for_urls)
 
 urlpatterns = patterns('about.views',
     url(_(r'^why-methodiki/$'), 'why_methodiki', name='why-methodiki'),
+    url(_(r'^markdown-help/$'), 'markdown_help', name='markdown-help'),
 )
 
 # Switch back to the language of choice

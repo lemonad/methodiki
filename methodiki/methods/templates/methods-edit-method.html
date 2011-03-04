@@ -11,6 +11,10 @@
   {% include_media "edit-methods.js" %}
   <script type="text/javascript">
     $(document).ready(function() {
+      $('#delete-method').submit(function() {
+        return confirm("{% trans "Really delete method?" %}");
+      });
+
       taggit = $("#id_method-tags").taggit({tag_selector:
                                             "#suggested-tags .taggit-tag"});
       var uploader = new qq.FileUploader({
@@ -256,7 +260,7 @@
     </form>
     {% endifequal %}
 
-    <form style="display:inline;" method="post"
+    <form style="display:inline;" method="post" id="delete-method"
           action="{% url methods-edit-method method.slug %}">
       {% csrf_token %}
       <input class="submit" type="submit" name="delete"

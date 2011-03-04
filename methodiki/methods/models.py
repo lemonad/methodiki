@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from autoslug import AutoSlugField
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.generic import GenericRelation
 from django.db.models import (BooleanField, CharField, Count, DateField,
                               DateTimeField, FileField, ForeignKey,
                               IntegerField, Manager, Model, permalink, Q,
@@ -9,6 +10,7 @@ from django.utils.translation import ugettext_lazy as _
 from easy_thumbnails.fields import ThumbnailerImageField
 from taggit.managers import TaggableManager
 
+from customcomments.models import CustomComment
 
 class MethodManager(Manager):
     def created_by_user(self, userid):
@@ -85,6 +87,9 @@ class Method(Model):
                                   auto_now=True)
     objects = MethodManager()
     tags = TaggableManager(blank=True)
+    comments = GenericRelation(CustomComment,
+                               object_id_field="object_pk",
+                               content_type_field="content_type")
 
     def __unicode__(self):
         return self.title
