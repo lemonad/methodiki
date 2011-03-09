@@ -107,7 +107,6 @@ INSTALLED_APPS = (
     'taggit',
     'taggit_templatetags',
     # methodiki apps
-    'about',
     'common',
     'customcomments',
     'flatcontent',
