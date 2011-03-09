@@ -17,9 +17,11 @@
          src="{% media_url "images/pedagogic-bonus.png" %}" />
     <h2>{% trans "Give a bonus!" %}</h2>
 
+    {% if not preview %}
     {% include "methods-about-bonus.html" %}
-
     <h2>{% trans "Start writing!" %}</h2>
+    {% endif %}
+
     {% include "methods-markdown-quick-help.html" %}
   </div>
 

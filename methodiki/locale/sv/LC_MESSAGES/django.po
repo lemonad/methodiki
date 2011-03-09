@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-09 22:29+0100\n"
+"POT-Creation-Date: 2011-03-09 22:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -367,7 +367,7 @@ msgstr ""
 "    "
 
 #: methods/templates/methods-comment-form.html:120
-#: methods/templates/methods-create-bonus.html:48
+#: methods/templates/methods-create-bonus.html:50
 #: methods/templates/methods-create-method.html:112
 #: methods/templates/methods-edit-bonus.html:50
 #: methods/templates/methods-edit-method.html:236
@@ -389,7 +389,7 @@ msgstr "Ge en bonus!"
 msgid "Start writing!"
 msgstr "Börja skriva!"
 
-#: methods/templates/methods-create-bonus.html:50
+#: methods/templates/methods-create-bonus.html:52
 #: methods/templates/methods-create-method.html:114
 msgid "Create"
 msgstr "Skapa"
@@ -649,11 +649,11 @@ msgstr ""
 "          och ge positiv återkoppling!\n"
 "          "
 
-#: methods/templates/methods-show-method.html:128
+#: methods/templates/methods-show-method.html:127
 msgid "Good method?"
 msgstr "Bra metod?"
 
-#: methods/templates/methods-show-method.html:131
+#: methods/templates/methods-show-method.html:130
 #, python-format
 msgid ""
 "\n"
@@ -668,7 +668,7 @@ msgstr ""
 "      <a href=\"%(create_bonus_url)s\">Läs mer</a> och skapa en metodbonus.\n"
 "      "
 
-#: methods/templates/methods-show-method.html:141
+#: methods/templates/methods-show-method.html:140
 msgid "Create bonus"
 msgstr "Skapa bonus"
 
