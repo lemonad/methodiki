@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-04 15:15+0100\n"
+"POT-Creation-Date: 2011-03-09 14:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,53 +18,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: urls.py:14
-msgid "^about/"
-msgstr "^om/"
-
-#: urls.py:20
+#: urls.py:19
 msgid "^settings/"
 msgstr "^installningar/"
 
-#: urls.py:21
+#: urls.py:20
 msgid "^tips/"
 msgstr "^tips/"
 
-#: urls.py:36
+#: urls.py:40
 msgid "^login/$"
 msgstr "^logga-in/$"
 
-#: urls.py:40
+#: urls.py:44
 msgid "^login/new-password/$"
 msgstr "^logga-in/nytt-losenord/$"
 
-#: urls.py:45
+#: urls.py:49
 msgid "^login/new-password/sent/$"
 msgstr "^logga-in/nytt-losenord/skickat/$"
 
-#: urls.py:49
+#: urls.py:53
 msgid "^login/new-password/complete/$"
 msgstr "^logga-in/nytt-losenord/klart/$"
 
-#: urls.py:53
+#: urls.py:57
 msgid "^login/new-password/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+?)/$"
 msgstr "^logga-in/nytt-losenord/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+?)/$"
 
-#: urls.py:68
+#: urls.py:72
 msgid "^signup/$"
 msgstr "^skapa-konto/$"
-
-#: about/urls.py:15
-msgid "^why-methodiki/$"
-msgstr "^varfor-metodiki/$"
-
-#: about/urls.py:16
-msgid "^markdown-help/$"
-msgstr "^markdown-hjälp/$"
-
-#: about/templates/markdown-help.html:5
-msgid "Markdown help"
-msgstr "Markdown-hjälp"
 
 #: customcomments/models.py:11
 msgid "Lift method?"
@@ -972,6 +956,54 @@ msgstr ""
 "  Tack för ditt tålamod!\n"
 "</p>\n"
 
+#: templates/base-footer.html:12
+msgid "How can I help?"
+msgstr "Hur kan jag hjälpa till?"
+
+#: templates/base-footer.html:15
+#, python-format
+msgid ""
+"\n"
+"          Good methods and good examples doesn't necessarily\n"
+"          spread themselves &mdash; they need <em>your</em> help.\n"
+"          Read more about\n"
+"          <a href=\"%(how_can_i_help_url)s\">what you can do</a>.\n"
+"          "
+msgstr ""
+"\n"
+"          Bra metoder och goda exempel sprider inte självklart sig\n"
+"          själva &mdash; de behöver <em>din</em> hjälp.\n"
+"          Läs mer om\n"
+"          <a href=\"%(how_can_i_help_url)s\">vad du kan göra</a>.\n"
+"          "
+
+#: templates/base-footer.html:24
+msgid "What is a good method?"
+msgstr "Vad är en bra metod?"
+
+#: templates/base-footer.html:27
+#, python-format
+msgid ""
+"\n"
+"          What works for one person might not be a perfect match for the\n"
+"          next. The more people who contribute, the likelier it is that\n"
+"          there will be methods that fit both you <em>and</em> me.\n"
+"          Read more <a href=\"%(good_methods_url)s\">about good methods</"
+"a>.\n"
+"          "
+msgstr ""
+"\n"
+"          Vad som fungerar bra för en person kanske inte passar nästa.\n"
+"          Ju fler som bidrar med sitt perspektiv, desto större\n"
+"          sannolikhet för att det finns metoder som passar både dig\n"
+"          <em>och</em> mig. Läs mer\n"
+"          <a href=\"%(good_methods_url)s\">om bra metoder</a>.\n"
+"          "
+
+#: templates/base-footer.html:36
+msgid "Have feedback?"
+msgstr "Vill återkoppla?"
+
 #: templates/base-header.html:19
 msgid "Welcome"
 msgstr "Välkommen"
@@ -1310,3 +1342,15 @@ msgstr "Logga in"
 #: users/templates/users-index.html:12
 msgid "All users"
 msgstr "Alla användare"
+
+#~ msgid "^about/"
+#~ msgstr "^om/"
+
+#~ msgid "^why-methodiki/$"
+#~ msgstr "^varfor-metodiki/$"
+
+#~ msgid "^markdown-help/$"
+#~ msgstr "^markdown-hjälp/$"
+
+#~ msgid "Markdown help"
+#~ msgstr "Markdown-hjälp"

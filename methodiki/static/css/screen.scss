@@ -1,4 +1,10 @@
+/* Dimensions */
 $blueprint-width: 950px;
+
+/* Types */
+$helvetica-neue: "Helvetica Neue", arial, helvetica, sans-serif;
+
+/* Colors */
 $almost-white: #fffff5; /* Body background */
 $body-text: #5e4a3f;
 $blue: #1177aa;
@@ -6,7 +12,6 @@ $gray: #999;
 $green: #b9bf04; /* User-navigation */
 $not-used-test: #f00;
 $border-color: #dcdad8;
-$helvetica-neue: "Helvetica Neue", arial, helvetica, sans-serif;
 $ultra-light-brown: #fcfaf8;
 $brown: #7f6455;
 $light-green: #eceae8; /* ??? */
@@ -19,6 +24,7 @@ $comment-body-owner: #a2c615;
 $comment-body-thumbsup: #f8df17;
 $comment-text-color: #354107;
 
+/* Mixins */
 @mixin box-shadow-light-75 {
     -webkit-box-shadow: 0 2px 4px rgba(255, 255, 255, 0.75);
     -moz-box-shadow: 0 2px 4px rgba(255, 255, 255, 0.75);
@@ -88,6 +94,7 @@ $comment-text-color: #354107;
     border-radius: 4px;
 }
 
+/* CSS */
 body {
     background: $almost-white;
     -webkit-font-smoothing: antialiased;
@@ -302,12 +309,11 @@ aside ol li:last-child {
 }
 
 footer {
-    margin: 3em 0 0 0;
+    margin: 3em 0 3em 0;
     min-width: $blueprint-width;
-    text-align: center;
 }
-footer .container {
-    text-align: center;
+footer h4, footer p {
+    font-size: 90%;
 }
 
 ul#messages {
@@ -818,4 +824,10 @@ a.rounded-button {
     font-style: normal;
     font-weight: bold;
     text-decoration: none;
+}
+.center {
+    text-align: center;
+}
+#footer-info {
+    background-color: $border-color;
 }

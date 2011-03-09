@@ -1,8 +1,41 @@
 {% load flatcontent i18n markup %}
 <footer>
   <div class="container">
-    <div class="span-24 last">
+    <div class="span-24 last center">
       {% flatcontent "footer" %}
+    </div>
+  </div>
+
+  <div id="footer-info" class="container">
+    <div class="span-24 last">
+      <div class="prepend-2 span-6 append-1">
+        <h4>{% trans "How can I help?" %}</h4>
+        <p>
+          {% url flatcontent "how-can-i-help" as how_can_i_help_url %}
+          {% blocktrans %}
+          Good methods and good examples doesn't necessarily
+          spread themselves &mdash; they need <em>your</em> help.
+          Read more about
+          <a href="{{ how_can_i_help_url }}">what you can do</a>.
+          {% endblocktrans %}
+        </p>
+      </div>
+      <div class="span-6 append-1">
+        <h4>{% trans "What is a good method?" %}</h4>
+        <p>
+          {% url flatcontent "about-good-methods" as good_methods_url %}
+          {% blocktrans %}
+          What works for one person might not be a perfect match for the
+          next. The more people who contribute, the likelier it is that
+          there will be methods that fit both you <em>and</em> me.
+          Read more <a href="{{ good_methods_url }}">about good methods</a>.
+          {% endblocktrans %}
+        </p>
+      </div>
+      <div class="span-6 append-2 last">
+        <h4>{% trans "Have feedback?" %}</h4>
+        {% flatcontent "contact-info" %}
+      </div>
     </div>
   </div>
 </footer>
