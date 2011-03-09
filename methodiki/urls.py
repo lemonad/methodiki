@@ -11,7 +11,6 @@ urlpatterns = patterns('',
     url(r'^$',
         'methods.views.frontpage',
         name="methods-frontpage"),
-    (_(r'^about/'), include('about.urls')),
     (r'^admin/', include(admin.site.urls)),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^metoder/', include('methods.urls')),
@@ -24,6 +23,11 @@ urlpatterns = patterns('',
 # Comments
 urlpatterns += patterns('',
     (r'^comments/', include('django.contrib.comments.urls'))
+)
+
+# Flat content
+urlpatterns += patterns('',
+    (r'^flat/', include('flatcontent.urls'))
 )
 
 # Login and logout
