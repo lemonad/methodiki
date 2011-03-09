@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import include, patterns, url
 from django.contrib import admin
-from django.utils.translation import ugettext as _
 
 
 admin.autodiscover()
@@ -16,8 +15,8 @@ urlpatterns = patterns('',
     (r'^metoder/', include('methods.urls')),
     (r'^markitup/', include('markitup.urls')),
     (r'^search/', include('haystack.urls')),
-    (_(r'^settings/'), include('preferences.urls')),
-    (_(r'^tips/'), include('tips.urls')),
+    (r'^settings/', include('preferences.urls')),
+    (r'^tips/', include('tips.urls')),
 )
 
 # Comments
@@ -32,29 +31,24 @@ urlpatterns += patterns('',
 
 # Login and logout
 urlpatterns += patterns('django.contrib.auth.views',
-    # LOGIN_URL is not internationalized so provide both translated
-    # and untranslated login urls below
     url(r'^login/$',
-        'login',
-        {'template_name': 'login.html'}),
-    url(_(r'^login/$'),
         'login',
         {'template_name': 'login.html'},
         name="login"),
-    url(_(r'^login/new-password/$'),
+    url(r'^login/new-password/$',
         'password_reset',
         {'template_name': 'password_reset_form.html',
          'email_template_name': 'password_reset_email.html'},
         name="password-reset"),
-    url(_(r'^login/new-password/sent/$'),
+    url(r'^login/new-password/sent/$',
         'password_reset_done',
         {'template_name': 'password_reset_done.html'},
         name="password-reset-done"),
-    url(_(r'^login/new-password/complete/$'),
+    url(r'^login/new-password/complete/$',
         'password_reset_complete',
         {'template_name': 'password_reset_complete.html'},
         name="password-reset-complete"),
-    url(_(r'^login/new-password/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+?)/$'),
+    url(r'^login/new-password/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+?)/$',
         'password_reset_confirm',
         {'template_name': 'password_reset_confirm.html'},
         name="password-reset-confirm"),
@@ -69,7 +63,7 @@ urlpatterns += patterns('django.contrib.auth.views',
 # Users + account registering
 urlpatterns += patterns('',
     (r'^users/', include('users.urls')),
-    url(_(r'^signup/$'),
+    url(r'^signup/$',
         'users.views.register',
         name="register"),
     url(r'^login-check-profile/$',

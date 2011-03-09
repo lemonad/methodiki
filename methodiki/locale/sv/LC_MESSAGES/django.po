@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-09 14:55+0100\n"
+"POT-Creation-Date: 2011-03-09 22:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,38 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-
-#: urls.py:19
-msgid "^settings/"
-msgstr "^installningar/"
-
-#: urls.py:20
-msgid "^tips/"
-msgstr "^tips/"
-
-#: urls.py:40
-msgid "^login/$"
-msgstr "^logga-in/$"
-
-#: urls.py:44
-msgid "^login/new-password/$"
-msgstr "^logga-in/nytt-losenord/$"
-
-#: urls.py:49
-msgid "^login/new-password/sent/$"
-msgstr "^logga-in/nytt-losenord/skickat/$"
-
-#: urls.py:53
-msgid "^login/new-password/complete/$"
-msgstr "^logga-in/nytt-losenord/klart/$"
-
-#: urls.py:57
-msgid "^login/new-password/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+?)/$"
-msgstr "^logga-in/nytt-losenord/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+?)/$"
-
-#: urls.py:72
-msgid "^signup/$"
-msgstr "^skapa-konto/$"
 
 #: customcomments/models.py:11
 msgid "Lift method?"
@@ -806,18 +774,6 @@ msgstr "Läs mer..."
 msgid "Quick tip"
 msgstr "Snabbtips"
 
-#: preferences/urls.py:16
-msgid "^language/$"
-msgstr "^sprak/$"
-
-#: preferences/urls.py:20
-msgid "^account/$"
-msgstr "^konto/$"
-
-#: preferences/urls.py:22
-msgid "^profile/$"
-msgstr "^profil/$"
-
 #: preferences/views.py:36
 msgid "Thanks, your settings have been saved"
 msgstr "Tack, dina inställningar har sparats"
@@ -1228,10 +1184,6 @@ msgstr "tips"
 msgid "tips"
 msgstr "tips"
 
-#: tips/urls.py:15
-msgid "^(?P<tip_id>[0-9]+)/edit$"
-msgstr "^(?P<tip_id>[0-9]+)/redigera$"
-
 #: tips/views.py:34
 msgid "Thanks for adding a new tip!"
 msgstr "Tack för att du lade till ett nytt tips!"
@@ -1342,15 +1294,3 @@ msgstr "Logga in"
 #: users/templates/users-index.html:12
 msgid "All users"
 msgstr "Alla användare"
-
-#~ msgid "^about/"
-#~ msgstr "^om/"
-
-#~ msgid "^why-methodiki/$"
-#~ msgstr "^varfor-metodiki/$"
-
-#~ msgid "^markdown-help/$"
-#~ msgstr "^markdown-hjälp/$"
-
-#~ msgid "Markdown help"
-#~ msgstr "Markdown-hjälp"
