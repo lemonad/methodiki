@@ -18,8 +18,8 @@
 
       {% if not edit_bonus_flag %}
       {% if bonus.user.id == request.user.id or request.user.is_superuser %}
-      <a class="rounded-button rounded-6"
-              href="{% url methods-edit-bonus bonus.id %}">
+      <a class="rounded-button rounded-6 noprint"
+         href="{% url methods-edit-bonus bonus.id %}">
           {% trans "Edit bonus" %}
       </a>
       {% endif %}

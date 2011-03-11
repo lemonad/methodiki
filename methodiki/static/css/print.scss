@@ -24,51 +24,6 @@ $comment-body-owner: #a2c615;
 $comment-body-thumbsup: #f8df17;
 $comment-text-color: #354107;
 
-/* Mixins */
-@mixin box-shadow-light-75 {
-    -webkit-box-shadow: 0 2px 4px rgba(255, 255, 255, 0.75);
-    -moz-box-shadow: 0 2px 4px rgba(255, 255, 255, 0.75);
-    -o-box-shadow: 0 2px 4px rgba(255, 255, 255, 0.75);
-    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.75);
-}
-@mixin box-shadow-dark-10 {
-    -webkit-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.1);
-    -o-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.1);
-    box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.1);
-}
-@mixin box-shadow-dark-10-nav {
-    -webkit-box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
-    /* Box-shadow affects layout in Firefox 3 and causes
-       horizontal scrollbar to appear */
-    -moz-box-shadow: -7px 4px 7px rgba(0, 0, 0, 0.1);
-    -o-box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
-}
-@mixin box-shadow-form-inset {
-    -webkit-box-shadow: inset 2px 2px 3px #cecec5;
-    -moz-box-shadow: inset 2px 2px 3px #cecec5;
-    -o-box-shadow: inset 2px 2px 3px #cecec5;
-    box-shadow: inset 2px 2px 3px #cecec5;
-}
-@mixin box-shadow-text {
-    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    -o-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-}
-@mixin box-shadow-text-focus {
-    -webkit-box-shadow: 0 0 9px rgba(156, 139, 128, 0.5);
-    -moz-box-shadow: 0 0 9px rgba(156, 139, 128, 0.5);
-    -o-box-shadow: 0 0 9px rgba(156, 139, 128, 0.5);
-    box-shadow: 0 0 9px rgba(156, 139, 128, 0.5);
-}
-@mixin box-shadow-submit {
-    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    -o-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
 @mixin rotate-slight-left {
     -webkit-transform: rotate(-2deg);
     -moz-transform: rotate(-2deg);
@@ -81,26 +36,12 @@ $comment-text-color: #354107;
     -o-transform: rotate(2deg);
     transform: rotate(2deg);
 }
-@mixin border-radius-15 {
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    -o-border-radius: 15px;
-    border-radius: 15px;
-}
-@mixin border-radius-4 {
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -o-border-radius: 4px;
-    border-radius: 4px;
-}
 
 /* CSS */
-.print {
-    display: none;
+.noprint {
+    display: none !important;
 }
 body {
-    background: $almost-white;
-    -webkit-font-smoothing: antialiased;
     font-family: $helvetica-neue;
     color: $body-text;
     font-size: 14px;
@@ -111,27 +52,14 @@ a, a h3 {
     font-weight: bold;
     text-decoration: none;
 }
-a:hover, a:focus, a:hover h3, a:focus h3 {
-    color: darken($blue, 20%);
-}
 a.alt {
     color: $gray;
     text-decoration: none;
     font-weight:normal;
 }
-a.alt:hover, a.alt:focus {
-    color: darken($gray, 25%);
-}
 
 h1 {
     color: #a2c615;
-    /*
-    font-family: "HelveticaNeue-Ultralight", "Helvetica Neue Ultralight",
-                 "HelveticaNeue-Light", "Helvetica Neue Light",
-                 "Helvetica Neue", arial, helvetica, sans-serif;
-    font-weight: 300;
-    letter-spacing: -0.02em;
-    */
     font-family: arial, helvetica, sans-serif;
     font-weight: bold;
     font-size: 48px;
@@ -195,51 +123,13 @@ header {
     margin: 0;
     padding: 0;
 }
-header #user-nav {
-    background-color: $green;
-
-    padding: 0.3em 0;
-    margin: 0;
-    color: white;
-    font-size: 90%;
-    min-width: $blueprint-width;
-}
-header #user-nav ol {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    float: right;
-}
-header #user-nav ol li {
-    float: left;
-    margin: 0 0 0 10px;
-    list-style: none;
-}
-header #user-nav ol li a, header #user-nav ol li span {
-    text-decoration: none;
-    color: white;
-    display: block;
-    border-left: 1px solid $light-green;
-    padding-left: 9px;
-}
-header #user-nav ol li a.no-separator,
-header #user-nav ol li span.no-separator {
-    border-left: 0;
-    padding-left: 0;
-    margin: 0;
-}
-header #user-nav ol li a:hover, header #user-nav ol li a:focus {
-    color: rgba(255, 255, 255, 0.76);
-}
 
 nav {
     color: $not-used-test;
     background-color: white;
-    border-bottom: 1px solid $border-color;
     padding: 1em 0 1em 0;
     margin: 0 0 3em 0;
     min-width: $blueprint-width;
-    @include box-shadow-dark-10-nav;
 }
 nav h1 {
 }
@@ -247,68 +137,9 @@ nav h1 a {
     color: darken($green, 5%);
     text-decoration: none;
 }
-nav h1 a:hover, h1 a:focus {
-    color: $brown;
-    -webkit-transition: color 0.5s ease;
-}
-nav ol {
-    margin: 0;
-    padding: 10px 0 0 0;
-    list-style-type: none;
-    float: right;
-    font: 16px/1.25 $helvetica-neue;
-}
-nav ol li {
-    float: left;
-    margin: 0 0 0 10px;
-    list-style: none;
-    vertical-align: baseline;
-    line-height: 2em;
-}
-nav ol li form {
-}
-nav ol li form input {
-    font-size: 14px;
-    line-height: 24px;
-    height: 24px;
-    vertical-align: middle;
-    margin: 0 !important;
-}
-nav ol li a, nav ol li span, nav ol li form {
-    font-weight: bold;
-    text-decoration: none;
-    color: $brown;
-    display: block;
-    border-left: 1px solid #eceae8;
-    padding-left: 9px;
-}
-nav ol li a.no-separator,
-nav ol li span.no-separator {
-    border-left: 0;
-    padding-left: 0;
-    margin: 0;
-}
-nav ol li a:hover, nav ol li a:focus {
-    color: darken($green, 5%);
-    -webkit-transition: color 0.4s ease;
-}
 
 article {
     min-height: 400px;
-}
-
-aside {
-}
-aside ol {
-    list-style: none;
-}
-aside ol li {
-    border-bottom: 1px dotted rgba(0, 0, 0, 0.1);
-    padding-left: 20px;
-    text-indent: -20px;
-}
-aside ol li:last-child {
-    border-bottom: 0;
 }
 
 footer {
@@ -319,32 +150,8 @@ footer h4, footer p {
     font-size: 90%;
 }
 
-ul#messages {
-    margin: 0;
-    padding: 0;
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    min-width: $blueprint-width;
-    overflow: visible;
-    z-index: 10000;
-    text-align: center;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-}
-
 blockquote em {
     font-style: normal;
-}
-
-#method-form input, #bonus-form input {
-    font-size: 100%;
-    font-family: Lucida Console, Monaco, DejaVu Sans Mono, monospace;
-}
-.markItUpEditor {
-    height: 400px;
-    font-size: 100%;
-    font-family: Lucida Console, Monaco, DejaVu Sans Mono, monospace;
 }
 
 #method-index img.method-thumb {
@@ -353,7 +160,6 @@ blockquote em {
     margin-right: 1em;
     padding: 3px;
     @include rotate-slight-left;
-    @include box-shadow-dark-10;
 }
 #method-index img.bonus-star, #frontpage img.bonus-star {
     float: right;
@@ -408,31 +214,12 @@ div.method-meta {
 .box {
     background: #dcdcd2 url(images/background-tile-noise.jpg) 0 0 repeat;
     border-bottom: 1px solid #cecec5;
-    @include box-shadow-form-inset;
 }
-.sidebar-box {
-    background-color: #eee;
-}
-.sidebar-box ul {
-    list-style-type: circle;
-}
-.sidebar-box a {
-    text-decoration: none;
-}
-.sidebar-box a:hover, .sidebar-box a:focus {
-    text-decoration: underline;
-}
-
 .create-method-box {
     background-color: $not-used-test;
 }
 .create-method-box a {
 /*    color: #ebf7ff; */
-}
-.create-method-box a:hover, h1:focus {
-/*    color: #fff; */
-}
-.sidebar-box-meta {
 }
 
 #uploaded-media ul {
@@ -465,10 +252,6 @@ h3.options {
     color: white;
 }
 
-h3.options:hover {
-    background-color: $blue;
-}
-
 span.taggit-tag {
     display: inline-block;
     padding-left: 4px;
@@ -488,22 +271,6 @@ a.image-add, a.image-preview, a.image-delete {
     position: absolute;
     width: 24px;
     height: 24px;
-}
-
-.image-add {
-    background: url(images/icons/001_01.png);
-    bottom: 24px;
-    left: 17px;
-}
-.image-preview {
-    background: url(images/icons/001_37.png);
-    bottom: 0px;
-    left: 0px;
-}
-.image-delete {
-    background: url(images/icons/001_05.png);
-    bottom: 0px;
-    right: 0px;
 }
 
 #bonuses {
@@ -549,87 +316,17 @@ li.comment-method-owner div.comment-body {
     background-color: $comment-body-owner;
     color: $comment-text-color;
 }
-li div.comment-counter {
-    float: right;
-    padding-right: 3px;
-    color: lighten($comment-body, 25%);
-    font-size: 250%;
-    font-weight: bold;
-}
-li.comment-method-owner div.comment-counter {
-    color: lighten($comment-body-owner, 5%);
-}
 li.comment-thumbsup div.comment-body {
     background-color: $comment-body-thumbsup;
     color: $comment-text-color;
-}
-li.comment-thumbsup div.comment-counter {
-    color: lighten($comment-body-thumbsup, 20%);
 }
 .inset {
     background: #dcdcd2 url(images/background-tile-noise.jpg) 0 0 repeat;
     border-bottom: 1px solid #cecec5;
     margin: 0 -40px 0 -30px;
     padding: 1.5em 40px 1.5em 30px;
-    @include box-shadow-form-inset;
 }
 
-#comment-preview-form2 {
-    background: #dcdcd2 url(images/background-tile-noise.jpg) 0 0 repeat;
-    border-bottom: 1px solid #cecec5;
-    margin-top: 0;
-    padding-top: 0;
-    padding-bottom: 2em;
-    @include box-shadow-form-inset;
-}
-#comment-preview-form2 {
-    width: 630px;
-    margin-left: -30px;
-    padding-left: 30px;
-}
-#comment-preview-form2 {
-    padding-top: 2em;
-}
-
-/* Rounded corners */
-.borderradius .rounded-3 {
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -o-border-radius: 3px;
-    border-radius: 3px;
-}
-.borderradius .rounded-6 {
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    -o-border-radius: 6px;
-    border-radius: 6px;
-}
-.borderradius .rounded-9 {
-    -webkit-border-radius: 9px;
-    -moz-border-radius: 9px;
-    -o-border-radius: 9px;
-    border-radius: 9px;
-}
-.borderradius .rounded-10 {
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -o-border-radius: 10px;
-    border-radius: 10px;
-}
-.borderradius .rounded-19 {
-    -webkit-border-radius: 19px;
-    -moz-border-radius: 19px;
-    -o-border-radius: 19px;
-    border-radius: 19px;
-}
-
-#fancybox-left-ico {
-    left: 20px !important;
-}
-#fancybox-right-ico {
-    right: 20px !important;
-    left: auto !important;
-}
 
 /* CSS2.1 + CSS3 Buttons */
 input[type="submit"] {
@@ -644,8 +341,6 @@ input[type="submit"] {
     background-color: #a2c615;
 
     text-shadow: 0 1px 1px rgba(93, 114, 12, 0.75);
-    @include border-radius-15;
-    @include box-shadow-submit;
 }
 input[type="text"], input[type="password"], textarea {
     margin-top: 0px;
@@ -657,7 +352,6 @@ input[type="text"], input[type="password"], textarea {
     color: #666;
     border: 0;
 
-    @include border-radius-4;
     background-image: -webkit-gradient(linear, 0% 0%, 0% 12%, from(#999), to(#fff), color-stop(.99,#fff));
 }
 input[type="text"], input[type="password"] {
@@ -670,10 +364,6 @@ nav input[type="text"] {
     background-image: none;
     background-color: white;
     border: 2px solid $brown;
-    @include box-shadow-text;
-}
-input[type="text"]:focus, textarea:focus {
-    @include box-shadow-text-focus;
 }
 nav input[type="submit"] {
     color: $ultra-light-brown;
@@ -683,15 +373,6 @@ nav input[type="submit"] {
 
 #suggested-tags p {
     margin: 0;
-}
-#tip-form textarea {
-    height: 50px;
-}
-#character-counter {
-    margin: 0;
-    padding: 0;
-    font-size: 80%;
-    font-style: italic;
 }
 #tips-list {
     list-style-type: none;
@@ -738,14 +419,8 @@ span.popular-tag {
 }
 #frontpage-midsection a.popular-tag {
     color: lighten($green, 50%);
-    text-shadow: 0 1px darken($green, 10%);
     margin: 0 1em 0 0;
     font-size: 19px;
-}
-#frontpage-midsection a.popular-tag:hover,
-#frontpage-midsection a.popular-tag:active {
-    color: darken($green, 30%);
-    text-shadow: 0 1px lighten($green, 15%);
 }
 #frontpage img.method-thumb {
     background-color: white;
@@ -753,7 +428,6 @@ span.popular-tag {
     margin-right: 1em;
     padding: 12px;
     @include rotate-slight-right;
-    @include box-shadow-dark-10;
 }
 #frontpage h2 {
     margin-top: 0;
@@ -807,4 +481,8 @@ a.rounded-button {
 }
 #footer-info {
     background-color: $border-color;
+}
+/* Remove fancybox when printing */
+#fancybox-wrap {
+    display: none;
 }

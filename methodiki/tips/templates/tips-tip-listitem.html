@@ -16,10 +16,12 @@
       {{ tip.text }}
       <span>
         &mdash;&nbsp;<a href="{% url user tip.user.username %}">{{ tip.user.get_profile.name }}</a>
-        {% ifequal request.user tip.user %}
-        (<a href="{% url tips-edit-tip tip.id %}">edit</a>)
-        {% endifequal %}
       </span>
+      {% ifequal request.user tip.user %}
+      <span class="noprint">
+        (<a href="{% url tips-edit-tip tip.id %}">edit</a>)
+      </span>
+      {% endifequal %}
     </p>
   </div>
 </li>

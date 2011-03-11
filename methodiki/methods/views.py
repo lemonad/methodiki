@@ -118,7 +118,19 @@ def tag_index(request, tag_slug):
     return HttpResponse(t.render(c))
 
 
+def show_method_short(request, id):
+    """ Very basic URL shortener for methods """
+
+    method = get_object_or_404(Method, id=id)
+    return HttpResponseRedirect(reverse('methods-show-method',
+            kwargs={'year': method.published_at.year,
+                    'month': method.published_at.month,
+                    'day': method.published_at.day,
+                    'slug': method.slug}))
+
 def show_method(request, year, month, day, slug):
+    """ Shows a method """
+
     method = get_object_or_404(Method, slug=slug)
 
     tags_list = method.tags.values_list('name', flat=True)
@@ -139,6 +151,7 @@ def show_method(request, year, month, day, slug):
 
 
 def show_bonus(request, year, month, day, slug):
+    """ Shows bonuses for methods """
     method = get_object_or_404(Method, slug=slug)
     bonuses = method.methodbonus_set.all()
 

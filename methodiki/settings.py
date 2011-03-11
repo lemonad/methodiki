@@ -184,7 +184,7 @@ MEDIA_BUNDLES = (
                          'javascript/markitup/skins/simple/style.css',
                          'javascript/markitup-markdown-set/style.css',),
     ('print.css', 'css/blueprint/blueprint/print.css',
-                  'css/print.css',),
+                  'css/print.scss',),
     # Javascript
     ('main.js',) + _base_js_bundle,
     ('main-ie.js',) + _base_js_bundle

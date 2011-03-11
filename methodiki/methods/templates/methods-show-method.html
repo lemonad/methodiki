@@ -27,6 +27,10 @@
   </a>
   {% endif %}
   <h2>{{ method.title }}</h2>
+  <h5 class="print">
+    http://{{ site_domain }}{% url methods-show-method-short method.id %}
+  </h5>
+
   <div id="method">
     {{ method.description|markdown:"autolink" }}
   </div>
@@ -88,7 +92,7 @@
           </a>
         </div>
         <div class="span-11 last">
-          <div class="comment-counter">
+          <div class="comment-counter noprint">
             {{ forloop.counter }}
           </div>
           <div class="rounded-6 comment-body">
@@ -105,7 +109,7 @@
     </ul>
     {% endif %}
 
-    <div class="span-15 append-1 last">
+    <div class="span-15 append-1 last noprint">
       <div class="inset rounded-9 span-15 last">
         <h2>{% trans "What do you think?" %}</h2>
         <p>
@@ -121,9 +125,9 @@
     </div>
   </div>
 
-  <hr />
+  <hr/>
 
-  <div id="bonuses">
+  <div id="bonuses" class="noprint">
     <h3>{% trans "Good method?" %}</h3>
     <p>
       {% url methods-create-bonus as create_bonus_url %}
@@ -141,5 +145,4 @@
       </a>
     </p>
   </div>
-
 {% endblock %}

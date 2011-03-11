@@ -1,6 +1,6 @@
 {% load i18n %}
   {% if messages %}
-  <ul id="messages">
+  <ul id="messages" class="noprint">
     {% for message in messages %}
     <li {% if message.tags %}class="{{ message.tags }}"{% endif %}>
       {{ message }}
@@ -10,7 +10,7 @@
   {% endif %}
 
   <header>
-    <div id="user-nav">
+    <div id="user-nav" class="noprint">
       <div class="container">
         <ol>
           {% if request.user.is_authenticated %}
@@ -48,10 +48,10 @@
     <nav>
       <div class="container">
         <h1 class="span-7">
-          <a href="/">{{ site_name }}</a>
+          <a href="http://{{ site_domain }}/">{{ site_name }}</a>
         </h1>
 
-        <div class="span-17 last">
+        <div class="span-17 last noprint">
           <ol>
             <li>
               <a class="no-separator"
