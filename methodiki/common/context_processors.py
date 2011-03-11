@@ -11,4 +11,6 @@ def site(request):
                                             #caching-the-current-site-object
 
     """
-    return {"site_name": Site.objects.get_current().name}
+    current_site = Site.objects.get_current()
+    return {"site_name": current_site.name,
+            "site_domain": current_site.domain}
