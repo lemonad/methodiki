@@ -1,0 +1,31 @@
+{% extends "base-with-sidebar.html" %}
+{% load i18n taggit_extras %}
+
+{% block sidebar %}
+{% include "sidebar/sidebar-methods-created-by-user.html" %}
+{% include "sidebar/sidebar-create-method.html" %}
+{% include "sidebar/sidebar-recent-methods.html" %}
+{% include "sidebar/sidebar-recent-comments.html" %}
+{% include "sidebar/sidebar-meta.html" %}
+{% endblock %}
+
+{% block main %}
+  <h2>{% trans "Tags" %}</h2>
+  <p>
+    {% blocktrans %}
+    The bigger the size of a tag, the more methods are tagged with it.
+    {% endblocktrans %}
+  </p>
+
+  {% get_tagcloud as tags for "methods.Method" %}
+  <ul style="list-style-type:none;">
+    {% for tag in tags %}
+    <li style="display:inline;">
+      <a href="{% url methods-tag-index tag.slug %}"
+         style="font-size:{{ tag.weight|floatformat:0 }}px">
+        {{ tag }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

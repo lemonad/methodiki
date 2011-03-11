@@ -48,6 +48,9 @@ urlpatterns = patterns('methods.views',
         name='methods-edit-bonus'),
 
     # Tags
+    url(r'^tag/$',
+        'tags',
+        name='methods-tags'),
     url(r'^tag/(?P<tag_slug>[^\/]+)$',
         'tag_index',
         name='methods-tag-index'),

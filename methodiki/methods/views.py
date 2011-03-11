@@ -102,6 +102,20 @@ def index(request):
     return HttpResponse(t.render(c))
 
 
+def tags(request):
+    """ Tag cloud for methods """
+
+    sidebar_methods = get_sidebar_methods(request.user)
+    tags = Tag.objects.annotate(Count('method')) \
+                      .order_by('name')
+
+    t = loader.get_template('methods-tags.html')
+    c = RequestContext(request,
+                       {'tags': tags,
+                        'sidebar_methods': sidebar_methods})
+    return HttpResponse(t.render(c))
+
+
 def tag_index(request, tag_slug):
     """ Index page for a specific tag """
 
