@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-11 08:01+0100\n"
+"POT-Creation-Date: 2011-03-11 16:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -162,7 +162,7 @@ msgstr "metodbonus"
 msgid "method bonuses"
 msgstr "metodbonusar"
 
-#: methods/views.py:193
+#: methods/views.py:207
 msgid ""
 "Thanks for adding a new method! Don't forget to publish it so it becomes "
 "visible to others."
@@ -170,30 +170,30 @@ msgstr ""
 "Tack för att du lade in en ny metod! Glöm inte att publicera den så den blir "
 "synlig för andra."
 
-#: methods/views.py:252
+#: methods/views.py:266
 msgid "Method saved!"
 msgstr "Metoden sparades!"
 
-#: methods/views.py:254
+#: methods/views.py:268
 msgid ""
 "Method saved! Don't forget to publish it so it becomes visible to others."
 msgstr ""
 "Metoden sparades! Glöm inte att publicera den så att den blir synlig för "
 "andra."
 
-#: methods/views.py:268
+#: methods/views.py:282
 msgid "Method deleted!"
 msgstr "Metoden togs bort!"
 
-#: methods/views.py:276
+#: methods/views.py:290
 msgid "Method is now published and visible to everyone"
 msgstr "Metoden publicerades och är nu synlig för alla"
 
-#: methods/views.py:283 methods/views.py:414
+#: methods/views.py:297 methods/views.py:428
 msgid "Method is now draft"
 msgstr "Metoden är nu ett utkast"
 
-#: methods/views.py:326
+#: methods/views.py:340
 msgid ""
 "Thanks for adding a new method bonus! Don't forget to publish it so it "
 "becomes visible to others."
@@ -201,22 +201,22 @@ msgstr ""
 "Tack för att du lade in en ny metodbonus! Glöm inte att publicera den så den "
 "blir synlig för andra."
 
-#: methods/views.py:376
+#: methods/views.py:390
 msgid "Bonus saved!"
 msgstr "Bonusen sparades!"
 
-#: methods/views.py:383
+#: methods/views.py:397
 msgid ""
 "Bonus saved! Don't forget to publish it so it becomes visible to others."
 msgstr ""
 "Bonusen sparades! Glöm inte att publicera den så att den blir synlig för "
 "andra."
 
-#: methods/views.py:392
+#: methods/views.py:406
 msgid "Bonus deleted!"
 msgstr "Bonusen togs bort!"
 
-#: methods/views.py:403
+#: methods/views.py:417
 msgid "Bonus is now published and visible to everyone"
 msgstr "Bonusen publicerades och är nu synlig för alla"
 
@@ -405,7 +405,8 @@ msgstr "Valfria fält"
 
 #: methods/templates/methods-create-method.html:83
 #: methods/templates/methods-edit-method.html:205
-#: methods/templates/methods-meta.html:37 templates/base-header.html:77
+#: methods/templates/methods-meta.html:37
+#: methods/templates/methods-tags.html:13 templates/base-header.html:77
 msgid "Tags"
 msgstr "Taggar"
 
@@ -695,6 +696,16 @@ msgstr[1] ""
 "\n"
 "          %(cc)s kommentarer.\n"
 "        "
+
+#: methods/templates/methods-tags.html:15
+msgid ""
+"\n"
+"    The bigger the size of a tag, the more methods are tagged with it.\n"
+"    "
+msgstr ""
+"\n"
+"    Ju större storlek på taggen, desto fler metoder är taggade med den.\n"
+"    "
 
 #: methods/templates/sidebar/sidebar-create-method.html:3
 msgid "Have a good example of your own?"
