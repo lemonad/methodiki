@@ -44,15 +44,15 @@ def show_user(request, username):
     """ User page """
 
     user = get_object_or_404(User, username=username)
-    user_methods = Method.objects.filter(user=user) \
-                                 .order_by('-published_at')
-    user_tips = Tip.objects.filter(user=user) \
-                                 .order_by('-date_created')
+    methods = Method.objects.filter(user=user) \
+                            .order_by('-published_at')
+    tips = Tip.objects.filter(user=user) \
+                      .order_by('-date_created')
 
     t = loader.get_template('users-show-user.html')
     c = RequestContext(request, {'profile': user,
-                                 'user_methods': user_methods,
-                                 'user_tips': user_tips})
+                                 'methods': methods,
+                                 'tips': tips})
     return HttpResponse(t.render(c))
 
 

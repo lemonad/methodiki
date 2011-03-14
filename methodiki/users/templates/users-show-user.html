@@ -18,11 +18,11 @@
   {% endif %}
   </div>
 
-  {% if user_methods %}
+  {% if methods %}
   <hr style="clear:both;" />
   <h2>{% trans "Methods" %}</h2>
   <ul style="list-style-type: none;">
-    {% for method in user_methods %}
+    {% for method in methods %}
     <li>
       <a href="#">
         <img style="float:right;"
@@ -66,11 +66,11 @@
   </ul>
   {% endif %}
 
-  {% if user_tips %}
+  {% if tips %}
   <div class="span-16 last">
     <h2>{% trans "Tips" %}</h2>
     <ul id="tips-list">
-      {% for tip in user_tips %}
+      {% for tip in tips %}
       <li class="span-16 last">
         <p>
           {{ tip.text }}
