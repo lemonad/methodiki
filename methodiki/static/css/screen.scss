@@ -25,17 +25,17 @@ $comment-body-thumbsup: #f8df17;
 $comment-text-color: #354107;
 
 /* Mixins */
-@mixin box-shadow-light-75 {
-    -webkit-box-shadow: 0 2px 4px rgba(255, 255, 255, 0.75);
-    -moz-box-shadow: 0 2px 4px rgba(255, 255, 255, 0.75);
-    -o-box-shadow: 0 2px 4px rgba(255, 255, 255, 0.75);
-    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.75);
+@mixin box-shadow($x, $y, $r, $color) {
+    -webkit-box-shadow: $x $y $r $color;
+    -moz-box-shadow: $x $y $r $color;
+    -o-box-shadow: $x $y $r $color;
+    box-shadow: $x $y $r $color;
 }
-@mixin box-shadow-dark-10 {
-    -webkit-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.1);
-    -o-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.1);
-    box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.1);
+@mixin box-shadow-inset($x, $y, $r, $color) {
+    -webkit-box-shadow: inset $x $y $r $color;
+    -moz-box-shadow: inset $x $y $r $color;
+    -o-box-shadow: inset $x $y $r $color;
+    box-shadow: inset $x $y $r $color;
 }
 @mixin box-shadow-dark-10-nav {
     -webkit-box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
@@ -45,53 +45,17 @@ $comment-text-color: #354107;
     -o-box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
     box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
 }
-@mixin box-shadow-form-inset {
-    -webkit-box-shadow: inset 2px 2px 3px #cecec5;
-    -moz-box-shadow: inset 2px 2px 3px #cecec5;
-    -o-box-shadow: inset 2px 2px 3px #cecec5;
-    box-shadow: inset 2px 2px 3px #cecec5;
+@mixin rotate($angle) {
+    -webkit-transform: rotate($angle);
+    -moz-transform: rotate($angle);
+    -o-transform: rotate($angle);
+    transform: rotate($angle);
 }
-@mixin box-shadow-text {
-    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    -o-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-}
-@mixin box-shadow-text-focus {
-    -webkit-box-shadow: 0 0 9px rgba(156, 139, 128, 0.5);
-    -moz-box-shadow: 0 0 9px rgba(156, 139, 128, 0.5);
-    -o-box-shadow: 0 0 9px rgba(156, 139, 128, 0.5);
-    box-shadow: 0 0 9px rgba(156, 139, 128, 0.5);
-}
-@mixin box-shadow-submit {
-    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    -o-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-@mixin rotate-slight-left {
-    -webkit-transform: rotate(-2deg);
-    -moz-transform: rotate(-2deg);
-    -o-transform: rotate(-2deg);
-    transform: rotate(-2deg);
-}
-@mixin rotate-slight-right {
-    -webkit-transform: rotate(2deg);
-    -moz-transform: rotate(2deg);
-    -o-transform: rotate(2deg);
-    transform: rotate(2deg);
-}
-@mixin border-radius-15 {
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    -o-border-radius: 15px;
-    border-radius: 15px;
-}
-@mixin border-radius-4 {
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -o-border-radius: 4px;
-    border-radius: 4px;
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -o-border-radius: $radius;
+    border-radius: $radius;
 }
 
 /* CSS */
@@ -352,8 +316,8 @@ blockquote em {
     float: left;
     margin-right: 1em;
     padding: 3px;
-    @include rotate-slight-left;
-    @include box-shadow-dark-10;
+    @include rotate(-2deg);
+    @include box-shadow(4px, 4px, 7px, rgba(0, 0, 0, 0.1));
 }
 #method-index img.bonus-star,
 #frontpage img.bonus-star {
@@ -376,7 +340,7 @@ div.method-meta {
 .box {
     background: #dcdcd2 url(images/background-tile-noise.jpg) 0 0 repeat;
     border-bottom: 1px solid #cecec5;
-    @include box-shadow-form-inset;
+    @include box-shadow-inset(2px, 2px, 3px, #cecec5);
 }
 .sidebar-box {
     background-color: #eee;
@@ -539,7 +503,7 @@ li.comment-thumbsup div.comment-counter {
     border-bottom: 1px solid #cecec5;
     margin: 0 -40px 0 -30px;
     padding: 1.5em 40px 1.5em 30px;
-    @include box-shadow-form-inset;
+    @include box-shadow-inset(2px, 2px, 3px, #cecec5);
 }
 
 #comment-preview-form2 {
@@ -548,7 +512,7 @@ li.comment-thumbsup div.comment-counter {
     margin-top: 0;
     padding-top: 0;
     padding-bottom: 2em;
-    @include box-shadow-form-inset;
+    @include box-shadow-inset(2px, 2px, 3px, #cecec5);
 }
 #comment-preview-form2 {
     width: 630px;
@@ -561,34 +525,19 @@ li.comment-thumbsup div.comment-counter {
 
 /* Rounded corners */
 .borderradius .rounded-3 {
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -o-border-radius: 3px;
-    border-radius: 3px;
+    @include border-radius(3px);
 }
 .borderradius .rounded-6 {
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    -o-border-radius: 6px;
-    border-radius: 6px;
+    @include border-radius(6px);
 }
 .borderradius .rounded-9 {
-    -webkit-border-radius: 9px;
-    -moz-border-radius: 9px;
-    -o-border-radius: 9px;
-    border-radius: 9px;
+    @include border-radius(9px);
 }
 .borderradius .rounded-10 {
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -o-border-radius: 10px;
-    border-radius: 10px;
+    @include border-radius(10px);
 }
 .borderradius .rounded-19 {
-    -webkit-border-radius: 19px;
-    -moz-border-radius: 19px;
-    -o-border-radius: 19px;
-    border-radius: 19px;
+    @include border-radius(19px);
 }
 
 #fancybox-left-ico {
@@ -612,8 +561,8 @@ input[type="submit"] {
     background-color: #a2c615;
 
     text-shadow: 0 1px 1px rgba(93, 114, 12, 0.75);
-    @include border-radius-15;
-    @include box-shadow-submit;
+    @include border-radius(15px);
+    @include box-shadow(0, 1px, 2px, rgba(0, 0, 0, 0.3));
 }
 input[type="text"], input[type="password"], textarea {
     margin-top: 0px;
@@ -625,7 +574,7 @@ input[type="text"], input[type="password"], textarea {
     color: #666;
     border: 0;
 
-    @include border-radius-4;
+    @include border-radius(4px);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 12%, from(#999), to(#fff), color-stop(.99,#fff));
 }
 input[type="text"], input[type="password"] {
@@ -638,10 +587,10 @@ nav input[type="text"] {
     background-image: none;
     background-color: white;
     border: 2px solid $brown;
-    @include box-shadow-text;
+    @include box-shadow(0, 1px, 2px, rgba(0, 0, 0, 0.2));
 }
 input[type="text"]:focus, textarea:focus {
-    @include box-shadow-text-focus;
+    @include box-shadow(0, 0, 9px, rgba(156, 139, 128, 0.5));
 }
 nav input[type="submit"] {
     color: $ultra-light-brown;
@@ -720,8 +669,8 @@ span.popular-tag {
     border: 2px solid #ccc;
     margin-right: 1em;
     padding: 12px;
-    @include rotate-slight-right;
-    @include box-shadow-dark-10;
+    @include rotate(2deg);
+    @include box-shadow(4px, 4px, 7px, rgba(0, 0, 0, 0.1));
 }
 #frontpage h2 {
     margin-top: 0;

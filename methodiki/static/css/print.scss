@@ -24,17 +24,12 @@ $comment-body-owner: #a2c615;
 $comment-body-thumbsup: #f8df17;
 $comment-text-color: #354107;
 
-@mixin rotate-slight-left {
-    -webkit-transform: rotate(-2deg);
-    -moz-transform: rotate(-2deg);
-    -o-transform: rotate(-2deg);
-    transform: rotate(-2deg);
-}
-@mixin rotate-slight-right {
-    -webkit-transform: rotate(2deg);
-    -moz-transform: rotate(2deg);
-    -o-transform: rotate(2deg);
-    transform: rotate(2deg);
+/* Mixins */
+@mixin rotate($angle) {
+    -webkit-transform: rotate($angle);
+    -moz-transform: rotate($angle);
+    -o-transform: rotate($angle);
+    transform: rotate($angle);
 }
 
 /* CSS */
@@ -159,7 +154,7 @@ blockquote em {
     float: left;
     margin-right: 1em;
     padding: 3px;
-    @include rotate-slight-left;
+    @include rotate(-2deg);
 }
 #method-index img.bonus-star,
 #frontpage img.bonus-star {
@@ -413,7 +408,7 @@ span.popular-tag {
     border: 2px solid #ccc;
     margin-right: 1em;
     padding: 12px;
-    @include rotate-slight-right;
+    @include rotate(2deg);
 }
 #frontpage h2 {
     margin-top: 0;
