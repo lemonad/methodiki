@@ -68,10 +68,12 @@ class AutolinkPattern(markdown.inlinepatterns.Pattern):
 
         if re.search(r"\.(jpg|jpeg|gif|png)$", url, flags=re.I):
             el = markdown.etree.Element("img")
-            el.set('src', url)
+            el.set("src", url)
+            el.set("class", "autolink")
         else:
             el = markdown.etree.Element("a")
-            el.set('href', url)
+            el.set("href", url)
+            el.set("class", "autolink")
             el.text = markdown.AtomicString(text)
         return el
 
@@ -81,7 +83,7 @@ class AutolinkExtension(markdown.Extension):
 
     def extendMarkdown(self, md, md_globals):
         """ Replace autolink with AutolinkPattern. """
-        md.inlinePatterns['autolink'] = AutolinkPattern(AUTOLINK_RE, md)
+        md.inlinePatterns["autolink"] = AutolinkPattern(AUTOLINK_RE, md)
 
 
 def makeExtension(configs=None):

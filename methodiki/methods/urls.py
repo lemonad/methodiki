@@ -33,17 +33,22 @@ urlpatterns = patterns('methods.views',
         name='methods-delete-file'),
 
     # Method bonus'
-    url(r'^(?P<year>[0-9]{4})/(?P<month>[0-9]{1,2})/(?P<day>[0-9]{1,2})/'
-                                                   '(?P<slug>[^\/]+)/bonus$',
+    url(r'^(?P<year>[0-9]{4})/'
+          '(?P<month>[0-9]{1,2})/'
+          '(?P<day>[0-9]{1,2})/'
+          '(?P<slug>[^\/]+)/bonus/$',
         'show_bonus',
         name='methods-show-bonus'),
-    url(r'^bonus/$',
+    url(r'^(?P<year>[0-9]{4})/'
+          '(?P<month>[0-9]{1,2})/'
+          '(?P<day>[0-9]{1,2})/'
+          '(?P<slug>[^\/]+)/bonus/new/$',
         'create_bonus',
         name='methods-create-bonus'),
-    url(r'^bonus/about/$',
-        'about_bonus',
-        name='methods-about-bonus'),
-    url(r'^bonus/(?P<bonus_id>[0-9]+)$',
+    url(r'^(?P<year>[0-9]{4})/'
+          '(?P<month>[0-9]{1,2})/'
+          '(?P<day>[0-9]{1,2})/'
+          '(?P<slug>[^\/]+)/bonus/(?P<bonus_id>[0-9]+)$',
         'edit_bonus',
         name='methods-edit-bonus'),
 

@@ -161,7 +161,8 @@ blockquote em {
     padding: 3px;
     @include rotate-slight-left;
 }
-#method-index img.bonus-star, #frontpage img.bonus-star {
+#method-index img.bonus-star,
+#frontpage img.bonus-star {
     float: right;
     width: 48px;
 }
@@ -172,8 +173,9 @@ ul#method-index li:last-child {
     border-bottom: 0;
 }
 
-#method p { width: 95%; }
-#method img { width: 100% !important; }
+#method p {
+    width: 95%;
+}
 #method ul, #method ol {
     list-style-type: inside;
     border-top: 1px solid #eee;
@@ -186,12 +188,6 @@ ul#method-index li:last-child {
 #method ul:last-child, #method ol:last-child {
     border-bottom: 0;
 }
-#method h1, #method h2, #method h3, #method h4, #method h5, #method h6 {
-    color: #222;
-}
-#method + hr {
-    background-color: #1177aa;
-}
 
 div.method-meta {
     font-size: 95%;
@@ -199,16 +195,6 @@ div.method-meta {
 }
 #method div.method-meta {
     clear: left;
-}
-
-#method img, #bonus img {
-    display: block;
-    width: 90%;
-    text-align: center;
-}
-.markItUpPreviewFrame {
-    height: 200px;
-    border: 1px solid #aaa;
 }
 
 .box {
@@ -485,4 +471,107 @@ a.rounded-button {
 /* Remove fancybox when printing */
 #fancybox-wrap {
     display: none;
+}
+
+#preview-wrapper {
+    background-color: #fcfaf8;
+    margin-bottom: 2em;
+}
+#preview-wrapper .separator {
+    text-align: center;
+    background-color: #ccecff;
+    color: #333;
+    border-top: 1px solid #91d5ff;
+    border-bottom: 1px solid #91d5ff;
+}
+#preview-wrapper .separator h2 {
+    margin: 0;
+    padding: 0;
+    color: #222;
+    float: left;
+    text-align: center;
+    width: 100%;
+}
+#preview-wrapper .separator p {
+    color: #666;
+}
+#method-wrapper a h2,
+#bonus-wrapper a h2,
+#preview-wrapper a h2 {
+    color: $blue;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 30px;
+    line-height: 40px;
+}
+#method-wrapper a:hover h2,
+#method-wrapper a:focus h2,
+#bonus-wrapper a:hover h2,
+#bonus-wrapper a:focus h2,
+#preview-wrapper a:hover h2,
+#preview-wrapper a:focus h2 {
+    color: darken($blue, 20%);
+}
+#method-wrapper a h2 span,
+#bonus-wrapper a h2 span,
+#preview-wrapper a h2 span {
+    font-style: italic;
+}
+
+/* User generated markdown content */
+#markdown-wrapper .markdown p {
+    width: 95%;
+}
+#markdown-wrapper .markdown ul,
+#markdown-wrapper .markdown ol {
+    list-style-type: inside;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding-left: 1em;
+    width: 70%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+#markdown-wrapper .markdown ul:last-child,
+#markdown-wrapper .markdown ol:last-child {
+    border-bottom: 0;
+}
+#markdown-wrapper .markdown h1 {
+    font-size: 26px;
+    color: $greenish;
+    font-weight: bold;
+    letter-spacing: normal;
+    text-shadow: 0 1px lighten($greenish, 25%);
+    margin: 0;
+}
+#markdown-wrapper .markdown h2 {
+    font-size: 22px;
+    margin: 2px 0 0 0;
+}
+#markdown-wrapper .markdown h3 {
+    font-size: 20px;
+    margin: 4px 0 0 0;
+}
+#markdown-wrapper .markdown h4 {
+    font-size: 18px;
+    color: $brownish;
+    margin: 6px 0 0 0;
+}
+#markdown-wrapper .markdown h5 {
+    font-size: 16px;
+    margin: 8px 0 0 0;
+}
+#markdown-wrapper .markdown h6 {
+    font-size: 14px;
+    margin: 10px 0 0 0;
+}
+#markdown-wrapper .markdown + hr {
+    background-color: #1177aa;
+}
+#markdown-wrapper .markdown img {
+    max-width: 100%;
+    max-height: 600px;
+}
+#markdown-wrapper .markdown img.autolink {
+    display: block;
 }

@@ -1,133 +1,27 @@
 {% load i18n markup thumbnail %}
 {% if preview %}
-  <div class="separator span-18 append-3 prepend-3 last">
-    <h2>{% trans "Bonus preview" %}</h2>
-    <p>{% trans "Scroll down to edit or save your bonus" %}</p>
-  </div>
-  <div id="preview">
-    <style type="text/css">
-      /*<![CDATA[*/
-        html, body {
-          height: 100%;
-        }
-        html, body, .wrap {
-          margin: 0;
-          padding: 0;
-        }
-        .wrap {
-          overflow: auto;
-        }
-        table.page {
-          width: 640px;
-          height: 100%;
-          margin: 0 auto;
-          vertical-align: middle;
-          max-width: 640px;
-        }
-        td.footer {
-          height: 3em;
-          padding-bottom: 3em;
-          font-size: 1em;
-        }
-
-        td.footer #credits {
-          font-size: 0.8em;
-          padding: 0 1em;
-          margin-bottom: 5px;
-          overflow: auto;
-          -webkit-border-radius: 0.5em;
-          -moz-border-radius: 0.5em;
-          -border-radius: 0.5em;
-          }
-        td.footer .links {
-          text-align: right;
-         }
-        td.footer .links .credits {
-          float: left;
-        }
-
-        div.image {
-          width: 100%;
-          text-align: center;
-        }
-        div.image img {
-          border: none;
-          max-width: 640px;
-          max-height: 450px;
-          border: 4px solid #fff;
-        }
-
-        .ad {
-          position: fixed;
-          bottom: 0;
-          width: 100%;
-          background: #000;
-          color: #fff;
-          height: 3em;
-          opacity: 0.9;
-        }
-        .ad .content {
-          width: 640px;
-          margin: 0 auto;
-        }
-        .ad .close a {
-          float: right;
-          color: #666;
-          font-family: monospace;
-          text-decoration: none;
-          opacity: 0.9;
-          -webkit-border-radius: 0.25em;
-          -moz-border-radius: 0.25em;
-          border-radius: 0.25em;
-          background: #222;
-          font-family: Arial;
-          padding: 0 3px;
-      /*]]>*/
-    </style>
-    <link href="http://fonts.googleapis.com/css?family=Nobile" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Vollkorn" rel="stylesheet" type="text/css">
-    <style type="text/css">
-      /*<![CDATA[*/
-      .wrap { font-family: Nobile, sans-serif; }
-      .wrap h1, .wrap h2, .wrap h3, .wrap h4, .wrap h5, .wrap h6 { font-family: Vollkorn, Georgia, serif; font-weight: normal; text-align: left; margin: 0; }
-      .wrap h1 { font-size: 3em; }
-      .wrap h2 { font-size: 2em; }
-      .wrap h3 { font-size: 1.8em; }
-      .wrap h4 { font-size: 1.4em; }
-      .wrap h5 { font-size: 1.2em; }
-      .wrap h6 { font-size: 1.1em; }
-      .wrap img { max-width: 600px; }
-      /*]]>*/
-    </style>
-    <style type="text/css">
-      /*<![CDATA[*/
-        .wrap {
-          background: #fff;
-          color: #000;
-        }
-      /*]]>*/
-
-
-
-      .separator { text-align: center; background-color: #ccecff; color: #333; border-top: 1px solid #91d5ff; border-bottom: 1px solid #91d5ff;}
-      .separator h2 { margin: 0; padding: 0; color: #222; float: left; text-align: center; width: 100%; }
-      .separator p { color: #666; }
-
-    </style>
-    <div class="wrap span-24 last">
-      <table class="page">
-        <tbody><tr>
-          <td class="body" tabindex="1">
-            <h1>{{ preview.title}}</h1>
-
-            {{ preview.description|markdown:"autolink" }}
-          </td>
-        </tr>
-      </tbody></table>
+  <div id="preview-wrapper" class="span-18 append-3 prepend-3 last">
+    <div class="separator">
+      <h2>{% trans "Bonus preview" %}</h2>
+      <p>{% trans "Scroll down to edit or save your bonus" %}</p>
     </div>
-  </div>
-  <div class="separator span-18 prepend-3 append-3 last">
-    <h2>{% trans "Preview only" %}</h2>
-    <p>{% trans "Edit or save bonus below" %}</p>
+
+    <a>
+      <h2>
+        <span>{% trans "Good method" %}:</span>
+        {{ method.title }}
+      </h2>
+    </a>
+
+    <div id="markdown-wrapper">
+      <section class="markdown">
+        {{ preview.description|markdown:"autolink" }}
+      </section>
+    </div>
+
+    <div class="separator">
+      <h2>{% trans "Preview only" %}</h2>
+      <p>{% trans "Edit or save bonus below" %}</p>
+    </div>
   </div>
 {% endif %}

@@ -179,15 +179,6 @@ def show_bonus(request, year, month, day, slug):
     return HttpResponse(t.render(c))
 
 
-def about_bonus(request):
-    about_text = get_flatcontent('about-bonus-template')
-
-    t = loader.get_template('methods-about-bonus.html')
-    c = RequestContext(request,
-                       {'about': about_text})
-    return HttpResponse(t.render(c))
-
-
 @login_required
 def create_method(request):
     preview = {}
@@ -264,12 +255,14 @@ def edit_method(request, slug):
                 m = form.save()
                 if method.is_published():
                     messages.success(request, _("Method saved!"))
+                    return HttpResponseRedirect(reverse('methods-index'))
                 else:
                     messages.success(request, _("Method saved! Don't forget "
                                                 "to publish it so it becomes "
                                                 "visible to others."))
-                return HttpResponseRedirect(reverse('methods-edit-method',
-                                                    kwargs={'slug': m.slug}))
+                    return HttpResponseRedirect(reverse('methods-edit-method',
+                                                        kwargs={'slug':
+                                                                m.slug}))
 
         elif 'delete' in request.POST:
             # Remove associated media
@@ -295,8 +288,7 @@ def edit_method(request, slug):
             method.status = 'DRAFT'
             method.save()
             messages.success(request, _("Method is now draft"))
-            return HttpResponseRedirect(reverse('methods-edit-method',
-                                                kwargs={'slug': method.slug}))
+            return HttpResponseRedirect(reverse('methods-index'))
         else:
             raise Http404
 
@@ -323,7 +315,8 @@ def edit_method(request, slug):
 
 
 @login_required
-def create_bonus(request):
+def create_bonus(request, year, month, day, slug):
+    method = get_object_or_404(Method, slug=slug)
     preview = {}
 
     if request.method == 'POST':
@@ -332,16 +325,22 @@ def create_bonus(request):
             if form.is_valid():
                 preview['description'] = form.cleaned_data['description']
 
-        elif 'method' in request.POST:
+        elif 'bonus' in request.POST:
             form = MethodBonusForm(request, request.POST, prefix='bonus')
             if form.is_valid():
-                m = form.save()
+                b = form.save(commit=False)
+                b.method = method
+                b.save()
                 messages.success(request,
                                  _("Thanks for adding a new method bonus! "
                                    "Don't forget to publish it so it becomes "
                                    "visible to others."))
                 return HttpResponseRedirect(reverse('methods-edit-bonus',
-                                                    kwargs={'bonus_id': m.id}))
+                    kwargs={'year': method.published_at.year,
+                            'month': method.published_at.month,
+                            'day': method.published_at.day,
+                            'slug': method.slug,
+                            'bonus_id': b.id}))
         else:
             raise Http404
     else:
@@ -354,13 +353,15 @@ def create_bonus(request):
 
     t = loader.get_template('methods-create-bonus.html')
     c = RequestContext(request,
-                       {'form': form,
+                       {'method': method,
+                        'form': form,
                         'preview': preview})
     return HttpResponse(t.render(c))
 
 
 @login_required
-def edit_bonus(request, bonus_id):
+def edit_bonus(request, year, month, day, slug, bonus_id):
+    method = get_object_or_404(Method, slug=slug)
     bonus = get_object_or_404(MethodBonus, id=bonus_id)
     preview = {}
 
@@ -399,7 +400,11 @@ def edit_bonus(request, bonus_id):
                                                 "visible to others."))
                     return HttpResponseRedirect(
                         reverse('methods-edit-bonus',
-                                kwargs={'bonus_id': b.id}))
+                            kwargs={'year': bonus.method.published_at.year,
+                                    'month': bonus.method.published_at.month,
+                                    'day': bonus.method.published_at.day,
+                                    'slug': bonus.method.slug,
+                                    'bonus_id': bonus.id}))
 
         elif 'delete' in request.POST:
             bonus.delete()
@@ -423,17 +428,21 @@ def edit_bonus(request, bonus_id):
                         'slug': bonus.method.slug}))
 
         elif 'unpublish' in request.POST:
-            method.status = 'DRAFT'
-            method.save()
+            bonus.status = 'DRAFT'
+            bonus.save()
             messages.success(request, _("Method is now draft"))
-            return HttpResponseRedirect(reverse('methods-edit-bonus',
-                                                kwargs={'slug': bonus.id}))
+            return HttpResponseRedirect(reverse('methods-show-bonus',
+                kwargs={'year': bonus.method.published_at.year,
+                        'month': bonus.method.published_at.month,
+                        'day': bonus.method.published_at.day,
+                        'slug': bonus.method.slug}))
         else:
             raise Http404
 
     t = loader.get_template('methods-edit-bonus.html')
     c = RequestContext(request,
-                       {'bonus': bonus,
+                       {'method': method,
+                        'bonus': bonus,
                         'preview': preview,
                         'form': form,
                         'edit_bonus_flag': True})

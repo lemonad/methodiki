@@ -20,22 +20,30 @@
 {% endblock %}
 
 {% block main %}
-  {% if method.methodbonus_set.all %}
-  <a href="{% url methods-show-bonus method.published_at.year method.published_at.month method.published_at.day method.slug %}">
-    <img style="float:right;margin-top:-2em;"
-         src="{% media_url "images/pedagogic-bonus.png" %}" />
-  </a>
-  {% endif %}
-  <h2>{{ method.title }}</h2>
-  <h5 class="print">
-    http://{{ site_domain }}{% url methods-show-method-short method.id %}
-  </h5>
+  <div id="method-wrapper">
+    <section id="markdown-wrapper">
+      {% if method.methodbonus_set.all %}
+      <a href="{% url methods-show-bonus method.published_at.year method.published_at.month method.published_at.day method.slug %}">
+        <img style="float:right;margin-top:-2em;"
+             src="{% media_url "images/pedagogic-bonus.png" %}" />
+      </a>
+      {% endif %}
 
-  <div id="method">
-    {{ method.description|markdown:"autolink" }}
+      <a href="http://{{ site_domain }}{% url methods-show-method-short method.id %}">
+        <h2>
+          {{ method.title }}
+        </h2>
+      </a>
+
+      <div class="markdown">
+        {{ method.description|markdown:"autolink" }}
+      </div>
+
+      {% include "methods-meta.html" %}
+
+    </section>
+    <hr />
   </div>
-  <hr />
-  {% include "methods-meta.html" %}
 
   <div id="comments" class="span-16 last prepend-top">
     {% get_comment_count for method as comment_count %}
@@ -130,7 +138,7 @@
   <div id="bonuses" class="noprint">
     <h3>{% trans "Good method?" %}</h3>
     <p>
-      {% url methods-create-bonus as create_bonus_url %}
+      {% url methods-create-bonus method.published_at.year method.published_at.month method.published_at.day method.slug as create_bonus_url %}
       {% blocktrans %}
       Is this method good from other perspectives than pure reusability?
       <a href="{{ create_bonus_url }}">Read more</a> and create a method bonus.
@@ -138,7 +146,7 @@
 
       <a class="rounded-6"
             style="display:inline-block;padding:3px 15px 3px 15px;margin-left:1em;background-color:#99bb14;color:#fff;font-style:normal;font-weight:bold;text-decoration:none;"
-            href="{% url methods-create-bonus %}">
+            href="{{ create_bonus_url }}">
         <img src="{% media_url "images/pedagogic-bonus-badge.png" %}"
              style="width:18px;height:18px;vertical-align:text-bottom;"/>
         {% trans "Create bonus" %}

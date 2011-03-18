@@ -213,8 +213,7 @@ class EditMethodTests(TestCase):
                                      'method-title': "Hello",
                                      'method-description': "Hello World"})
         self.assertRedirects(response,
-                             reverse('methods-edit-method',
-                                     kwargs={'slug': m.slug}),
+                             reverse('methods-index'),
                              status_code=302,
                              target_status_code=200)
 
@@ -255,8 +254,7 @@ class EditMethodTests(TestCase):
                                             kwargs={'slug': m.slug}),
                                     {'unpublish': "Unpublish"})
         self.assertRedirects(response,
-                             reverse('methods-edit-method',
-                                     kwargs={'slug': m.slug}),
+                             reverse('methods-index'),
                              status_code=302,
                              target_status_code=200)
 
