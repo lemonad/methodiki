@@ -169,7 +169,7 @@ _base_screen_bundle = (
 )
 _base_js_bundle = (
     'javascript/modernizr-1.6.min.js',
-    'javascript/jquery-1.4.4.min.js',
+    'javascript/jquery-1.5.1.min.js',
     'javascript/jquery.corner.js',
     'javascript/jquery.fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js',
 )
