@@ -29,7 +29,7 @@
           },
           template: '<div class="qq-uploader">' +
                     '<div class="qq-upload-drop-area"><span>{% trans "Drop files here to upload" %}</span></div>' +
-                    '<div class="qq-upload-button rounded-3">{% trans "Upload an image" %}</div>' +
+                    '<div class="qq-upload-button rounded-6">{% trans "Upload an image" %}</div>' +
                     '<ul class="qq-upload-list"></ul>' +
                     '</div>',
           onComplete: function(id, fileName, responseJSON) {
@@ -114,141 +114,142 @@
   </div>
 
   <div class="method span-18 prepend-3 append-3 last">
-  <div class="column box rounded-9">
-    <form id="method-form" method="post"
-          action="{% url methods-edit-method method.slug %}">
-      {% csrf_token %}
+    <div class="column box rounded-9">
+      <form id="method-form" method="post"
+            action="{% url methods-edit-method method.slug %}">
+        {% csrf_token %}
 
-      <fieldset>
-        {% if form.title.errors %}
-        <div class="span-18 last">
-          {% for error in form.title.errors %}
-          <p class="error">
-            {{ error|escape }}
-          </p>
-          {% endfor %}
-        </div>
-        {% endif %}
-
-        <div class="span-18 last{% if form.title.errors %} loud{% endif %}">
-          {{ form.title.label_tag }}
-        </div>
-        {{ form.title }}
-      </fieldset>
-
-      <fieldset>
-        {% if form.description.errors %}
-        <div class="span-18 last">
-          {% for error in form.description.errors %}
-          <p class="error">
-            {{ error|escape }}
-          </p>
-          {% endfor %}
-        </div>
-        {% endif %}
-
-        <div class="span-18 last{% if form.description.errors %} loud{% endif %}">
-          {{ form.description.label_tag }}
-        </div>
-        {{ form.description }}
-      </fieldset>
-
-      <div id="uploaded-media" class="span-18 last" style="margin-top:0.5em;">
-        <ul id="uploaded-media-list">
-        {% for image in images %}
-        <li id="image-{{ image.id }}" class="rounded-6">
-          <a href="{{ image.image.url }}">
-            <img class="rounded-3" src="{% thumbnail image.image 50x50 %}"
-                 title="{{ image.image.size }}"/>
-          </a>
-          <a class="image-add" href="{{ image.image.url }}"></a>
-          <a class="image-preview" href="{{ image.image.url }}"></a>
-          <a id="delete-image-{{ image.id }}" class="image-delete"
-             href="#"></a>
-        </li>
-        {% endfor %}
-        </ul>
-        {% comment %}
-        <p>{% blocktrans %}
-          Hover over an image and click the plus sign to add the image
-          where you've placed the cursor in the text.
-        {% endblocktrans %}</p>
-        {% endcomment %}
-      </div>
-
-      <div id="file-uploader" class="span-18 last">
-        <noscript>
-          <p>Please enable JavaScript to use file uploader.</p>
-          <!-- or put a simple form for upload here -->
-        </noscript>
-      </div>
-
-      <h2>{% trans "Optional settings" %}</h2>
-      <h3 class="span-18 last options rounded-6">
-        {% trans "Tags" %}
-      </h3>
-      <fieldset{% if not form.tags.errors %} style="display:none;"{% endif %}>
-        {% if form.tags.errors %}
-        <div class="span-18 last">
-          {% for error in form.tags.errors %}
-          <p class="error">
-            {{ error|escape }}
-          </p>
-          {% endfor %}
-        </div>
-        {% endif %}
-        {{ form.tags }}
-
-        <div class="span-18 last">
-          <h4>{% trans "Suggested tags:" %}</h4>
-          <div id="suggested-tags">
-            {% for title, tags in suggested_tags %}
-            <p>
-              <strong>{{ title }}:</strong>
-              {% for tag in tags %}
-              <span class="taggit-tag">{{ tag }}</span>
-              {% endfor %}
+        <fieldset>
+          {% if form.title.errors %}
+          <div class="span-18 last">
+            {% for error in form.title.errors %}
+            <p class="error">
+              {{ error|escape }}
             </p>
             {% endfor %}
           </div>
+          {% endif %}
+
+          <div class="span-18 last{% if form.title.errors %} loud{% endif %}">
+            {{ form.title.label_tag }}
+          </div>
+          {{ form.title }}
+        </fieldset>
+
+        <fieldset>
+          {% if form.description.errors %}
+          <div class="span-18 last">
+            {% for error in form.description.errors %}
+            <p class="error">
+              {{ error|escape }}
+            </p>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <div class="span-18 last{% if form.description.errors %} loud{% endif %}">
+            {{ form.description.label_tag }}
+          </div>
+          {{ form.description }}
+        </fieldset>
+
+        <div id="uploaded-media" class="span-18 last"
+             style="margin-top:0.5em;">
+          <ul id="uploaded-media-list">
+          {% for image in images %}
+          <li id="image-{{ image.id }}" class="rounded-6">
+            <a href="{{ image.image.url }}">
+              <img class="rounded-3" src="{% thumbnail image.image 50x50 %}"
+                   title="{{ image.image.size }}"/>
+            </a>
+            <a class="image-add" href="{{ image.image.url }}"></a>
+            <a class="image-preview" href="{{ image.image.url }}"></a>
+            <a id="delete-image-{{ image.id }}" class="image-delete"
+               href="#"></a>
+          </li>
+          {% endfor %}
+          </ul>
+          {% comment %}
+          <p>{% blocktrans %}
+            Hover over an image and click the plus sign to add the image
+            where you've placed the cursor in the text.
+          {% endblocktrans %}</p>
+          {% endcomment %}
         </div>
-      </fieldset>
 
-      <div class="span-18 prepend-top last align-right append-bottom">
-        <input class="submit" type="submit" name="preview"
-               value="{% trans "Preview" %}" />
-        <input class="submit" type="submit" name="method"
-               value="{% trans "Save" %}" />
-      </div>
-    </form>
+        <div id="file-uploader" class="span-4 append-14 last">
+          <noscript>
+            <p>Please enable JavaScript to use file uploader.</p>
+            <!-- or put a simple form for upload here -->
+          </noscript>
+        </div>
 
-    <hr />
-    {% include "methods-meta.html" %}
+        <h2>{% trans "Optional settings" %}</h2>
+        <h3 class="span-18 last options rounded-6">
+          {% trans "Tags" %}
+        </h3>
+        <fieldset{% if not form.tags.errors %} style="display:none;"{% endif %}>
+          {% if form.tags.errors %}
+          <div class="span-18 last">
+            {% for error in form.tags.errors %}
+            <p class="error">
+              {{ error|escape }}
+            </p>
+            {% endfor %}
+          </div>
+          {% endif %}
+          {{ form.tags }}
 
-    {% ifequal method.status "DRAFT" %}
-    <form class="inline" method="post"
-          action="{% url methods-edit-method method.slug %}">
-      {% csrf_token %}
-      <input class="submit" type="submit" name="publish"
-             value="{% trans "Publish method" %}" />
-    </form>
-    {% endifequal %}
+          <div class="span-18 last">
+            <h4>{% trans "Suggested tags:" %}</h4>
+            <div id="suggested-tags">
+              {% for title, tags in suggested_tags %}
+              <p>
+                <strong>{{ title }}:</strong>
+                {% for tag in tags %}
+                <span class="taggit-tag">{{ tag }}</span>
+                {% endfor %}
+              </p>
+              {% endfor %}
+            </div>
+          </div>
+        </fieldset>
 
-    {% ifequal method.status "PUBLISHED" %}
-    <form class="inline" method="post"
-          action="{% url methods-edit-method method.slug %}">
-      {% csrf_token %}
-      <input class="submit" type="submit" name="unpublish"
-             value="{% trans "Unpublish method" %}" />
-    </form>
-    {% endifequal %}
+        <div class="span-18 prepend-top last align-right append-bottom">
+          <input class="submit rounded-15" type="submit" name="preview"
+                 value="{% trans "Preview" %}" />
+          <input class="submit rounded-15" type="submit" name="method"
+                 value="{% trans "Save" %}" />
+        </div>
+      </form>
 
-    <form class="inline" method="post" id="delete-method"
-          action="{% url methods-edit-method method.slug %}">
-      {% csrf_token %}
-      <input class="submit" type="submit" name="delete"
-             value="{% trans "Delete method" %}" />
-    </form>
-  </div>
+      <hr />
+      {% include "methods-meta.html" %}
+
+      {% ifequal method.status "DRAFT" %}
+      <form class="inline" method="post"
+            action="{% url methods-edit-method method.slug %}">
+        {% csrf_token %}
+        <input class="submit rounded-15" type="submit" name="publish"
+               value="{% trans "Publish method" %}" />
+      </form>
+      {% endifequal %}
+
+      {% ifequal method.status "PUBLISHED" %}
+      <form class="inline" method="post"
+            action="{% url methods-edit-method method.slug %}">
+        {% csrf_token %}
+        <input class="submit rounded-15" type="submit" name="unpublish"
+               value="{% trans "Unpublish method" %}" />
+      </form>
+      {% endifequal %}
+
+      <form class="inline" method="post" id="delete-method"
+            action="{% url methods-edit-method method.slug %}">
+        {% csrf_token %}
+        <input class="submit rounded-15" type="submit" name="delete"
+               value="{% trans "Delete method" %}" />
+      </form>
+    </div>
   </div>
 {% endblock %}
