@@ -115,8 +115,7 @@
   {{ form.timestamp }}
   {{ form.security_hash }}
 
-  <div class="prepend-top prepend-3 span-10 append-2 last"
-       style="text-align:right;">
+  <div class="prepend-top prepend-3 span-10 append-2 last align-right">
     <input type="submit" name="preview" value="{% trans "Preview" %}" />
     {% if not method and not form.errors %}
     <input type="submit" name="submit" value="{% trans "Submit" %}" />

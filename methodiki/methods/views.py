@@ -142,6 +142,7 @@ def show_method_short(request, id):
                     'day': method.published_at.day,
                     'slug': method.slug}))
 
+
 def show_method(request, year, month, day, slug):
     """ Shows a method """
 

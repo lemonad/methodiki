@@ -1,5 +1,17 @@
 {% extends "base-frontpage.html" %}
 {% load comments i18n markup media methods thumbnail %}
+
+{% block javascript %}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("a.method-thumb-zoom").fancybox({"hideOnContentClick": true,
+                                       "type": "image",
+                                       "href": this.src,
+                                       "margin": 14});
+  });
+</script>
+{% endblock %}
+
 {% block main %}
   <div class="container">
     <div id="frontpage" class="span-24 last">
@@ -13,14 +25,14 @@
       <div class="span-24 last">
         <div class="span-15 append-1">
         {% if method %}
-        <ul style="list-style-type:none;">
+        <ul>
           <li>
-              {% if method.methodbonus_set.all %}
-              <a href="{% url methods-show-bonus method.published_at.year method.published_at.month method.published_at.day method.slug %}">
-                <img style="float:right;margin-top:-1em;"
-                     src="{% media_url "images/pedagogic-bonus.png" %}" />
-              </a>
-              {% endif %}
+            {% if method.methodbonus_set.all %}
+            <a href="{% url methods-show-bonus method.published_at.year method.published_at.month method.published_at.day method.slug %}">
+              <img class="bonus-badge"
+                   src="{% media_url "images/pedagogic-bonus.png" %}" />
+            </a>
+            {% endif %}
             <a href="{% url methods-show-method method.published_at.year method.published_at.month method.published_at.day method.slug %}">
               <h3>
                 {{ method.title }}
@@ -47,7 +59,9 @@
         </ul>
         {% else %}
         <p>
-          <a href="{% url methods-create-method %}">{% trans "Go ahead, create the first method!" %}</a>
+          <a href="{% url methods-create-method %}">
+            {% trans "Go ahead, create the first method!" %}
+          </a>
         </p>
         {% endif %}
         </div>

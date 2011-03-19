@@ -12,6 +12,7 @@ class CustomComment(Comment):
                                default=True,
                                blank=True,
                                db_index=True)
+
     class Meta:
         verbose_name = _("comment")
         verbose_name_plural = _("comments")

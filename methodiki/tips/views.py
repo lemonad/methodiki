@@ -22,6 +22,7 @@ from django.utils.translation import ugettext_lazy as _
 from forms import TipForm
 from models import Tip
 
+
 def index(request):
     """ Tips index page """
 
@@ -40,7 +41,7 @@ def index(request):
     t = loader.get_template('tips-index.html')
     c = RequestContext(request,
                        {'tips': tips,
-                        'form': form,})
+                        'form': form})
     return HttpResponse(t.render(c))
 
 
@@ -73,5 +74,5 @@ def edit_tip(request, tip_id):
     t = loader.get_template('tips-edit-tip.html')
     c = RequestContext(request,
                        {'tip': tip,
-                        'form': form,})
+                        'form': form})
     return HttpResponse(t.render(c))

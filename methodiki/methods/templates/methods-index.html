@@ -11,9 +11,9 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $("a.method-thumb-zoom").fancybox({"hideOnContentClick": true,
-                          "type": "image",
-                          "href": this.src,
-                          "margin": 14});
+                                       "type": "image",
+                                       "href": this.src,
+                                       "margin": 14});
   });
 </script>
 {% endblock %}
@@ -22,7 +22,7 @@
   <h2>{{ methods.count }} {% trans "Methods and best practices" %}</h2>
 
   {% if methods %}
-  <ul id="method-index" style="list-style-type: none;">
+  <ul id="method-index">
     {% for method in methods %}
     <li>
       {% include "methods-listitem.html" %}

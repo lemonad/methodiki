@@ -51,24 +51,7 @@
                     fancybox({"hideOnContentClick": true,
                               "margin": 14});
 
-            /*
-            if (responseJSON.width > 600 || responseJSON.height > 500) {
-                link_and_image += "http://{{ request.META.HTTP_HOST }}" +
-                                  responseJSON.url;
-            } else {
-                link_and_image += "http://{{ request.META.HTTP_HOST }}" +
-                                  responseJSON.original_url;
-            }
-            */
             $("#uploaded-media-list").append(listitem);
-            /*
-            $(".method-image").click(function() {
-                $.markItUp({ replaceWith: '![{% trans "Alternative text" %}](' +
-                                          this.href +
-                                          ' "{% trans "Title" %}")' });
-                return false;
-            });
-            */
             $("#uploaded-media").show("slow");
           }
       });
@@ -231,7 +214,7 @@
         </div>
       </fieldset>
 
-      <div class="span-18 prepend-top last" style="text-align: right;margin-bottom:1em;">
+      <div class="span-18 prepend-top last align-right append-bottom">
         <input class="submit" type="submit" name="preview"
                value="{% trans "Preview" %}" />
         <input class="submit" type="submit" name="method"
@@ -243,7 +226,7 @@
     {% include "methods-meta.html" %}
 
     {% ifequal method.status "DRAFT" %}
-    <form style="display:inline;" method="post"
+    <form class="inline" method="post"
           action="{% url methods-edit-method method.slug %}">
       {% csrf_token %}
       <input class="submit" type="submit" name="publish"
@@ -252,7 +235,7 @@
     {% endifequal %}
 
     {% ifequal method.status "PUBLISHED" %}
-    <form style="display:inline;" method="post"
+    <form class="inline" method="post"
           action="{% url methods-edit-method method.slug %}">
       {% csrf_token %}
       <input class="submit" type="submit" name="unpublish"
@@ -260,7 +243,7 @@
     </form>
     {% endifequal %}
 
-    <form style="display:inline;" method="post" id="delete-method"
+    <form class="inline" method="post" id="delete-method"
           action="{% url methods-edit-method method.slug %}">
       {% csrf_token %}
       <input class="submit" type="submit" name="delete"

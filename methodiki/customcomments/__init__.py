@@ -22,6 +22,7 @@ from django.contrib.comments.views import utils
 from django.core import urlresolvers
 from django.http import HttpResponseRedirect
 
+
 def next_redirect(data, default, default_view, **get_kwargs):
     """
     Handle the "where should I go next?" part of comment views.

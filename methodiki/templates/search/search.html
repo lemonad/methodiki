@@ -6,7 +6,7 @@
 
   <form method="get" action=".">
     {% if query %}
-    <ul id="method-index" style="list-style-type: none;">
+    <ul id="method-index">
     {% for result in page.object_list %}
       {% with result.object as method %}
       <li>

@@ -12,6 +12,7 @@ from taggit.managers import TaggableManager
 
 from customcomments.models import CustomComment
 
+
 class MethodManager(Manager):
     def created_by_user(self, userid):
         return self.filter(user=userid) \

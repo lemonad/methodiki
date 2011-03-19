@@ -5,18 +5,9 @@
     $(document).ready(function() {
       $("#id_name").focus();
       $("a.avatar-preview").fancybox({"hideOnContentClick": true,
-                                     "margin": 14});
+                                      "margin": 14});
     });
   </script>
-{% endblock %}
-
-{% block navigation %}
-  <ul>
-    <li class="rounded-9"><a href="#">{% trans "Account" %}</a></li>
-    <li class="rounded-9"><a href="#">{% trans "Password" %}</a></li>
-    <li class="rounded-9"><a href="#">{% trans "Notices" %}</a></li>
-    <li class="rounded-9 active"><a href="#">{% trans "Profile" %}</a></li>
-  </ul>
 {% endblock %}
 
 {% block main %}
@@ -25,8 +16,9 @@
     <h2>{% trans "Edit your profile information" %}</h2>
     <p>
       {% blocktrans %}
-      Please take a little time to fill in your profile information before going
-      off exploring the site and helping your colleagues by setting good examples.
+      Please take a little time to fill in your profile information before
+      going off exploring the site and helping your colleagues by setting
+      good examples.
       {% endblocktrans %}
     </p>
 
@@ -56,8 +48,8 @@
         {% if user.get_profile.avatar %}
         <a class="avatar-preview"
            href="{{ user.get_profile.avatar.url }}">
-          <img src="{% thumbnail user.get_profile.avatar 100x100 %}"
-               style="padding:3px;background-color:white;border: 1px solid #999;" />
+          <img class="profile-avatar"
+               src="{% thumbnail user.get_profile.avatar 100x100 %}" />
         </a>
         {% endif %}
         <div class="span-7 last">
@@ -82,7 +74,7 @@
         {{ form.name }}
       </div>
 
-      <div class="span-10 last prepend-top" style="text-align:right;">
+      <div class="span-10 last prepend-top align-right">
         <input type="submit" value="{% trans "Save" %}" />
       </div>
     </form>

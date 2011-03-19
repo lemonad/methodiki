@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-11 16:31+0100\n"
+"POT-Creation-Date: 2011-03-19 20:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,7 +61,7 @@ msgstr ""
 
 #: methods/feeds.py:13 methods/templates/methods-index.html:6
 #: methods/templates/methods-tag-index.html:5
-#: methods/templates/sidebar/sidebar-meta.html:12
+#: methods/templates/sidebar/sidebar-meta.html:7
 msgid "Latest methods"
 msgstr "Nyaste metoderna"
 
@@ -70,7 +70,7 @@ msgid "The latest methods submitted by your co-workers"
 msgstr "De nyaste upplagda metoderna från dina kollegor"
 
 #: methods/models.py:51 methods/models.py:161
-#: users/templates/users-show-user.html:35
+#: users/templates/users-show-user.html:32
 msgid "Draft"
 msgstr "Utkast"
 
@@ -86,7 +86,7 @@ msgstr "Slugg"
 msgid "Created by"
 msgstr "Inlagd av"
 
-#: methods/models.py:64 methods/templates/methods-edit-method.html:64
+#: methods/models.py:64
 msgid "Title"
 msgstr "Titel"
 
@@ -162,7 +162,7 @@ msgstr "metodbonus"
 msgid "method bonuses"
 msgstr "metodbonusar"
 
-#: methods/views.py:207
+#: methods/views.py:198
 msgid ""
 "Thanks for adding a new method! Don't forget to publish it so it becomes "
 "visible to others."
@@ -170,30 +170,30 @@ msgstr ""
 "Tack för att du lade in en ny metod! Glöm inte att publicera den så den blir "
 "synlig för andra."
 
-#: methods/views.py:266
+#: methods/views.py:257
 msgid "Method saved!"
 msgstr "Metoden sparades!"
 
-#: methods/views.py:268
+#: methods/views.py:260
 msgid ""
 "Method saved! Don't forget to publish it so it becomes visible to others."
 msgstr ""
 "Metoden sparades! Glöm inte att publicera den så att den blir synlig för "
 "andra."
 
-#: methods/views.py:282
+#: methods/views.py:275
 msgid "Method deleted!"
 msgstr "Metoden togs bort!"
 
-#: methods/views.py:290
+#: methods/views.py:283
 msgid "Method is now published and visible to everyone"
 msgstr "Metoden publicerades och är nu synlig för alla"
 
-#: methods/views.py:297 methods/views.py:428
+#: methods/views.py:290 methods/views.py:433
 msgid "Method is now draft"
 msgstr "Metoden är nu ett utkast"
 
-#: methods/views.py:340
+#: methods/views.py:335
 msgid ""
 "Thanks for adding a new method bonus! Don't forget to publish it so it "
 "becomes visible to others."
@@ -201,22 +201,22 @@ msgstr ""
 "Tack för att du lade in en ny metodbonus! Glöm inte att publicera den så den "
 "blir synlig för andra."
 
-#: methods/views.py:390
+#: methods/views.py:391
 msgid "Bonus saved!"
 msgstr "Bonusen sparades!"
 
-#: methods/views.py:397
+#: methods/views.py:398
 msgid ""
 "Bonus saved! Don't forget to publish it so it becomes visible to others."
 msgstr ""
 "Bonusen sparades! Glöm inte att publicera den så att den blir synlig för "
 "andra."
 
-#: methods/views.py:406
+#: methods/views.py:411
 msgid "Bonus deleted!"
 msgstr "Bonusen togs bort!"
 
-#: methods/views.py:417
+#: methods/views.py:422
 msgid "Bonus is now published and visible to everyone"
 msgstr "Bonusen publicerades och är nu synlig för alla"
 
@@ -337,20 +337,25 @@ msgstr ""
 msgid "Edit bonus"
 msgstr "Redigera bonus"
 
-#: methods/templates/methods-bonus-preview.html:4
+#: methods/templates/methods-bonus-preview.html:5
 msgid "Bonus preview"
 msgstr "Förhandsgranska bonus"
 
-#: methods/templates/methods-bonus-preview.html:5
+#: methods/templates/methods-bonus-preview.html:6
 msgid "Scroll down to edit or save your bonus"
 msgstr "Scrolla ned för att redigera eller spara din bonus"
 
-#: methods/templates/methods-bonus-preview.html:130
-#: methods/templates/methods-preview.html:89
+#: methods/templates/methods-bonus-preview.html:11
+#: methods/templates/methods-show-bonus.html:24
+msgid "Good method"
+msgstr "Bra metod"
+
+#: methods/templates/methods-bonus-preview.html:23
+#: methods/templates/methods-preview.html:17
 msgid "Preview only"
 msgstr "Endast förhandsgranskning"
 
-#: methods/templates/methods-bonus-preview.html:131
+#: methods/templates/methods-bonus-preview.html:24
 msgid "Edit or save bonus below"
 msgstr "Redigera eller spara bonusen nedan"
 
@@ -366,16 +371,16 @@ msgstr ""
 "    metoden till toppen av metodlistan?\n"
 "    "
 
-#: methods/templates/methods-comment-form.html:120
+#: methods/templates/methods-comment-form.html:119
 #: methods/templates/methods-create-bonus.html:50
-#: methods/templates/methods-create-method.html:112
-#: methods/templates/methods-edit-bonus.html:50
-#: methods/templates/methods-edit-method.html:236
-#: methods/templates/methods-preview.html:4
+#: methods/templates/methods-create-method.html:114
+#: methods/templates/methods-edit-bonus.html:51
+#: methods/templates/methods-edit-method.html:219
+#: methods/templates/methods-preview.html:5
 msgid "Preview"
 msgstr "Förhandsgranska"
 
-#: methods/templates/methods-comment-form.html:122
+#: methods/templates/methods-comment-form.html:121
 #: tips/templates/tips-form.html:31
 msgid "Submit"
 msgstr "Skicka"
@@ -389,8 +394,13 @@ msgstr "Ge en bonus!"
 msgid "Start writing!"
 msgstr "Börja skriva!"
 
+#: methods/templates/methods-create-bonus.html:30
+#: methods/templates/methods-edit-bonus.html:33
+msgid "Bonus"
+msgstr "Bonus"
+
 #: methods/templates/methods-create-bonus.html:52
-#: methods/templates/methods-create-method.html:114
+#: methods/templates/methods-create-method.html:116
 msgid "Create"
 msgstr "Skapa"
 
@@ -398,25 +408,25 @@ msgstr "Skapa"
 msgid "Add images after submitting your method (sorry...)"
 msgstr "Lägg till bilder efter du sparat din metod (sorry...)"
 
-#: methods/templates/methods-create-method.html:81
-#: methods/templates/methods-edit-method.html:203
+#: methods/templates/methods-create-method.html:83
+#: methods/templates/methods-edit-method.html:186
 msgid "Optional settings"
 msgstr "Valfria fält"
 
-#: methods/templates/methods-create-method.html:83
-#: methods/templates/methods-edit-method.html:205
+#: methods/templates/methods-create-method.html:85
+#: methods/templates/methods-edit-method.html:188
 #: methods/templates/methods-meta.html:37
 #: methods/templates/methods-tags.html:13 templates/base-header.html:77
 msgid "Tags"
 msgstr "Taggar"
 
-#: methods/templates/methods-create-method.html:96
-#: methods/templates/methods-edit-method.html:220
+#: methods/templates/methods-create-method.html:98
+#: methods/templates/methods-edit-method.html:203
 msgid "Suggested tags:"
 msgstr "Förslag på taggar:"
 
-#: methods/templates/methods-create-method.html:121
-#: methods/templates/methods-edit-method.html:28
+#: methods/templates/methods-create-method.html:123
+#: methods/templates/methods-edit-method.html:32
 msgid "Upload an image"
 msgstr "Ladda upp en bild"
 
@@ -425,13 +435,13 @@ msgid "Really delete bonus?"
 msgstr "Verkligen ta bort bonusen?"
 
 #: methods/templates/methods-edit-bonus.html:27
-#: methods/templates/methods-edit-method.html:129
+#: methods/templates/methods-edit-method.html:112
 msgid "Edit away!"
 msgstr "Redigera!"
 
-#: methods/templates/methods-edit-bonus.html:52
-#: methods/templates/methods-edit-method.html:238
-#: preferences/templates/preferences-profile.html:86
+#: methods/templates/methods-edit-bonus.html:53
+#: methods/templates/methods-edit-method.html:221
+#: preferences/templates/preferences-profile.html:78
 msgid "Save"
 msgstr "Spara"
 
@@ -451,19 +461,15 @@ msgstr "Ta bort bonus"
 msgid "Really delete method?"
 msgstr "Verkligen ta bort metoden?"
 
-#: methods/templates/methods-edit-method.html:27
+#: methods/templates/methods-edit-method.html:31
 msgid "Drop files here to upload"
 msgstr "Släpp filer här för att ladda upp"
 
-#: methods/templates/methods-edit-method.html:62
-msgid "Alternative text"
-msgstr "Alternativ text"
-
-#: methods/templates/methods-edit-method.html:76
+#: methods/templates/methods-edit-method.html:63
 msgid "Delete image?"
 msgstr "Ta bort bild?"
 
-#: methods/templates/methods-edit-method.html:189
+#: methods/templates/methods-edit-method.html:172
 msgid ""
 "\n"
 "          Hover over an image and click the plus sign to add the image\n"
@@ -475,27 +481,27 @@ msgstr ""
 "          att lägga till bilden där du placerat markören i texten.\n"
 "        "
 
-#: methods/templates/methods-edit-method.html:250
+#: methods/templates/methods-edit-method.html:233
 msgid "Publish method"
 msgstr "Publicera metoden"
 
-#: methods/templates/methods-edit-method.html:259
+#: methods/templates/methods-edit-method.html:242
 msgid "Unpublish method"
 msgstr "Avpublicera metoden"
 
-#: methods/templates/methods-edit-method.html:267
+#: methods/templates/methods-edit-method.html:250
 msgid "Delete method"
 msgstr "Ta bort metoden"
 
-#: methods/templates/methods-frontpage.html:7
+#: methods/templates/methods-frontpage.html:19
 msgid "Great methods to reuse and be inspired by."
 msgstr "Bra metoder att återanvända och bli inspirerad av."
 
-#: methods/templates/methods-frontpage.html:9
+#: methods/templates/methods-frontpage.html:21
 msgid "Share yours!"
 msgstr "Dela med dig av dina!"
 
-#: methods/templates/methods-frontpage.html:36
+#: methods/templates/methods-frontpage.html:49
 #, python-format
 msgid ""
 "\n"
@@ -514,12 +520,12 @@ msgstr[1] ""
 "          %(cc)s kommentarer.\n"
 "        "
 
-#: methods/templates/methods-frontpage.html:50
+#: methods/templates/methods-frontpage.html:64
 #: methods/templates/methods-index.html:35
 msgid "Go ahead, create the first method!"
 msgstr "Kom igen, lägg in den första metoden!"
 
-#: methods/templates/methods-frontpage.html:92
+#: methods/templates/methods-frontpage.html:107
 msgid "Popular Tags"
 msgstr "Populära taggar"
 
@@ -546,27 +552,27 @@ msgstr[1] ""
 "          %(cc)s kommentarer.\n"
 "        "
 
-#: methods/templates/methods-markdown-quick-help.html:6
+#: methods/templates/methods-markdown-quick-help.html:3
 msgid "Quick help"
 msgstr "Snabbhjälp"
 
-#: methods/templates/methods-markdown-quick-help.html:10
+#: methods/templates/methods-markdown-quick-help.html:7
 msgid "Want detailed help?"
 msgstr "Vill du ha detaljerad hjälp?"
 
-#: methods/templates/methods-markdown-quick-help.html:16
+#: methods/templates/methods-markdown-quick-help.html:13
 msgid "Text format"
 msgstr "Textformat"
 
-#: methods/templates/methods-markdown-quick-help.html:17
+#: methods/templates/methods-markdown-quick-help.html:14
 msgid "Subset of markdown. No html."
 msgstr "Delmängd av markdown. Ingen html."
 
-#: methods/templates/methods-markdown-quick-help.html:20
+#: methods/templates/methods-markdown-quick-help.html:17
 msgid "Images"
 msgstr "Bilder"
 
-#: methods/templates/methods-markdown-quick-help.html:23
+#: methods/templates/methods-markdown-quick-help.html:20
 msgid ""
 "\n"
 "        Upload images using button below edit area, click on\n"
@@ -578,7 +584,7 @@ msgstr ""
 "        tumnaglarna för att lägga in bilden i texten.\n"
 "        "
 
-#: methods/templates/methods-markdown-quick-help.html:29
+#: methods/templates/methods-markdown-quick-help.html:26
 msgid ""
 "\n"
 "        Use images already uploaded somewhere else; paste urls\n"
@@ -590,11 +596,11 @@ msgstr ""
 "        direkt i texten.\n"
 "        "
 
-#: methods/templates/methods-markdown-quick-help.html:37
+#: methods/templates/methods-markdown-quick-help.html:34
 msgid "Videos"
 msgstr "Videos"
 
-#: methods/templates/methods-markdown-quick-help.html:38
+#: methods/templates/methods-markdown-quick-help.html:35
 msgid "Not yet. Just add a link to it for now."
 msgstr "Inte ännu. Länka till dem så länge."
 
@@ -602,19 +608,15 @@ msgstr "Inte ännu. Länka till dem så länge."
 msgid "Edit it?"
 msgstr "Redigera?"
 
-#: methods/templates/methods-preview.html:5
+#: methods/templates/methods-preview.html:6
 msgid "Scroll down to edit or save your method"
 msgstr "Scrolla ned för att redigera eller spara din metod"
 
-#: methods/templates/methods-preview.html:90
+#: methods/templates/methods-preview.html:18
 msgid "Edit or save method below"
 msgstr "Redigera eller spara metoden nedan"
 
-#: methods/templates/methods-show-bonus.html:21
-msgid "Good method"
-msgstr "Bra metod"
-
-#: methods/templates/methods-show-method.html:45
+#: methods/templates/methods-show-method.html:53
 #, python-format
 msgid ""
 "\n"
@@ -633,11 +635,11 @@ msgstr[1] ""
 "        %(cc)s kommentarer:\n"
 "      "
 
-#: methods/templates/methods-show-method.html:114
+#: methods/templates/methods-show-method.html:121
 msgid "What do you think?"
 msgstr "Vad tycker du?"
 
-#: methods/templates/methods-show-method.html:116
+#: methods/templates/methods-show-method.html:123
 msgid ""
 "\n"
 "          By writing comments, you can encourage good methods being shared\n"
@@ -650,11 +652,11 @@ msgstr ""
 "          och ge positiv återkoppling!\n"
 "          "
 
-#: methods/templates/methods-show-method.html:131
+#: methods/templates/methods-show-method.html:138
 msgid "Good method?"
 msgstr "Bra metod?"
 
-#: methods/templates/methods-show-method.html:134
+#: methods/templates/methods-show-method.html:141
 #, python-format
 msgid ""
 "\n"
@@ -669,16 +671,16 @@ msgstr ""
 "      <a href=\"%(create_bonus_url)s\">Läs mer</a> och skapa en metodbonus.\n"
 "      "
 
-#: methods/templates/methods-show-method.html:144
+#: methods/templates/methods-show-method.html:151
 msgid "Create bonus"
 msgstr "Skapa bonus"
 
-#: methods/templates/methods-tag-index.html:18
+#: methods/templates/methods-tag-index.html:11
 msgid "methods tagged with"
 msgstr "metoder taggade med"
 
-#: methods/templates/methods-tag-index.html:48
-#: users/templates/users-show-user.html:54
+#: methods/templates/methods-tag-index.html:41
+#: users/templates/users-show-user.html:51
 #, python-format
 msgid ""
 "\n"
@@ -720,14 +722,6 @@ msgid "Login and add a method!"
 msgstr "Logga in och lägg till en metod!"
 
 #: methods/templates/sidebar/sidebar-meta.html:3
-msgid "About"
-msgstr "Om"
-
-#: methods/templates/sidebar/sidebar-meta.html:5
-msgid "Why methodiki?"
-msgstr "Varför metodiki?"
-
-#: methods/templates/sidebar/sidebar-meta.html:8
 msgid "RSS"
 msgstr "RSS-flöde"
 
@@ -793,33 +787,16 @@ msgstr "Tack, dina inställningar har sparats"
 msgid "Create an account"
 msgstr "Skapa ett konto"
 
-#: preferences/templates/preferences-profile.html:15
-msgid "Account"
-msgstr "Konto"
-
 #: preferences/templates/preferences-profile.html:16
-msgid "Password"
-msgstr "Lösenord"
-
-#: preferences/templates/preferences-profile.html:17
-msgid "Notices"
-msgstr "Notiser"
-
-#: preferences/templates/preferences-profile.html:18
-msgid "Profile"
-msgstr "Profil"
-
-#: preferences/templates/preferences-profile.html:25
 msgid "Edit your profile information"
 msgstr "Redigera din profilinformation"
 
-#: preferences/templates/preferences-profile.html:27
+#: preferences/templates/preferences-profile.html:18
 msgid ""
 "\n"
-"      Please take a little time to fill in your profile information before "
-"going\n"
-"      off exploring the site and helping your colleagues by setting good "
-"examples.\n"
+"      Please take a little time to fill in your profile information before\n"
+"      going off exploring the site and helping your colleagues by setting\n"
+"      good examples.\n"
 "      "
 msgstr ""
 "\n"
@@ -996,11 +973,11 @@ msgstr "Logga in"
 msgid "Sign up"
 msgstr "Skapa konto"
 
-#: templates/base-header.html:58 users/templates/users-show-user.html:23
+#: templates/base-header.html:58 users/templates/users-show-user.html:20
 msgid "Methods"
 msgstr "Metoder"
 
-#: templates/base-header.html:62 users/templates/users-show-user.html:71
+#: templates/base-header.html:62 users/templates/users-show-user.html:68
 msgid "Tips"
 msgstr "Tips"
 
@@ -1302,6 +1279,6 @@ msgstr ""
 msgid "Sign in"
 msgstr "Logga in"
 
-#: users/templates/users-index.html:12
+#: users/templates/users-index.html:4
 msgid "All users"
 msgstr "Alla användare"

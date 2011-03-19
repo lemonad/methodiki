@@ -40,7 +40,8 @@ class IntranetURLValidator(URLValidator):
 
         # Pattern that only matches web URLs — http, https, and things like
         # "www.example.com"
-        # See http://daringfireball.net/2010/07/improved_regex_for_matching_urls
+        # cf.:
+        # http://daringfireball.net/2010/07/improved_regex_for_matching_urls
         self.regex = re.compile(ur"(?i)\b((?:https?://|www\d{0,3}[.]|" \
                                 ur"[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|" \
                                 ur"\(([^\s()<>]+|" \

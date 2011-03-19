@@ -22,64 +22,64 @@
   {% include "methods-bonus-preview.html" %}
 
   <div class="bonus span-18 prepend-3 append-3 last">
-    <img style="float:right;margin-top:-2em;"
+    <img class="bonus-badge"
          src="{% media_url "images/pedagogic-bonus.png" %}" />
     <h2>{% trans "Edit away!" %}</h2>
     {% include "methods-markdown-quick-help.html" %}
   </div>
 
   <div class="bonus span-18 prepend-3 append-3 last">
-  <div class="column box rounded-9">
-    <form id="bonus-form" method="post"
-          action="{% url methods-edit-bonus method.published_at.year method.published_at.month method.published_at.day method.slug bonus.id %}">
-      {% csrf_token %}
-      <div class="span-18 last">
-        {{ form.description.label_tag }}
-      </div>
-      <div class="span-18 last">
-        {{ form.description }}
-      </div>
-      {% if form.description.errors %}
-      <p class="error">
-        {{ form.description.errors }}
-      </p>
-      {% endif %}
+    <div class="column box rounded-9">
+      <h2>{% trans "Bonus" %}</h2>
+      <form id="bonus-form" method="post"
+            action="{% url methods-edit-bonus method.published_at.year method.published_at.month method.published_at.day method.slug bonus.id %}">
+        {% csrf_token %}
+        <div class="span-18 last">
+          {{ form.description.label_tag }}
+        </div>
+        {% if form.description.errors %}
+        <p class="error">
+          {{ form.description.errors }}
+        </p>
+        {% endif %}
+        <div class="span-18 last">
+          {{ form.description }}
+        </div>
 
-      <div class="span-18 last" style="text-align:right;margin-bottom:1em;">
-        <input class="submit" type="submit" name="preview"
-               value="{% trans "Preview" %}" />
-        <input class="submit" type="submit" name="bonus"
-               value="{% trans "Save" %}" />
-      </div>
-    </form>
+        <div class="span-18 last align-right prepend-top append-bottom">
+          <input class="submit" type="submit" name="preview"
+                 value="{% trans "Preview" %}" />
+          <input class="submit" type="submit" name="bonus"
+                 value="{% trans "Save" %}" />
+        </div>
+      </form>
 
-    <hr />
-    {% include "methods-bonus-meta.html" %}
+      {% include "methods-bonus-meta.html" %}
 
-    {% ifequal bonus.status "DRAFT" %}
-    <form style="display:inline;" method="post"
-          action="{% url methods-edit-bonus method.published_at.year method.published_at.month method.published_at.day method.slug bonus.id %}">
-      {% csrf_token %}
-      <input class="submit" type="submit" name="publish"
-             value="{% trans "Publish bonus" %}" />
-    </form>
-    {% endifequal %}
+      {% ifequal bonus.status "DRAFT" %}
+      <form class="inline" method="post"
+            action="{% url methods-edit-bonus method.published_at.year method.published_at.month method.published_at.day method.slug bonus.id %}">
+        {% csrf_token %}
+        <input class="submit" type="submit" name="publish"
+               value="{% trans "Publish bonus" %}" />
+      </form>
+      {% endifequal %}
 
-    {% ifequal bonus.status "PUBLISHED" %}
-    <form style="display:inline;" method="post"
-          action="{% url methods-edit-bonus method.published_at.year method.published_at.month method.published_at.day method.slug bonus.id %}">
-      {% csrf_token %}
-      <input class="submit" type="submit" name="unpublish"
-             value="{% trans "Unpublish bonus" %}" />
-    </form>
-    {% endifequal %}
+      {% ifequal bonus.status "PUBLISHED" %}
+      <form class="inline" method="post"
+            action="{% url methods-edit-bonus method.published_at.year method.published_at.month method.published_at.day method.slug bonus.id %}">
+        {% csrf_token %}
+        <input class="submit" type="submit" name="unpublish"
+               value="{% trans "Unpublish bonus" %}" />
+      </form>
+      {% endifequal %}
 
-    <form style="display:inline;" method="post" id="delete-bonus"
-          action="{% url methods-edit-bonus method.published_at.year method.published_at.month method.published_at.day method.slug bonus.id %}">
-      {% csrf_token %}
-      <input class="submit" type="submit" name="delete"
-             value="{% trans "Delete bonus" %}" />
-    </form>
-  </div>
+      <form class="inline" method="post" id="delete-bonus"
+            action="{% url methods-edit-bonus method.published_at.year method.published_at.month method.published_at.day method.slug bonus.id %}">
+        {% csrf_token %}
+        <input class="submit prepend-top" type="submit" name="delete"
+               value="{% trans "Delete bonus" %}" />
+      </form>
+    </div>
   </div>
 {% endblock %}

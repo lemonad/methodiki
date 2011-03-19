@@ -4,8 +4,7 @@
 <div class="prepend-4 span-16 append-4 last">
 
   {% if not form.errors %}
-  <ul id="comments" class="span-16 last"
-      style="padding:0;list-style-type:none;">
+  <ul id="comments" class="span-16 last">
     <li class="span-16 last append-bottom{% if form.cleaned_data.lift_method %} comment-thumbsup{% endif %}">
       <div class="span-1">
         {% if user.is_authenticated and user.get_profile.avatar %}
@@ -47,7 +46,7 @@
         </div>
         <div class="rounded-6 comment-body">
           {% if form.cleaned_data.lift_method %}
-          <img style="float:left;margin-right:0.5em;"
+          <img class="left" style="margin-right:0.5em;"
                src="{% media_url "images/icons/001_18.png" %}"
                width="24" height="24" />
           {% endif %}

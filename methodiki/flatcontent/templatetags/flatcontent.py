@@ -7,6 +7,7 @@ from ..models import get_flatcontent
 
 register = template.Library()
 
+
 @register.simple_tag
 def flatcontent(name):
     content = get_flatcontent(name)

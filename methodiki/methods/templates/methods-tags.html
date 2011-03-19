@@ -18,7 +18,7 @@
   </p>
 
   {% get_tagcloud as tags for "methods.Method" %}
-  <ul style="list-style-type:none;">
+  <ul class="no-markers">
     {% for tag in tags %}
     <li style="display:inline;">
       <a href="{% url methods-tag-index tag.slug %}"

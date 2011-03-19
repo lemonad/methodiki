@@ -6,25 +6,18 @@
         href="{% url methods-feed latest %}" />
 {% endblock %}
 
-{% block javascript %}
-  <script type="text/javascript">
-    $(document).ready(function() {
-    });
-  </script>
-{% endblock %}
-
 {% block main %}
   <h2>
     {{ methods.count }} {% trans "methods tagged with" %}
     <em>{{ tag.name }}</em>
   </h2>
 
-  <ul style="list-style-type: none;">
+  <ul class="no-markers">
     {% for method in methods %}
     <li>
       {% if method.methodbonus_set.all %}
       <a href="{% url methods-show-bonus method.published_at.year method.published_at.month method.published_at.day method.slug %}">
-        <img style="float:right;"
+        <img class="right"
              src="{% media_url "images/pedagogic-bonus-badge.png" %}" />
       </a>
       {% endif %}
@@ -34,10 +27,10 @@
         </a>
       </h3>
       {% if method.methodfile_set.all.0.image %}
-      <img class="rounded-3"
+      <img class="rounded-3 left"
            src="{% thumbnail method.methodfile_set.all.0.image 25x25 crop %}"
            title=""
-           style="border:2px solid #bbb; float:left; margin-right:0.5em;" />
+           style="border:2px solid #bbb;margin-right:0.5em;" />
       {% endif %}
       {{ method.description|markdown:"autolink"|abstract }}
 

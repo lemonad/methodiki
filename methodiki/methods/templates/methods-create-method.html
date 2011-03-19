@@ -43,7 +43,9 @@
 
   <div class="method span-18 prepend-3 append-3 last">
   <div class="column box rounded-9">
-    <form id="method-form" action="{% url methods-create-method %}" method="post">
+    <form id="method-form"
+          action="{% url methods-create-method %}"
+          method="post">
       {% csrf_token %}
 
       {% if form.title.errors %}
@@ -74,7 +76,7 @@
       <div class="span-18 last{% if form.title.errors %} loud{% endif %}">
         {{ form.description.label_tag }}
       </div>
-      <div class="span-18 last">
+      <div class="span-18 last append-bottom">
         {{ form.description }}
       </div>
 
@@ -107,7 +109,7 @@
         </div>
       </div>
 
-      <div class="span-18 prepend-top last" style="text-align:right; margin-bottom:1em;">
+      <div class="span-18 prepend-top last align-right append-bottom">
         <input class="submit" type="submit" name="preview"
                value="{% trans "Preview" %}" />
         <input class="submit" type="submit" name="method"

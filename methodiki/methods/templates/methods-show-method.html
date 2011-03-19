@@ -24,7 +24,7 @@
     <section id="markdown-wrapper">
       {% if method.methodbonus_set.all %}
       <a href="{% url methods-show-bonus method.published_at.year method.published_at.month method.published_at.day method.slug %}">
-        <img style="float:right;margin-top:-2em;"
+        <img class="bonus-badge"
              src="{% media_url "images/pedagogic-bonus.png" %}" />
       </a>
       {% endif %}
@@ -59,11 +59,10 @@
     {% endif %}
 
     {% if comment_list %}
-    <ul class="span-16 last" style="padding:0;list-style-type:none;">
+    <ul class="span-16 last">
       {% for comment in comment_list %}
       <li id="c{{ comment.id }}"
-          class="span-16 last{% if comment.last %} comment-last{% endif %}{% ifequal method.user comment.user %} comment-method-owner{% endifequal %}{% if comment.lift_method %} comment-thumbsup{% endif %}"
-          style="margin-bottom:1em;">
+          class="span-16 last append-bottom{% if comment.last %} comment-last{% endif %}{% ifequal method.user comment.user %} comment-method-owner{% endifequal %}{% if comment.lift_method %} comment-thumbsup{% endif %}">
         <div class="span-1">
           {% if comment.user.get_profile.avatar %}
           <img class="profile"
@@ -105,7 +104,7 @@
           </div>
           <div class="rounded-6 comment-body">
             {% if comment.lift_method %}
-            <img style="float:left;margin-right:0.5em;"
+            <img class="left" style="margin-right:0.5em;"
                  src="{% media_url "images/icons/001_18.png" %}"
                  width="24" height="24" />
             {% endif %}

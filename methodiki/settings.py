@@ -22,7 +22,7 @@ DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3',
                          'USER': '',
                          'PASSWORD': '',
                          'HOST': '',
-                         'PORT': '',},}
+                         'PORT': ''}}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
