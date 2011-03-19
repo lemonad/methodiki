@@ -577,8 +577,7 @@ input[type="password"] {
         ul, ol {
             border-top: 1px solid #eee;
             border-bottom: 1px solid #eee;
-            padding-top: 0.5em;
-            padding-bottom: 0.5em;
+            padding: 0.5em 0 0.5em 30px;
 
             &:last-child {
                 border-bottom: 0;
@@ -586,6 +585,7 @@ input[type="password"] {
         }
         li ul, li ol {
             border: 0;
+            padding-left: 1.5em;
         }
         img {
             max-width: 100%;
