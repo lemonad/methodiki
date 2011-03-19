@@ -9,6 +9,7 @@
     <div id="markdown-wrapper">
       <a><h2>{{ preview.title }}</h2></a>
       <section class="markdown">
+        <h1>{% trans "Summary" %}</h1>
         {{ preview.description|markdown:"autolink" }}
       </section>
     </div>

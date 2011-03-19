@@ -184,10 +184,6 @@ h4 {
     text-shadow: 1px 1px 2px 0 rgba(1, 1, 1, 0.08);
     margin: 16px 0 8px 0;
 }
-ul,
-ol {
-    padding-left: 0;
-}
 li ul,
 li ol {
     padding-left: 1.5em;
@@ -782,9 +778,11 @@ input[type="password"] {
 }
 
 #preview-wrapper {
-    background-color: #fcfaf8;
     margin-bottom: 2em;
 
+    #markdown-wrapper {
+        background-color: lighten(#ccecff, 7%);
+    }
     .separator {
         text-align: center;
         background-color: #ccecff;
@@ -866,14 +864,15 @@ input[type="password"] {
         ul, ol {
             border-top: 1px solid #eee;
             border-bottom: 1px solid #eee;
-            padding-left: 1em;
-            width: 70%;
             padding-top: 0.5em;
             padding-bottom: 0.5em;
 
             &:last-child {
                 border-bottom: 0;
             }
+        }
+        li ul, li ol {
+            border: 0;
         }
         img {
             max-width: 100%;
