@@ -168,10 +168,10 @@ _base_screen_bundle = (
     'javascript/jquery.fancybox-1.3.4/jquery.fancybox-1.3.4.css',
 )
 _base_js_bundle = (
-    'javascript/modernizr-1.7.min.js',
     'javascript/jquery-1.5.1.min.js',
     'javascript/jquery.corner.js',
     'javascript/jquery.fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js',
+    'javascript/modernizr-1.7.min.js',
 )
 
 MEDIA_BUNDLES = (
