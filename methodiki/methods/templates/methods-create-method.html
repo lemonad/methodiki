@@ -45,7 +45,8 @@
   <div class="column box rounded-9">
     <form id="method-form"
           action="{% url methods-create-method %}"
-          method="post">
+          method="post"
+          autocomplete="off">
       {% csrf_token %}
 
       {% if form.title.errors %}

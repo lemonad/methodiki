@@ -113,8 +113,10 @@
 
   <div class="method span-18 prepend-3 append-3 last">
     <div class="column box rounded-9">
-      <form id="method-form" method="post"
-            action="{% url methods-edit-method method.slug %}">
+      <form id="method-form"
+            action="{% url methods-edit-method method.slug %}"
+            method="post"
+            autocomplete="off">
         {% csrf_token %}
 
         <fieldset>

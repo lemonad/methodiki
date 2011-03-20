@@ -30,7 +30,8 @@
       <h2>{% trans "Bonus" %}</h2>
       <form id="bonus-form"
             action="{% url methods-create-bonus method.published_at.year method.published_at.month method.published_at.day method.slug %}"
-            method="post">
+            method="post"
+            autocomplete="off">
         {% csrf_token %}
 
         <div class="span-18 last">
