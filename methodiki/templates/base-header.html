@@ -20,7 +20,17 @@
             </span>
           </li>
           <li>
-            <a href="{% url settings-profile %}">{% trans "My profile" %}</a>
+            <a href="{% url settings-profile %}">{% trans "Your profile" %}</a>
+          </li>
+          <li>
+            <a href="{% url user request.user.username %}">
+              {% trans "Your methods" %}
+              ({{ user_methods_count }}{% spaceless %}
+              {% if user_methods_draft_flag %}
+              , <em>{% trans "drafts" %}</em>
+              {% endif %}
+              {% endspaceless %})
+            </a>
           </li>
           <li>
             <a href="{% url logout %}">{% trans "Log out" %}</a>
@@ -61,18 +71,6 @@
             <li>
               <a href="{% url tips-index %}">{% trans "Tips" %}</a>
             </li>
-            {% if request.user.is_authenticated %}
-            <li>
-              <a href="{% url user request.user.username %}">
-                {% trans "My methods" %}
-                ({{ user_methods_count }}{% spaceless %}
-                {% if user_methods_draft_flag %}
-                , <em>{% trans "drafts" %}</em>
-                {% endif %}
-                {% endspaceless %})
-              </a>
-            </li>
-            {% endif %}
             <li>
               <a href="{% url methods-tags %}">{% trans "Tags" %}</a>
             </li>

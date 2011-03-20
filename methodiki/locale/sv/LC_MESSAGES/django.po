@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-19 23:00+0100\n"
+"POT-Creation-Date: 2011-03-20 10:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -372,10 +372,10 @@ msgstr ""
 "    "
 
 #: methods/templates/methods-comment-form.html:119
-#: methods/templates/methods-create-bonus.html:50
-#: methods/templates/methods-create-method.html:114
-#: methods/templates/methods-edit-bonus.html:51
-#: methods/templates/methods-edit-method.html:219
+#: methods/templates/methods-create-bonus.html:51
+#: methods/templates/methods-create-method.html:115
+#: methods/templates/methods-edit-bonus.html:53
+#: methods/templates/methods-edit-method.html:220
 #: methods/templates/methods-preview.html:5
 msgid "Preview"
 msgstr "Förhandsgranska"
@@ -399,8 +399,8 @@ msgstr "Börja skriva!"
 msgid "Bonus"
 msgstr "Bonus"
 
-#: methods/templates/methods-create-bonus.html:52
-#: methods/templates/methods-create-method.html:116
+#: methods/templates/methods-create-bonus.html:53
+#: methods/templates/methods-create-method.html:117
 msgid "Create"
 msgstr "Skapa"
 
@@ -408,25 +408,25 @@ msgstr "Skapa"
 msgid "Add images after submitting your method (sorry...)"
 msgstr "Lägg till bilder efter du sparat din metod (sorry...)"
 
-#: methods/templates/methods-create-method.html:83
-#: methods/templates/methods-edit-method.html:186
+#: methods/templates/methods-create-method.html:84
+#: methods/templates/methods-edit-method.html:187
 msgid "Optional settings"
 msgstr "Valfria fält"
 
-#: methods/templates/methods-create-method.html:85
-#: methods/templates/methods-edit-method.html:188
+#: methods/templates/methods-create-method.html:86
+#: methods/templates/methods-edit-method.html:189
 #: methods/templates/methods-meta.html:37
-#: methods/templates/methods-tags.html:13 templates/base-header.html:77
+#: methods/templates/methods-tags.html:13 templates/base-header.html:75
 msgid "Tags"
 msgstr "Taggar"
 
-#: methods/templates/methods-create-method.html:98
-#: methods/templates/methods-edit-method.html:203
+#: methods/templates/methods-create-method.html:99
+#: methods/templates/methods-edit-method.html:204
 msgid "Suggested tags:"
 msgstr "Förslag på taggar:"
 
-#: methods/templates/methods-create-method.html:123
-#: methods/templates/methods-edit-method.html:32
+#: methods/templates/methods-create-method.html:124
+#: methods/templates/methods-edit-method.html:30
 msgid "Upload an image"
 msgstr "Ladda upp en bild"
 
@@ -435,61 +435,61 @@ msgid "Really delete bonus?"
 msgstr "Verkligen ta bort bonusen?"
 
 #: methods/templates/methods-edit-bonus.html:27
-#: methods/templates/methods-edit-method.html:112
+#: methods/templates/methods-edit-method.html:110
 msgid "Edit away!"
 msgstr "Redigera!"
 
-#: methods/templates/methods-edit-bonus.html:53
-#: methods/templates/methods-edit-method.html:221
+#: methods/templates/methods-edit-bonus.html:55
+#: methods/templates/methods-edit-method.html:222
 #: preferences/templates/preferences-profile.html:78
 msgid "Save"
 msgstr "Spara"
 
-#: methods/templates/methods-edit-bonus.html:64
+#: methods/templates/methods-edit-bonus.html:66
 msgid "Publish bonus"
 msgstr "Publicera bonus"
 
-#: methods/templates/methods-edit-bonus.html:73
+#: methods/templates/methods-edit-bonus.html:75
 msgid "Unpublish bonus"
 msgstr "Avpublicera bonus"
 
-#: methods/templates/methods-edit-bonus.html:81
+#: methods/templates/methods-edit-bonus.html:83
 msgid "Delete bonus"
 msgstr "Ta bort bonus"
 
-#: methods/templates/methods-edit-method.html:15
+#: methods/templates/methods-edit-method.html:13
 msgid "Really delete method?"
 msgstr "Verkligen ta bort metoden?"
 
-#: methods/templates/methods-edit-method.html:31
+#: methods/templates/methods-edit-method.html:29
 msgid "Drop files here to upload"
 msgstr "Släpp filer här för att ladda upp"
 
-#: methods/templates/methods-edit-method.html:63
+#: methods/templates/methods-edit-method.html:61
 msgid "Delete image?"
 msgstr "Ta bort bild?"
 
-#: methods/templates/methods-edit-method.html:172
+#: methods/templates/methods-edit-method.html:173
 msgid ""
 "\n"
-"          Hover over an image and click the plus sign to add the image\n"
-"          where you've placed the cursor in the text.\n"
-"        "
+"            Hover over an image and click the plus sign to add the image\n"
+"            where you've placed the cursor in the text.\n"
+"          "
 msgstr ""
 "\n"
 "          Håll muspekaren över en bild och klicka på plustecknet för\n"
 "          att lägga till bilden där du placerat markören i texten.\n"
 "        "
 
-#: methods/templates/methods-edit-method.html:233
+#: methods/templates/methods-edit-method.html:234
 msgid "Publish method"
 msgstr "Publicera metoden"
 
-#: methods/templates/methods-edit-method.html:242
+#: methods/templates/methods-edit-method.html:243
 msgid "Unpublish method"
 msgstr "Avpublicera metoden"
 
-#: methods/templates/methods-edit-method.html:250
+#: methods/templates/methods-edit-method.html:251
 msgid "Delete method"
 msgstr "Ta bort metoden"
 
@@ -731,6 +731,7 @@ msgid "RSS"
 msgstr "RSS-flöde"
 
 #: methods/templates/sidebar/sidebar-methods-created-by-user.html:4
+#: templates/base-header.html:27
 msgid "Your methods"
 msgstr "Dina metoder"
 
@@ -958,43 +959,39 @@ msgid "Welcome"
 msgstr "Välkommen"
 
 #: templates/base-header.html:23
-msgid "My profile"
-msgstr "Min profil"
+msgid "Your profile"
+msgstr "Din profil"
 
-#: templates/base-header.html:26
+#: templates/base-header.html:30
+msgid "drafts"
+msgstr "utkast"
+
+#: templates/base-header.html:36
 msgid "Log out"
 msgstr "Logga ut"
 
-#: templates/base-header.html:30
+#: templates/base-header.html:40
 msgid "Administration"
 msgstr "Administration"
 
-#: templates/base-header.html:37 templates/login.html:14
+#: templates/base-header.html:47 templates/login.html:14
 #: templates/login.html.py:43 templates/password_reset_complete.html:9
 msgid "Log in"
 msgstr "Logga in"
 
-#: templates/base-header.html:41
+#: templates/base-header.html:51
 msgid "Sign up"
 msgstr "Skapa konto"
 
-#: templates/base-header.html:58 users/templates/users-show-user.html:20
+#: templates/base-header.html:68 users/templates/users-show-user.html:20
 msgid "Methods"
 msgstr "Metoder"
 
-#: templates/base-header.html:62 users/templates/users-show-user.html:68
+#: templates/base-header.html:72 users/templates/users-show-user.html:68
 msgid "Tips"
 msgstr "Tips"
 
-#: templates/base-header.html:67
-msgid "My methods"
-msgstr "Mina metoder"
-
-#: templates/base-header.html:70
-msgid "drafts"
-msgstr "utkast"
-
-#: templates/base-header.html:82
+#: templates/base-header.html:80
 msgid "Search"
 msgstr "Sök"
 
