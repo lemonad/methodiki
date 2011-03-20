@@ -144,7 +144,7 @@ h1 {
     font-family: arial, helvetica, sans-serif;
     font-weight: bold;
     font-size: 48px;
-    text-shadow: 2px 2px 3px 0 rgba(1,1,1,0.1);
+    text-shadow: 2px 2px 3px rgba(1,1,1,0.1);
     letter-spacing: -3px;
     margin: 0;
 }
@@ -154,7 +154,7 @@ h2 {
     font-weight: bold;
     letter-spacing: normal;
     line-height: 24px;
-    text-shadow: 0 1px lighten($greenish, 25%);
+    text-shadow: 0 1px 0 lighten($greenish, 25%);
     margin: 32px 0 8px 0;
 }
 h3 {
@@ -162,7 +162,7 @@ h3 {
     font-size: 16px;
     font-weight: bold;
     line-height: 24px;
-    text-shadow: 1px 1px 2px 0 rgba(1, 1, 1, 0.08);
+    text-shadow: 1px 1px 2px rgba(1, 1, 1, 0.08);
     margin: 16px 0 8px 0;
 
     &.options {
@@ -181,7 +181,7 @@ h4 {
     font-size: 16px;
     font-weight: bold;
     line-height: 24px;
-    text-shadow: 1px 1px 2px 0 rgba(1, 1, 1, 0.08);
+    text-shadow: 1px 1px 2px rgba(1, 1, 1, 0.08);
     margin: 16px 0 8px 0;
 }
 li ul,
@@ -443,7 +443,7 @@ ul#messages {
     overflow: visible;
     z-index: 10000;
     text-align: center;
-    text-shadow: 0 1px 1px 0 rgba(255, 255, 255, 0.75);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
 }
 
 #method-form input,
@@ -485,7 +485,7 @@ ul#messages {
         text-align: center;
 
         img {
-            vertical-align: center;
+            vertical-align: middle;
         }
     }
 }
@@ -500,7 +500,7 @@ ul#messages {
 }
 div.bonus-meta {
     clear: left;
-    margin: 0.5 0 0 0;
+    margin: 0.5em 0 0 0;
     padding: 0.5em 0 0.5em 0;
     background-color: #ebe8e5;
     border-bottom: 1px solid #a2c615;
@@ -647,7 +647,7 @@ input[type="submit"] {
     background-color: #a2c615;
     cursor: pointer;
 
-    text-shadow: 0 1px 1px 0 rgba(93, 114, 12, 0.75);
+    text-shadow: 0 1px 1px rgba(93, 114, 12, 0.75);
     @include border-radius(15px);
     @include box-shadow(0, 1px, 2px, rgba(0, 0, 0, 0.3));
 
@@ -744,13 +744,13 @@ input[type="password"] {
     }
     a.popular-tag {
         color: lighten($green, 50%);
-        text-shadow: 0 1px darken($green, 10%);
+        text-shadow: 0 1px 0 darken($green, 10%);
         margin: 0 1em 0 0;
         font-size: 19px;
 
         &:hover, &:active {
             color: darken($green, 30%);
-            text-shadow: 0 1px lighten($green, 15%);
+            text-shadow: 0 1px 0 lighten($green, 15%);
         }
     }
     #bubblewrap {
@@ -836,7 +836,7 @@ input[type="password"] {
             color: $greenish;
             font-weight: bold;
             letter-spacing: normal;
-            text-shadow: 0 1px lighten($greenish, 25%);
+            text-shadow: 0 1px 0 lighten($greenish, 25%);
             margin: 0;
         }
         h2 {
