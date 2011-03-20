@@ -30,16 +30,14 @@
     {% include_media "main-ie.js" %}
   <![endif]-->
 
-  {% include_media "modernizr.js" %}
-
   <script type="text/javascript">
     $(document).ready(function() {
       if (!Modernizr.borderradius) {
-          $(".rounded-3").corner("3px");
-          $(".rounded-6").corner("6px");
-          $(".rounded-9").corner("9px");
-          $(".rounded-10").corner("10px");
-          $(".rounded-19").corner("19px");
+          $(".rounded-3:not(img,input)").corner("3px");
+          $(".rounded-6:not(img,input)").corner("6px");
+          $(".rounded-9:not(img,input)").corner("9px");
+          $(".rounded-10:not(img,input)").corner("10px");
+          $(".rounded-19:not(img,input)").corner("19px");
       }
       $("#messages").delay(800).slideDown("slow").delay(4000).slideUp("slow");
     });
