@@ -45,10 +45,9 @@
                         "class=\"image-delete\" href=\"#\"></a>" +
                 "</li>";
 
-                $("li#image-" + responseJSON.image_id + " a.image-preview").
-                    fancybox({"hideOnContentClick": true,
-                              "margin": 14});
-
+            $("li#image-" + responseJSON.image_id + " a.image-preview").
+                fancybox({"hideOnContentClick": true,
+                          "margin": 14});
             $("#uploaded-media-list").append(listitem);
             $("#uploaded-media").show("slow");
           }
