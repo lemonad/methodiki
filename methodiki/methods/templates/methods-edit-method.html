@@ -2,12 +2,10 @@
 {% load i18n markup markitup_tags media taggit_extras thumbnail %}
 
 {% block css %}
-  {% markitup_css %}
   {% include_media "edit-methods.css" media="screen, projection" %}
 {% endblock %}
 
 {% block javascript %}
-  {% markitup_js "no-jquery" %}
   {% include_media "edit-methods.js" %}
   <script type="text/javascript">
     $(document).ready(function() {
