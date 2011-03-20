@@ -83,7 +83,7 @@
           }
           return false;
       });
-      $("#uploaded-media li").live("mouseover mouseout", function() {
+      $("#uploaded-media li").live("mouseover mouseout", function(event) {
           if (event.type === "mouseover") {
               $(this).children(".image-preview,.image-delete,.image-add").show();
           } else {
