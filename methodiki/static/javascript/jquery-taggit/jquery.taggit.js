@@ -115,26 +115,15 @@ Removes duplicate entries from an array.
 
 */
 $.fn.taggit.uniqify_array = function( a ) {
-    var k = [];
-    var rval = [];
+    var u = [];
 
-    if ( ! k.contains ) {
-        k.contains = function( e ) {
-            for ( var i = 0; i < this.length; i++ ) {
-                if( this[i] == e ) {
-                    return true;
-                }
-            }
-            return false;
-        };
-    }
     for ( var i = 0; i < a.length; i++ ) {
-        if( ! k.contains( a[i] ) ) {
-            rval.push( a[i] );
-            k.push( a[i] );
+        var val = a[i];
+        if ( $.inArray(val, u) === -1 ) {
+            u.push(val);
         }
     }
-    return rval;
+    return u;
 };
 
 /*
@@ -210,7 +199,7 @@ $.fn.taggit.parse_tags = function( tagstring ) {
             if ( i >= tagstring.length ) {
                 throw "stopiteration";
             }
-            c = tagstring[i++];
+            c = tagstring.charAt(i++);
             if ( c == "\"" ) {
                 var trimmed_buffer = $.trim( buffer.join( "" ) );
                 if ( trimmed_buffer.length > 0 ) {
@@ -222,13 +211,13 @@ $.fn.taggit.parse_tags = function( tagstring ) {
                 if ( i >= tagstring.length ) {
                     throw "stopiteration";
                 }
-                c = tagstring[i++];
+                c = tagstring.charAt(i++);
                 while ( c != "\"" ) {
                     buffer.push( c );
                     if ( i >= tagstring.length ) {
                         throw "stopiteration";
                     }
-                    c = tagstring[i++];
+                    c = tagstring.charAt(i++);
                 }
                 trimmed_buffer = $.trim( buffer.join( "" ) );
                 if ( trimmed_buffer.length > 0 ) {
