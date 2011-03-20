@@ -168,7 +168,7 @@ _base_screen_bundle = (
     'javascript/jquery.fancybox-1.3.4/jquery.fancybox-1.3.4.css',
 )
 _base_js_bundle = (
-    'javascript/modernizr-1.6.min.js',
+    'javascript/modernizr-1.7.min.js',
     'javascript/jquery-1.5.1.min.js',
     'javascript/jquery.corner.js',
     'javascript/jquery.fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js',
@@ -187,8 +187,8 @@ MEDIA_BUNDLES = (
                   'css/print.scss',),
     # Javascript
     ('main.js',) + _base_js_bundle,
-    ('main-ie.js',) + _base_js_bundle
-                    + ('javascript/html5.js',),
+    ('main-ie.js',) + ('javascript/html5.js',)
+                    + _base_js_bundle,
     ('edit-methods.js', 'javascript/jquery.timers-1.2.js',
                         'javascript/jquery-taggit/jquery.taggit.js',
                         'javascript/fileuploader/fileuploader.js',
