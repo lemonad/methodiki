@@ -621,9 +621,6 @@ div.method-meta {
     .rounded-10 {
         @include border-radius(10px);
     }
-    .rounded-15 {
-        @include border-radius(15px);
-    }
     .rounded-19 {
         @include border-radius(19px);
     }
