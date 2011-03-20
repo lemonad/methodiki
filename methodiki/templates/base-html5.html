@@ -24,11 +24,13 @@
   {% block css %}{% endblock %}
 
   <!--[if (!IE)|(gte IE 9)]><!-->
-    {% include_media 'main.js' %}
+    {% include_media "main.js" %}
   <!--<![endif]-->
   <!--[if lt IE 9]>
-    {% include_media 'main-ie.js' %}
+    {% include_media "main-ie.js" %}
   <![endif]-->
+
+  {% include_media "modernizr.js" %}
 
   <script type="text/javascript">
     $(document).ready(function() {
