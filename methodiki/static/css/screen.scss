@@ -105,13 +105,15 @@ a {
     }
     &.rounded-button {
         display: inline-block;
-        zoom: 1;
         padding: 3px 15px 3px 15px;
         margin-left: 1em;
         background-color: $cyan;
         font-style: normal;
         font-weight: bold;
         text-decoration: none;
+        /* For IE 7 */
+        zoom: 1;
+        *display: inline;
     }
     &.image-add, &.image-preview, &.image-delete {
         display: none;
@@ -258,13 +260,15 @@ span {
     }
     &.taggit-tag {
         display: inline-block;
-        zoom: 1;
         padding-left: 4px;
         padding-right: 4px;
         margin-left: 1px;
         margin-right: 1px;
         cursor: pointer;
         color: $blue;
+        /* For IE 7 */
+        zoom: 1;
+        *display: inline;
     }
     &.taggit-tag-used {
         background-color: darken($blue, 30%);
@@ -474,7 +478,6 @@ ul#messages {
 
     li {
         display: inline-block;
-        zoom: 1;
         position: relative;
         left: 0;
         top: 0;
@@ -486,6 +489,9 @@ ul#messages {
         height: 50px;
         vertical-align: top;
         text-align: center;
+        /* For IE 7 */
+        zoom: 1;
+        *display: inline;
 
         img {
             vertical-align: middle;
