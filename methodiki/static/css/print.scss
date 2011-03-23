@@ -66,6 +66,7 @@ a {
     }
     &.rounded-button {
         display: inline-block;
+        zoom: 1;
         padding: 3px 15px 3px 15px;
         margin-left: 1em;
         background-color: $cyan;
@@ -184,6 +185,7 @@ span {
     }
     &.taggit-tag {
         display: inline-block;
+        zoom: 1;
         padding-left: 4px;
         padding-right: 4px;
         margin-left: 1px;
@@ -259,6 +261,7 @@ footer {
 
     li {
         display: inline-block;
+        zoom: 1;
         position: relative;
         left: 0;
         top: 0;
