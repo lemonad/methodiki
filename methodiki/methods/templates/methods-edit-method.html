@@ -84,8 +84,9 @@
           return false;
       });
       $("a.image-preview").live("click", function() {
-          $(this).fancybox({"hideOnContentClick": true,
-                            "margin": 14});
+          $.fancybox({"hideOnContentClick": true,
+                            "margin": 14,
+                            "href": $(this).attr('href')});
           return false;
       });
       $("#uploaded-media li").live("mouseover mouseout", function(event) {
