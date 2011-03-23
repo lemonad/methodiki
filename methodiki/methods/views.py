@@ -24,6 +24,7 @@ from django.shortcuts import (get_object_or_404, get_list_or_404,
 from django.template import Context, RequestContext, loader
 from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext_lazy as _
+from django.views.decorators.csrf import csrf_exempt
 from easy_thumbnails.files import get_thumbnailer
 from taggit.models import Tag, TaggedItem
 
@@ -451,23 +452,33 @@ def edit_bonus(request, year, month, day, slug, bonus_id):
 
 
 @login_required
+# @csrf_exempt
 def upload_file(request, slug):
     """"""
     method = get_object_or_404(Method, slug=slug)
 
-    if request.user != method.user:
+    if not request.user.is_superuser and request.user != method.user:
         raise PermissionDenied("You must own a method in order to edit it.")
 
-    if request.method == 'POST' and 'qqfile' in request.GET:
+    if request.method == 'POST':
+        if request.is_ajax():
+            filename = request.META["HTTP_X_FILE_NAME"]
+        else:
+            filename = request.FILES['qqfile'].name
+
         # split filename into name and extension
-        split_filename = request.GET['qqfile'].rsplit(".", 1)
+        split_filename = filename.rsplit(".", 1)
         slugified_filename = slugify(split_filename[0])
         if(len(split_filename)) > 1:
             slugified_filename = "%s.%s" % (slugified_filename,
                                             split_filename[1].lower())
         uf = MethodFile(user=request.user, method=method)
-        uf.image.save(slugified_filename,
-                      ContentFile(request.raw_post_data))
+        if request.is_ajax():
+            uf.image.save(slugified_filename,
+                          ContentFile(request.raw_post_data))
+        else:
+            uf.image.save(slugified_filename,
+                          ContentFile(request.FILES['qqfile'].read()))
         uf.save()
 
         # Generate thumbnail
@@ -496,7 +507,7 @@ def delete_file(request, slug):
 
     method = get_object_or_404(Method, slug=slug)
 
-    if request.user != method.user:
+    if not request.user.is_superuser and request.user != method.user:
         raise PermissionDenied("You must own a method in order to edit it.")
 
     if request.method == 'POST' and 'deleteimage' in request.POST:
