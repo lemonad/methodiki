@@ -83,6 +83,11 @@
           }
           return false;
       });
+      $("a.image-preview").live("click", function() {
+          $(this).fancybox({"hideOnContentClick": true,
+                            "margin": 14});
+          return false;
+      });
       $("#uploaded-media li").live("mouseover mouseout", function(event) {
           if (event.type === "mouseover") {
               $(this).children(".image-preview,.image-delete,.image-add").show();
@@ -90,8 +95,6 @@
               $(this).children(".image-preview,.image-delete,.image-add").hide();
           }
       });
-      $("a.image-preview").fancybox({"hideOnContentClick": true,
-                                     "margin": 14});
       $("#preview img").each(function() {
           $(this).fancybox({"hideOnContentClick": true,
                             "type": "image",
