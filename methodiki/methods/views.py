@@ -452,7 +452,7 @@ def edit_bonus(request, year, month, day, slug, bonus_id):
 
 
 @login_required
-# @csrf_exempt
+@csrf_exempt
 def upload_file(request, slug):
     """"""
     method = get_object_or_404(Method, slug=slug)
