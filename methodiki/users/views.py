@@ -45,7 +45,7 @@ def show_user(request, username):
 
     user = get_object_or_404(User, username=username)
     methods = Method.objects.filter(user=user) \
-                            .order_by('-published_at')
+                            .order_by('-date_created')
     tips = Tip.objects.filter(user=user) \
                       .order_by('-date_created')
 
