@@ -12,7 +12,7 @@
       {% ifequal bonus.status "DRAFT" %}
       {% blocktrans with bonus.user.get_profile.name as name and bonus.date_created as created_at %}
       Created by <a href="{{ link_to_person }}">{{ name }}</a> at {{ created_at }}.
-      <strong>Method is not yet published.</strong>
+      <strong>Bonus is not yet published.</strong>
       {% endblocktrans %}
       {% endifequal %}
 
