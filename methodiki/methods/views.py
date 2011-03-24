@@ -169,7 +169,7 @@ def show_method(request, year, month, day, slug):
 def show_bonus(request, year, month, day, slug):
     """ Shows bonuses for methods """
     method = get_object_or_404(Method, slug=slug)
-    bonuses = method.methodbonus_set.all()
+    bonuses = method.methodbonus_set.published()
 
     sidebar_methods = get_sidebar_methods(request.user)
 

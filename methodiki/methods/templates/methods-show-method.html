@@ -22,7 +22,7 @@
 {% block main %}
   <div id="method-wrapper">
     <section id="markdown-wrapper">
-      {% if method.methodbonus_set.all %}
+      {% if method.methodbonus_set.published %}
       <a href="{% url methods-show-bonus method.published_at.year method.published_at.month method.published_at.day method.slug %}">
         <img class="bonus-badge"
              src="{% media_url "images/pedagogic-bonus.png" %}" />

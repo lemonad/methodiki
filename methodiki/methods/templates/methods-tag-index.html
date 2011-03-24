@@ -15,7 +15,7 @@
   <ul class="no-markers">
     {% for method in methods %}
     <li>
-      {% if method.methodbonus_set.all %}
+      {% if method.methodbonus_set.published %}
       <a href="{% url methods-show-bonus method.published_at.year method.published_at.month method.published_at.day method.slug %}">
         <img class="right"
              src="{% media_url "images/pedagogic-bonus-badge.png" %}" />

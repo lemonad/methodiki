@@ -14,6 +14,9 @@ from customcomments.models import CustomComment
 
 
 class MethodManager(Manager):
+    def published(self):
+        return self.exclude(status='DRAFT')
+
     def created_by_user(self, userid):
         return self.filter(user=userid) \
                    .order_by('-published_at')
@@ -156,6 +159,9 @@ class MethodBonusManager(Manager):
     def created_by_user(self, userid):
         return self.filter(user=userid) \
                    .order_by('-published_at')
+
+    def published(self):
+        return self.exclude(status='DRAFT')
 
 
 class MethodBonus(Model):
