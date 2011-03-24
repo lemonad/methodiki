@@ -47,13 +47,17 @@
       {% get_comment_count for method as comment_count %}
       {% if comment_count %}
       <span><em>
+        {% if method.is_published %}
         <a href="{% url methods-show-method method.published_at.year method.published_at.month method.published_at.day method.slug %}#comments">
+        {% endif %}
         {% blocktrans count comment_count as cc %}
           1 comment.
           {% plural %}
           {{ cc }} comments.
         {% endblocktrans %}
+        {% if method.is_published %}
         </a>
+        {% endif %}
       </em></span>
       {% endif %}
       {% include "methods-meta.html" %}
