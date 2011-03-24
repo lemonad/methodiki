@@ -33,7 +33,8 @@ from models import UserProfile
 def index(request):
     """ Users index page """
 
-    users = User.objects.filter(is_active=True)
+    users = User.objects.filter(is_active=True) \
+                        .order_by('userprofile__name')
 
     t = loader.get_template('users-index.html')
     c = RequestContext(request, {'users': users})

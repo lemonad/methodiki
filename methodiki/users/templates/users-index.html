@@ -22,7 +22,19 @@
               {{ user.get_profile.name }}
             </a>
           </h3>
-          <p>{{ user.method_set.count }} methods created</p>
+          {% with user.method_set.published.count as method_count %}
+          {% with user.methodbonus_set.published.count as bonus_count %}
+          {% with user.tip_set.count as tips_count %}
+          <p>
+            {% blocktrans %}
+            {{ method_count }} method(s),
+            {{ bonus_count }} bonus(es) and
+            {{ tips_count }} tip(s) created.
+            {% endblocktrans %}
+          </p>
+          {% endwith %}
+          {% endwith %}
+          {% endwith %}
         </div>
     </li>
     {% endfor %}

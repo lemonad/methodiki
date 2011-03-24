@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-24 14:39+0100\n"
+"POT-Creation-Date: 2011-03-24 22:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,96 +69,96 @@ msgstr "Nyaste metoderna"
 msgid "The latest methods submitted by your co-workers"
 msgstr "De nyaste upplagda metoderna från dina kollegor"
 
-#: methods/models.py:52 methods/models.py:162
+#: methods/models.py:55 methods/models.py:168
 #: users/templates/users-show-user.html:32
 msgid "Draft"
 msgstr "Utkast"
 
-#: methods/models.py:53 methods/models.py:163
+#: methods/models.py:56 methods/models.py:169
 msgid "Published"
 msgstr "Publicerad"
 
-#: methods/models.py:55 tips/models.py:16
+#: methods/models.py:58 tips/models.py:16
 msgid "Slug"
 msgstr "Slugg"
 
-#: methods/models.py:63 tips/models.py:24
+#: methods/models.py:66 tips/models.py:24
 msgid "Created by"
 msgstr "Inlagd av"
 
-#: methods/models.py:65
+#: methods/models.py:68
 msgid "Title"
 msgstr "Titel"
 
-#: methods/models.py:68 methods/models.py:171
+#: methods/models.py:71 methods/models.py:177
 msgid "Description"
 msgstr "Beskrivning"
 
-#: methods/models.py:70 methods/models.py:173
+#: methods/models.py:73 methods/models.py:179
 msgid "Status"
 msgstr "Status"
 
-#: methods/models.py:75
+#: methods/models.py:78
 msgid "Date and time pushed"
 msgstr "Upplyft datum och tid"
 
-#: methods/models.py:79 methods/models.py:178
+#: methods/models.py:82 methods/models.py:184
 msgid "Date and time published"
 msgstr "Datum och tid för publicering"
 
-#: methods/models.py:83 methods/models.py:135 methods/models.py:182
+#: methods/models.py:86 methods/models.py:138 methods/models.py:188
 #: tagsuggestions/models.py:11 tagsuggestions/models.py:38
 #: tagsuggestions/models.py:65 tips/models.py:29 users/models.py:26
 msgid "Created (date)"
 msgstr "Skapad (datum)"
 
-#: methods/models.py:86 methods/models.py:138 methods/models.py:185
+#: methods/models.py:89 methods/models.py:141 methods/models.py:191
 #: tagsuggestions/models.py:14 tagsuggestions/models.py:41
 #: tagsuggestions/models.py:68 tips/models.py:32 users/models.py:29
 msgid "Modified (date)"
 msgstr "Ändrad (datum)"
 
-#: methods/models.py:114
+#: methods/models.py:117
 msgid "method"
 msgstr "metod"
 
-#: methods/models.py:115
+#: methods/models.py:118
 msgid "methods"
 msgstr "metoder"
 
-#: methods/models.py:120 methods/models.py:166 users/models.py:17
+#: methods/models.py:123 methods/models.py:172 users/models.py:17
 msgid "User"
 msgstr "Användare"
 
-#: methods/models.py:123 methods/models.py:169
+#: methods/models.py:126 methods/models.py:175
 msgid "Method"
 msgstr "Metod"
 
-#: methods/models.py:125
+#: methods/models.py:128
 msgid "Image"
 msgstr "Bild"
 
-#: methods/models.py:131
+#: methods/models.py:134
 msgid "Image height"
 msgstr "Bildens höjd"
 
-#: methods/models.py:133
+#: methods/models.py:136
 msgid "Image width"
 msgstr "Bildens bredd"
 
-#: methods/models.py:147
+#: methods/models.py:150
 msgid "uploaded file"
 msgstr "uppladdad fil"
 
-#: methods/models.py:148
+#: methods/models.py:151
 msgid "uploaded files"
 msgstr "uppladdade filer"
 
-#: methods/models.py:201
+#: methods/models.py:207
 msgid "method bonus"
 msgstr "metodbonus"
 
-#: methods/models.py:202
+#: methods/models.py:208
 msgid "method bonuses"
 msgstr "metodbonusar"
 
@@ -1297,3 +1297,18 @@ msgstr "Logga in"
 #: users/templates/users-index.html:4
 msgid "All users"
 msgstr "Alla användare"
+
+#: users/templates/users-index.html:29
+#, python-format
+msgid ""
+"\n"
+"            %(method_count)s method(s),\n"
+"            %(bonus_count)s bonus(es) and\n"
+"            %(tips_count)s tip(s) created.\n"
+"            "
+msgstr ""
+"\n"
+"            %(method_count)s metod(er),\n"
+"            %(bonus_count)s bonus(ar) och\n"
+"            %(tips_count)s tips inlagda.\n"
+"            "
