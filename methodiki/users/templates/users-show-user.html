@@ -38,12 +38,25 @@
         </a>
         {% endif %}
       </h3>
+
       {% if method.methodfile_set.all.0.image %}
-      <img class="rounded-3 left"
-           src="{% thumbnail method.methodfile_set.all.0.image 25x25 crop %}"
-           title=""
-           style="border:2px solid #bbb;margin-right:0.5em;" />
+      {% for m in method.methodfile_set.all %}
+      {% if forloop.first %}
+      <a class="method-thumb-zoom"
+         href="{{ m.image.url }}"
+         rel="thumb-group-{{ method.id }}">
+        <img class="method-thumb"
+             src="{% thumbnail m.image 48x48 crop %}"
+             title="" />
+      </a>
+      {% else %}
+      <a class="method-thumb-zoom"
+         href="{{ m.image.url }}"
+         rel="thumb-group-{{ method.id }}"></a>
       {% endif %}
+      {% endfor %}
+      {% endif %}
+
       {{ method.description|markdown:"autolink"|abstract }}
 
       {% get_comment_count for method as comment_count %}
