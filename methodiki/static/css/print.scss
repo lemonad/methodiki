@@ -136,6 +136,7 @@ ul {
     }
     &#method-index {
         list-style-type: none;
+        padding-left: 0;
 
         img.method-thumb {
             border: 1px solid #ccc;
@@ -426,6 +427,7 @@ input[type="password"] {
 #tips-list {
     list-style-type: none;
     font-size: 130%;
+    padding-left: 0;
 
     h3 {
         margin-top: 0;
