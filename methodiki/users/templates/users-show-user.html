@@ -18,13 +18,15 @@
   {% if methods %}
   <hr style="clear:both;" />
   <h2>{% trans "Methods" %}</h2>
-  <ul class="no-markers">
+  <ul id="method-index">
     {% for method in methods %}
     <li>
-      <a href="#">
-        <img class="right"
+      {% if method.methodbonus_set.published %}
+      <a href="{% url methods-show-bonus method.published_at.year method.published_at.month method.published_at.day method.slug %}">
+        <img class="bonus-star"
              src="{% media_url "images/pedagogic-bonus-badge.png" %}" />
       </a>
+      {% endif %}
       <h3>
         {% if method.is_draft %}
         <a href="{% url methods-edit-method method.slug %}">
