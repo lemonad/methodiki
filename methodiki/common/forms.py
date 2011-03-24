@@ -9,7 +9,8 @@ class ModelFormRequestUser(ModelForm):
 
     def save(self, commit=True):
         obj = super(ModelFormRequestUser, self).save(commit=False)
-        obj.user = self.user
+        if not hasattr(obj, "user"):
+            obj.user = self.user
         if commit:
             obj.save()
             self.save_m2m()  # Be careful with ModelForms and commit=False
