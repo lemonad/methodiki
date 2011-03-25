@@ -17,11 +17,11 @@
       <span>
         &mdash;&nbsp;<a href="{% url user tip.user.username %}">{{ tip.user.get_profile.name }}</a>
       </span>
-      {% ifequal request.user tip.user %}
+      {% if tip.user.id == request.user.id or request.user.is_superuser %}
       <span class="noprint">
         (<a href="{% url tips-edit-tip tip.id %}">edit</a>)
       </span>
-      {% endifequal %}
+      {% endif %}
     </p>
   </div>
 </li>
