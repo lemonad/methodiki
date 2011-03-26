@@ -82,6 +82,38 @@
   </ul>
   {% endif %}
 
+  {% if bonuses %}
+  <h2>{% trans "Bonuses" %}</h2>
+  <ul id="method-index">
+    {% for bonus in bonuses %}
+    {% with bonus.method as method %}
+    <li>
+      <h3>
+        {% if bonus.is_draft %}
+        <a href="{% url methods-edit-bonus method.published_at.year method.published_at.month method.published_at.day method.slug bonus.id %}">
+          {% blocktrans with method.title as method_title %}
+          Bonus for <em>{{ method_title }}</em>
+          {% endblocktrans %}
+        </a> (<em>{% trans "Draft" %}</em>)
+        {% else %}
+        <a href="{% url methods-show-bonus method.published_at.year method.published_at.month method.published_at.day method.slug %}#bonus-{{ bonus.id }}">
+          {% blocktrans with method.title as method_title %}
+          Bonus for <em>{{ method_title }}</em>
+          {% endblocktrans %}
+        </a>
+        {% endif %}
+      </h3>
+
+      {{ bonus.description|markdown:"autolink"|abstract }} (...)
+
+      {% include "methods-bonus-meta.html" %}
+      <hr />
+    </li>
+    {% endwith %}
+    {% endfor %}
+  </ul>
+  {% endif %}
+
   {% if tips %}
   <div class="span-16 last">
     <h2>{% trans "Tips" %}</h2>
@@ -90,11 +122,12 @@
       <li class="span-16 last">
         <p>
           {{ tip.text }}
-          <span>
-            {% if request.user.id == tip.user.id or request.user.is_superuser %}
-            (<a href="{% url tips-edit-tip tip.id %}">edit</a>)
-            {% endif %}
+          {% if tip.user.id == request.user.id or request.user.is_superuser %}
+          <span class="noprint">
+            <a class="rounded-button rounded-6"
+               href="{% url tips-edit-tip tip.id %}">{% trans "Edit tip?" %}</a>
           </span>
+          {% endif %}
         </p>
       </li>
       {% endfor %}

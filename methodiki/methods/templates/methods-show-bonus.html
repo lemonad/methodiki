@@ -28,7 +28,7 @@
 
     <div id="markdown-wrapper">
       {% for bonus in bonuses %}
-      <section>
+      <section id="bonus-{{ bonus.id }}">
         <div class="markdown">
           {{ bonus.description|markdown:"autolink" }}
         </div>

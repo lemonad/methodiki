@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-24 22:54+0100\n"
+"POT-Creation-Date: 2011-03-26 23:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,12 +69,13 @@ msgstr "Nyaste metoderna"
 msgid "The latest methods submitted by your co-workers"
 msgstr "De nyaste upplagda metoderna från dina kollegor"
 
-#: methods/models.py:55 methods/models.py:168
-#: users/templates/users-show-user.html:32
+#: methods/models.py:55 methods/models.py:173
+#: users/templates/users-show-user.html:34
+#: users/templates/users-show-user.html:97
 msgid "Draft"
 msgstr "Utkast"
 
-#: methods/models.py:56 methods/models.py:169
+#: methods/models.py:56 methods/models.py:174
 msgid "Published"
 msgstr "Publicerad"
 
@@ -90,11 +91,11 @@ msgstr "Inlagd av"
 msgid "Title"
 msgstr "Titel"
 
-#: methods/models.py:71 methods/models.py:177
+#: methods/models.py:71 methods/models.py:182
 msgid "Description"
 msgstr "Beskrivning"
 
-#: methods/models.py:73 methods/models.py:179
+#: methods/models.py:73 methods/models.py:184
 msgid "Status"
 msgstr "Status"
 
@@ -102,17 +103,17 @@ msgstr "Status"
 msgid "Date and time pushed"
 msgstr "Upplyft datum och tid"
 
-#: methods/models.py:82 methods/models.py:184
+#: methods/models.py:82 methods/models.py:189
 msgid "Date and time published"
 msgstr "Datum och tid för publicering"
 
-#: methods/models.py:86 methods/models.py:138 methods/models.py:188
+#: methods/models.py:86 methods/models.py:138 methods/models.py:193
 #: tagsuggestions/models.py:11 tagsuggestions/models.py:38
 #: tagsuggestions/models.py:65 tips/models.py:29 users/models.py:26
 msgid "Created (date)"
 msgstr "Skapad (datum)"
 
-#: methods/models.py:89 methods/models.py:141 methods/models.py:191
+#: methods/models.py:89 methods/models.py:141 methods/models.py:196
 #: tagsuggestions/models.py:14 tagsuggestions/models.py:41
 #: tagsuggestions/models.py:68 tips/models.py:32 users/models.py:29
 msgid "Modified (date)"
@@ -126,11 +127,11 @@ msgstr "metod"
 msgid "methods"
 msgstr "metoder"
 
-#: methods/models.py:123 methods/models.py:172 users/models.py:17
+#: methods/models.py:123 methods/models.py:177 users/models.py:17
 msgid "User"
 msgstr "Användare"
 
-#: methods/models.py:126 methods/models.py:175
+#: methods/models.py:126 methods/models.py:180
 msgid "Method"
 msgstr "Metod"
 
@@ -154,11 +155,11 @@ msgstr "uppladdad fil"
 msgid "uploaded files"
 msgstr "uppladdade filer"
 
-#: methods/models.py:207
+#: methods/models.py:212
 msgid "method bonus"
 msgstr "metodbonus"
 
-#: methods/models.py:208
+#: methods/models.py:213
 msgid "method bonuses"
 msgstr "metodbonusar"
 
@@ -333,8 +334,8 @@ msgstr ""
 "    "
 
 #: methods/templates/methods-bonus-meta.html:23
-msgid "Edit bonus"
-msgstr "Redigera bonus"
+msgid "Edit bonus?"
+msgstr "Redigera bonus?"
 
 #: methods/templates/methods-bonus-preview.html:5
 msgid "Bonus preview"
@@ -414,7 +415,7 @@ msgstr "Valfria fält"
 
 #: methods/templates/methods-create-method.html:86
 #: methods/templates/methods-edit-method.html:192
-#: methods/templates/methods-meta.html:37
+#: methods/templates/methods-meta.html:38
 #: methods/templates/methods-tags.html:13 templates/base-header.html:75
 msgid "Tags"
 msgstr "Taggar"
@@ -617,9 +618,9 @@ msgstr ""
 "    <strong>Metoden är inte publicerad ännu.</strong>\n"
 "    "
 
-#: methods/templates/methods-meta.html:29
-msgid "Edit it?"
-msgstr "Redigera?"
+#: methods/templates/methods-meta.html:30
+msgid "Edit method?"
+msgstr "Redigera metod?"
 
 #: methods/templates/methods-preview.html:6
 msgid "Scroll down to edit or save your method"
@@ -698,7 +699,7 @@ msgid "methods tagged with"
 msgstr "metoder taggade med"
 
 #: methods/templates/methods-tag-index.html:41
-#: users/templates/users-show-user.html:53
+#: users/templates/users-show-user.html:68
 #, python-format
 msgid ""
 "\n"
@@ -743,28 +744,36 @@ msgstr "Logga in och lägg till en metod!"
 msgid "RSS"
 msgstr "RSS-flöde"
 
-#: methods/templates/sidebar/sidebar-methods-created-by-user.html:4
+#: methods/templates/sidebar/sidebar-methods-created-by-user.html:5
 #: templates/base-header.html:27
 msgid "Your methods"
 msgstr "Dina metoder"
 
-#: methods/templates/sidebar/sidebar-methods-created-by-user.html:6
+#: methods/templates/sidebar/sidebar-methods-created-by-user.html:7
 msgid ""
 "\n"
-"    You have methods to publish!\n"
+"    You have texts to publish!\n"
 "    "
 msgstr ""
 "\n"
-"    Du har metoder att publicera!\n"
+"    Du har texter att publicera!\n"
 "    "
 
-#: methods/templates/sidebar/sidebar-methods-created-by-user.html:17
+#: methods/templates/sidebar/sidebar-methods-created-by-user.html:18
+#: methods/templates/sidebar/sidebar-methods-created-by-user.html:32
 msgid "draft"
 msgstr "utkast"
 
-#: methods/templates/sidebar/sidebar-methods-created-by-user.html:18
-msgid "edit..."
-msgstr "redigera..."
+#: methods/templates/sidebar/sidebar-methods-created-by-user.html:27
+#, python-format
+msgid ""
+"\n"
+"        Bonus for \"%(method_title)s\"\n"
+"        "
+msgstr ""
+"\n"
+"        Bonus för \"%(method_title)s\"\n"
+"        "
 
 #: methods/templates/sidebar/sidebar-recent-comments.html:4
 msgid "Recent comments"
@@ -1000,7 +1009,7 @@ msgstr "Skapa konto"
 msgid "Methods"
 msgstr "Metoder"
 
-#: templates/base-header.html:72 users/templates/users-show-user.html:72
+#: templates/base-header.html:72 users/templates/users-show-user.html:119
 msgid "Tips"
 msgstr "Tips"
 
@@ -1251,6 +1260,11 @@ msgstr ""
 "      Inga tips, ännu!\n"
 "      "
 
+#: tips/templates/tips-tip-listitem.html:23
+#: users/templates/users-show-user.html:128
+msgid "Edit tip?"
+msgstr "Redigera tips?"
+
 #: users/admin.py:19 users/models.py:22
 msgid "Avatar"
 msgstr "Profilbild"
@@ -1312,3 +1326,19 @@ msgstr ""
 "            %(bonus_count)s bonus(ar) och\n"
 "            %(tips_count)s tips inlagda.\n"
 "            "
+
+#: users/templates/users-show-user.html:86
+msgid "Bonuses"
+msgstr "Bonusar"
+
+#: users/templates/users-show-user.html:94
+#: users/templates/users-show-user.html:100
+#, python-format
+msgid ""
+"\n"
+"          Bonus for <em>%(method_title)s</em>\n"
+"          "
+msgstr ""
+"\n"
+"          Bonus för <em>%(method_title)s</em>\n"
+"          "

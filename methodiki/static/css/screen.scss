@@ -105,15 +105,17 @@ a {
     }
     &.rounded-button {
         display: inline-block;
-        padding: 3px 15px 3px 15px;
-        margin-left: 1em;
-        background-color: $cyan;
+        padding: 2px 10px 2px 10px;
+        background-color: lighten($blue, 45%);
         font-style: normal;
         font-weight: bold;
         text-decoration: none;
         /* For IE 7 */
         zoom: 1;
         *display: inline;
+    }
+    &.rounded-button:hover, &.rounded-button:focus {
+        background-color: lighten($blue, 35%);
     }
     &.image-add, &.image-preview, &.image-delete {
         display: none;
@@ -508,22 +510,15 @@ ul#messages {
         list-style-type: circle;
     }
 }
-div.bonus-meta {
+div.method-meta, div.bonus-meta {
+    font-size: 95%;
+    margin-top: 0.5em;
     clear: left;
-    margin: 0.5em 0 0 0;
-    padding: 0.5em 0 0.5em 0;
-    background-color: #ebe8e5;
-    border-bottom: 1px solid #a2c615;
 
     p {
         margin: 0;
         padding: 0;
     }
-}
-div.method-meta {
-    font-size: 95%;
-    margin-top: 0.5em;
-    clear: left;
 }
 
 #comments {
@@ -711,7 +706,7 @@ input[type="password"] {
         margin-top: 0;
     }
     span {
-        font-size: 80%;
+        font-size: 70%;
     }
 }
 

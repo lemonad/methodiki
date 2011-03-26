@@ -24,7 +24,7 @@ from django.utils.encoding import StrAndUnicode, force_unicode
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
-from methods.models import Method
+from methods.models import Method, MethodBonus
 from tips.models import Tip
 from forms import UserCreationForm
 from models import UserProfile
@@ -45,14 +45,14 @@ def show_user(request, username):
     """ User page """
 
     user = get_object_or_404(User, username=username)
-    methods = Method.objects.filter(user=user) \
-                            .order_by('-date_created')
-    tips = Tip.objects.filter(user=user) \
-                      .order_by('-date_created')
+    methods = Method.objects.created_by_user(user)
+    bonuses = MethodBonus.objects.created_by_user(user)
+    tips = Tip.objects.created_by_user(user)
 
     t = loader.get_template('users-show-user.html')
     c = RequestContext(request, {'profile': user,
                                  'methods': methods,
+                                 'bonuses': bonuses,
                                  'tips': tips})
     return HttpResponse(t.render(c))
 

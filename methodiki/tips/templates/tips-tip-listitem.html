@@ -19,7 +19,8 @@
       </span>
       {% if tip.user.id == request.user.id or request.user.is_superuser %}
       <span class="noprint">
-        (<a href="{% url tips-edit-tip tip.id %}">edit</a>)
+        <a class="rounded-button rounded-6"
+           href="{% url tips-edit-tip tip.id %}">{% trans "Edit tip?" %}</a>
       </span>
       {% endif %}
     </p>

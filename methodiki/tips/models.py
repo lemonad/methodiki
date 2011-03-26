@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 class TipManager(Manager):
     def created_by_user(self, userid):
         return self.filter(user=userid) \
-                   .order_by('-created_at')
+                   .order_by('-date_created')
 
 
 class Tip(Model):

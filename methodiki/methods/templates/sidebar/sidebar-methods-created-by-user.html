@@ -1,10 +1,11 @@
 {% load i18n %}
-{% if user.is_authenticated and user_methods_draft_flag %}
+{% if user.is_authenticated %}
+{% if user_methods_draft_flag or user_bonuses_draft_flag %}
 <div>
   <h4>{% trans "Your methods" %}</h4>
   <p class="notice">
     {% blocktrans %}
-    You have methods to publish!
+    You have texts to publish!
     {% endblocktrans %}
   </p>
   <ol>
@@ -14,11 +15,26 @@
         {{ method.title }}
       </a>
       <em>
-        ({% trans "draft" %},
-        <a href="{% url methods-edit-method method.slug %}">{% trans "edit..." %}</a>)
+        ({% trans "draft" %})
       </em>
     </li>
     {% endfor %}
   </ol>
+  <ol>
+    {% for bonus in user_bonuses_draft %}
+    <li>
+      <a href="{% url methods-edit-bonus bonus.method.published_at.year bonus.method.published_at.month bonus.method.published_at.day bonus.method.slug bonus.id %}">
+        {% blocktrans with bonus.method.title as method_title %}
+        Bonus for "{{ method_title }}"
+        {% endblocktrans %}
+      </a>
+      <em>
+        ({% trans "draft" %})
+      </em>
+    </li>
+    {% endfor %}
+  </ol>
+
 </div>
+{% endif %}
 {% endif %}

@@ -19,7 +19,7 @@ class MethodManager(Manager):
 
     def created_by_user(self, userid):
         return self.filter(user=userid) \
-                   .order_by('-published_at')
+                   .order_by('-date_created')
 
     def created_by_user_draft(self, userid):
         return self.filter(user=userid) \
@@ -158,7 +158,12 @@ class MethodBonusManager(Manager):
 
     def created_by_user(self, userid):
         return self.filter(user=userid) \
-                   .order_by('-published_at')
+                   .order_by('-date_created')
+
+    def created_by_user_draft(self, userid):
+        return self.filter(user=userid) \
+                   .exclude(status='PUBLISHED') \
+                   .order_by('-date_created')
 
     def published(self):
         return self.exclude(status='DRAFT')

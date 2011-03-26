@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from models import Method
+from models import Method, MethodBonus
 
 
 def user_methods(request):
@@ -13,9 +13,14 @@ def user_methods(request):
 
     user_methods = Method.objects.created_by_user(request.user.id)
     user_methods_count = user_methods.count()
+
     draft_methods = Method.objects.created_by_user_draft(request.user.id)
-    draft_flag = draft_methods.count()
+    draft_bonuses = MethodBonus.objects.created_by_user_draft(request.user.id)
+    methods_draft_flag = draft_methods.count()
+    bonuses_draft_flag = draft_bonuses.count()
     return {"user_methods": user_methods,
             "user_methods_count": user_methods_count,
             "user_methods_draft": draft_methods,
-            "user_methods_draft_flag": draft_flag}
+            "user_methods_draft_flag": methods_draft_flag,
+            "user_bonuses_draft": draft_bonuses,
+            "user_bonuses_draft_flag": bonuses_draft_flag}

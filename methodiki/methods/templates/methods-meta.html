@@ -25,8 +25,9 @@
 
       {% if not edit_method_flag %}
       {% if method.user.id == request.user.id or request.user.is_superuser %}
-      <a class="noprint" href="{% url methods-edit-method method.slug %}">
-        {% trans "Edit it?" %}
+      <a class="noprint rounded-button rounded-6"
+         href="{% url methods-edit-method method.slug %}">
+        {% trans "Edit method?" %}
       </a>
       {% endif %}
       {% endif %}

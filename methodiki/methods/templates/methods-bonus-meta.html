@@ -1,7 +1,7 @@
 {% load i18n thumbnail %}
 <div class="bonus-meta">
   <p>
-    — {% url user bonus.user.username as link_to_person %}
+    {% url user bonus.user.username as link_to_person %}
     <em>
       {% ifequal bonus.status "PUBLISHED" %}
       {% blocktrans with bonus.user.get_profile.name as name and bonus.published_at as published_at %}
@@ -18,9 +18,9 @@
 
       {% if not edit_bonus_flag %}
       {% if bonus.user.id == request.user.id or request.user.is_superuser %}
-      <a class="rounded-button rounded-6 noprint"
+      <a class="noprint rounded-button rounded-6"
          href="{% url methods-edit-bonus method.published_at.year method.published_at.month method.published_at.day method.slug bonus.id %}">
-          {% trans "Edit bonus" %}
+          {% trans "Edit bonus?" %}
       </a>
       {% endif %}
       {% endif %}
