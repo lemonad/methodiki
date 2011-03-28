@@ -21,8 +21,10 @@ urlpatterns = patterns('methods.views',
     url(r'^(?P<id>[0-9]+)/$',
         'show_method_short',
         name='methods-show-method-short'),
-    url(r'^(?P<year>[0-9]{4})/(?P<month>[0-9]{1,2})/(?P<day>[0-9]{1,2})/'
-                                                   '(?P<slug>[^\/]+)/$',
+    url(r'^(?P<year>[0-9]{4})/'
+          '(?P<month>[0-9]{1,2})/'
+          '(?P<day>[0-9]{1,2})/'
+          '(?P<slug>[^\/]+)/$',
         'show_method',
         name='methods-show-method'),
     url(r'^edit/(?P<slug>[^\/]+)/upload-file$',
@@ -36,19 +38,22 @@ urlpatterns = patterns('methods.views',
     url(r'^(?P<year>[0-9]{4})/'
           '(?P<month>[0-9]{1,2})/'
           '(?P<day>[0-9]{1,2})/'
-          '(?P<slug>[^\/]+)/bonus/$',
+          '(?P<slug>[^\/]+)/'
+          'bonus/$',
         'show_bonus',
         name='methods-show-bonus'),
     url(r'^(?P<year>[0-9]{4})/'
           '(?P<month>[0-9]{1,2})/'
           '(?P<day>[0-9]{1,2})/'
-          '(?P<slug>[^\/]+)/bonus/new/$',
+          '(?P<slug>[^\/]+)/'
+          'bonus/new/$',
         'create_bonus',
         name='methods-create-bonus'),
     url(r'^(?P<year>[0-9]{4})/'
           '(?P<month>[0-9]{1,2})/'
           '(?P<day>[0-9]{1,2})/'
-          '(?P<slug>[^\/]+)/bonus/(?P<bonus_id>[0-9]+)$',
+          '(?P<slug>[^\/]+)/'
+          'bonus/(?P<bonus_id>[0-9]+)$',
         'edit_bonus',
         name='methods-edit-bonus'),
 
