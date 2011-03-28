@@ -45,6 +45,7 @@ def index(request):
     return HttpResponse(t.render(c))
 
 
+@login_required
 def edit_tip(request, tip_id):
     """ Edits tips """
 
