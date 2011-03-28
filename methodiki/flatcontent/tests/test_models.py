@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Tests for flatcontent.
+Model tests for flatcontent.
 
 """
 from django.contrib.auth import authenticate, login, logout
@@ -11,7 +11,7 @@ from django.test import TestCase
 from django.utils.http import urlquote
 from django.utils.translation import ugettext
 
-from models import FlatContent
+from ..models import FlatContent
 
 
 class FlatContentModelTests(TestCase):
