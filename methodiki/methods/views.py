@@ -47,6 +47,30 @@ def get_sidebar_methods(user):
             'tips': tips}
 
 
+def get_suggested_tags(frontpage_only=False, match_actual_tags=True):
+    suggested_tags = []
+    suggested_tag_categories = TagSuggestionCategory.objects.all()
+    for category in suggested_tag_categories:
+        suggestions = TagSuggestion.objects.filter(category=category)
+        if frontpage_only:
+            suggestions = suggestions.filter(show_on_frontpage=True)
+        suggestions = suggestions.values_list('name', flat=True)
+
+        if not match_actual_tags:
+            suggested_tags.append((category.name, suggestions))
+        else:
+            # Match suggested tags with actual tags because slugs are needed
+            # for linking to tag indexes. Only retrieve tags which have
+            # associated methods.
+            tags = Tag.objects.annotate(number_of_methods=Count('method')) \
+                              .filter(name__in=suggestions) \
+                              .filter(number_of_methods__gt=0)
+            if tags:
+                suggested_tags.append((category.name, tags))
+
+    return suggested_tags
+
+
 def get_token(request):
     """
     Returns the the CSRF token required for a POST form. The token is an
@@ -75,20 +99,7 @@ def frontpage(request):
     popular_tags = Tag.objects.annotate(Count('method')) \
                               .order_by('-method__count')[0:10]
 
-    suggested_tags = []
-    suggested_tag_categories = TagSuggestionCategory.objects.all()
-    for category in suggested_tag_categories:
-        suggestions = TagSuggestion.objects.filter(category=category) \
-                                   .filter(show_on_frontpage=True) \
-                                   .values_list('name', flat=True)
-        # Match suggested tags with actual tags because slugs are needed
-        # for linking to tag indexes. Only retrieve tags which have
-        # associated methods.
-        tags = Tag.objects.annotate(number_of_methods=Count('method')) \
-                          .filter(name__in=suggestions) \
-                          .filter(number_of_methods__gt=0)
-        if tags:
-            suggested_tags.append((category.name, tags))
+    suggested_tags = get_suggested_tags(frontpage_only=True)
 
     try:
         tips = Tip.objects.order_by('?')[0]
@@ -107,14 +118,15 @@ def frontpage(request):
 def index(request):
     """ Index page """
 
-    # TODO: Order methods on popularity (see method manager)
-
     sidebar_methods = get_sidebar_methods(request.user)
     popular_methods = Method.objects.popular()
+
+    suggested_tags = get_suggested_tags()
 
     t = loader.get_template('methods-index.html')
     c = RequestContext(request,
                        {'methods': popular_methods,
+                        'suggested_tags': suggested_tags,
                         'sidebar_methods': sidebar_methods})
     return HttpResponse(t.render(c))
 
@@ -227,13 +239,7 @@ def create_method(request):
         form = MethodForm(request, initial=form_defaults, prefix='method')
 
     sidebar_methods = get_sidebar_methods(request.user)
-
-    suggested_tags = []
-    suggested_tag_categories = TagSuggestionCategory.objects.all()
-    for category in suggested_tag_categories:
-        tags = TagSuggestion.objects.filter(category=category) \
-                                    .values_list('name', flat=True)
-        suggested_tags.append((category.name, tags))
+    suggested_tags = get_suggested_tags(match_actual_tags=False)
 
     t = loader.get_template('methods-create-method.html')
     c = RequestContext(request,
@@ -312,13 +318,7 @@ def edit_method(request, slug):
 
     sidebar_methods = get_sidebar_methods(request.user)
     images = MethodFile.objects.filter(method=method)
-
-    suggested_tags = []
-    suggested_tag_categories = TagSuggestionCategory.objects.all()
-    for category in suggested_tag_categories:
-        tags = TagSuggestion.objects.filter(category=category) \
-                                    .values_list('name', flat=True)
-        suggested_tags.append((category.name, tags))
+    suggested_tags = get_suggested_tags(match_actual_tags=False)
 
     t = loader.get_template('methods-edit-method.html')
     c = RequestContext(request,

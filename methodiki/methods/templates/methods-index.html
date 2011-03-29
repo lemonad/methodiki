@@ -13,9 +13,22 @@
 
 {% block main %}
   <h2>{{ methods.count }} {% trans "Methods and best practices" %}</h2>
+  {% if suggested_tags %}
+  <ul class="no-markers" style="padding-left:0;">
+    {% for title, tags in suggested_tags %}
+    <li>
+      <strong style="margin-right:0.5em;">{{ title }}:</strong>
+      {% for tag in tags %}
+      <a style="margin-right:0.5em;"
+         href="{% url methods-tag-index tag.slug %}">{{ tag.name }}</a>
+      {% endfor %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
 
   {% if methods %}
-  <ul id="method-index">
+  <ul id="method-index" style="clear:left;">
     {% for method in methods %}
     <li>
       {% include "methods-listitem.html" %}
