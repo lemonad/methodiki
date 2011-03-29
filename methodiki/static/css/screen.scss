@@ -417,6 +417,7 @@ aside {
     }
     ol {
         list-style: none;
+        padding-left: 0;
 
         li {
             border-bottom: 1px dotted rgba(0, 0, 0, 0.1);
@@ -722,6 +723,7 @@ input[type="password"] {
     }
     ul {
         list-style-type: none;
+        padding-left: 0;
     }
     img.method-thumb {
         background-color: white;
