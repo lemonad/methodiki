@@ -28,6 +28,7 @@
       });
       $("h3.options").click(function() {
           $(this).next().toggle();
+          $("#click-to-display").hide('fast');
           return false;
       });
     });
@@ -82,6 +83,7 @@
       </div>
 
       <h2>{% trans "Optional settings" %}</h2>
+      <div id="click-to-display">{% trans "Click to display." %}</div>
       <h3 class="span-18 last options rounded-6">
         {% trans "Tags" %}
       </h3>
