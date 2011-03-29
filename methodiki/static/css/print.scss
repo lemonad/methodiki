@@ -297,6 +297,7 @@ footer {
 div.method-meta, div.bonus-meta {
     font-size: 95%;
     margin-top: 0.5em;
+    margin-bottom: 0.5em;
     clear: left;
 
     p {
@@ -459,6 +460,10 @@ input[type="password"] {
     background-color: $green;
     min-width: $blueprint-width;
 
+    h2 {
+        margin-top: 0.5em;
+        padding-top: 0;
+    }
     blockquote {
         margin: 0 0 0 110px;
         width: 310px;
@@ -469,7 +474,7 @@ input[type="password"] {
     a.popular-tag {
         color: lighten($green, 50%);
         margin: 0 1em 0 0;
-        font-size: 19px;
+        font-size: 17px;
     }
     #bubblewrap {
         display: table;
