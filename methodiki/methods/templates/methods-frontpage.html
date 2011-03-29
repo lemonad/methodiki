@@ -109,6 +109,15 @@
           {{ tag.name }}
         </a>
         {% endfor %}
+
+        {% for title, tags in suggested_tags %}
+        <h2>{{ title }}</h2>
+        {% for tag in tags %}
+        <a class="popular-tag" href="{% url methods-tag-index tag.slug %}">
+          {{ tag.name }}
+        </a>
+        {% endfor %}
+        {% endfor %}
       </div>
     </div>
   </div>

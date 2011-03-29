@@ -741,6 +741,10 @@ input[type="password"] {
     background-color: $green;
     min-width: $blueprint-width;
 
+    h2 {
+        margin-top: 0.5em;
+        padding-top: 0;
+    }
     blockquote {
         margin: 0 0 0 110px;
         width: 310px;
@@ -752,7 +756,7 @@ input[type="password"] {
         color: lighten($green, 50%);
         text-shadow: 0 1px 0 darken($green, 10%);
         margin: 0 1em 0 0;
-        font-size: 19px;
+        font-size: 17px;
 
         &:hover, &:active {
             color: darken($green, 30%);

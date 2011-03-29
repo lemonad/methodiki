@@ -75,6 +75,21 @@ def frontpage(request):
     popular_tags = Tag.objects.annotate(Count('method')) \
                               .order_by('-method__count')[0:10]
 
+    suggested_tags = []
+    suggested_tag_categories = TagSuggestionCategory.objects.all()
+    for category in suggested_tag_categories:
+        suggestions = TagSuggestion.objects.filter(category=category) \
+                                   .filter(show_on_frontpage=True) \
+                                   .values_list('name', flat=True)
+        # Match suggested tags with actual tags because slugs are needed
+        # for linking to tag indexes. Only retrieve tags which have
+        # associated methods.
+        tags = Tag.objects.annotate(number_of_methods=Count('method')) \
+                          .filter(name__in=suggestions) \
+                          .filter(number_of_methods__gt=0)
+        if tags:
+            suggested_tags.append((category.name, tags))
+
     try:
         tips = Tip.objects.order_by('?')[0]
     except IndexError:
@@ -84,6 +99,7 @@ def frontpage(request):
     c = RequestContext(request,
                        {'method': method,
                         'popular_tags': popular_tags,
+                        'suggested_tags': suggested_tags,
                         'tips': tips})
     return HttpResponse(t.render(c))
 
