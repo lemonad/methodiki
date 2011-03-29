@@ -1,11 +1,5 @@
 {% extends "base-with-sidebar.html" %}
 {% load comments i18n markup media methods thumbnail %}
-{% block feeds %}
-  <link rel="alternate" type="application/rss+xml"
-        title="{% trans "Latest methods" %}"
-        href="{% url methods-feed latest %}" />
-{% endblock %}
-
 {% block main %}
   <h2>
     {{ methods.count }} {% trans "methods tagged with" %}

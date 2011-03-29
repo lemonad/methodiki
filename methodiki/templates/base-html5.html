@@ -11,8 +11,10 @@
   {% comment %}
   <link rel="shortcut icon" href="{% media_url "favicon.ico" %}" />
   {% endcomment %}
-
-  {% block feeds %}{% endblock %}
+  <link rel="alternate"
+        type="application/rss+xml"
+        title="{% trans "Latest methods" %}"
+        href="http://{{ site_domain }}{% url methods-feed "latest" %}" />
 
   <!--[if (!IE)|(gte IE 8)]><!-->
     {% include_media "screen.css" media="screen, projection" %}
