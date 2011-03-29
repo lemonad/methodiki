@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-26 23:14+0100\n"
+"POT-Creation-Date: 2011-03-29 13:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,30 +34,30 @@ msgstr "kommentarer"
 msgid "Identifier"
 msgstr "Identifierare"
 
-#: flatcontent/admin.py:12 flatcontent/models.py:30
+#: flatcontent/admin.py:12 flatcontent/models.py:31
 msgid "Content"
 msgstr "Innehåll"
 
-#: flatcontent/models.py:24 users/admin.py:17 users/models.py:20
+#: flatcontent/models.py:25 users/admin.py:17 users/models.py:20
 msgid "Name"
 msgstr "Namn"
 
-#: flatcontent/models.py:27
+#: flatcontent/models.py:28
 msgid "Language code"
 msgstr "Språk-kod"
 
-#: flatcontent/models.py:37 flatcontent/models.py:38
+#: flatcontent/models.py:38 flatcontent/models.py:39
 msgid "flat content"
 msgstr "platt innehåll"
 
-#: flatcontent/models.py:71
+#: flatcontent/models.py:86
 #, python-format
 msgid ""
 "No matching content for flat content '%(name)s', please use admin interface "
-"to create it."
+"to [create it](%(url)s)."
 msgstr ""
 "Inget matchande platt innehåll för '%(name)s', var god använd admin-"
-"gränssnittet för att skapa det."
+"gränssnittet för att [skapa det](%(url)s)."
 
 #: methods/feeds.py:13 methods/templates/methods-index.html:6
 #: methods/templates/methods-tag-index.html:5
@@ -163,7 +163,7 @@ msgstr "metodbonus"
 msgid "method bonuses"
 msgstr "metodbonusar"
 
-#: methods/views.py:200
+#: methods/views.py:216
 msgid ""
 "Thanks for adding a new method! Don't forget to publish it so it becomes "
 "visible to others."
@@ -171,30 +171,30 @@ msgstr ""
 "Tack för att du lade in en ny metod! Glöm inte att publicera den så den blir "
 "synlig för andra."
 
-#: methods/views.py:259
+#: methods/views.py:275
 msgid "Method saved!"
 msgstr "Metoden sparades!"
 
-#: methods/views.py:262
+#: methods/views.py:278
 msgid ""
 "Method saved! Don't forget to publish it so it becomes visible to others."
 msgstr ""
 "Metoden sparades! Glöm inte att publicera den så att den blir synlig för "
 "andra."
 
-#: methods/views.py:277
+#: methods/views.py:293
 msgid "Method deleted!"
 msgstr "Metoden togs bort!"
 
-#: methods/views.py:285
+#: methods/views.py:301
 msgid "Method is now published and visible to everyone"
 msgstr "Metoden publicerades och är nu synlig för alla"
 
-#: methods/views.py:292 methods/views.py:435
+#: methods/views.py:308 methods/views.py:451
 msgid "Method is now draft"
 msgstr "Metoden är nu ett utkast"
 
-#: methods/views.py:337
+#: methods/views.py:353
 msgid ""
 "Thanks for adding a new method bonus! Don't forget to publish it so it "
 "becomes visible to others."
@@ -202,22 +202,22 @@ msgstr ""
 "Tack för att du lade in en ny metodbonus! Glöm inte att publicera den så den "
 "blir synlig för andra."
 
-#: methods/views.py:393
+#: methods/views.py:409
 msgid "Bonus saved!"
 msgstr "Bonusen sparades!"
 
-#: methods/views.py:400
+#: methods/views.py:416
 msgid ""
 "Bonus saved! Don't forget to publish it so it becomes visible to others."
 msgstr ""
 "Bonusen sparades! Glöm inte att publicera den så att den blir synlig för "
 "andra."
 
-#: methods/views.py:413
+#: methods/views.py:429
 msgid "Bonus deleted!"
 msgstr "Bonusen togs bort!"
 
-#: methods/views.py:424
+#: methods/views.py:440
 msgid "Bonus is now published and visible to everyone"
 msgstr "Bonusen publicerades och är nu synlig för alla"
 
@@ -418,12 +418,12 @@ msgstr "Valfria fält"
 #: methods/templates/methods-meta.html:38
 #: methods/templates/methods-tags.html:13 templates/base-header.html:75
 msgid "Tags"
-msgstr "Taggar"
+msgstr "Etiketter"
 
 #: methods/templates/methods-create-method.html:99
 #: methods/templates/methods-edit-method.html:207
 msgid "Suggested tags:"
-msgstr "Förslag på taggar:"
+msgstr "Förslag på etiketter:"
 
 #: methods/templates/methods-create-method.html:124
 #: methods/templates/methods-edit-method.html:30
@@ -527,7 +527,7 @@ msgstr "Kom igen, lägg in den första metoden!"
 
 #: methods/templates/methods-frontpage.html:106
 msgid "Popular Tags"
-msgstr "Populära taggar"
+msgstr "Populära etiketter"
 
 #: methods/templates/methods-index.html:22
 msgid "Methods and best practices"
@@ -696,7 +696,7 @@ msgstr "Skapa bonus"
 
 #: methods/templates/methods-tag-index.html:11
 msgid "methods tagged with"
-msgstr "metoder taggade med"
+msgstr "metoder med etiketten"
 
 #: methods/templates/methods-tag-index.html:41
 #: users/templates/users-show-user.html:68
@@ -725,7 +725,7 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"    Ju större storlek på taggen, desto fler metoder är taggade med den.\n"
+"    Ju större storlek, desto fler metoder är märkta med etiketten.\n"
 "    "
 
 #: methods/templates/sidebar/sidebar-create-method.html:3
@@ -793,7 +793,7 @@ msgstr "Se fler..."
 
 #: methods/templates/sidebar/sidebar-tag-cloud.html:3
 msgid "Popular tags"
-msgstr "Populära taggar"
+msgstr "Populära etiketter"
 
 #: methods/templates/sidebar/sidebar-theory.html:4
 msgid "Background"
@@ -834,19 +834,19 @@ msgstr ""
 
 #: tagsuggestions/models.py:8
 msgid "Tag category name"
-msgstr "Taggkategorinamn"
+msgstr "Namn på etikettkategori"
 
 #: tagsuggestions/models.py:23
 msgid "tag suggestion category"
-msgstr "taggförslagskategori"
+msgstr "kategori för etikettförslag"
 
 #: tagsuggestions/models.py:24
 msgid "tag suggestion categories"
-msgstr "taggförslagskategorier"
+msgstr "kategorier för etikettförslag"
 
 #: tagsuggestions/models.py:28
 msgid "Tag name"
-msgstr "Taggnamn"
+msgstr "Namn på etikett"
 
 #: tagsuggestions/models.py:32
 msgid "Category"
@@ -858,11 +858,11 @@ msgstr "Visa på förstasidan?"
 
 #: tagsuggestions/models.py:50
 msgid "tag suggestion"
-msgstr "taggförslag"
+msgstr "etikettförslag"
 
 #: tagsuggestions/models.py:51
 msgid "tag suggestions"
-msgstr "taggförslag"
+msgstr "etikettförslag"
 
 #: tagsuggestions/models.py:61 tips/models.py:26
 msgid "Text"
@@ -870,15 +870,15 @@ msgstr "Text"
 
 #: tagsuggestions/models.py:63
 msgid "Tag text"
-msgstr "Taggtext"
+msgstr "Etikett-text"
 
 #: tagsuggestions/models.py:78
 msgid "tag text"
-msgstr "taggtext"
+msgstr "etikett-text"
 
 #: tagsuggestions/models.py:79
 msgid "tag texts"
-msgstr "taggtexter"
+msgstr "etikett-texter"
 
 #: templates/404.html:4
 msgid "HTTP 404: Page not found"
@@ -1200,11 +1200,11 @@ msgstr "tips"
 msgid "Thanks for adding a new tip!"
 msgstr "Tack för att du lade till ett nytt tips!"
 
-#: tips/views.py:65
+#: tips/views.py:66
 msgid "Tip saved!"
 msgstr "Tipset sparades!"
 
-#: tips/views.py:69
+#: tips/views.py:70
 msgid "Tip deleted!"
 msgstr "Tipset togs bort!"
 
