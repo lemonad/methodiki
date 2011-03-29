@@ -9,9 +9,9 @@ from models import CustomComment
 
 class CustomCommentAdmin(admin.ModelAdmin):
     fields = ['comment', 'lift_method', 'submit_date']
-    list_display = ['id', 'user_name', 'user_email', 'comment_excerpt',
-                    'lift_method', 'submit_date']
-    search_fields = ['comment', 'user', 'user_email', 'user_url']
+    list_display = ['id', 'user_name', 'user_email', 'user_url',
+                    'comment_excerpt', 'lift_method', 'submit_date']
+    search_fields = ['comment', 'user_name', 'user_email', 'user_url']
 
     def comment_excerpt(self, obj):
         return truncate_words(obj.comment, 7)

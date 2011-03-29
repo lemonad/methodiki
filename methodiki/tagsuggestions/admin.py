@@ -10,7 +10,7 @@ class TagSuggestionAdmin(ModelAdmin):
     list_display = ['name', 'category', 'show_on_frontpage',
                     'date_created', 'date_modified']
     list_filter = ['category', 'show_on_frontpage']
-    search_fields = ['name', 'category']
+    search_fields = ['name', 'category__name']
 
 
 class TagSuggestionCategoryAdmin(ModelAdmin):
@@ -22,7 +22,7 @@ class TagSuggestionCategoryAdmin(ModelAdmin):
 class TagTextAdmin(ModelAdmin):
     fields = ['text', 'tag']
     list_display = ['tag', 'date_created', 'date_modified']
-    search_fields = ['tag', 'text']
+    search_fields = ['tag__name', 'text']
 
 
 site.register(TagSuggestion, TagSuggestionAdmin)

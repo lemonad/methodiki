@@ -11,7 +11,7 @@ class MethodAdmin(admin.ModelAdmin):
     list_display = ['title', 'user', 'status', 'published_at',
                     'last_pushed_at', 'date_created', 'date_modified']
     list_filter = ['status']
-    search_fields = ['title', 'description']
+    search_fields = ['title', 'description', 'user__username']
 
 
 class MethodBonusAdmin(admin.ModelAdmin):
@@ -20,7 +20,7 @@ class MethodBonusAdmin(admin.ModelAdmin):
     list_display = ['user', 'method', 'status', 'published_at',
                     'date_created', 'date_modified']
     list_filter = ['status']
-    search_fields = ['description']
+    search_fields = ['description', 'method__title', 'user__username']
 
 
 admin.site.register(Method, MethodAdmin)

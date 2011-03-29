@@ -9,7 +9,7 @@ from models import Tip
 class TipAdmin(ModelAdmin):
     fields = ['text', 'user']
     list_display = ['get_excerpt', 'user', 'date_created', 'date_modified']
-    search_fields = ['text']
+    search_fields = ['text', 'user__username']
 
     def get_excerpt(self, obj):
         return truncate_words(obj.text, 7)

@@ -22,8 +22,11 @@ class UserProfileInline(admin.StackedInline):
 
 class UserProfileAdmin(UserAdmin):
     inlines = [UserProfileInline]
-    list_display = ('username', 'email', 'is_staff')
+    list_display = ('username', 'name', 'email', 'is_staff')
+    search_fields = ['username', 'userprofile__name', 'email']
 
+    def name(self, obj):
+        return obj.get_profile().name
 
 admin.site.unregister(User)
 admin.site.register(User, UserProfileAdmin)
