@@ -25,6 +25,11 @@ class MethodForm(ModelFormRequestUser):
     def __init__(self, request, *args, **kwargs):
         super(MethodForm, self).__init__(request, *args, **kwargs)
 
+    def clean_tags(self):
+        cleaned_tags = self.cleaned_data['tags']
+        lowercase_tags = [tag.lower() for tag in cleaned_tags]
+        return lowercase_tags
+
 
 class MethodBonusForm(ModelFormRequestUser):
     """ Form for adding and editing method bonus' """

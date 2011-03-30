@@ -202,9 +202,8 @@ ROOT_MEDIA_FILTERS = {
 }
 
 #
-# Django-taggit
+# Django-taggit-templatetags
 #
-FORCE_LOWERCASE_TAGS = True
 TAGGIT_TAGCLOUD_MIN = 12
 TAGGIT_TAGCLOUD_MAX = 34
 

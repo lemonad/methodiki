@@ -9,7 +9,9 @@
   {% include_media "edit-methods.js" %}
   <script type="text/javascript">
     $(document).ready(function() {
-      $("#id_method-tags").taggit({tag_selector: "#suggested-tags .taggit-tag"});
+      $("#id_method-tags").taggit({tag_selector:
+                                   "#suggested-tags .taggit-tag",
+                                   case_handling: "lower-case"});
 
       $(".qq-upload-button").hover(function() {
          $(this).addClass("qq-upload-button-hover");
