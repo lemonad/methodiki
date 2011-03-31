@@ -65,8 +65,17 @@ def get_suggested_tags(frontpage_only=False, match_actual_tags=True):
             tags = Tag.objects.annotate(number_of_methods=Count('method')) \
                               .filter(name__in=suggestions) \
                               .filter(number_of_methods__gt=0)
-            if tags:
-                suggested_tags.append((category.name, tags))
+
+            # Perform explicit case sensitive matching. MySQL doesn't
+            # do this unless setting collation to binary.
+            # TODO: Verify that switching to binary collation for MySQL
+            #       doesn't break other stuff.
+            ci_tags = []
+            for tag in tags:
+                if tag.name in suggestions:
+                    ci_tags.append(tag)
+            if ci_tags:
+                suggested_tags.append((category.name, ci_tags))
 
     return suggested_tags
 

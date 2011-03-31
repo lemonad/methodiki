@@ -19,8 +19,7 @@
       });
 
       taggit = $("#id_method-tags").taggit({tag_selector:
-                                            "#suggested-tags .taggit-tag",
-                                            case_handling: "lower-case"});
+                                            "#suggested-tags .taggit-tag"});
       var uploader = new qq.FileUploader({
           element: document.getElementById('file-uploader'),
           action: '{% url methods-upload-file method.slug %}',
