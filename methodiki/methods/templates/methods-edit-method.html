@@ -240,15 +240,6 @@
       </form>
       {% endifequal %}
 
-      {% ifequal method.status "PUBLISHED" %}
-      <form class="inline" method="post"
-            action="{% url methods-edit-method method.slug %}">
-        {% csrf_token %}
-        <input class="submit" type="submit" name="unpublish"
-               value="{% trans "Unpublish method" %}" />
-      </form>
-      {% endifequal %}
-
       <form class="inline" method="post" id="delete-method"
             action="{% url methods-edit-method method.slug %}">
         {% csrf_token %}

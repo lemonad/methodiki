@@ -221,24 +221,6 @@ class EditMethodTests(TestCase):
 #        votes_post = Vote.objects.filter(choice__in=choices)
 #        self.failIf(votes_post)
 
-    def test_unpublish_published_method_by_form(self):
-        """ Unpublished own published method. """
-
-        m = Method.objects.filter(user__username='user') \
-                        .filter(status='PUBLISHED')[0]
-        self.failUnless(m.is_published())
-
-        response = self.client.post(reverse('methods-edit-method',
-                                            kwargs={'slug': m.slug}),
-                                    {'unpublish': "Unpublish"})
-        self.assertRedirects(response,
-                             reverse('methods-index'),
-                             status_code=302,
-                             target_status_code=200)
-
-        m = Method.objects.get(id=1)
-        self.failUnless(m.is_draft())
-
     def test_publish_method_by_form(self):
         """ Publish own method. """
 
@@ -253,6 +235,23 @@ class EditMethodTests(TestCase):
                              status_code=302,
                              target_status_code=200)
 
-        m = Method.objects.get(id=1)
-        self.failUnless(m.is_published())
-        self.failIf(m.is_draft())
+        m2 = Method.objects.get(id=m.id)
+        self.failUnless(m2.is_published())
+        self.failIf(m2.is_draft())
+
+    def test_publish_already_published_method_by_form(self):
+        """ Try to publish an already published method. """
+
+        m = Method.objects.filter(user__username='user') \
+                        .filter(status='PUBLISHED')[0]
+
+        response = self.client.post(reverse('methods-edit-method',
+                                            kwargs={'slug': m.slug}),
+                                    {'publish': "Publish"})
+        self.assertRedirects(response,
+                             reverse('methods-index'),
+                             status_code=302,
+                             target_status_code=200)
+
+        m2 = Method.objects.get(id=m.id)
+        self.failUnless(m2.is_published())

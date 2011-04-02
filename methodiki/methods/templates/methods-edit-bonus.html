@@ -67,15 +67,6 @@
       </form>
       {% endifequal %}
 
-      {% ifequal bonus.status "PUBLISHED" %}
-      <form class="inline" method="post"
-            action="{% url methods-edit-bonus method.published_at.year method.published_at.month method.published_at.day method.slug bonus.id %}">
-        {% csrf_token %}
-        <input class="submit" type="submit" name="unpublish"
-               value="{% trans "Unpublish bonus" %}" />
-      </form>
-      {% endifequal %}
-
       <form class="inline" method="post" id="delete-bonus"
             action="{% url methods-edit-bonus method.published_at.year method.published_at.month method.published_at.day method.slug bonus.id %}">
         {% csrf_token %}

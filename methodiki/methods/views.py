@@ -309,18 +309,15 @@ def edit_method(request, slug):
             return HttpResponseRedirect(reverse('methods-index'))
 
         elif 'publish' in request.POST:
-            method.status = 'PUBLISHED'
-            method.published_at = datetime.datetime.now()
-            method.last_pushed_at = datetime.datetime.now()
-            method.save()
-            messages.success(request, _("Method is now published and visible "
-                                        "to everyone"))
-            return HttpResponseRedirect(reverse('methods-index'))
-
-        elif 'unpublish' in request.POST:
-            method.status = 'DRAFT'
-            method.save()
-            messages.success(request, _("Method is now draft"))
+            if method.is_published():
+                messages.error(request, _("Method is already public"))
+            else:
+                method.status = 'PUBLISHED'
+                method.published_at = datetime.datetime.now()
+                method.last_pushed_at = datetime.datetime.now()
+                method.save()
+                messages.success(request, _("Method is now published and "
+                                            "visible to everyone"))
             return HttpResponseRedirect(reverse('methods-index'))
         else:
             raise Http404
@@ -443,21 +440,14 @@ def edit_bonus(request, year, month, day, slug, bonus_id):
                         'slug': bonus.method.slug}))
 
         elif 'publish' in request.POST:
-            bonus.status = 'PUBLISHED'
-            bonus.published_at = datetime.datetime.now()
-            bonus.save()
-            messages.success(request, _("Bonus is now published and visible "
-                                        "to everyone"))
-            return HttpResponseRedirect(reverse('methods-show-bonus',
-                kwargs={'year': bonus.method.published_at.year,
-                        'month': bonus.method.published_at.month,
-                        'day': bonus.method.published_at.day,
-                        'slug': bonus.method.slug}))
-
-        elif 'unpublish' in request.POST:
-            bonus.status = 'DRAFT'
-            bonus.save()
-            messages.success(request, _("Method is now draft"))
+            if bonus.is_published():
+                messages.error(request, _("Bonus is already public"))
+            else:
+                bonus.status = 'PUBLISHED'
+                bonus.published_at = datetime.datetime.now()
+                bonus.save()
+                messages.success(request, _("Bonus is now published and "
+                                            "visible to everyone"))
             return HttpResponseRedirect(reverse('methods-show-bonus',
                 kwargs={'year': bonus.method.published_at.year,
                         'month': bonus.method.published_at.month,
