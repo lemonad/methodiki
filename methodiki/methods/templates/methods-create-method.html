@@ -50,6 +50,7 @@
           method="post"
           autocomplete="off">
       {% csrf_token %}
+      {{ form.editor_comment.as_hidden }}
 
       {% if form.title.errors %}
       <div class="span-18 last">

@@ -2,13 +2,14 @@
 from autoslug import AutoSlugField
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.generic import GenericRelation
-from django.db.models import (BooleanField, CharField, Count, DateField,
-                              DateTimeField, FileField, ForeignKey,
-                              IntegerField, Manager, Model, permalink, Q,
-                              TextField, TimeField)
+from django.db.models import (BooleanField, CharField, Count, DateTimeField,
+                              FileField, ForeignKey, IntegerField, Manager,
+                              Model, permalink, PositiveIntegerField, Q,
+                              TextField)
 from django.utils.translation import ugettext_lazy as _
 from easy_thumbnails.fields import ThumbnailerImageField
 from taggit.managers import TaggableManager
+from taggit.utils import edit_string_for_tags
 
 from customcomments.models import CustomComment
 
@@ -65,6 +66,13 @@ class Method(Model):
     user = ForeignKey(User,
                       verbose_name=_("Created by"),
                       db_index=True)
+    last_edited_by = ForeignKey(User,
+                                related_name="+",
+                                verbose_name=_("Last edited by"),
+                                db_index=True)
+    editor_comment = CharField(_(u"Editor comment"),
+                               max_length=80,
+                               blank=False)
     title = CharField(_("Title"),
                       max_length=140,
                       unique=True)
@@ -103,6 +111,21 @@ class Method(Model):
 
     def is_published(self):
         return (self.status != 'DRAFT')
+
+    @property
+    def tags_edit_string(self):
+        return edit_string_for_tags(self.tags.all())
+
+    @property
+    def revision(self):
+        """ So we can use a Method as a MethodRevision. """
+        return 'latest'
+
+    @property
+    def files(self):
+        """ So we can use a Method as a MethodRevision. """
+        files_set = self.methodfile_set.values_list('image', flat=True)
+        return u'\n'.join(files_set)
 
     @permalink
     def get_absolute_url(self):
@@ -211,3 +234,68 @@ class MethodBonus(Model):
         ordering = ['-published_at', '-date_created']
         verbose_name = _("method bonus")
         verbose_name_plural = _("method bonuses")
+
+
+class MethodRevisionManager(Manager):
+    pass
+
+
+class MethodRevision(Model):
+    """
+    The idea is to create a new method revision prior to saving changes
+    to the method or related objects (files, tags). In essence, the
+    method is the latest revision and method revisions contain old
+    data plus information on why, when and by whom it was created in
+    the first place (editor comment, revision_date and edited_by).
+
+    """
+    method = ForeignKey(Method,
+                        verbose_name=_("Method"),
+                        db_index=True)
+    revision = PositiveIntegerField(_("Revision no."),
+                                    default=1,
+                                    editable=False,
+                                    db_index=True)
+    edited_by = ForeignKey(User,
+                           verbose_name=_("Edited by"),
+                           db_index=True)
+    editor_comment = CharField(_(u"Editor comment"),
+                               max_length=80,
+                               blank=False)
+    title = CharField(_("Title"),
+                      max_length=140)
+    description = TextField(_("Description"),
+                            blank=True)
+    tags = TextField(_("Tags"),
+                     blank=True)
+    files = TextField(_("Images"),
+                      blank=True)
+    revision_date = DateTimeField(_("Date"),
+                                  db_index=True,
+                                  auto_now_add=True)
+    objects = MethodRevisionManager()
+
+    def __unicode__(self):
+        return _("Revision %(revno)d") % {'title': self.title,
+                                          'revno': self.revision}
+
+    def save(self, *args, **kwargs):
+        """ Assign a revision number before saving. """
+        if self.id is None:
+            try:
+                self.revision = MethodRevision.objects \
+                                .filter(method=self.method) \
+                                .latest().revision + 1
+            except self.DoesNotExist:
+                self.revision = 1
+        super(MethodRevision, self).save(*args, **kwargs)
+
+    @property
+    def tags_edit_string(self):
+        return self.tags
+
+    class Meta:
+        ordering = ['-revision']
+        get_latest_by = 'revision'
+        verbose_name = _("method revision")
+        verbose_name_plural = _("method revisions")

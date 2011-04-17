@@ -22,18 +22,42 @@ from django.http import (HttpResponse, HttpResponseNotFound, Http404,
 from django.shortcuts import (get_object_or_404, get_list_or_404,
                               render_to_response)
 from django.template import Context, RequestContext, loader
-from django.template.defaultfilters import slugify
+from django.template.defaultfilters import escape, linebreaksbr, slugify
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.csrf import csrf_exempt
 from easy_thumbnails.files import get_thumbnailer
 from taggit.models import Tag, TaggedItem
+from taggit.utils import edit_string_for_tags
+from third_party.google_diff_match_patch import diff_match_patch
 
 from flatcontent.models import get_flatcontent
 from tagsuggestions.models import (TagSuggestion, TagSuggestionCategory,
                                    TagText)
 from tips.models import Tip
 from forms import MethodForm, MethodBonusForm
-from models import Method, MethodBonus, MethodFile
+from models import Method, MethodBonus, MethodFile, MethodRevision
+
+
+def char_diff(text1, text2):
+    """ Return the characters differing between two texts. """
+    dmp = diff_match_patch()
+    diffs = dmp.diff_main(text1, text2)
+    return diffs
+
+
+def get_html_for_diff(diffs):
+    """ Return the HTML for a set of differences. """
+    # Delete = -1, insert = 1, equal = 0
+    html = []
+    for op, text in diffs:
+        escaped_text = linebreaksbr(escape(text))
+        if op == 1:
+            html.append('<ins>' + escaped_text + '</ins>')
+        elif op == -1:
+            html.append('<del>' + escaped_text + '</del>')
+        elif op == 0:
+            html.append('<span>' + escaped_text + '</span>')
+    return ''.join(html)
 
 
 def get_sidebar_methods(user):
@@ -185,6 +209,7 @@ def show_method(request, year, month, day, slug):
     """ Shows a method """
 
     method = get_object_or_404(Method, slug=slug)
+    revision_history = MethodRevision.objects.filter(method=method)
 
     tags_list = method.tags.values_list('name', flat=True)
     try:
@@ -199,7 +224,114 @@ def show_method(request, year, month, day, slug):
     c = RequestContext(request,
                        {'method': method,
                         'tagtext': tagtext,
+                        'show_edit_method_link': True,
+                        'revision_history': revision_history,
                         'sidebar_methods': sidebar_methods})
+    return HttpResponse(t.render(c))
+
+
+def diff_method(request, year, month, day, slug):
+    """
+    Show available diffs for a method and lets the user select
+    which revisions to show diff for.
+
+    """
+    method = get_object_or_404(Method, slug=slug)
+    revisions = MethodRevision.objects.filter(method=method) \
+                                      .order_by('-revision')
+    show_diff = False
+
+    if (request.method == 'GET' and 'diff1' in request.GET and
+                                    'diff2' in request.GET):
+        diff1 = request.GET['diff1']
+        diff2 = request.GET['diff2']
+
+        if diff1 == 'latest':
+            title = method.title
+            description = method.description
+            tags = method.tags_edit_string
+            files = method.files
+            editor = method.last_edited_by
+            editor_comment = method.editor_comment
+            revision = _("latest revision")
+        else:
+            try:
+                revision1 = MethodRevision.objects.get(Q(method=method),
+                                                       Q(revision=diff1))
+            except:
+                raise Http404
+
+            title = revision1.title
+            description = revision1.description
+            tags = revision1.tags_edit_string
+            files = revision1.files
+            editor = revision1.edited_by
+            editor_comment = revision1.editor_comment
+            revision = _("revision %(revno)d") % {'revno':
+                                                  revision1.revision}
+
+        try:
+            revision2 = MethodRevision.objects.get(Q(method=method),
+                                                   Q(revision=diff2))
+        except:
+            raise Http404
+
+        old_title = revision2.title
+        old_description = revision2.description
+        old_tags = revision2.tags_edit_string
+        old_files = revision2.files
+        old_editor = revision2.edited_by
+        old_editor_comment = revision2.editor_comment
+        old_revision = _("revision %(revno)d") % {'revno':
+                                                  revision2.revision}
+
+        if title == old_title:
+            diff_title = None
+        else:
+            diff_title = get_html_for_diff(char_diff(old_title, title))
+
+        if description == old_description:
+            diff_description = None
+        else:
+            diff_description = get_html_for_diff(char_diff(old_description,
+                                                           description))
+
+        if tags == old_tags:
+            diff_tags = None
+        else:
+            diff_tags = get_html_for_diff(char_diff(old_tags, tags))
+
+        if files == old_files:
+            diff_files = None
+        else:
+            diff_files = get_html_for_diff(char_diff(old_files, files))
+
+        show_diff = True
+
+    t = loader.get_template('methods-diff-method.html')
+    if show_diff:
+        c = RequestContext(request,
+                           {'method': method,
+                            'revisions': revisions,
+                            'show_diff': show_diff,
+                            'diff1': str(diff1),
+                            'diff2': str(diff2),
+                            'editor_comment': editor_comment,
+                            'old_editor_comment': old_editor_comment,
+                            'revision': revision,
+                            'old_revision': old_revision,
+                            'editor': editor,
+                            'old_editor': old_editor,
+                            'diff_title': diff_title,
+                            'diff_desc': diff_description,
+                            'diff_tags': diff_tags,
+                            'diff_files': diff_files})
+    else:
+        c = RequestContext(request,
+                           {'method': method,
+                            'revisions': revisions,
+                            'show_diff': show_diff})
+
     return HttpResponse(t.render(c))
 
 
@@ -244,7 +376,8 @@ def create_method(request):
     else:
         # Initialize form
         method_template = get_flatcontent('method-template')
-        form_defaults = {'description': method_template}
+        form_defaults = {'description': method_template,
+                         'editor_comment': '-'}
         form = MethodForm(request, initial=form_defaults, prefix='method')
 
     sidebar_methods = get_sidebar_methods(request.user)
@@ -264,22 +397,40 @@ def edit_method(request, slug):
     method = get_object_or_404(Method, slug=slug)
     preview = {}
 
-    if not request.user.is_superuser and request.user != method.user:
-        raise PermissionDenied("You must own a method in order to edit it.")
-
-    form = MethodForm(request, instance=method, prefix='method')
+    form_defaults = {'editor_comment': ''}
+    form = MethodForm(request,
+                      initial=form_defaults,
+                      instance=method,
+                      prefix='method')
 
     if request.method == 'POST':
         if 'preview' in request.POST:
+            # In regards to showing a preview, we're only interested in if
+            # the title and description fields validates.
             form = MethodForm(request,
                               request.POST,
                               instance=method,
                               prefix='method')
+            form.fields['editor_comment'].required = False
             if form.is_valid():
                 preview['title'] = form.cleaned_data['title']
                 preview['description'] = form.cleaned_data['description']
 
+            # Validate form again
+            form = MethodForm(request,
+                              request.POST,
+                              instance=method,
+                              prefix='method')
+            form.is_valid()
+
         elif 'method' in request.POST:
+            # Save old attributes for checking changes
+            old_title = method.title
+            old_description = method.description
+            old_tags = method.tags_edit_string
+            old_files = method.files
+            old_editor_comment = method.editor_comment
+
             form = MethodForm(request,
                               request.POST,
                               instance=method,
@@ -287,6 +438,20 @@ def edit_method(request, slug):
             if form.is_valid():
                 m = form.save()
                 if method.is_published():
+                    # If relevant changes, create revision history entry
+                    if (m.title != old_title
+                            or m.description != old_description
+                            or m.tags_edit_string != old_tags
+                            or m.files != old_files):
+                        mr = MethodRevision(method=m,
+                                            title=old_title,
+                                            description=old_description,
+                                            edited_by=request.user,
+                                            editor_comment=old_editor_comment,
+                                            files=old_files,
+                                            tags=old_tags)
+                        mr.save()
+
                     messages.success(request, _("Method saved!"))
                     return HttpResponseRedirect(reverse('methods-index'))
                 else:
@@ -332,7 +497,6 @@ def edit_method(request, slug):
                         'preview': preview,
                         'form': form,
                         'images': images,
-                        'edit_method_flag': True,
                         'sidebar_methods': sidebar_methods,
                         'suggested_tags': suggested_tags})
     return HttpResponse(t.render(c))
@@ -469,11 +633,14 @@ def edit_bonus(request, year, month, day, slug, bonus_id):
 @login_required
 @csrf_exempt
 def upload_file(request, slug):
-    """"""
-    method = get_object_or_404(Method, slug=slug)
+    """
+    Handles attaching files to a method.
 
-    if not request.user.is_superuser and request.user != method.user:
-        raise PermissionDenied("You must own a method in order to edit it.")
+    File uploads also add to method revision history (currently, only
+    the file names are stored and not the actual files).
+
+    """
+    method = get_object_or_404(Method, slug=slug)
 
     if request.method == 'POST':
         if request.is_ajax():
@@ -487,6 +654,17 @@ def upload_file(request, slug):
         if(len(split_filename)) > 1:
             slugified_filename = "%s.%s" % (slugified_filename,
                                             split_filename[1].lower())
+
+        # Create a method revision before adding to method related data
+        mr = MethodRevision(method=method,
+                            title=method.title,
+                            description=method.description,
+                            edited_by=request.user,
+                            editor_comment="[file added]",
+                            tags=method.tags_edit_string,
+                            files=method.files)
+        mr.save()
+
         uf = MethodFile(user=request.user, method=method)
         if request.is_ajax():
             uf.image.save(slugified_filename,
@@ -518,12 +696,14 @@ def upload_file(request, slug):
 
 @login_required
 def delete_file(request, slug):
-    """ Deletes an attached file from a method. """
+    """
+    Deletes an attached file from a method.
 
+    File deletions also add to method revision history (currently, only
+    the file names are stored and not the actual files).
+
+    """
     method = get_object_or_404(Method, slug=slug)
-
-    if not request.user.is_superuser and request.user != method.user:
-        raise PermissionDenied("You must own a method in order to edit it.")
 
     if request.method == 'POST' and 'deleteimage' in request.POST:
         image_id = request.POST['deleteimage']
@@ -531,6 +711,16 @@ def delete_file(request, slug):
 
         if image.method.id != method.id:
             raise PermissionDenied("Image does not belong to this method.")
+
+        # Create a method revision before deleting method related data
+        mr = MethodRevision(method=method,
+                            title=method.title,
+                            description=method.description,
+                            edited_by=request.user,
+                            editor_comment="[file deleted]",
+                            tags=method.tags_edit_string,
+                            files=method.files)
+        mr.save()
 
         image.delete()
 

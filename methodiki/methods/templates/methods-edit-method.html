@@ -157,6 +157,27 @@
           {{ form.description }}
         </fieldset>
 
+        {% if method.status == "PUBLISHED" %}
+        <fieldset>
+          {% if form.editor_comment.errors %}
+          <div class="span-18 last">
+            {% for error in form.editor_comment.errors %}
+            <p class="error">
+              {{ error|escape }}
+            </p>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <div class="span-18 last{% if form.editor_comment.errors %} loud{% endif %}">
+            {{ form.editor_comment.label_tag }}
+          </div>
+          {{ form.editor_comment }}
+        </fieldset>
+        {% else %}
+        {{ form.editor_comment.as_hidden }}
+        {% endif %}
+
         <div id="uploaded-media" class="span-18 last"
              style="margin-top:0.5em;">
           <ul id="uploaded-media-list">

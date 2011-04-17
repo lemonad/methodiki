@@ -1,16 +1,15 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Swedish translation for Methodiki
+# This file is distributed under the same license as Methodiki.
+# Jonas Nockert <jonasnockert@gmail.com>, 2011.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-29 13:41+0200\n"
+"POT-Creation-Date: 2011-04-16 19:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Jonas Nockert <jonasnockert@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -59,9 +58,12 @@ msgstr ""
 "Inget matchande platt innehåll för '%(name)s', var god använd admin-"
 "gränssnittet för att [skapa det](%(url)s)."
 
-#: methods/feeds.py:13 methods/templates/methods-index.html:6
-#: methods/templates/methods-tag-index.html:5
-#: methods/templates/sidebar/sidebar-meta.html:7
+#: flatcontent/templates/flatcontent.html:6
+msgid "Edit"
+msgstr "Redigera"
+
+#: methods/feeds.py:13 methods/templates/sidebar/sidebar-meta.html:7
+#: templates/base-html5.html:14
 msgid "Latest methods"
 msgstr "Nyaste metoderna"
 
@@ -69,101 +71,156 @@ msgstr "Nyaste metoderna"
 msgid "The latest methods submitted by your co-workers"
 msgstr "De nyaste upplagda metoderna från dina kollegor"
 
-#: methods/models.py:55 methods/models.py:173
+#: methods/models.py:56 methods/models.py:196
 #: users/templates/users-show-user.html:34
 #: users/templates/users-show-user.html:96
 msgid "Draft"
 msgstr "Utkast"
 
-#: methods/models.py:56 methods/models.py:174
+#: methods/models.py:57 methods/models.py:197
 msgid "Published"
 msgstr "Publicerad"
 
-#: methods/models.py:58 tips/models.py:16
+#: methods/models.py:59 tips/models.py:16
 msgid "Slug"
 msgstr "Slugg"
 
-#: methods/models.py:66 tips/models.py:24
+#: methods/models.py:67 tips/models.py:24
 msgid "Created by"
 msgstr "Inlagd av"
 
-#: methods/models.py:68
+#: methods/models.py:71
+msgid "Last edited by"
+msgstr "Senast redigerad av"
+
+#: methods/models.py:73 methods/models.py:262
+msgid "Editor comment"
+msgstr "Redigeringskommentar"
+
+#: methods/models.py:76 methods/models.py:265
+#: methods/templates/methods-diff-method.html:93
 msgid "Title"
 msgstr "Titel"
 
-#: methods/models.py:71 methods/models.py:182
+#: methods/models.py:79 methods/models.py:205 methods/models.py:267
 msgid "Description"
 msgstr "Beskrivning"
 
-#: methods/models.py:73 methods/models.py:184
+#: methods/models.py:81 methods/models.py:207
 msgid "Status"
 msgstr "Status"
 
-#: methods/models.py:78
+#: methods/models.py:86
 msgid "Date and time pushed"
 msgstr "Upplyft datum och tid"
 
-#: methods/models.py:82 methods/models.py:189
+#: methods/models.py:90 methods/models.py:212
 msgid "Date and time published"
 msgstr "Datum och tid för publicering"
 
-#: methods/models.py:86 methods/models.py:138 methods/models.py:193
+#: methods/models.py:94 methods/models.py:161 methods/models.py:216
 #: tagsuggestions/models.py:11 tagsuggestions/models.py:38
 #: tagsuggestions/models.py:65 tips/models.py:29 users/models.py:26
 msgid "Created (date)"
 msgstr "Skapad (datum)"
 
-#: methods/models.py:89 methods/models.py:141 methods/models.py:196
+#: methods/models.py:97 methods/models.py:164 methods/models.py:219
 #: tagsuggestions/models.py:14 tagsuggestions/models.py:41
 #: tagsuggestions/models.py:68 tips/models.py:32 users/models.py:29
 msgid "Modified (date)"
 msgstr "Ändrad (datum)"
 
-#: methods/models.py:117
+#: methods/models.py:140
 msgid "method"
 msgstr "metod"
 
-#: methods/models.py:118
+#: methods/models.py:141
 msgid "methods"
 msgstr "metoder"
 
-#: methods/models.py:123 methods/models.py:177 users/models.py:17
+#: methods/models.py:146 methods/models.py:200 users/models.py:17
 msgid "User"
 msgstr "Användare"
 
-#: methods/models.py:126 methods/models.py:180
+#: methods/models.py:149 methods/models.py:203 methods/models.py:253
 msgid "Method"
 msgstr "Metod"
 
-#: methods/models.py:128
+#: methods/models.py:151
 msgid "Image"
 msgstr "Bild"
 
-#: methods/models.py:134
+#: methods/models.py:157
 msgid "Image height"
 msgstr "Bildens höjd"
 
-#: methods/models.py:136
+#: methods/models.py:159
 msgid "Image width"
 msgstr "Bildens bredd"
 
-#: methods/models.py:150
+#: methods/models.py:173
 msgid "uploaded file"
 msgstr "uppladdad fil"
 
-#: methods/models.py:151
+#: methods/models.py:174
 msgid "uploaded files"
 msgstr "uppladdade filer"
 
-#: methods/models.py:212
+#: methods/models.py:235
 msgid "method bonus"
 msgstr "metodbonus"
 
-#: methods/models.py:213
+#: methods/models.py:236
 msgid "method bonuses"
 msgstr "metodbonusar"
 
-#: methods/views.py:216
+#: methods/models.py:255
+msgid "Revision no."
+msgstr "Revisionsnr."
+
+#: methods/models.py:260
+msgid "Edited by"
+msgstr "Redigerad av"
+
+#: methods/models.py:269 methods/templates/methods-create-method.html:90
+#: methods/templates/methods-diff-method.html:106
+#: methods/templates/methods-edit-method.html:215
+#: methods/templates/methods-meta.html:45
+#: methods/templates/methods-tags.html:13 templates/base-header.html:75
+msgid "Tags"
+msgstr "Etiketter"
+
+#: methods/models.py:271 methods/templates/methods-markdown-quick-help.html:17
+msgid "Images"
+msgstr "Bilder"
+
+#: methods/models.py:273
+msgid "Date"
+msgstr "Datum"
+
+#: methods/models.py:279
+#, python-format
+msgid "Revision %(revno)d"
+msgstr "Revision %(revno)d"
+
+#: methods/models.py:300
+msgid "method revision"
+msgstr "metodrevision"
+
+#: methods/models.py:301
+msgid "method revisions"
+msgstr "metodrevisioner"
+
+#: methods/views.py:254
+msgid "latest revision"
+msgstr "senaste revision"
+
+#: methods/views.py:269 methods/views.py:285
+#, python-format
+msgid "revision %(revno)d"
+msgstr "revision %(revno)d"
+
+#: methods/views.py:369
 msgid ""
 "Thanks for adding a new method! Don't forget to publish it so it becomes "
 "visible to others."
@@ -171,30 +228,30 @@ msgstr ""
 "Tack för att du lade in en ny metod! Glöm inte att publicera den så den blir "
 "synlig för andra."
 
-#: methods/views.py:275
+#: methods/views.py:455
 msgid "Method saved!"
 msgstr "Metoden sparades!"
 
-#: methods/views.py:278
+#: methods/views.py:458
 msgid ""
 "Method saved! Don't forget to publish it so it becomes visible to others."
 msgstr ""
 "Metoden sparades! Glöm inte att publicera den så att den blir synlig för "
 "andra."
 
-#: methods/views.py:293
+#: methods/views.py:473
 msgid "Method deleted!"
 msgstr "Metoden togs bort!"
 
-#: methods/views.py:301
+#: methods/views.py:478
+msgid "Method is already public"
+msgstr "Metoden är redan publik"
+
+#: methods/views.py:484
 msgid "Method is now published and visible to everyone"
 msgstr "Metoden publicerades och är nu synlig för alla"
 
-#: methods/views.py:308 methods/views.py:451
-msgid "Method is now draft"
-msgstr "Metoden är nu ett utkast"
-
-#: methods/views.py:353
+#: methods/views.py:523
 msgid ""
 "Thanks for adding a new method bonus! Don't forget to publish it so it "
 "becomes visible to others."
@@ -202,22 +259,26 @@ msgstr ""
 "Tack för att du lade in en ny metodbonus! Glöm inte att publicera den så den "
 "blir synlig för andra."
 
-#: methods/views.py:409
+#: methods/views.py:579
 msgid "Bonus saved!"
 msgstr "Bonusen sparades!"
 
-#: methods/views.py:416
+#: methods/views.py:586
 msgid ""
 "Bonus saved! Don't forget to publish it so it becomes visible to others."
 msgstr ""
 "Bonusen sparades! Glöm inte att publicera den så att den blir synlig för "
 "andra."
 
-#: methods/views.py:429
+#: methods/views.py:599
 msgid "Bonus deleted!"
 msgstr "Bonusen togs bort!"
 
-#: methods/views.py:440
+#: methods/views.py:608
+msgid "Bonus is already public"
+msgstr "Bonusen är redan publik"
+
+#: methods/views.py:613
 msgid "Bonus is now published and visible to everyone"
 msgstr "Bonusen publicerades och är nu synlig för alla"
 
@@ -306,7 +367,6 @@ msgstr ""
 "  "
 
 #: methods/templates/methods-bonus-meta.html:7
-#: methods/templates/methods-meta.html:14
 #, python-format
 msgid ""
 "\n"
@@ -373,9 +433,9 @@ msgstr ""
 
 #: methods/templates/methods-comment-form.html:119
 #: methods/templates/methods-create-bonus.html:51
-#: methods/templates/methods-create-method.html:117
+#: methods/templates/methods-create-method.html:119
 #: methods/templates/methods-edit-bonus.html:53
-#: methods/templates/methods-edit-method.html:225
+#: methods/templates/methods-edit-method.html:246
 #: methods/templates/methods-preview.html:5
 msgid "Preview"
 msgstr "Förhandsgranska"
@@ -390,7 +450,7 @@ msgid "Give a bonus!"
 msgstr "Ge en bonus!"
 
 #: methods/templates/methods-create-bonus.html:22
-#: methods/templates/methods-create-method.html:41
+#: methods/templates/methods-create-method.html:42
 msgid "Start writing!"
 msgstr "Börja skriva!"
 
@@ -400,40 +460,72 @@ msgid "Bonus"
 msgstr "Bonus"
 
 #: methods/templates/methods-create-bonus.html:53
-#: methods/templates/methods-create-method.html:119
+#: methods/templates/methods-create-method.html:121
 msgid "Create"
 msgstr "Skapa"
 
-#: methods/templates/methods-create-method.html:20
+#: methods/templates/methods-create-method.html:21
 msgid "Add images after submitting your method (sorry...)"
 msgstr "Lägg till bilder efter du sparat din metod (sorry...)"
 
-#: methods/templates/methods-create-method.html:85
-#: methods/templates/methods-edit-method.html:191
+#: methods/templates/methods-create-method.html:87
+#: methods/templates/methods-edit-method.html:212
 msgid "Optional settings"
 msgstr "Valfria fält"
 
-#: methods/templates/methods-create-method.html:86
-#: methods/templates/methods-edit-method.html:192
+#: methods/templates/methods-create-method.html:88
+#: methods/templates/methods-edit-method.html:213
 msgid "Click to display."
 msgstr "Klicka för att visa."
 
-#: methods/templates/methods-create-method.html:88
-#: methods/templates/methods-edit-method.html:194
-#: methods/templates/methods-meta.html:38
-#: methods/templates/methods-tags.html:13 templates/base-header.html:75
-msgid "Tags"
-msgstr "Etiketter"
-
-#: methods/templates/methods-create-method.html:101
-#: methods/templates/methods-edit-method.html:209
+#: methods/templates/methods-create-method.html:103
+#: methods/templates/methods-edit-method.html:230
 msgid "Suggested tags:"
 msgstr "Förslag på etiketter:"
 
-#: methods/templates/methods-create-method.html:126
+#: methods/templates/methods-create-method.html:128
 #: methods/templates/methods-edit-method.html:31
 msgid "Upload an image"
 msgstr "Ladda upp en bild"
+
+#: methods/templates/methods-diff-method.html:28
+#, python-format
+msgid ""
+"\n"
+"        All revisions for %(method_title)s\n"
+"        "
+msgstr ""
+"\n"
+"        Alla revisioner för %(method_title)s\n"
+"        "
+
+#: methods/templates/methods-diff-method.html:45
+msgid "Current version"
+msgstr "Nuvarande version"
+
+#: methods/templates/methods-diff-method.html:77
+msgid "Show diff"
+msgstr "Visa skillnader"
+
+#: methods/templates/methods-diff-method.html:84
+msgid "Differences"
+msgstr "Skillnader"
+
+#: methods/templates/methods-diff-method.html:113
+msgid "Attached files"
+msgstr "Bifogade filer"
+
+#: methods/templates/methods-diff-method.html:120
+msgid "No differences."
+msgstr "Inga skillnader"
+
+#: methods/templates/methods-diff-method.html:128
+msgid "Newer revision"
+msgstr "Nyare revision"
+
+#: methods/templates/methods-diff-method.html:138
+msgid "Older revision"
+msgstr "Äldre revision"
 
 #: methods/templates/methods-edit-bonus.html:8
 msgid "Really delete bonus?"
@@ -445,7 +537,7 @@ msgid "Edit away!"
 msgstr "Redigera!"
 
 #: methods/templates/methods-edit-bonus.html:55
-#: methods/templates/methods-edit-method.html:227
+#: methods/templates/methods-edit-method.html:248
 #: preferences/templates/preferences-profile.html:78
 msgid "Save"
 msgstr "Spara"
@@ -454,11 +546,7 @@ msgstr "Spara"
 msgid "Publish bonus"
 msgstr "Publicera bonus"
 
-#: methods/templates/methods-edit-bonus.html:75
-msgid "Unpublish bonus"
-msgstr "Avpublicera bonus"
-
-#: methods/templates/methods-edit-bonus.html:83
+#: methods/templates/methods-edit-bonus.html:74
 msgid "Delete bonus"
 msgstr "Ta bort bonus"
 
@@ -474,7 +562,7 @@ msgstr "Släpp filer här för att ladda upp"
 msgid "Delete image?"
 msgstr "Ta bort bild?"
 
-#: methods/templates/methods-edit-method.html:177
+#: methods/templates/methods-edit-method.html:198
 msgid ""
 "\n"
 "            Hover over an image and click the plus sign to add the image\n"
@@ -486,15 +574,11 @@ msgstr ""
 "          att lägga till bilden där du placerat markören i texten.\n"
 "        "
 
-#: methods/templates/methods-edit-method.html:239
+#: methods/templates/methods-edit-method.html:260
 msgid "Publish method"
 msgstr "Publicera metoden"
 
-#: methods/templates/methods-edit-method.html:248
-msgid "Unpublish method"
-msgstr "Avpublicera metoden"
-
-#: methods/templates/methods-edit-method.html:256
+#: methods/templates/methods-edit-method.html:268
 msgid "Delete method"
 msgstr "Ta bort metoden"
 
@@ -526,7 +610,7 @@ msgstr[1] ""
 "        "
 
 #: methods/templates/methods-frontpage.html:63
-#: methods/templates/methods-index.html:35
+#: methods/templates/methods-index.html:41
 msgid "Go ahead, create the first method!"
 msgstr "Kom igen, lägg in den första metoden!"
 
@@ -534,7 +618,7 @@ msgstr "Kom igen, lägg in den första metoden!"
 msgid "Popular Tags"
 msgstr "Populära etiketter"
 
-#: methods/templates/methods-index.html:22
+#: methods/templates/methods-index.html:15
 msgid "Methods and best practices"
 msgstr "Metoder och goda exempel"
 
@@ -573,10 +657,6 @@ msgstr "Textformat"
 msgid "Subset of markdown. No html."
 msgstr "Delmängd av markdown. Ingen html."
 
-#: methods/templates/methods-markdown-quick-help.html:17
-msgid "Images"
-msgstr "Bilder"
-
 #: methods/templates/methods-markdown-quick-help.html:20
 msgid ""
 "\n"
@@ -609,21 +689,46 @@ msgstr "Videos"
 msgid "Not yet. Just add a link to it for now."
 msgstr "Inte ännu. Länka till dem så länge."
 
-#: methods/templates/methods-meta.html:20
+#: methods/templates/methods-meta.html:14
 #, python-format
 msgid ""
 "\n"
-"      Created by <a href=\"%(link_to_person)s\">%(name)s</a> at "
-"%(created_at)s.\n"
-"      <strong>Method is not yet published.</strong>\n"
+"      Created by <a href=\"%(link_to_creator)s\">%(creator_name)s</a>\n"
+"      and published at %(published_at)s.\n"
 "      "
 msgstr ""
 "\n"
-"    Inlagd av <a href=\"%(link_to_person)s\">%(name)s</a> %(created_at)s.\n"
-"    <strong>Metoden är inte publicerad ännu.</strong>\n"
+"    Inlagd av <a href=\"%(link_to_creator)s\">%(creator_name)s</a>\n"
+"    och publicerad %(published_at)s.\n"
 "    "
 
-#: methods/templates/methods-meta.html:30
+#: methods/templates/methods-meta.html:21
+#, python-format
+msgid ""
+"\n"
+"      Created by <a href=\"%(link_to_creator)s\">%(creator_name)s</a>\n"
+"      at %(created_at)s. <strong>Method is not yet published.</strong>\n"
+"      "
+msgstr ""
+"\n"
+"    Inlagd av <a href=\"%(link_to_creator)s\">%(creator_name)s</a>\n"
+"    %(created_at)s. <strong>Metoden är inte publicerad ännu.</strong>\n"
+"    "
+
+#: methods/templates/methods-meta.html:29
+#, python-format
+msgid ""
+"\n"
+"      Last edited by <a href=\"%(link_to_editor)s\">%(editor_name)s</a>\n"
+"      at %(date_modified)s.\n"
+"      "
+msgstr ""
+"\n"
+"    Senast redigerad av <a href=\"%(link_to_editor)s\">%(editor_name)s</a>\n"
+"    %(date_modified)s.\n"
+"    "
+
+#: methods/templates/methods-meta.html:38
 msgid "Edit method?"
 msgstr "Redigera metod?"
 
@@ -699,11 +804,11 @@ msgstr ""
 msgid "Create bonus"
 msgstr "Skapa bonus"
 
-#: methods/templates/methods-tag-index.html:11
+#: methods/templates/methods-tag-index.html:5
 msgid "methods tagged with"
 msgstr "metoder med etiketten"
 
-#: methods/templates/methods-tag-index.html:41
+#: methods/templates/methods-tag-index.html:35
 #: users/templates/users-show-user.html:68
 #, python-format
 msgid ""

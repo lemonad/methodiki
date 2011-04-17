@@ -27,6 +27,13 @@ urlpatterns = patterns('methods.views',
           '(?P<slug>[^\/]+)/$',
         'show_method',
         name='methods-show-method'),
+    url(r'^(?P<year>[0-9]{4})/'
+          '(?P<month>[0-9]{1,2})/'
+          '(?P<day>[0-9]{1,2})/'
+          '(?P<slug>[^\/]+)/'
+          'diff/$',
+        'diff_method',
+        name='methods-diff-method'),
     url(r'^edit/(?P<slug>[^\/]+)/upload-file$',
         'upload_file',
         name='methods-upload-file'),

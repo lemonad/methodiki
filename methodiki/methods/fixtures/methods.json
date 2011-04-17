@@ -5,6 +5,7 @@
         "fields": {
             "slug": "hello-world",
             "user": 3,
+            "last_edited_by": 3,
             "title": "Hello world",
             "description": "Hello and Goodbye!",
             "status": "PUBLISHED",
@@ -18,6 +19,7 @@
         "fields": {
             "slug": "hello-again",
             "user": 1,
+            "last_edited_by": 1,
             "title": "Hello again",
             "description": "Hello hello!",
             "status": "PUBLISHED",
@@ -31,6 +33,7 @@
         "fields": {
             "slug": "i-ll-say-hello-later",
             "user": 3,
+            "last_edited_by": 3,
             "title": "I'll say hello later",
             "description": "I'll just wait here for now.",
             "status": "DRAFT",

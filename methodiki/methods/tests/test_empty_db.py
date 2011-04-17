@@ -11,6 +11,8 @@ from django.test import TestCase
 from django.utils.http import urlquote
 from django.utils.translation import ugettext
 
+from ..models import Method
+
 
 # TODO: Test POSTs!
 
@@ -95,6 +97,18 @@ class MethodEmptyDBAuthorizedTests(TestCase):
     def test_create_method(self):
         response = self.client.get(reverse('methods-create-method'))
         self.failUnlessEqual(response.status_code, 200)
+
+        response = self.client.post(reverse('methods-create-method'),
+                                    {'method': "New",
+                                     'method-title': "New method",
+                                     'method-description': "Some text",
+                                     'method-editor_comment': "-"})
+        method = Method.objects.get(title="New method")
+        self.assertRedirects(response,
+                             reverse('methods-edit-method',
+                                     kwargs={'slug': method.slug}),
+                             status_code=302,
+                             target_status_code=200)
 
     def test_edit_method(self):
         response = self.client.get(reverse('methods-edit-method',

@@ -1,5 +1,13 @@
+Wiki
+----
+The current goal of the wiki functionality is not so much the collective ownership of methods. Rather, it's for making users feel reasonably safe editing and improving methods other users have created by providing accurate revision tracking.
+
+The underlying assumption is that the risk of editing wars is minimal and that content almost exclusively moves forward. Thus easy access to reversion is not needed.
+
+Attached images are not tracked at the moment but should likely be implemented in the long run.
+
 Prerequisites
-------------
+-------------
 *  Python
 *  SQLite3 *(default)* or other database backend.
 *  [Sass](http://sass-lang.com/) for generating style sheets.

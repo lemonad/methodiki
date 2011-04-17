@@ -24,6 +24,7 @@ class MethodModelTests(TestCase):
         now = datetime.now()
         u = User.objects.all()[1]
         m = Method.objects.create(user=u,
+                                  last_edited_by=u,
                                   title="I can has cheezburger?",
                                   description="**kthxbye!**",
                                   status='PUBLISHED',

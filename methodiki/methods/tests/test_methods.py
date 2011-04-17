@@ -118,6 +118,52 @@ class MethodAuthorizedTests(TestCase):
         self.failUnlessEqual(response.status_code, 200)
         self.assertEqual(response.context['user'].username, 'testclient')
 
+    def test_publish_method(self):
+        method = Method.objects.filter(status='DRAFT')[0]
+        response = self.client.post(reverse('methods-edit-method',
+                                            kwargs={'slug': method.slug}),
+                                    {'publish': "Publish"})
+        self.assertRedirects(response,
+                             reverse('methods-index'),
+                             status_code=302,
+                             target_status_code=200)
+
+    def test_diff_method(self):
+        method = Method.objects.filter(status='PUBLISHED')[0]
+
+        # Trying to show diff without older revision should fail
+        p_at = method.published_at
+        response = self.client.get(reverse('methods-diff-method',
+                                           kwargs={'year': p_at.year,
+                                                   'month': p_at.month,
+                                                   'day': p_at.day,
+                                                   'slug': method.slug}),
+                                   {'diff1': 'latest',
+                                    'diff2': 1})
+        self.failUnlessEqual(response.status_code, 404)
+
+        # Edit the method, thus creating a revision history entry
+        response = self.client.post(reverse('methods-edit-method',
+                                            kwargs={'slug': method.slug}),
+                                    {'method': "Update",
+                                     'method-title': "Edited method",
+                                     'method-description': "Some text",
+                                     'method-editor_comment':
+                                          "Updated title"})
+        self.assertRedirects(response,
+                             reverse('methods-index'),
+                             status_code=302,
+                             target_status_code=200)
+        # Show diff
+        response = self.client.get(reverse('methods-diff-method',
+                                           kwargs={'year': p_at.year,
+                                                   'month': p_at.month,
+                                                   'day': p_at.day,
+                                                   'slug': method.slug}),
+                                   {'diff1': 'latest',
+                                    'diff2': 1})
+        self.failUnlessEqual(response.status_code, 200)
+
 
 class EditMethodLoggedInAsNonOwnerTests(TestCase):
     fixtures = ['users.json',
@@ -130,20 +176,20 @@ class EditMethodLoggedInAsNonOwnerTests(TestCase):
 
     def test_edit_view_when_method_not_owned_by_logged_in_user(self):
         """
-        Make sure the edit method view prevents rendering the
-        edit view when logged in as non-owner of the method.
+        Make sure the edit method view renders when logged in as
+        non-owner of a method.
 
         """
         # Try to render edit view for method created by another user
         m = Method.objects.get(id=2)
         response = self.client.get(reverse('methods-edit-method',
                                            kwargs={'slug': m.slug}))
-        self.failUnlessEqual(response.status_code, 403)
+        self.failUnlessEqual(response.status_code, 200)
 
     def test_edit_method_owned_by_other_user(self):
         """
-        Make sure the edit method form does not accept input
-        from a user that didn't create the form.
+        Make sure the edit method form accepts input from a user
+        that didn't create the method.
 
         """
         # Try to post update to own method
@@ -152,11 +198,16 @@ class EditMethodLoggedInAsNonOwnerTests(TestCase):
                                             kwargs={'slug': m.slug}),
                                     {'method': "Update",
                                      'method-title': "Hello",
-                                     'method-description': "Hello World"})
-        self.failUnlessEqual(response.status_code, 403)
+                                     'method-description': "Hello World",
+                                     'method-editor_comment':
+                                          "Updated title"})
+        self.assertRedirects(response,
+                             reverse('methods-index'),
+                             status_code=302,
+                             target_status_code=200)
 
         m = Method.objects.get(id=2)
-        self.failIfEqual(m.title, "Hello")
+        self.failUnlessEqual(m.title, "Hello")
 
 
 class EditMethodTests(TestCase):
@@ -189,7 +240,9 @@ class EditMethodTests(TestCase):
                                             kwargs={'slug': m.slug}),
                                     {'method': "Update",
                                      'method-title': "Hello",
-                                     'method-description': "Hello World"})
+                                     'method-description': "Hello World",
+                                     'method-editor_comment':
+                                          "Updated title"})
         self.assertRedirects(response,
                              reverse('methods-index'),
                              status_code=302,

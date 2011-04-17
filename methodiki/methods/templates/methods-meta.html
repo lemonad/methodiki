@@ -1,7 +1,6 @@
 {% load i18n thumbnail %}
 <div class="method-meta">
   <p>
-    {% url user method.user.username as link_to_person %}
     {% comment %}
     {% if method.user.get_profile.avatar %}
     <img class="rounded-3" 
@@ -10,26 +9,42 @@
     {% endif %}
     {% endcomment %}
     <em>
+      {% url user method.user.username as link_to_creator %}
       {% ifequal method.status "PUBLISHED" %}
-      {% blocktrans with method.user.get_profile.name as name and method.published_at as published_at %}
-      Created by <a href="{{ link_to_person }}">{{ name }}</a>
+      {% blocktrans with method.published_at as published_at and method.user.get_profile.name as creator_name %}
+      Created by <a href="{{ link_to_creator }}">{{ creator_name }}</a>
       and published at {{ published_at }}.
       {% endblocktrans %}
       {% endifequal %}
+
       {% ifequal method.status "DRAFT" %}
-      {% blocktrans with method.user.get_profile.name as name and method.date_created as created_at %}
-      Created by <a href="{{ link_to_person }}">{{ name }}</a> at {{ created_at }}.
-      <strong>Method is not yet published.</strong>
+      {% blocktrans with method.date_created as created_at and method.user.get_profile.name as creator_name %}
+      Created by <a href="{{ link_to_creator }}">{{ creator_name }}</a>
+      at {{ created_at }}. <strong>Method is not yet published.</strong>
       {% endblocktrans %}
       {% endifequal %}
 
-      {% if not edit_method_flag %}
-      {% if method.user.id == request.user.id or request.user.is_superuser %}
+      {% if method.user.id != method.last_edited_by.id %}
+      {% url user method.last_edited_by.username as link_to_editor %}
+      {% blocktrans with method.date_modified as date_modified and method.last_edited_by.get_profile.name as editor_name %}
+      Last edited by <a href="{{ link_to_editor }}">{{ editor_name }}</a>
+      at {{ date_modified }}.
+      {% endblocktrans %}
+      {% endif %}
+
+      {% if revision_history %}
+      <a class="noprint"
+         href="{% url methods-diff-method method.published_at.year method.published_at.month method.published_at.day method.slug %}">
+         {% spaceless %}{% blocktrans with revision_history|length|add:1 as counter %}
+         {{ counter }} revisions
+         {% endblocktrans %}{% endspaceless %}</a>.
+      {% endif %}
+
+      {% if show_edit_method_link %}
       <a class="noprint rounded-button rounded-6"
          href="{% url methods-edit-method method.slug %}">
         {% trans "Edit method?" %}
       </a>
-      {% endif %}
       {% endif %}
 
       {% if method.tags.all %}

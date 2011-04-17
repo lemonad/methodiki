@@ -1,0 +1,147 @@
+{% extends "base-without-sidebar.html" %}
+{% load i18n %}
+
+{% block css %}
+<style>
+    .diff-wrapper {
+        font-family: Lucida Console, Monaco, DejaVu Sans Mono, monospace;
+    }
+    .diff-wrapper del, .old-revision {
+        background-color: #fcc;
+    }
+    .diff-wrapper ins, .new-revision {
+        background-color: #cfc;
+    }
+    .diff-wrapper span {
+    }
+    .old-revision, .new-revision {
+        padding-left: 0.25em;
+        padding-right: 0.25em;
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+  <div class="prepend-3 span-18 append-3 last">
+    <a href="{% url methods-show-method method.published_at.year method.published_at.month method.published_at.day method.slug %}">
+      <h2>
+        {% blocktrans with method.title as method_title %}
+        All revisions for {{ method_title }}
+        {% endblocktrans %}
+      </h2>
+    </a>
+
+    <form id="diff-form" action="#" method="get">
+      <div class="span-2" style="margin:0;">
+        <input type="radio"
+               name="diff1"
+               {% if not diff1 or diff1 == 'latest' %}checked="checked"{% endif %}
+               value="latest" />
+      </div>
+      <div class="span-2" style="margin:0;">
+        &nbsp;
+      </div>
+      <div class="span-14 latest" style="margin:0;">
+        {% trans "Current version" %}:
+        <a href="{% url user method.last_edited_by %}">{{ method.last_edited_by.get_profile.name }}</a>
+        <em>{{ method.editor_comment }}</em>
+      </div>
+
+      {% for revision in revisions %}
+      <div class="span-2" style="margin:0;">
+        {% if not forloop.last %}
+        <input type="radio"
+               name="diff1"
+               {% if diff1 == revision.revision|stringformat:"d" %}checked="checked"{% endif %}
+               value="{{ revision.revision }}" />
+        {% else %}
+        &nbsp;
+        {% endif %}
+      </div>
+      <div class="span-2" style="margin:0;">
+        <input type="radio"
+               name="diff2"
+               {% if forloop.first and not diff2 %}checked="checked"{% endif %}
+               {% if diff2 == revision.revision|stringformat:"d" %}checked="checked"{% endif %}
+               value="{{ revision.revision }}" />
+      </div>
+      <div class="span-14 latest" style="margin:0;">
+        {{ revision }}:
+        <a href="{% url user revision.edited_by %}">{{ revision.edited_by.get_profile.name }}</a>
+        <em>{{ revision.editor_comment }}</em>
+      </div>
+      {% endfor %}
+
+      <div class="span-18 prepend-top last append-bottom">
+        <input class="submit" type="submit" name="diff"
+               value="{% trans "Show diff" %}" />
+      </div>
+    </form>
+
+    {% if show_diff %}
+    {# Delete = -1, Insert = 1, Equal = 0 #}
+    <a href="#"><h2>
+      {% trans "Differences" %}:
+      <span class="new-revision">{{ revision }}</span>
+      vs
+      <span class="old-revision">{{ old_revision }}</span>.
+    </h2></a>
+
+    {% if diff_title %}
+    <div class="diff-wrapper">
+      <h3>
+        {% trans "Title" %}:
+        {{ diff_title|safe }}
+      </h3>
+    </div>
+    {% endif %}
+
+    {% if diff_desc %}
+    <div class="diff-wrapper">
+      {{ diff_desc|safe }}
+    </div>
+    {% endif %}
+
+    {% if diff_tags %}
+    <h4>{% trans "Tags" %}</h4>
+    <div class="diff-wrapper">
+      {{ diff_tags|safe }}
+    </div>
+    {% endif %}
+
+    {% if diff_files %}
+    <h4>{% trans "Attached files" %}</h4>
+    <div class="diff-wrapper">
+      {{ diff_files|safe }}
+    </div>
+    {% endif %}
+
+    {% if not diff_title and not diff_description and not diff_tags and not diff_files %}
+    <p>{% trans "No differences." %}</p>
+    {% endif %}
+
+
+    {% if newer_revision or older_revision %}
+    <div class="prepend-2 span-6 append-2" style="text-align:center;">
+      {% if newer_revision %}
+      <a href="{% url methods-diff-method method.published_at.year method.published_at.month method.published_at.day method.slug newer_revision %}">
+        &lt;&lt; {% trans "Newer revision" %}
+      </a>
+      {% else %}
+      &nbsp;
+      {% endif %}
+    </div>
+
+    <div class="span-6 append-2 last" style="text-align:center;">
+      {% if older_revision %}
+      <a href="{% url methods-diff-method method.published_at.year method.published_at.month method.published_at.day method.slug older_revision %}">
+         {% trans "Older revision" %} &gt;&gt;
+      </a>
+      {% else %}
+      &nbsp;
+      {% endif %}
+    </div>
+    {% endif %}
+    {% endif %}
+  </div>
+{% endblock %}
