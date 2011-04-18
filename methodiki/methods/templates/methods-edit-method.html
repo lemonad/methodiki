@@ -172,6 +172,18 @@
           <div class="span-18 last{% if form.editor_comment.errors %} loud{% endif %}">
             {{ form.editor_comment.label_tag }}
           </div>
+          {% if form.editor_comment.errors %}
+          <div class="span-18 last">
+            <div class="info">
+              {% blocktrans %}
+              Briefly describe the changes you've made, like "spelling",
+              "formatting" or "added section on materials needed". After
+              saving, this summary will appear in the revision history for
+              this method.
+              {% endblocktrans %}
+            </div>
+          </div>
+          {% endif %}
           {{ form.editor_comment }}
         </fieldset>
         {% else %}

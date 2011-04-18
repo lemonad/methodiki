@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-16 19:02+0200\n"
+"POT-Creation-Date: 2011-04-18 14:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jonas Nockert <jonasnockert@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -184,8 +184,8 @@ msgstr "Redigerad av"
 
 #: methods/models.py:269 methods/templates/methods-create-method.html:90
 #: methods/templates/methods-diff-method.html:106
-#: methods/templates/methods-edit-method.html:215
-#: methods/templates/methods-meta.html:45
+#: methods/templates/methods-edit-method.html:227
+#: methods/templates/methods-meta.html:53
 #: methods/templates/methods-tags.html:13 templates/base-header.html:75
 msgid "Tags"
 msgstr "Etiketter"
@@ -211,11 +211,11 @@ msgstr "metodrevision"
 msgid "method revisions"
 msgstr "metodrevisioner"
 
-#: methods/views.py:254
+#: methods/views.py:256
 msgid "latest revision"
 msgstr "senaste revision"
 
-#: methods/views.py:269 methods/views.py:285
+#: methods/views.py:270 methods/views.py:285
 #, python-format
 msgid "revision %(revno)d"
 msgstr "revision %(revno)d"
@@ -435,7 +435,7 @@ msgstr ""
 #: methods/templates/methods-create-bonus.html:51
 #: methods/templates/methods-create-method.html:119
 #: methods/templates/methods-edit-bonus.html:53
-#: methods/templates/methods-edit-method.html:246
+#: methods/templates/methods-edit-method.html:258
 #: methods/templates/methods-preview.html:5
 msgid "Preview"
 msgstr "Förhandsgranska"
@@ -469,17 +469,17 @@ msgid "Add images after submitting your method (sorry...)"
 msgstr "Lägg till bilder efter du sparat din metod (sorry...)"
 
 #: methods/templates/methods-create-method.html:87
-#: methods/templates/methods-edit-method.html:212
+#: methods/templates/methods-edit-method.html:224
 msgid "Optional settings"
 msgstr "Valfria fält"
 
 #: methods/templates/methods-create-method.html:88
-#: methods/templates/methods-edit-method.html:213
+#: methods/templates/methods-edit-method.html:225
 msgid "Click to display."
 msgstr "Klicka för att visa."
 
 #: methods/templates/methods-create-method.html:103
-#: methods/templates/methods-edit-method.html:230
+#: methods/templates/methods-edit-method.html:242
 msgid "Suggested tags:"
 msgstr "Förslag på etiketter:"
 
@@ -537,7 +537,7 @@ msgid "Edit away!"
 msgstr "Redigera!"
 
 #: methods/templates/methods-edit-bonus.html:55
-#: methods/templates/methods-edit-method.html:248
+#: methods/templates/methods-edit-method.html:260
 #: preferences/templates/preferences-profile.html:78
 msgid "Save"
 msgstr "Spara"
@@ -562,7 +562,25 @@ msgstr "Släpp filer här för att ladda upp"
 msgid "Delete image?"
 msgstr "Ta bort bild?"
 
-#: methods/templates/methods-edit-method.html:198
+#: methods/templates/methods-edit-method.html:178
+msgid ""
+"\n"
+"              Briefly describe the changes you've made, like \"spelling\",\n"
+"              \"formatting\" or \"added section on materials needed\". "
+"After\n"
+"              saving, this summary will appear in the revision history for\n"
+"              this method.\n"
+"              "
+msgstr ""
+"\n"
+"              Beskriv kort ändringarna du gjort, som \"stavning\",\n"
+"              \"formatering\" eller \"lade till sektion om              "
+"studiematerial\".\n"
+"              Efter du sparat så kommer sammanfattningen visas "
+"i              revisionshistoriken för den här metoden.\n"
+"              "
+
+#: methods/templates/methods-edit-method.html:210
 msgid ""
 "\n"
 "            Hover over an image and click the plus sign to add the image\n"
@@ -574,11 +592,11 @@ msgstr ""
 "          att lägga till bilden där du placerat markören i texten.\n"
 "        "
 
-#: methods/templates/methods-edit-method.html:260
+#: methods/templates/methods-edit-method.html:272
 msgid "Publish method"
 msgstr "Publicera metoden"
 
-#: methods/templates/methods-edit-method.html:268
+#: methods/templates/methods-edit-method.html:280
 msgid "Delete method"
 msgstr "Ta bort metoden"
 
@@ -729,6 +747,17 @@ msgstr ""
 "    "
 
 #: methods/templates/methods-meta.html:38
+#, python-format
+msgid ""
+"\n"
+"         %(counter)s revisions\n"
+"         "
+msgstr ""
+"\n"
+"        %(counter)s revisioner\n"
+"        "
+
+#: methods/templates/methods-meta.html:46
 msgid "Edit method?"
 msgstr "Redigera metod?"
 
