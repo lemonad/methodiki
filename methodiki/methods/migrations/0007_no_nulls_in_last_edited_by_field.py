@@ -9,7 +9,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         
         # Changing field 'Method.last_edited_by'
-        db.alter_column('methods_method', 'last_edited_by_id', self.gf('django.db.models.fields.related.ForeignKey')(default='', to=orm['auth.User']))
+        db.alter_column('methods_method', 'last_edited_by_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User']))
 
 
     def backwards(self, orm):
