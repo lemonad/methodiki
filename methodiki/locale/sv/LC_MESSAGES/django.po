@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-18 14:10+0200\n"
+"POT-Creation-Date: 2011-04-26 20:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jonas Nockert <jonasnockert@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -228,30 +228,36 @@ msgstr ""
 "Tack för att du lade in en ny metod! Glöm inte att publicera den så den blir "
 "synlig för andra."
 
-#: methods/views.py:455
+#: methods/views.py:464
 msgid "Method saved!"
 msgstr "Metoden sparades!"
 
-#: methods/views.py:458
+#: methods/views.py:467
 msgid ""
 "Method saved! Don't forget to publish it so it becomes visible to others."
 msgstr ""
 "Metoden sparades! Glöm inte att publicera den så att den blir synlig för "
 "andra."
 
-#: methods/views.py:473
+#: methods/views.py:474
+msgid ""
+"Could not save method! The form was not filled in correctly (see below)."
+msgstr ""
+"Kunde inte spara metoden! Formuläret är inte korrekt ifyllt (se nedan)."
+
+#: methods/views.py:486
 msgid "Method deleted!"
 msgstr "Metoden togs bort!"
 
-#: methods/views.py:478
+#: methods/views.py:491
 msgid "Method is already public"
 msgstr "Metoden är redan publik"
 
-#: methods/views.py:484
+#: methods/views.py:497
 msgid "Method is now published and visible to everyone"
 msgstr "Metoden publicerades och är nu synlig för alla"
 
-#: methods/views.py:523
+#: methods/views.py:536
 msgid ""
 "Thanks for adding a new method bonus! Don't forget to publish it so it "
 "becomes visible to others."
@@ -259,26 +265,26 @@ msgstr ""
 "Tack för att du lade in en ny metodbonus! Glöm inte att publicera den så den "
 "blir synlig för andra."
 
-#: methods/views.py:579
+#: methods/views.py:592
 msgid "Bonus saved!"
 msgstr "Bonusen sparades!"
 
-#: methods/views.py:586
+#: methods/views.py:599
 msgid ""
 "Bonus saved! Don't forget to publish it so it becomes visible to others."
 msgstr ""
 "Bonusen sparades! Glöm inte att publicera den så att den blir synlig för "
 "andra."
 
-#: methods/views.py:599
+#: methods/views.py:612
 msgid "Bonus deleted!"
 msgstr "Bonusen togs bort!"
 
-#: methods/views.py:608
+#: methods/views.py:621
 msgid "Bonus is already public"
 msgstr "Bonusen är redan publik"
 
-#: methods/views.py:613
+#: methods/views.py:626
 msgid "Bonus is now published and visible to everyone"
 msgstr "Bonusen publicerades och är nu synlig för alla"
 

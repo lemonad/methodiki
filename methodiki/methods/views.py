@@ -397,7 +397,11 @@ def edit_method(request, slug):
     method = get_object_or_404(Method, slug=slug)
     preview = {}
 
-    form_defaults = {'editor_comment': ''}
+    if method.is_draft():
+        form_defaults = {'editor_comment': '-'}
+    else:
+        form_defaults = {'editor_comment': ''}
+
     form = MethodForm(request,
                       initial=form_defaults,
                       instance=method,
@@ -461,6 +465,10 @@ def edit_method(request, slug):
                     return HttpResponseRedirect(reverse('methods-edit-method',
                                                         kwargs={'slug':
                                                                 m.slug}))
+            else:
+                messages.error(request, _("Could not save method! The form "
+                                          "was not filled in correctly (see "
+                                          "below)."))
 
         elif 'delete' in request.POST:
             # Remove associated media
