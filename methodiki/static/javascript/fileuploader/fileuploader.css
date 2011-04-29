@@ -50,11 +50,10 @@
 .qq-upload-file {}
 .qq-upload-spinner {
     display: inline-block;
-    background: url("/media/images/loading.gif");
     width: 15px;
     height: 15px;
     vertical-align: text-bottom;
 }
 .qq-upload-size,.qq-upload-cancel { font-size: 11px; }
 .qq-upload-failed-text { display: none; }
-.qq-upload-fail .qq-upload-failed-text { display: inline; }
+.qq-upload-fail .qq-upload-failed-text { display: inline; background-color: #fbe3e4; color: #8a1f11; padding: 2px; border: 1px solid #fbc2c4; }
