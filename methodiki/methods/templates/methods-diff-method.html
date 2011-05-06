@@ -41,11 +41,12 @@
       <div class="span-2" style="margin:0;">
         &nbsp;
       </div>
-      <div class="span-14 latest" style="margin:0;">
+      <div class="span-14 last" style="margin:0;">
         {% trans "Current version" %}:
         <a href="{% url user method.last_edited_by %}">{{ method.last_edited_by.get_profile.name }}</a>
         <em>{{ method.editor_comment }}</em>
       </div>
+      <br/>
 
       {% for revision in revisions %}
       <div class="span-2" style="margin:0;">
@@ -65,11 +66,12 @@
                {% if diff2 == revision.revision|stringformat:"d" %}checked="checked"{% endif %}
                value="{{ revision.revision }}" />
       </div>
-      <div class="span-14 latest" style="margin:0;">
+      <div class="span-14 last" style="margin:0;">
         {{ revision }}:
         <a href="{% url user revision.edited_by %}">{{ revision.edited_by.get_profile.name }}</a>
         <em>{{ revision.editor_comment }}</em>
       </div>
+      <br/>
       {% endfor %}
 
       <div class="span-18 prepend-top last append-bottom">
