@@ -23,7 +23,7 @@ from django.shortcuts import (get_object_or_404, get_list_or_404,
                               render_to_response)
 from django.template import Context, RequestContext, loader
 from django.template.defaultfilters import escape, linebreaksbr, slugify
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.decorators.csrf import csrf_exempt
 from easy_thumbnails.files import get_thumbnailer
 from taggit.models import Tag, TaggedItem
@@ -663,24 +663,34 @@ def upload_file(request, slug):
             slugified_filename = "%s.%s" % (slugified_filename,
                                             split_filename[1].lower())
 
-        # Create a method revision before adding to method related data
-        mr = MethodRevision(method=method,
-                            title=method.title,
-                            description=method.description,
-                            edited_by=request.user,
-                            editor_comment="[file added]",
-                            tags=method.tags_edit_string,
-                            files=method.files)
-        mr.save()
+        old_files = method.files
 
         uf = MethodFile(user=request.user, method=method)
         if request.is_ajax():
-            uf.image.save(slugified_filename,
-                          ContentFile(request.raw_post_data))
+            file_content = ContentFile(request.raw_post_data)
         else:
-            uf.image.save(slugified_filename,
-                          ContentFile(request.FILES['qqfile'].read()))
-        uf.save()
+            file_content = ContentFile(request.FILES['qqfile'].read())
+
+        try:
+            ret = uf.image.save(slugified_filename, file_content)
+        except TypeError:
+            # Not an image
+            ret_json = {'success': False,
+                        'error': ugettext("Error: File is not an image.")}
+            return HttpResponse(json.dumps(ret_json))
+
+        ret = uf.save()
+
+        if method.is_published():
+            # Create a method revision after adding to method related data
+            mr = MethodRevision(method=method,
+                                title=method.title,
+                                description=method.description,
+                                edited_by=request.user,
+                                editor_comment="[file added]",
+                                tags=method.tags_edit_string,
+                                files=old_files)
+            mr.save()
 
         # Generate thumbnail
         thumbnail_options = dict(size=(50, 50), crop=True)
@@ -720,15 +730,16 @@ def delete_file(request, slug):
         if image.method.id != method.id:
             raise PermissionDenied("Image does not belong to this method.")
 
-        # Create a method revision before deleting method related data
-        mr = MethodRevision(method=method,
-                            title=method.title,
-                            description=method.description,
-                            edited_by=request.user,
-                            editor_comment="[file deleted]",
-                            tags=method.tags_edit_string,
-                            files=method.files)
-        mr.save()
+        if method.is_published():
+            # Create a method revision before deleting method related data
+            mr = MethodRevision(method=method,
+                                title=method.title,
+                                description=method.description,
+                                edited_by=request.user,
+                                editor_comment="[file deleted]",
+                                tags=method.tags_edit_string,
+                                files=method.files)
+            mr.save()
 
         image.delete()
 

@@ -12,51 +12,62 @@
       $('#delete-method').submit(function() {
         return confirm("{% trans "Really delete method?" %}");
       });
+
       $("h3.options").click(function() {
-          $(this).next().toggle();
-          $("#click-to-display").hide('fast');
-          return false;
+        $(this).next().toggle();
+        $("#click-to-display").hide('fast');
+        return false;
       });
 
       taggit = $("#id_method-tags").taggit({tag_selector:
                                             "#suggested-tags .taggit-tag"});
-      var uploader = new qq.FileUploader({
-          element: document.getElementById('file-uploader'),
-          action: '{% url methods-upload-file method.slug %}',
-          data: {
-              csrfmiddlewaretoken : "{{ csrf_token }}"
-          },
-          template: '<div class="qq-uploader">' +
-                    '<div class="qq-upload-drop-area"><span>{% trans "Drop files here to upload" %}</span></div>' +
-                    '<div class="qq-upload-button rounded-6">{% trans "Upload an image" %}</div>' +
-                    '<ul class="qq-upload-list"></ul>' +
-                    '</div>',
-          onComplete: function(id, fileName, responseJSON) {
-            var listitem =
-                "<li id=\"image-" + responseJSON.image_id + "\" " +
-                     "class=\"rounded-6\">" +
-                    "<a href=\"" + responseJSON.original_url + "\">" +
-                         "<img class=\"rounded-3\" src=\"" +
-                               responseJSON.thumbnail_url + "\" /></a>" +
-                    "<a class=\"image-add\" href=\"" +
-                        responseJSON.original_url + "\"></a>" +
-                    "<a class=\"image-preview\" href=\"" +
-                        responseJSON.original_url + "\"></a>" +
-                    "<a id=\"delete-image-" + responseJSON.image_id + "\" " +
-                        "class=\"image-delete\" href=\"#\"></a>" +
-                "</li>";
 
+      var uploader = new qq.FileUploader({
+        element: document.getElementById('file-uploader'),
+        action: '{% url methods-upload-file method.slug %}',
+        data: {
+          csrfmiddlewaretoken : "{{ csrf_token }}"
+        },
+        fileTemplate: '<li>' +
+                      '<span class="qq-upload-file"></span>' +
+                      '<span class="qq-upload-spinner"></span>' +
+                      '<span class="qq-upload-size"></span>' +
+                      '<a class="qq-upload-cancel" href="#">{% trans "Cancel" %}</a>' +
+                      '<span class="qq-upload-failed-text">{% trans "Failed" %}</span>' +
+                      '</li>',
+        template: '<div class="qq-uploader">' +
+                  '<div class="qq-upload-drop-area"><span>{% trans "Drop files here to upload" %}</span></div>' +
+                  '<div class="qq-upload-button rounded-6">{% trans "Upload an image" %}</div>' +
+                  '<ul class="qq-upload-list"></ul>' +
+                  '</div>',
+        onComplete: function(id, fileName, responseJSON) {
+          if (responseJSON.success) {
+            var listitem =
+              "<li id=\"image-" + responseJSON.image_id + "\" " +
+                "class=\"rounded-6\">" +
+                "<a href=\"" + responseJSON.original_url + "\">" +
+                     "<img class=\"rounded-3\" src=\"" +
+                           responseJSON.thumbnail_url + "\" /></a>" +
+                "<a class=\"image-add\" href=\"" +
+                    responseJSON.original_url + "\"></a>" +
+                "<a class=\"image-preview\" href=\"" +
+                    responseJSON.original_url + "\"></a>" +
+                "<a id=\"delete-image-" + responseJSON.image_id + "\" " +
+                    "class=\"image-delete\" href=\"#\"></a>" +
+              "</li>";
             $("li#image-" + responseJSON.image_id + " a.image-preview").
-                fancybox({"hideOnContentClick": true,
-                          "margin": 14});
+                fancybox({"hideOnContentClick": true, "margin": 14});
             $("#uploaded-media-list").append(listitem);
             $("#uploaded-media").show("slow");
           }
+        }
       });
+
       $("a.image-add").live("click", function() {
           $.markItUp({replaceWith: this.href});
           return false;
       });
+
       $("a.image-delete").live("click", function() {
           if (!confirm("{% trans "Delete image?" %}")) {
               return false;
