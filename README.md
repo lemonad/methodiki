@@ -1,3 +1,5 @@
+![Methodiki frontpage](http://github.com/lemonad/methodiki/raw/master/methodiki/static/images/screenshots/frontpage.png)
+
 Wiki
 ----
 The current goal of the wiki functionality is not so much the collective ownership of methods. Rather, it's for making users feel reasonably safe editing and improving methods other users have created by providing accurate revision tracking.
