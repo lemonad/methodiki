@@ -3,6 +3,7 @@
 {% block main %}
 <div>
   <form action="/i18n/setlang/" method="post">
+    {% csrf_token %}
     <input name="next" type="hidden" value="/" />
     <select id="set-focus" name="language">
       {% for lang in LANGUAGES %}
