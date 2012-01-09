@@ -223,4 +223,5 @@ THUMBNAIL_MEDIA_URL = MEDIA_URL + 'thumbnails/'
 # Haystack search
 #
 HAYSTACK_SEARCH_ENGINE = "whoosh"
+HAYSTACK_WHOOSH_PATH = os.path.join(PROJECT_ROOT, 'whoosh')
 HAYSTACK_SITECONF = "methodiki.search_sites"
