@@ -183,7 +183,8 @@ def tag_index(request, tag_slug):
 
     sidebar_methods = get_sidebar_methods(request.user)
     tag = get_object_or_404(Tag, slug=tag_slug)
-    methods = Method.objects.filter(tags__slug=tag_slug) \
+    methods = Method.objects.published() \
+                            .filter(tags__slug=tag_slug) \
                             .order_by('title')
 
     t = loader.get_template('methods-tag-index.html')
