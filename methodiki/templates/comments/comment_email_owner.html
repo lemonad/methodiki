@@ -1,0 +1,15 @@
+{% extends "base-email.html" %}
+{% load comments i18n %}
+{% block mail_body %}
+<p>
+  {% trans "Hi! You can click the following link to read the comment:" %}
+  <a href="{{ comment_permalink }}">{{ comment_permalink }}</a>
+</p>
+
+<p>
+  <br/>
+  {% trans "Have a nice day!" %}
+  <br/><br/>
+  {{ site_name }}
+</p>
+{% endblock %}

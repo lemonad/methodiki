@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from autoslug import AutoSlugField
 from django.contrib.auth.models import User
+from django.contrib.comments.moderation import moderator
 from django.contrib.contenttypes.generic import GenericRelation
 from django.db.models import (BooleanField, CharField, Count, DateTimeField,
                               FileField, ForeignKey, IntegerField, Manager,
@@ -12,6 +13,7 @@ from taggit.managers import TaggableManager
 from taggit.utils import edit_string_for_tags
 
 from customcomments.models import CustomComment
+from comment_moderation import EmailOwner
 
 
 class MethodManager(Manager):
@@ -299,3 +301,7 @@ class MethodRevision(Model):
         get_latest_by = 'revision'
         verbose_name = _("method revision")
         verbose_name_plural = _("method revisions")
+
+
+if Method not in moderator._registry:
+    moderator.register(Method, EmailOwner)

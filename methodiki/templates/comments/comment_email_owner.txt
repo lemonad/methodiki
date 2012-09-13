@@ -1,0 +1,9 @@
+{% load comments i18n %}{% autoescape off %}
+{% trans "Hi! You can click the following link to read the comment:" %}
+
+{{ comment_permalink }}
+
+{% trans "Have a nice day!" %}
+
+   {{ site_name }}
+{% endautoescape %}
