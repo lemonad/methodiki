@@ -46,6 +46,10 @@ Setup
 #### Start development server
     $ python manage.py runserver --settings development
 
+#### Add/customize flat content (footers, information blocks, etc.)
+Use the admin to customize according to your educational and organizational
+needs.
+
 Production server
 -----------------
 * Map `/media/` to `./methodiki/media/` *(media uploads, thumbnails, etc.)*
@@ -53,3 +57,10 @@ Production server
 * Start server:
 
     $ python manage.py runserver --settings production
+
+Screenshots
+-----------
+![Award method bonuses](http://github.com/lemonad/methodiki/raw/master/methodiki/static/images/screenshots/bonus.png)
+
+
+![Give feedback on methods](http://github.com/lemonad/methodiki/raw/master/methodiki/static/images/screenshots/comment.png)
