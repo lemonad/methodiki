@@ -60,7 +60,8 @@ Production server
 
 Screenshots
 -----------
+#### Award method bonuses
 ![Award method bonuses](http://github.com/lemonad/methodiki/raw/master/methodiki/static/images/screenshots/bonus.png)
 
-
+#### Give feedback to encourage the sharing and reusing of methods
 ![Give feedback on methods](http://github.com/lemonad/methodiki/raw/master/methodiki/static/images/screenshots/comment.png)
